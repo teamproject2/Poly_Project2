@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -18,8 +20,9 @@ public class HinhSanPham {
 	@Column(name="HINH")
 	private String hinh;
 	
-	@Column(name="SAN_PHAM_ID")
-	private int sanPhamId;
+	@ManyToOne
+	@JoinColumn(name="SAN_PHAM_ID")
+	private SanPham sanPham;
 
 	public int getId() {
 		return id;
@@ -37,13 +40,15 @@ public class HinhSanPham {
 		this.hinh = hinh;
 	}
 
-	public int getSanPhamId() {
-		return sanPhamId;
+	public SanPham getSanPham() {
+		return sanPham;
 	}
 
-	public void setSanPhamId(int sanPhamId) {
-		this.sanPhamId = sanPhamId;
+	public void setSanPham(SanPham sanPham) {
+		this.sanPham = sanPham;
 	}
+
+	
 	
 	
 	

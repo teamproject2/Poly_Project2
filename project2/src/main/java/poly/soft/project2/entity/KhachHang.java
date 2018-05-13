@@ -1,12 +1,15 @@
 package poly.soft.project2.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +32,10 @@ public class KhachHang implements Serializable{
 	
 	@Column(name="EMAIL")
 	private String email;
+	
+	@OneToMany(mappedBy="khachHang",fetch= FetchType.LAZY)
+	private List<HoaDon> hoaDon;
+	
 
 	public int getId() {
 		return id;
@@ -69,5 +76,14 @@ public class KhachHang implements Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public List<HoaDon> getHoaDon() {
+		return hoaDon;
+	}
+
+	public void setHoaDon(List<HoaDon> hoaDon) {
+		this.hoaDon = hoaDon;
+	}
+	
 	
 }

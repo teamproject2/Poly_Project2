@@ -1,10 +1,14 @@
 package poly.soft.project2.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,6 +22,10 @@ public class KichThuoc {
 	
 	@Column(name="TEN_KICH_THUOC")
 	private String tenKichThuoc;
+	
+	@ManyToMany(mappedBy="kichThuoc",fetch=FetchType.LAZY)
+	private List<SanPham> sanPham;
+	
 
 	public int getId() {
 		return id;
@@ -33,6 +41,14 @@ public class KichThuoc {
 
 	public void setTenKichThuoc(String tenKichThuoc) {
 		this.tenKichThuoc = tenKichThuoc;
+	}
+
+	public List<SanPham> getSanPham() {
+		return sanPham;
+	}
+
+	public void setSanPham(List<SanPham> sanPham) {
+		this.sanPham = sanPham;
 	}	
 	
 	
