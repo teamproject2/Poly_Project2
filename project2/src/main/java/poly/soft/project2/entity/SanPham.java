@@ -34,11 +34,7 @@ public class SanPham {
 	@OneToMany(mappedBy="sanPham",fetch=FetchType.LAZY)
 	private List<HinhSanPham> hinhSanPham;
 	
-	@ManyToMany
-	@JoinTable(name="MAU_SAC_SP"
-				,joinColumns=@JoinColumn(name="SAN_PHAM_ID")
-				,inverseJoinColumns=@JoinColumn(name="MAU_SAC_ID"))
-	private List<MauSac> mauSac;
+
 	
 	
 	@ManyToMany
@@ -101,13 +97,7 @@ public class SanPham {
 		this.hinhSanPham = hinhSanPham;
 	}
 
-	public List<MauSac> getMauSac() {
-		return mauSac;
-	}
 
-	public void setMauSac(List<MauSac> mauSac) {
-		this.mauSac = mauSac;
-	}
 
 	public List<KichThuoc> getKichThuoc() {
 		return kichThuoc;
