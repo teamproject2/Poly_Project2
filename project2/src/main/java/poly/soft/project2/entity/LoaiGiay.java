@@ -12,26 +12,25 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import poly.soft.project2.enumeration.GioiTinhEnum;
+
 @Entity
 @Table(name="LOAI_GIAY")
 public class LoaiGiay {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="LOAI_GIAY")
+	@Column(name="ID")
 	private int id;
 	
 	@Column(name="TEN_LOAI")
 	private String tenLoai;
 	
 	@Column(name="GIOI_TINH")
-	private String gioiTinh;
+	private GioiTinhEnum gioiTinh;
 	
 	@OneToMany(mappedBy="loaiGiay",fetch= FetchType.LAZY)
 	private List<SanPham> sanPham;
-	
-	@ManyToMany(mappedBy="loaiGiay",fetch = FetchType.LAZY)
-	private List<NhaSanXuat> nhaSanXuat;
 	
 	public int getId() {
 		return id;
@@ -45,10 +44,10 @@ public class LoaiGiay {
 	public void setTenLoai(String tenLoai) {
 		this.tenLoai = tenLoai;
 	}
-	public String getGioiTinh() {
+	public GioiTinhEnum getGioiTinh() {
 		return gioiTinh;
 	}
-	public void setGioiTinh(String gioiTinh) {
+	public void setGioiTinh(GioiTinhEnum gioiTinh) {
 		this.gioiTinh = gioiTinh;
 	}
 	public List<SanPham> getSanPham() {
@@ -57,13 +56,5 @@ public class LoaiGiay {
 	public void setSanPham(List<SanPham> sanPham) {
 		this.sanPham = sanPham;
 	}
-	public List<NhaSanXuat> getNhaSanXuat() {
-		return nhaSanXuat;
-	}
-	public void setNhaSanXuat(List<NhaSanXuat> nhaSanXuat) {
-		this.nhaSanXuat = nhaSanXuat;
-	}
-	
-	
-	
+		
 }
