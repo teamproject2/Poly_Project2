@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
 
+import poly.soft.project2.dto.SanPhamHomePageDTO;
 import poly.soft.project2.entity.SanPham;
 @Service
 @Transactional
@@ -17,4 +18,6 @@ public interface SanPhamService {
 	SanPham save(SanPham sanPham);
 	
 	boolean delete(int id);
+	
+	List<SanPhamHomePageDTO> getListSanPhamHomePage(String tenLoai);
 }

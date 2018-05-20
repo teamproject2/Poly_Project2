@@ -43,3 +43,15 @@ values('2018-5-20',1,1);
 --insert into cthd
 insert into poly_project2.chi_tiet_hoa_don(so_luong,hoa_don_id,san_pham_id)
 values(1,1,1),(1,1,2),(1,1,3);
+
+--insert into image san pham
+insert into poly_project2.hinh_san_pham(hinh,san_pham_id) values('https://firebasestorage.googleapis.com/v0/b/poly2-977b3.appspot.com/o/adidas-nmd-r2-white-black-1.jpg?alt=media&token=45131b12-9998-43ed-bd85-8eefef4b458f',1);
+insert into poly_project2.hinh_san_pham(hinh,san_pham_id) values
+('https://firebasestorage.googleapis.com/v0/b/poly2-977b3.appspot.com/o/adidas-nmd-r2-white-black-2.jpg?alt=media&token=01a3d3e1-d422-4530-b6ec-af3f3c94494e',1),
+('https://firebasestorage.googleapis.com/v0/b/poly2-977b3.appspot.com/o/adidas-nmd-r2-white-black-3.jpg?alt=media&token=1531d122-2346-4d74-91c5-76615b6e5841',1),
+('https://firebasestorage.googleapis.com/v0/b/poly2-977b3.appspot.com/o/Adidas%20NMD%20R1%20Burgundy%20and%20Olive%201.jpg?alt=media&token=4855d42e-c5b4-4483-92a0-ccad0a4b5d42',2),
+('https://firebasestorage.googleapis.com/v0/b/poly2-977b3.appspot.com/o/Adidas%20Superstar%20Bold%20All%20White%202.jpg?alt=media&token=0276a293-7b92-4f72-b338-341ac525cde2',2),
+('https://firebasestorage.googleapis.com/v0/b/poly2-977b3.appspot.com/o/Adidas%20Superstar%20Bold%20All%20White%203.jpg?alt=media&token=e42bdfc1-5748-4af7-baab-ca696c2951c6',2),
+('https://firebasestorage.googleapis.com/v0/b/poly2-977b3.appspot.com/o/Adidas%20Superstar%20Bold%20All%20White%201.jpg?alt=media&token=b35b1a04-98fc-4a74-a41f-c04eb198ead6',3),
+('https://firebasestorage.googleapis.com/v0/b/poly2-977b3.appspot.com/o/Adidas%20Superstar%20Bold%20All%20White%202.jpg?alt=media&token=0276a293-7b92-4f72-b338-341ac525cde2',3),
+('https://firebasestorage.googleapis.com/v0/b/poly2-977b3.appspot.com/o/Adidas%20Superstar%20Bold%20All%20White%203.jpg?alt=media&token=e42bdfc1-5748-4af7-baab-ca696c2951c6',3);
