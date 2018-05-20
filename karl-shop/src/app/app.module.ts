@@ -11,7 +11,8 @@ import { IndexComponent } from './components/index/index.component';
 import { LeftBarComponent } from './components/left-bar/left-bar.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
-
+import {FormsModule} from "@angular/forms";
+import {HttpModule} from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,9 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpModule
   ],
   providers: [],
   bootstrap: [AppComponent]
