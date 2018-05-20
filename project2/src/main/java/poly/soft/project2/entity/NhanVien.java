@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import poly.soft.project2.enumeration.GioiTinhEnum;
+
 @Entity
 @Table(name="NHAN_VIEN")
 public class NhanVien implements Serializable{
@@ -26,7 +28,7 @@ public class NhanVien implements Serializable{
 	private String tenNhanVien;
 	
 	@Column(name="GIOI_TINH")
-	private String gioiTinh;
+	private GioiTinhEnum gioiTinh;
 
 	@Column(name="NGAY_SINH")
 	private Date ngaySinh;
@@ -59,12 +61,12 @@ public class NhanVien implements Serializable{
 	public void setTenNhanVien(String tenNhanVien) {
 		this.tenNhanVien = tenNhanVien;
 	}
-
-	public String getGioiTinh() {
+	
+	public GioiTinhEnum getGioiTinh() {
 		return gioiTinh;
 	}
 
-	public void setGioiTinh(String gioiTinh) {
+	public void setGioiTinh(GioiTinhEnum gioiTinh) {
 		this.gioiTinh = gioiTinh;
 	}
 

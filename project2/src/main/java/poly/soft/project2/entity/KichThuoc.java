@@ -11,8 +11,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="KICH_THUOC")
+@JsonIgnoreProperties({"sanPham"})
 public class KichThuoc {
 	
 	@Id
@@ -26,7 +30,6 @@ public class KichThuoc {
 	@ManyToMany(mappedBy="kichThuoc",fetch=FetchType.LAZY)
 	private List<SanPham> sanPham;
 	
-
 	public int getId() {
 		return id;
 	}

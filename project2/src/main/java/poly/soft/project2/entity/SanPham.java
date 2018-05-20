@@ -34,8 +34,6 @@ public class SanPham {
 	@OneToMany(mappedBy="sanPham",fetch=FetchType.LAZY)
 	private List<HinhSanPham> hinhSanPham;
 	
-
-	
 	
 	@ManyToMany
 	@JoinTable(name="KICH_THUOC_SP"

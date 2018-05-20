@@ -9,8 +9,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="HANG_TRONG_KHO")
+@JsonIgnoreProperties({"sanPham","kho"})
 public class HangTrongKho {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -31,9 +35,8 @@ public class HangTrongKho {
 	@Column(name="DON_GIA")
 	private double donGia;
 	
-
-
-
+	@Column(name="CHIET_KHAU")
+	private double chietKhau;
 	
 	public int getId() {
 		return id;
@@ -42,10 +45,6 @@ public class HangTrongKho {
 	public void setId(int id) {
 		this.id = id;
 	}
-
-	
-
-	
 
 	public SanPham getSanPham() {
 		return sanPham;
@@ -79,9 +78,13 @@ public class HangTrongKho {
 		this.donGia = donGia;
 	}
 
+	public double getChietKhau() {
+		return chietKhau;
+	}
 
-	
-	
+	public void setChietKhau(double chietKhau) {
+		this.chietKhau = chietKhau;
+	}
 	
 	
 }
