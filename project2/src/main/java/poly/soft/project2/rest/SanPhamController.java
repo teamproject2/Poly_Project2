@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,8 +28,8 @@ public class SanPhamController {
 		return new ResponseEntity<>(list,HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/homepage",method=RequestMethod.GET)
-	public ResponseEntity<?> getListSanPhamHomePage(@RequestHeader String tenLoai){
+	@RequestMapping(value="/homepage/{tenLoai}",method=RequestMethod.GET)
+	public ResponseEntity<?> getListSanPhamHomePage(@PathVariable("tenLoai") String tenLoai){
 		List<SanPhamHomePageDTO> list = sanPhamService.getListSanPhamHomePage(tenLoai);
 		return new ResponseEntity<>(list,HttpStatus.OK);
 	}

@@ -10,8 +10,9 @@ import poly.soft.project2.entity.SanPham;
 
 public interface SanPhamRepository extends JpaRepository<SanPham, Integer>{
  
-//	@Query("select SP.id, SP.tenSanPham, HTK.donGia, HTK.chietKhau, HSP.Hinh from SanPham SP "
-//			+ "join HinhSanPham HSP join HangTrongKho HTK join LoaiGiay LG where LG.tenLoai =?1 group by SP.tenSanPham")
+//	@Query("select SP.id, SP.tenSanPham, HTK.donGia, HTK.chietKhau, HSP.hinh from LoaiGiay LG inner join SanPham SP "
+//			+ "inner join HinhSanPham HSP inner join HangTrongKho HTK where LG.tenLoai =?1 group by SP.tenSanPham")
+//	List<Object[]> getListSanPhamHomePage(String tenLoai);
 	
 	@Query(value="select SP.id, SP.ten_san_pham, HTK.don_gia, HTK.chiet_khau, HSP.hinh " + 
 			"from poly_project2.san_pham SP join poly_project2.loai_giay LG on SP.loai_giay_id = LG.id " + 
