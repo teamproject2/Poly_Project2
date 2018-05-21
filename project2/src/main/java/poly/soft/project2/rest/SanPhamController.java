@@ -35,4 +35,14 @@ public class SanPhamController {
 		List<SanPhamHomePageDTO> list = sanPhamService.getListSanPhamHomePage(tenLoai);
 		return new ResponseEntity<>(list,HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/{id}",method=RequestMethod.GET)
+	public ResponseEntity<?> getSanPhamById(@PathVariable("id") int id){
+		SanPham sp = sanPhamService.findById(id);
+		if(sp == null) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<SanPham>(sp,HttpStatus.OK);
+	}
+	
 }

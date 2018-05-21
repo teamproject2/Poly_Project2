@@ -2,6 +2,7 @@ package poly.soft.project2.serviceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -27,8 +28,8 @@ public class SanPhamServiceImpl  implements SanPhamService{
 
 	@Override
 	public SanPham findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<SanPham> sp = sanPhamRepository.findById(id);
+		return sp.orElse(null);
 	}
 
 	@Override
