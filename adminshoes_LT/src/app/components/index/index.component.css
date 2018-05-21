@@ -1,0 +1,21 @@
+.app-sidebar[data-background-color='man-of-steel'], .off-canvas-sidebar[data-background-color='man-of-steel'] {
+    background-image : -webkit-linear-gradient(45deg, #780206, #061161);
+    background-image :    -moz-linear-gradient(45deg, #780206, #061161);
+    background-image :      -o-linear-gradient(45deg, #780206, #061161);
+    background-image :         linear-gradient(45deg, #780206, #061161);
+    background-repeat : repeat-x;
+    width: 260px;
+  }
+  .app-sidebar .navigation .menu-title, .off-canvas-sidebar .navigation .menu-title {
+    margin : 0;
+    font-size : 0.95rem;
+    font-weight : 400;
+    letter-spacing : 0.6px;
+    opacity : 1;
+    height : auto;
+    font-size: 16px;
+    -webkit-transition : width 0.3s cubic-bezier(0, 0, 0.2, 1);
+    -o-transition : width 0.3s cubic-bezier(0, 0, 0.2, 1);
+    -moz-transition : width 0.3s cubic-bezier(0, 0, 0.2, 1);
+    transition : width 0.3s cubic-bezier(0, 0, 0.2, 1);
+  }

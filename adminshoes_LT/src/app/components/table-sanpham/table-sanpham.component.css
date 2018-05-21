@@ -1,0 +1,22 @@
+thead tr th:last-child{
+    text-align: center;
+}
+tbody tr td:last-child{
+    text-align: center;
+}
+button.btn.btn-warning.btn01 {
+    margin-right: 10px;
+    width: 66px;
+}
+.dt-buttons .dt-button {
+    background: #1976d2 none repeat scroll 0 0;
+    border-radius: 4px;
+    color: #ffffff;
+    font-size: 20px;
+    margin-right: 3px;
+    padding: 5px 15px;
+  }
+  label {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
