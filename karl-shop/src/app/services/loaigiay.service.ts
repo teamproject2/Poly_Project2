@@ -3,24 +3,19 @@ import { Http, Response, RequestOptions } from "@angular/http";
 import { Observable } from 'rxjs/Observable';
 import { HttpHeaders } from '@angular/common/http';
 import "rxjs/Rx";
-import { HomeProduct } from './home-product';
-
-
-
-// const httpOptions = {
-//   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-// };
+import { HomeLoaiGiay } from '../entity/home-loaigiay';
 
 @Injectable()
-export class DataService {
+export class LoaigiayService {
+
   private _apiUrl = "http://localhost:9099/";
   constructor(private http: Http) { }
 
-  getData(tenLoai: string): Observable<HomeProduct[]> {
+  getLoaiGiay(): Observable<HomeLoaiGiay[]> {
     return this.http
-      .get(this._apiUrl + "sanpham/homepage/" + tenLoai)
+      .get(this._apiUrl + "loaigiay")
       .map((response: Response) => {
-        return <HomeProduct[]>response.json();
+        return <HomeLoaiGiay[]>response.json();
       })
       .catch(this.handleError);
   }
