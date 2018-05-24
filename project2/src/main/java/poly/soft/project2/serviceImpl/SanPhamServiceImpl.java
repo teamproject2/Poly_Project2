@@ -52,9 +52,10 @@ public class SanPhamServiceImpl  implements SanPhamService{
 			SanPhamHomePageDTO sp = new SanPhamHomePageDTO();
 			sp.setId(Integer.parseInt(String.valueOf(arr[0])));
 			sp.setTenSanPham(String.valueOf(arr[1]));
-			sp.setDonGia(Double.parseDouble(String.valueOf(arr[2])));
-			sp.setChietKhau(Double.parseDouble(String.valueOf(arr[3])));
-			sp.setHinh(String.valueOf(arr[4]));
+			sp.setChiTiet(String.valueOf(arr[2]));
+			sp.setDonGia(Double.parseDouble(String.valueOf(arr[3])));
+			sp.setChietKhau(Double.parseDouble(String.valueOf(arr[4])));
+			sp.setHinh(String.valueOf(arr[5]));
 			listSPHomePage.add(sp);
 		}
 		return listSPHomePage;

@@ -14,7 +14,7 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Integer>{
 //			+ "inner join HinhSanPham HSP inner join HangTrongKho HTK where LG.tenLoai =?1 group by SP.tenSanPham")
 //	List<Object[]> getListSanPhamHomePage(String tenLoai);
 	
-	@Query(value="select SP.id, SP.ten_san_pham, HTK.don_gia, HTK.chiet_khau, HSP.hinh " + 
+	@Query(value="select SP.id, SP.ten_san_pham, SP.chi_tiet, HTK.don_gia, HTK.chiet_khau, HSP.hinh " + 
 			"from poly_project2.san_pham SP join poly_project2.loai_giay LG on SP.loai_giay_id = LG.id " + 
 			"join poly_project2.hang_trong_kho HTK on SP.id = HTK.san_pham_id " + 
 			"join poly_project2.hinh_san_pham HSP on SP.id = HSP.san_pham_id " + 

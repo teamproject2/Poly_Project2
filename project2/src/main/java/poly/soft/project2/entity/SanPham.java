@@ -27,7 +27,7 @@ public class SanPham {
 	@Column(name="TEN_SAN_PHAM")
 	private String tenSanPham;
 	
-	@Column(name="CHI_TIET")
+	@Column(name="CHI_TIET", length = 750)
 	private String chiTiet;
 	
 	

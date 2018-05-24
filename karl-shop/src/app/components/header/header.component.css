@@ -1,0 +1,6 @@
+a.nav-link {
+    cursor: pointer;
+}
+a.nav-link:hover {
+    color: #ff084e;
+}

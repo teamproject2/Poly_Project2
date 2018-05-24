@@ -78,18 +78,18 @@
         <span aria-hidden="true">&times;</span>
       </button>
 
-      <div class="modal-body">
+      <div class="modal-body" *ngIf="detailArray!=null">
         <div class="quickview_body">
           <div class="container">
             <div class="row">
               <div class="col-12 col-lg-5">
                 <div class="quickview_pro_img">
-                  <img src="../assets/images/product-img/product-1.jpg" alt="">
+                  <img src="{{detailArray.hinh}}" alt="">
                 </div>
               </div>
               <div class="col-12 col-lg-7">
                 <div class="quickview_pro_des">
-                  <h4 class="title">Giày Running</h4>
+                  <h4 class="title">{{detailArray.tenSanPham}}</h4>
                   <div class="top_seller_product_rating mb-15">
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -97,10 +97,10 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                   </div>
-                  <h5 class="price">$120.99
+                  <h5 class="price">{{detailArray.donGia | currency :'VNĐ':'code':'1.0'}}
                     <span>$130</span>
                   </h5>
-                  <p>Mang lại cảm giác êm ái khi vận động</p>
+                  <p>{{detailArray.chiTiet}}</p>
                   <a href="#">Xem chi tiết</a>
                 </div>
                 <!-- Add to Cart Form -->
@@ -185,7 +185,7 @@
       <!-- Single gallery Item Start -->
       <div *ngFor="let pro of _productArray" class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.2s">
         <!-- Product Image -->
-        <div class="product-img">
+        <div class="product-img" (click)="getDetailModal(pro)">
           <img src="{{pro.hinh}}" alt="">
           <div class="product-quicview">
             <a href="#" data-toggle="modal" data-target="#quickview">
@@ -195,8 +195,8 @@
         </div>
         <!-- Product Description -->
         <div class="product-description">
-          <h4 class="product-price">{{pro.donGia}}</h4>
-          <p>{{pro.tenSanPham}}</p>
+          <h4 class="product-price">{{pro.donGia | currency:'VNĐ' : 'code':'1.0'}}</h4>
+          <p [routerLink]="['/detail', pro.id]">{{pro.tenSanPham}}</p>
           <!-- Add to Cart -->
           <a href="#" class="add-to-cart-btn">Thêm vào giỏ hàng</a>
         </div>

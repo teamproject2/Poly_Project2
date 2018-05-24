@@ -11,3 +11,11 @@ button.btn:focus{
 button.btn:hover{
     color: #ff084e;
 }
+.product-description p {
+    cursor: pointer;
+    transition: 0.4s;
+}
+.product-description p:hover {
+    color: #000;
+    transition: 0.4s;
+}

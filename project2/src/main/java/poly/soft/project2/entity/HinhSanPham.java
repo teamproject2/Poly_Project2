@@ -21,7 +21,7 @@ public class HinhSanPham {
 	@Column(name="ID")
 	private int id;
 	
-	@Column(name="HINH")
+	@Column(name="HINH", length = 500)
 	private String hinh;
 	
 	@ManyToOne

@@ -10,6 +10,7 @@ public class SanPhamHomePageDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private int id;
 	private String tenSanPham;
+	private String chiTiet;
 	private double donGia;
 	private double chietKhau;
 	private String hinh;
@@ -17,10 +18,11 @@ public class SanPhamHomePageDTO implements Serializable{
 	public SanPhamHomePageDTO() {
 		super();
 	}
-	public SanPhamHomePageDTO(int id, String tenSanPham, double donGia, double chietKhau, String hinh) {
+	public SanPhamHomePageDTO(int id, String tenSanPham, String chiTiet, double donGia, double chietKhau, String hinh) {
 		super();
 		this.id = id;
 		this.tenSanPham = tenSanPham;
+		this.chiTiet = chiTiet;
 		this.donGia = donGia;
 		this.chietKhau = chietKhau;
 		this.hinh = hinh;
@@ -55,6 +57,11 @@ public class SanPhamHomePageDTO implements Serializable{
 	public void setHinh(String hinh) {
 		this.hinh = hinh;
 	}
-	
+	public String getChiTiet() {
+		return chiTiet;
+	}
+	public void setChiTiet(String chiTiet) {
+		this.chiTiet = chiTiet;
+	}
 	
 }
