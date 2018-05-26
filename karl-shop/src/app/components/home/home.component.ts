@@ -3,7 +3,8 @@ import { DataService } from '../../services/data.service';
 import { HomeProduct } from '../../entity/home-product';
 import { LoaigiayService } from '../../services/loaigiay.service';
 import { HomeLoaiGiay } from '../../entity/home-loaigiay';
-
+import {Routes, Router} from '@angular/router';
+import { DetailProducts } from '../../entity/detail-products';
 
 @Component({
   selector: 'app-home',
@@ -12,16 +13,39 @@ import { HomeLoaiGiay } from '../../entity/home-loaigiay';
   providers: [DataService, LoaigiayService]
 })
 export class HomeComponent implements OnInit {
-  _productArray: HomeProduct[];
+  _adidasArray: HomeProduct[];
+  _nikeArray: HomeProduct[];
+  _nbArray: HomeProduct[];
+
   _loaiGiayArray: HomeLoaiGiay[];
   detailArray: HomeProduct[];
-  constructor(private dataService: DataService, private loaigiayService: LoaigiayService) { }
 
-  //GET data home-product
-  getData(name: string): void {
+  constructor(private dataService: DataService, private loaigiayService: LoaigiayService,
+              private router: Router) { }
+
+  //GET 3 sản phẩm Adidas
+  getAdidasProduct(name: string): void {
     this.dataService.getData(name)
       .subscribe(
-        resultArray => this._productArray = resultArray,
+        resultArray => this._adidasArray = resultArray,
+        error => console.log("Error: " + error)
+      )
+  }
+
+  //GET 3 sản phẩm Nike
+  getNikeProduct(name: string): void {
+    this.dataService.getData(name)
+      .subscribe(
+        resultArray => this._nikeArray = resultArray,
+        error => console.log("Error: " + error)
+      )
+  }
+
+  //GET 3 sản phẩm Nike
+  getNbProduct(name: string): void {
+    this.dataService.getData(name)
+      .subscribe(
+        resultArray => this._nbArray = resultArray,
         error => console.log("Error: " + error)
       )
   }
@@ -36,16 +60,16 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getData('Adidas');
+    this.getAdidasProduct('Adidas');
+    this.getNikeProduct('Nike');
+    this.getNbProduct('NB');
     this.getLoaiGiay();
   }
 
-  //fixing
+
   getDetailModal(pro: any){
     this.detailArray = pro;
     console.log(this.detailArray);
-    
-    
   }
 
 }

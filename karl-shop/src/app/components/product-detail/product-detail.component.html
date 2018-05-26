@@ -67,14 +67,14 @@
         </div>
       </div>
 
-      <div class="col-12 col-md-6">
+      <div class="col-12 col-md-6" *ngIf="_detailProductArray!=null">
         <div class="single_product_desc">
 
           <h4 class="title">
-            <a href="#">Adidas CloudFoam X5</a>
+            <a href="#">{{_detailProductArray.tenSanPham}}</a>
           </h4>
 
-          <h4 class="price">$ 399</h4>
+          <h4 class="price">{{_detailProductArray.donGia}}</h4>
 
           <p class="available">Trạng Thái:
             <span class="text-muted">Còn hàng</span>
@@ -138,10 +138,7 @@
 
               <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis
-                    auctor gravida. Integ er bibendum sodales arcu id te mpus. Ut consectetur lacus.</p>
-                  <p>Approx length 66cm/26" (Based on a UK size 8 sample) Mixed fibres</p>
-                  <p>The Model wears a UK size 8/ EU size 36/ US size 4 and her height is 5'8"</p>
+                  <p>{{_detailProductArray.chiTiet}}</p>
                 </div>
               </div>
             </div>

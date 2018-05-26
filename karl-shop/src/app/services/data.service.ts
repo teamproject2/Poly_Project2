@@ -6,7 +6,6 @@ import "rxjs/Rx";
 import { HomeProduct } from '../entity/home-product';
 
 
-
 // const httpOptions = {
 //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 // };
