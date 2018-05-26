@@ -45,8 +45,8 @@ public class SanPhamServiceImpl  implements SanPhamService{
 	}
 	
 	@Override
-	public List<SanPhamHomePageDTO> getListSanPhamHomePage(String tenLoai) {
-		List<Object[]> list = sanPhamRepository.getListSanPhamHomePage(tenLoai);
+	public List<SanPhamHomePageDTO> getListSanPhamHomePage(String tenLoai, int limit) {
+		List<Object[]> list = sanPhamRepository.getListSanPhamHomePage(tenLoai, limit);
 		List<SanPhamHomePageDTO> listSPHomePage = new ArrayList<>();
 		for(Object[] arr : list) {
 			SanPhamHomePageDTO sp = new SanPhamHomePageDTO();
@@ -59,6 +59,23 @@ public class SanPhamServiceImpl  implements SanPhamService{
 			listSPHomePage.add(sp);
 		}
 		return listSPHomePage;
+	}
+
+	@Override
+	public List<SanPhamHomePageDTO> getListSanPhamByCategory(String tenLoai) {
+		List<Object[]> list = sanPhamRepository.getListSanPhamByCategory(tenLoai);
+		List<SanPhamHomePageDTO> listSPByCategory = new ArrayList<>();
+		for(Object[] arr : list) {
+			SanPhamHomePageDTO sp = new SanPhamHomePageDTO();
+			sp.setId(Integer.parseInt(String.valueOf(arr[0])));
+			sp.setTenSanPham(String.valueOf(arr[1]));
+			sp.setChiTiet(String.valueOf(arr[2]));
+			sp.setDonGia(Double.parseDouble(String.valueOf(arr[3])));
+			sp.setChietKhau(Double.parseDouble(String.valueOf(arr[4])));
+			sp.setHinh(String.valueOf(arr[5]));
+			listSPByCategory.add(sp);
+		}
+		return listSPByCategory;
 	}
 
 		

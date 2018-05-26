@@ -3,23 +3,32 @@ import { DataService } from '../../services/data.service';
 import { LoaigiayService } from '../../services/loaigiay.service';
 import { HomeLoaiGiay } from '../../entity/home-loaigiay';
 import { HomeProduct } from '../../entity/home-product';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css'],
+  selector: 'app-product-category',
+  templateUrl: './product-category.component.html',
+  styleUrls: ['./product-category.component.css'],
   providers: [DataService, LoaigiayService]
 })
-export class ProductsComponent implements OnInit {
+export class ProductCategoryComponent implements OnInit {
+
   _loaiGiayArray: HomeLoaiGiay[];
   _tenGiay: string[] = [];
   _productArray: HomeProduct[] = [];
+  name: string;
 
-  constructor(private loaigiayService: LoaigiayService, private dataService: DataService) { }
+  constructor(private loaigiayService: LoaigiayService, private dataService: DataService,
+    private route: ActivatedRoute, private router: Router) {
+
+  }
 
   ngOnInit() {
+    this.name = this.route.snapshot.params['name'];
+    console.log(this.name);
+
     this.getLoaiGiay();
-    this.getProduct();
+    this.getProduct(this.name);
   }
 
   //GET loai giay
@@ -37,15 +46,16 @@ export class ProductsComponent implements OnInit {
   }
 
   //GET product
-  getProduct(): void {
-    this.dataService.getAllProduct()
+  getProduct(name: string): void {
+    this.dataService.getProductsByCategory(name)
       .subscribe(
         resultArray => {
-        this._productArray = resultArray;
+          this._productArray = resultArray;
           console.log(this._productArray);
         }
         , error => console.log("Error: " + error)
       )
   }
+
 
 }

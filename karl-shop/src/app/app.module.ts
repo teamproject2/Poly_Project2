@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import {FormsModule} from "@angular/forms";
 import {HttpModule} from "@angular/http";
+import { ProductCategoryComponent } from './components/product-category/product-category.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import {HttpModule} from "@angular/http";
     FooterComponent,
     IndexComponent,
     LeftBarComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ProductCategoryComponent
   ],
   imports: [
     BrowserModule,

@@ -24,6 +24,24 @@ export class DataService {
       .catch(this.handleError);
   }
 
+  getProductsByCategory(tenLoai: string): Observable<HomeProduct[]> {
+    return this.http
+      .get(this._apiUrl + "sanpham/name/" + tenLoai)
+      .map((response: Response) => {
+        return <HomeProduct[]>response.json();
+      })
+      .catch(this.handleError);
+  }
+
+  getAllProduct(): Observable<HomeProduct[]> {
+    return this.http
+      .get(this._apiUrl + "sanpham")
+      .map((response: Response) => {
+        return <HomeProduct[]>response.json();
+      })
+      .catch(this.handleError);
+  }
+
   private handleError(error: Response) {
     return Observable.throw(error.statusText);
   }

@@ -31,17 +31,9 @@
           <div id="product_details_slider" class="carousel slide" data-ride="carousel">
 
             <ol class="carousel-indicators">
-              <!-- <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url('{{_detailProduct.hinhSanPham.hinh[0]}}');">
-                  </li> -->
               <li style="display: inline-flex" *ngFor="let img of _hinhSanPham; let i = index" data-target="#product_details_slider" [attr.data-slide-to]="i" [ngClass]="i == 0 ? 'active' : ''">
                 <img src="{{img}}">
               </li>
-              <!-- <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url('../assets/images/product-img/product-2.jpg');">
-              </li>
-              <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url('../assets/images/product-img/product-3.jpg');">
-              </li>
-              <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url('../assets/images/product-img/product-4.jpg');">
-              </li> -->
             </ol>
 
             <div class="carousel-inner" *ngIf="_detailProduct != null">

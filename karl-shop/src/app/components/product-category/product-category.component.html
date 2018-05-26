@@ -14,8 +14,8 @@
                   <li data-toggle="collapse" data-target="#women2">
                     <a>Giày Nữ</a>
                     <ul class="sub-menu collapse show" id="women2">
-                      <li *ngFor="let ten of _tenGiay">
-                        <a [routerLink]="['/products',ten]">{{ten}}</a>
+                      <li *ngFor="let name of _tenGiay">
+                        <a [routerLink]="['/products',name]">{{name}}</a>
                       </li>
                     </ul>
                   </li>
@@ -159,7 +159,7 @@
             <div *ngFor="let pro of _productArray" class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig" data-wow-delay="0.2s">
               <!-- Product Image -->
               <div class="product-img">
-                <img src="{{pro.hinhSanPham[0].hinh}}" alt="">
+                <img src="{{pro.hinh}}" alt="">
                 <div class="product-quicview">
                   <a href="#" data-toggle="modal" data-target="#quickview">
                     <i class="ti-plus"></i>
@@ -168,7 +168,7 @@
               </div>
               <!-- Product Description -->
               <div class="product-description">
-                <h4 class="product-price">{{pro.hangTrongKho[0].donGia | currency: 'VNĐ' : 'code' : '1.0'}}</h4>
+                <h4 class="product-price">{{pro.donGia | currency: 'VNĐ' : 'code' : '1.0'}}</h4>
                 <p>{{pro.tenSanPham}}</p>
                 <!-- Add to Cart -->
                 <a href="#" class="add-to-cart-btn">Thêm vào giỏ hàng</a>

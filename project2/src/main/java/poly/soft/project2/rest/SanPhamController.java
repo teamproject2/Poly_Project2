@@ -30,9 +30,17 @@ public class SanPhamController {
 		return new ResponseEntity<>(list,HttpStatus.OK);
 	}
 	
+	//Get products for homepage
 	@RequestMapping(value="/homepage/{tenLoai}",method=RequestMethod.GET)
 	public ResponseEntity<?> getListSanPhamHomePage(@PathVariable("tenLoai") String tenLoai){
-		List<SanPhamHomePageDTO> list = sanPhamService.getListSanPhamHomePage(tenLoai);
+		List<SanPhamHomePageDTO> list = sanPhamService.getListSanPhamHomePage(tenLoai, 3);
+		return new ResponseEntity<>(list,HttpStatus.OK);
+	}
+	
+	//Get products by category
+	@RequestMapping(value="/name/{tenLoai}",method=RequestMethod.GET)
+	public ResponseEntity<?> getListSanPhamByCategory(@PathVariable("tenLoai") String tenLoai){
+		List<SanPhamHomePageDTO> list = sanPhamService.getListSanPhamByCategory(tenLoai);
 		return new ResponseEntity<>(list,HttpStatus.OK);
 	}
 	

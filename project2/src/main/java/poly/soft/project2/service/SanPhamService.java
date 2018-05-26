@@ -19,5 +19,8 @@ public interface SanPhamService {
 	
 	boolean delete(int id);
 	
-	List<SanPhamHomePageDTO> getListSanPhamHomePage(String tenLoai);
+	List<SanPhamHomePageDTO> getListSanPhamHomePage(String tenLoai, int limit);
+	
+	List<SanPhamHomePageDTO> getListSanPhamByCategory(String tenLoai);
+	
 }
