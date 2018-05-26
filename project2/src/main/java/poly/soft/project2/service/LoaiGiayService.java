@@ -12,7 +12,7 @@ import poly.soft.project2.entity.SanPham;
 @Service
 @Transactional
 public interface LoaiGiayService {
-	List<LoaiGiay> findAll();
+	List<LoaiGiay> getLoaiGiay();
 
 	LoaiGiay findById(int id);
 

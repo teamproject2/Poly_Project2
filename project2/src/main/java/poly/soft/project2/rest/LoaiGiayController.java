@@ -23,6 +23,6 @@ public class LoaiGiayController {
 
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<?> getListLoaiGiay(){
-		return new ResponseEntity<List<LoaiGiay>>(loaiGiayService.findAll(), HttpStatus.OK);
+		return new ResponseEntity<List<LoaiGiay>>(loaiGiayService.getLoaiGiay(), HttpStatus.OK);
 	}
 }

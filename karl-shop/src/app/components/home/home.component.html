@@ -78,18 +78,18 @@
         <span aria-hidden="true">&times;</span>
       </button>
 
-      <div class="modal-body" *ngIf="detailArray!=null">
+      <div class="modal-body" *ngIf="_detailArray!=null">
         <div class="quickview_body">
           <div class="container">
             <div class="row">
               <div class="col-12 col-lg-5">
                 <div class="quickview_pro_img">
-                  <img src="{{detailArray.hinh}}" alt="">
+                  <img src="{{_detailArray.hinh}}" alt="">
                 </div>
               </div>
               <div class="col-12 col-lg-7">
                 <div class="quickview_pro_des">
-                  <h4 class="title">{{detailArray.tenSanPham}}</h4>
+                  <h4 class="title">{{_detailArray.tenSanPham}}</h4>
                   <div class="top_seller_product_rating mb-15">
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
@@ -97,10 +97,10 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                   </div>
-                  <h5 class="price">{{detailArray.donGia | currency :'VNĐ':'code':'1.0'}}
+                  <h5 class="price">{{_detailArray.donGia | currency :'VNĐ':'code':'1.0'}}
                     <span>$130</span>
                   </h5>
-                  <p>{{detailArray.chiTiet}}</p>
+                  <p>{{_detailArray.chiTiet}}</p>
                   <a>Xem chi tiết</a>
                 </div>
                 <!-- Add to Cart Form -->
@@ -182,7 +182,7 @@
   <!-- Adidas Products -->
   <div class="container">
     <div class="row karl-new-arrivals">
-      <div *ngFor="let pro of _adidasArray" class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.2s">
+      <div *ngFor="let pro of _productArray" class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.2s">
         <div class="product-img" (click)="getDetailModal(pro)">
           <img src="{{pro.hinh}}" alt="">
           <div class="product-quicview">
@@ -199,46 +199,6 @@
       </div>
     </div>
     <!-- Adidas Products -->
-    
-    <!-- Nike Products -->
-    <!-- <div class="row karl-new-arrivals">
-      <div *ngFor="let pro of _nikeArray" class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.2s">
-        <div class="product-img" (click)="getDetailModal(pro)">
-          <img src="{{pro.hinh}}" alt="">
-          <div class="product-quicview">
-            <a href="#" data-toggle="modal" data-target="#quickview">
-              <i class="ti-plus"></i>
-            </a>
-          </div>
-        </div>
-        <div class="product-description">
-          <h4 class="product-price">{{pro.donGia | currency:'VNĐ' : 'code':'1.0'}}</h4>
-          <p [routerLink]="['/detail', pro.id]">{{pro.tenSanPham}}</p>
-          <a href="#" class="add-to-cart-btn">Thêm vào giỏ hàng</a>
-        </div>
-      </div>
-    </div> -->
-    <!-- Nike Products -->
-
-    <!-- NB Products -->
-    <!-- <div class="row karl-new-arrivals">
-      <div *ngFor="let pro of _nbArray" class="col-12 col-sm-6 col-md-4 single_gallery_item women wow fadeInUpBig" data-wow-delay="0.2s">
-        <div class="product-img" (click)="getDetailModal(pro)">
-          <img src="{{pro.hinh}}" alt="">
-          <div class="product-quicview">
-            <a href="#" data-toggle="modal" data-target="#quickview">
-              <i class="ti-plus"></i>
-            </a>
-          </div>
-        </div>
-        <div class="product-description">
-          <h4 class="product-price">{{pro.donGia | currency:'VNĐ' : 'code':'1.0'}}</h4>
-          <p [routerLink]="['/detail', pro.id]">{{pro.tenSanPham}}</p>
-          <a href="#" class="add-to-cart-btn">Thêm vào giỏ hàng</a>
-        </div>
-      </div>
-    </div> -->
-    <!-- NB Products -->
 
   </div>
 </section>

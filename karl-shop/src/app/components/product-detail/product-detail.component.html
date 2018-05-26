@@ -31,50 +31,39 @@
           <div id="product_details_slider" class="carousel slide" data-ride="carousel">
 
             <ol class="carousel-indicators">
-              <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url('../assets/images/product-img/product-9.jpg');">
+              <!-- <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url('{{_detailProduct.hinhSanPham.hinh[0]}}');">
+                  </li> -->
+              <li style="display: inline-flex" *ngFor="let img of _hinhSanPham; let i = index" data-target="#product_details_slider" [attr.data-slide-to]="i" [ngClass]="i == 0 ? 'active' : ''">
+                <img src="{{img}}">
               </li>
-              <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url('../assets/images/product-img/product-2.jpg');">
+              <!-- <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url('../assets/images/product-img/product-2.jpg');">
               </li>
               <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url('../assets/images/product-img/product-3.jpg');">
               </li>
               <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url('../assets/images/product-img/product-4.jpg');">
-              </li>
+              </li> -->
             </ol>
 
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <a class="gallery_img" href="../assets/images/product-img/product-9.jpg">
-                  <img class="d-block w-100" src="../assets/images/product-img/product-9.jpg" alt="First slide">
-                </a>
-              </div>
-              <div class="carousel-item">
-                <a class="gallery_img" href="../assets/images/product-img/product-2.jpg">
-                  <img class="d-block w-100" src="../assets/images/product-img/product-2.jpg" alt="Second slide">
-                </a>
-              </div>
-              <div class="carousel-item">
-                <a class="gallery_img" href="../assets/images/product-img/product-3.jpg">
-                  <img class="d-block w-100" src="../assets/images/product-img/product-3.jpg" alt="Third slide">
-                </a>
-              </div>
-              <div class="carousel-item">
-                <a class="gallery_img" href="../assets/images/product-img/product-4.jpg">
-                  <img class="d-block w-100" src="../assets/images/product-img/product-4.jpg" alt="Fourth slide">
+            <div class="carousel-inner" *ngIf="_detailProduct != null">
+              <div *ngFor="let img of _hinhSanPham; let i = index" [ngClass]="i == 0 ? 'carousel-item active' : 'carousel-item'">
+                <a class="gallery_img">
+                  <img class="d-block w-100" [src]="img" alt="First slide">
                 </a>
               </div>
             </div>
+
           </div>
         </div>
       </div>
 
-      <div class="col-12 col-md-6" *ngIf="_detailProductArray!=null">
+      <div class="col-12 col-md-6" *ngIf="_detailProduct!=null">
         <div class="single_product_desc">
 
           <h4 class="title">
-            <a href="#">{{_detailProductArray.tenSanPham}}</a>
+            <a href="#">{{_detailProduct.tenSanPham}}</a>
           </h4>
 
-          <h4 class="price">{{_detailProductArray.donGia}}</h4>
+          <h4 class="price">{{_detailProduct.donGia}}</h4>
 
           <p class="available">Trạng Thái:
             <span class="text-muted">Còn hàng</span>
@@ -92,23 +81,8 @@
             <h6 class="widget-title">Kích cỡ</h6>
             <div class="widget-desc">
               <ul>
-                <li>
-                  <a href="#">32</a>
-                </li>
-                <li>
-                  <a href="#">34</a>
-                </li>
-                <li>
-                  <a href="#">36</a>
-                </li>
-                <li>
-                  <a href="#">38</a>
-                </li>
-                <li>
-                  <a href="#">40</a>
-                </li>
-                <li>
-                  <a href="#">42</a>
+                <li *ngFor="let size of _detailProduct.kichThuoc">
+                  <a href="#">{{size.tenKichThuoc}}</a>
                 </li>
               </ul>
             </div>
@@ -138,7 +112,7 @@
 
               <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
-                  <p>{{_detailProductArray.chiTiet}}</p>
+                  <p>{{_detailProduct.chiTiet}}</p>
                 </div>
               </div>
             </div>
