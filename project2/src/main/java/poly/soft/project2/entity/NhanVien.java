@@ -13,6 +13,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import poly.soft.project2.enumeration.GioiTinhEnum;
 
 @Entity
@@ -42,6 +45,7 @@ public class NhanVien implements Serializable{
 	@Column(name="EMAIL")
 	private String email;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="nhanVien",fetch = FetchType.LAZY)
 	private List<HoaDon> hoaDon;
 	

@@ -1,28 +1,37 @@
 package poly.soft.project2.serviceImpl;
 
+import static org.mockito.Mockito.RETURNS_DEEP_STUBS;
+
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import poly.soft.project2.entity.KhachHang;
+import poly.soft.project2.repository.KhachHangRepository;
 import poly.soft.project2.service.KhachHangService;
-
+@Service
 public class KhachHangServiceImpl implements KhachHangService {
-
+	
+	@Autowired
+	KhachHangRepository khachHangRepository;
+	
 	@Override
 	public List<KhachHang> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return khachHangRepository.findAll();
 	}
 
 	@Override
 	public KhachHang findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		KhachHang khachHang= khachHangRepository.findById(id).get();
+		return khachHang;
 	}
 
 	@Override
 	public KhachHang save(KhachHang khachHang) {
-		// TODO Auto-generated method stub
-		return null;
+		KhachHang khachhang = khachHangRepository.save(khachHang);
+		return khachhang;
 	}
 
 	@Override

@@ -2,27 +2,34 @@ package poly.soft.project2.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import poly.soft.project2.entity.NhanVien;
-import poly.soft.project2.service.NhanVienServie;
+import poly.soft.project2.repository.NhanVienRepository;
+import poly.soft.project2.service.NhanVienService;
 
-public class NhanVienServiceImpl implements NhanVienServie {
-
+@Service
+public class NhanVienServiceImpl implements NhanVienService {
+	
+	@Autowired
+	NhanVienRepository nhanVienRepository;
+	
 	@Override
 	public List<NhanVien> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return nhanVienRepository.findAll();
 	}
 
 	@Override
 	public NhanVien findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		NhanVien nhanvien  = nhanVienRepository.findById(id).get();
+		return nhanvien;
 	}
 
 	@Override
 	public NhanVien save(NhanVien nhanVien) {
-		// TODO Auto-generated method stub
-		return null;
+		NhanVien nhanvien = nhanVienRepository.save(nhanVien);
+		return nhanvien;
 	}
 
 	@Override

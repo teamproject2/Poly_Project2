@@ -10,7 +10,7 @@ import poly.soft.project2.entity.NhanVien;
 
 @Service
 @Transactional
-public interface NhanVienServie {
+public interface NhanVienService {
 	List<NhanVien> findAll();
 
 	NhanVien findById(int id);
