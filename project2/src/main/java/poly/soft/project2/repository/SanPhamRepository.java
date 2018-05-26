@@ -18,6 +18,6 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Integer>{
 			"from poly_project2.san_pham SP join poly_project2.loai_giay LG on SP.loai_giay_id = LG.id " + 
 			"join poly_project2.hang_trong_kho HTK on SP.id = HTK.san_pham_id " + 
 			"join poly_project2.hinh_san_pham HSP on SP.id = HSP.san_pham_id " + 
-			"where LG.ten_loai =:tenLoai group by sp.ten_san_pham limit 9",nativeQuery=true)
+			"where LG.ten_loai =:tenLoai group by sp.ten_san_pham limit 3",nativeQuery=true)
 	List<Object[]> getListSanPhamHomePage(@Param("tenLoai") String tenLoai);
 }

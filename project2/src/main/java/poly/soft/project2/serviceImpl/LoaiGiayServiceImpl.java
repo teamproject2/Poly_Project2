@@ -17,7 +17,7 @@ public class LoaiGiayServiceImpl implements LoaiGiayService {
 	
 	@Override
 	public List<LoaiGiay> findAll() {
-		return loaiGiayRepository.findAll();
+		return loaiGiayRepository.getLoaiGiay();
 	}
 
 	@Override
