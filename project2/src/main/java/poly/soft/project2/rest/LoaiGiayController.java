@@ -15,7 +15,7 @@ import poly.soft.project2.service.LoaiGiayService;
 
 @RestController
 @RequestMapping("/loaigiay")
-@CrossOrigin(origins= {"http://localhost:4200"})
+@CrossOrigin(origins = "*")
 public class LoaiGiayController {
 	
 	@Autowired

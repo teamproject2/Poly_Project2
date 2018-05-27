@@ -24,7 +24,7 @@
                     <a>Giày Nam</a>
                     <ul class="sub-menu collapse show" id="man2">
                       <li *ngFor="let name of _tenGiay">
-                        <a [routerLink]="['/products',name]">{{name}}</a>
+                        <a (click) = "changeCategory(name)" [routerLink]="['/products',name]">{{name}}</a>
                       </li>
                     </ul>
                   </li>

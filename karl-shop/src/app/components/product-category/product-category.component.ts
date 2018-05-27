@@ -20,12 +20,13 @@ export class ProductCategoryComponent implements OnInit {
 
   constructor(private loaigiayService: LoaigiayService, private dataService: DataService,
     private route: ActivatedRoute, private router: Router) {
+    this.name = this.route.snapshot.params['name'];
+    console.log("aaa" + this.name);
 
   }
 
   ngOnInit() {
-    this.name = this.route.snapshot.params['name'];
-    console.log(this.name);
+
 
     this.getLoaiGiay();
     this.getProduct(this.name);
@@ -55,6 +56,13 @@ export class ProductCategoryComponent implements OnInit {
         }
         , error => console.log("Error: " + error)
       )
+  }
+
+  changeCategory(name: string) {
+    this.name = name;
+    console.log("bbb" + this.name);
+
+    this.ngOnInit();
   }
 
 
