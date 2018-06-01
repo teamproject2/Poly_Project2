@@ -2,3 +2,30 @@
 body.modal-open{
     overflow: overlay;
 }
+button.btn {
+    font-size: 16px;
+    background: transparent;
+    font-weight: bold;
+    color: #3a3a3a;
+    text-transform: uppercase;
+}
+button.btn:focus{
+    box-shadow: none;
+}
+button.btn:hover{
+    color: #ff084e;
+}
+.product-description p {
+    cursor: pointer;
+    transition: 0.4s;
+}
+.product-description p:hover {
+    color: #000;
+    transition: 0.4s;
+}
+.quickview_pro_img {
+    border: none;
+}
+.quickview_pro_img img {
+    width: 289px;
+}
