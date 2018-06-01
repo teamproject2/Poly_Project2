@@ -1,0 +1,14 @@
+.gallery_img img {
+    width: 532px;
+    height: 373px;
+}
+.widget-desc li {
+    margin-right: 2px;
+}
+.widget-desc li:last-child {
+    margin-right: 0;
+}
+.single_product_desc .cart .cart-submit{
+    box-sizing: border-box;
+    padding: 5px;
+}

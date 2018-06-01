@@ -38,7 +38,6 @@ export class HomeComponent implements OnInit {
             for (var j = 0; j < this._productArrayTemp.length; j++) {
               this._productArray[step++] = this._productArrayTemp[j];
             }
-            // console.log(this._productArray);
           },
           error => console.log("Error: " + error)
         )
@@ -55,19 +54,15 @@ export class HomeComponent implements OnInit {
           for (var i = 0; i < this._loaiGiayArray.length; i++) {
             this._tenGiay[i] = this._loaiGiayArray[i].tenLoai;
           }
-          // console.log(this._tenGiay);
           this.getProduct(this._tenGiay);
         },
         error => console.log("Error: " + error)
       )
   }
 
-
-
   //show modal product
   getDetailModal(pro: any) {
     this._detailArray = pro;
-    // console.log(this._detailArray);
   }
 
 }

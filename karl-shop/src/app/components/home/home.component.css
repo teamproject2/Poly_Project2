@@ -19,3 +19,9 @@ button.btn:hover{
     color: #000;
     transition: 0.4s;
 }
+.quickview_pro_img {
+    border: none;
+}
+.quickview_pro_img img {
+    width: 289px;
+}

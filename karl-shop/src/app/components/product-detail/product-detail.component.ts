@@ -3,6 +3,9 @@ import { DetailsService } from '../../services/details.service';
 import { DetailProducts } from '../../entity/detail-products';
 import { ActivatedRoute, Router } from '@angular/router';
 
+declare var jquery: any;
+declare var $: any;
+
 @Component({
   selector: 'app-detail',
   templateUrl: './product-detail.component.html',
@@ -20,7 +23,6 @@ export class ProductDetailComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.getDetailProduct(this.id);
     console.log(this.id);
-    
   }
 
   getDetailProduct(id) {
@@ -29,16 +31,16 @@ export class ProductDetailComponent implements OnInit {
         resultArray => {
           this._detailProduct = resultArray;
           console.log(this._detailProduct);
-          for(var i=0; i<this._detailProduct.hinhSanPham.length;i++){
+          for (var i = 0; i < this._detailProduct.hinhSanPham.length; i++) {
             this._hinhSanPham[i] = this._detailProduct.hinhSanPham[i].hinh;
           }
           console.log(this._hinhSanPham);
-          
+
         },
         error => console.error("Error " + error)
       )
-      
   }
 
-  
+
+
 }
