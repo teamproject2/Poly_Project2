@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import poly.soft.project2.enumeration.GioiTinhEnum;
+
 @Entity
 @Table(name="SAN_PHAM")
 public class SanPham {
@@ -34,7 +36,9 @@ public class SanPham {
 	@OneToMany(mappedBy="sanPham",fetch=FetchType.LAZY)
 	private List<HinhSanPham> hinhSanPham;
 	
-	
+	@Column(name="GIOI_TINH")
+	private GioiTinhEnum gioiTinh;
+
 	@ManyToMany
 	@JoinTable(name="KICH_THUOC_SP"
 				,joinColumns=@JoinColumn(name="SAN_PHAM_ID")
@@ -95,7 +99,13 @@ public class SanPham {
 		this.hinhSanPham = hinhSanPham;
 	}
 
+	public GioiTinhEnum getGioiTinh() {
+		return gioiTinh;
+	}
 
+	public void setGioiTinh(GioiTinhEnum gioiTinh) {
+		this.gioiTinh = gioiTinh;
+	}
 
 	public List<KichThuoc> getKichThuoc() {
 		return kichThuoc;

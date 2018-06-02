@@ -1,8 +1,6 @@
 --Insert into loai_giay
-INSERT INTO poly_project2.loai_giay(ten_loai,gioi_tinh) 
-VALUES ('Adidas', 0),('Adidas', 1),
-		('Nike', 0),('Nike', 1),
-		('NB', 0),('NB', 1);
+INSERT INTO poly_project2.loai_giay(ten_loai) 
+VALUES ('Adidas'),('Nike'),('NB');
 
 --Loại giày 1,3,5 là nam
 --Loại giày 2,4,6 là nữ
@@ -25,44 +23,44 @@ insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('44');
 insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('45');
 
 --Insert into san_pham
-insert into poly_project2.san_pham(ten_san_pham,chi_tiet,loai_giay_id)
-values('Adidas NMD R2 Black and White','Giày Adidas NMD R2 Primeknit - Một trong những phối màu thời trang tươi tắn nhất của dòng giày NMD R2 chính hãng .Với công nghệ Prime knit kết hợp với bộ đế boost êm ái đã tạo ra một tuyệt phẩm NMD siêu hot, hãy ghé shop để là một trong những người sở hữu đôi giày NMD PK Black đầu tiên nhé.',1),
-('Adidas NMD R1 Burgundy and Olive','Giày Adidas NMD R1 Burgundy and Olive -Một trong những phối màu thời trang tươi tắn nhất của dòng giày NMD R1 chính hãng.Với công nghệ Prime knit kết hợp với bộ đế boost êm ái đã tạo ra một tuyệt phẩm NMD siêu hot, hãy ghé shop để là một trong những người sở hữu đôi giày NMD đầu tiên nhé.',2),
-('Adidas Superstar Bold All White','Mẫu giày classic huyền thoại của Adidas nay đã được độ thêm bộ đế Bold cao cấp. Nhanh ghé shop để rinh ngay nào các bạn.Cam kết giày chính hãng 100% Bao check, bao test!',1),
-('ADIDAS CLOUDFOAM SPEED FOOTWEAR','CLOUDFOAM là một lớp đệm cực nhẹ và mềm mại, hứa hẹn sẽ đem đến một thế hệ giày siêu êm mới cho các bạn trẻ năng động. Như tên gọi của concept ‘Step-In Comfort’ (tạm dịch: trải nghiệm sự thoải mái), người mang sẽ có cảm giác nhẹ nhàng và êm ái ngay khi chạm vào CLOUDFOAM. Các đôi giày adidas neo CLOUDFOAM mang đến cảm giác thoải mái nhất cho đôi chân nhờ lớp đế ngoài giảm sốc EVA và lớp đệm lót ôm sát lòng bàn chân, phù hợp cho mọi hoạt động hàng ngày.',2),
-('MEN PURE BOOST ZG PRIME SHOES','Pure Boost ZG Prime được kết hợp với hàng ngàn viên nang boost, giúp hoàn trả năng lượng hoàn hảo qua từng bước chạy, mang đến trải nghiệm chạy bộ tuyệt vời.',1),
-('ZG BOUNCE TRAINER SHOES','Pure Boost – dòng sản phẩm Performance + Casual được yêu thích nhất trong tất cả các mẫu sản phẩm Boost của adidas sắp sửa quay trở lại với một diện mạo mới mạnh hơn và những update đem lại hiệu năng tốt hơn.',2),
-('LITE RACER SHOES','Giày thể thao nam Adidas neo lite racer shoes Những “chàng giày” này được thiết kế nhằm mang đến sự dễ chịu và thoải mái. Sải bước rộng và nhẹ nhàng. Thiết kế dựa trên cảm hứng giày running 2 lớp, một lớp lưới bên trên (two-tone mesh upper)',1),
-('CLOUDFOAM SPEED SHOES','CLOUDFOAM là một lớp đệm cực nhẹ và mềm mại, hứa hẹn sẽ đem đến một thế hệ giày siêu êm mới cho các bạn trẻ năng động. Như tên gọi của concept ‘Step-In Comfort’ (tạm dịch: trải nghiệm sự thoải mái), người mang sẽ có cảm giác nhẹ nhàng và êm ái ngay khi chạm vào CLOUDFOAM. Các đôi giày adidas neo CLOUDFOAM mang đến cảm giác thoải mái nhất cho đôi chân nhờ lớp đế ngoài giảm sốc EVA và lớp đệm lót ôm sát lòng bàn chân, phù hợp cho mọi hoạt động hàng ngày.',1),
+insert into poly_project2.san_pham(ten_san_pham,chi_tiet,loai_giay_id,gioi_tinh)
+values('Adidas NMD R2 Black and White','Giày Adidas NMD R2 Primeknit - Một trong những phối màu thời trang tươi tắn nhất của dòng giày NMD R2 chính hãng .Với công nghệ Prime knit kết hợp với bộ đế boost êm ái đã tạo ra một tuyệt phẩm NMD siêu hot, hãy ghé shop để là một trong những người sở hữu đôi giày NMD PK Black đầu tiên nhé.',1,0),
+('Adidas NMD R1 Burgundy and Olive','Giày Adidas NMD R1 Burgundy and Olive -Một trong những phối màu thời trang tươi tắn nhất của dòng giày NMD R1 chính hãng.Với công nghệ Prime knit kết hợp với bộ đế boost êm ái đã tạo ra một tuyệt phẩm NMD siêu hot, hãy ghé shop để là một trong những người sở hữu đôi giày NMD đầu tiên nhé.',1,0),
+('Adidas Superstar Bold All White','Mẫu giày classic huyền thoại của Adidas nay đã được độ thêm bộ đế Bold cao cấp. Nhanh ghé shop để rinh ngay nào các bạn.Cam kết giày chính hãng 100% Bao check, bao test!',1,1),
+('ADIDAS CLOUDFOAM SPEED FOOTWEAR','CLOUDFOAM là một lớp đệm cực nhẹ và mềm mại, hứa hẹn sẽ đem đến một thế hệ giày siêu êm mới cho các bạn trẻ năng động. Như tên gọi của concept ‘Step-In Comfort’ (tạm dịch: trải nghiệm sự thoải mái), người mang sẽ có cảm giác nhẹ nhàng và êm ái ngay khi chạm vào CLOUDFOAM. Các đôi giày adidas neo CLOUDFOAM mang đến cảm giác thoải mái nhất cho đôi chân nhờ lớp đế ngoài giảm sốc EVA và lớp đệm lót ôm sát lòng bàn chân, phù hợp cho mọi hoạt động hàng ngày.',1,0),
+('MEN PURE BOOST ZG PRIME SHOES','Pure Boost ZG Prime được kết hợp với hàng ngàn viên nang boost, giúp hoàn trả năng lượng hoàn hảo qua từng bước chạy, mang đến trải nghiệm chạy bộ tuyệt vời.',1,0),
+('ZG BOUNCE TRAINER SHOES','Pure Boost – dòng sản phẩm Performance + Casual được yêu thích nhất trong tất cả các mẫu sản phẩm Boost của adidas sắp sửa quay trở lại với một diện mạo mới mạnh hơn và những update đem lại hiệu năng tốt hơn.',1,1),
+('LITE RACER SHOES','Giày thể thao nam Adidas neo lite racer shoes Những “chàng giày” này được thiết kế nhằm mang đến sự dễ chịu và thoải mái. Sải bước rộng và nhẹ nhàng. Thiết kế dựa trên cảm hứng giày running 2 lớp, một lớp lưới bên trên (two-tone mesh upper)',1,0),
+('CLOUDFOAM SPEED SHOES','CLOUDFOAM là một lớp đệm cực nhẹ và mềm mại, hứa hẹn sẽ đem đến một thế hệ giày siêu êm mới cho các bạn trẻ năng động. Như tên gọi của concept ‘Step-In Comfort’ (tạm dịch: trải nghiệm sự thoải mái), người mang sẽ có cảm giác nhẹ nhàng và êm ái ngay khi chạm vào CLOUDFOAM. Các đôi giày adidas neo CLOUDFOAM mang đến cảm giác thoải mái nhất cho đôi chân nhờ lớp đế ngoài giảm sốc EVA và lớp đệm lót ôm sát lòng bàn chân, phù hợp cho mọi hoạt động hàng ngày.',1,1),
 ('ADVANTAGE CLEAN VS SHOES','Càng đơn giản càng đẹp. Những đôi giày này bị tước bỏ những yếu tố cần thiết. Chỉ cần da tổng hợp mịn màng, đục lỗ 3-sọc và kéo gót chân.
 Ít hơn là nhiều hơn. Những đôi giày được tháo bỏ để các yếu tố cần thiết. Chỉ mịn da tổng hợp, đục lỗ 3-Stripes và kéo gót chân.
-Càng đơn giản càng đẹp. Những đôi giày được lột đến yếu tố cần thiết. Chỉ cần mịn da tổng hợp, đục 3-Stripes và kéo gót chân.',2),
-('ADIDAS X 15.3 FG/AG FOOTWEAR','Giày đá bóng Adidas X 17.1 FG- White/ Energy Blue/ Clear Grey, giày đá bóng chính hãng, mã sản phẩm: S82285, giày đá bóng Adidas X, giày đá bóng sân cỏ tự nhiên…  dòng giày Adidas X đặc chủng cho lối chơi tốc độ, trọng lượng cực nhẹ, chỉ khoảng 190gram/chiếc',1),
-('Nike Air Presto Triple Black','Air Presto - Mẫu giày Nike chính hãng đã trở lại với phối màu đỉnh cao Triple Black  Quan trọng là giá vẫn rất mềm cho ae nhé. Đây là một trong những dòng giày Nike bán chạy nhất từ trước tới nay, với thiết kế hiện đại và cực kỳ êm ái. Upper làm bằng chất liệu vải thun, tạo cảm giác ôm chân cũng như dễ hoạt động',3),
-('Nike Air Max 90 White and Red','Giày Nike Air max 90 chính hãng vừa cập bến shop với phối màu xám mới nhất ! Upper da cao cấp, cùng với đế air nổi tiếng của Nike ! Hàng chính hãng 100% Full box, full tem tag. Bao check, bao test. Cam kết đền tiền x3 khi khách hàng phát hiện không chính hãng ! ',4),
-('Nike Air Uptempo Thunder Blue','Giày Nike Air Uptempo chính hãng - Cái tên đã làm mưa làm gió suốt cả một thời gian dài trong cộng đồng giày. Thiết kế chữ Air ôm sát phần upper thực sự là một thiết kế đỉnh của đỉnh, gọn nhẹ đề cao tính thời trang của Nike. Đế Air siêu êm ái cũng là một điểm nổi bật của đôi Air Uptempo này! ',3),
+Càng đơn giản càng đẹp. Những đôi giày được lột đến yếu tố cần thiết. Chỉ cần mịn da tổng hợp, đục 3-Stripes và kéo gót chân.',1,0),
+('ADIDAS X 15.3 FG/AG FOOTWEAR','Giày đá bóng Adidas X 17.1 FG- White/ Energy Blue/ Clear Grey, giày đá bóng chính hãng, mã sản phẩm: S82285, giày đá bóng Adidas X, giày đá bóng sân cỏ tự nhiên…  dòng giày Adidas X đặc chủng cho lối chơi tốc độ, trọng lượng cực nhẹ, chỉ khoảng 190gram/chiếc',1,0),
+('Nike Air Presto Triple Black','Air Presto - Mẫu giày Nike chính hãng đã trở lại với phối màu đỉnh cao Triple Black  Quan trọng là giá vẫn rất mềm cho ae nhé. Đây là một trong những dòng giày Nike bán chạy nhất từ trước tới nay, với thiết kế hiện đại và cực kỳ êm ái. Upper làm bằng chất liệu vải thun, tạo cảm giác ôm chân cũng như dễ hoạt động',2,1),
+('Nike Air Max 90 White and Red','Giày Nike Air max 90 chính hãng vừa cập bến shop với phối màu xám mới nhất ! Upper da cao cấp, cùng với đế air nổi tiếng của Nike ! Hàng chính hãng 100% Full box, full tem tag. Bao check, bao test. Cam kết đền tiền x3 khi khách hàng phát hiện không chính hãng ! ',2,0),
+('Nike Air Uptempo Thunder Blue','Giày Nike Air Uptempo chính hãng - Cái tên đã làm mưa làm gió suốt cả một thời gian dài trong cộng đồng giày. Thiết kế chữ Air ôm sát phần upper thực sự là một thiết kế đỉnh của đỉnh, gọn nhẹ đề cao tính thời trang của Nike. Đế Air siêu êm ái cũng là một điểm nổi bật của đôi Air Uptempo này! ',2,1),
 ('Nike Romaleos 3 Americana','Chất liệu cao cấp, đặc biệt và độc quyền: phổ biến là EVA (ethylene vinyl acetate), PU (polyurethane), Lunarlon, Cushlon, Phylon,….
 Thiết kế nén khí làm chân tiếp đất “êm” hơn, giúp giảm bớt đi lực tác động giúp bạn được bảo vệ tránh dẫn đến các chấn thương từ cường độ hoạt động cao. 
 Thích hợp cho nhiều độ tuổi, mẫu mã đa dạng phong phú phù hợp với mọi hoàng cảnh và hoạt động.
-Công nghệ giày: Nike Zoom.',3),
+Công nghệ giày: Nike Zoom.',2,1),
 ('Nike Metcon 4 iD','Chất liệu cao cấp, đặc biệt và độc quyền: phổ biến là EVA (ethylene vinyl acetate), PU (polyurethane), Lunarlon, Cushlon, Phylon,….
 Thiết kế nén khí làm chân tiếp đất “êm” hơn, giúp giảm bớt đi lực tác động giúp bạn được bảo vệ tránh dẫn đến các chấn thương từ cường độ hoạt động cao. 
-',4),
-('Nike Varsity Complete Trainer','Đôi giày sử dụng đế giữa mang công nghệ Dynamic Support với mật độ kép lõi Phylon và Cushlon, tăng cường đệm dưới chân đồng thời làm giảm đáng kể khả năng bàn chân bị lật má trong.Upper lưới được chế tác linh hoạt và thích ứng tốt với bàn chân, cùng công nghệ Flywire giữ bàn chân cực kì cố định. Ngoài ra, giày Nike Air Zoom Structure 21 có đế ngoài vân waffle cho độ bền và độ bám cao trên đường chạy.',3),
-('Nike Lunar Fingertrap TR','Giày tập luyện của Nike Lunar Fingertrap TR Men có thiết kế dệt độc đáo và đệm lót cho cảm giác thoải mái, giống như vớ và cảm giác đáp ứng trong suốt quá trình tập luyện của bạn.',3),
-('Nike Zoom Command College (Ohio State)','Giày đào tập luyện cho nam giới của Nike Zoom Command College (Ohio State) là hoàn hảo cho ngày thi đấu hoặc phòng tập thể dục. Nó có công nghệ Flywire để hỗ trợ khóa xuống và đệm Nike Zoom Air cho cảm giác nhẹ, nhạy cảm trong các bài luyện tập cường độ cao như luyện tập chéo và đấm bốc.',4),
-('Nike Air Trainer 180','Giày tập luyện của nam giới Nike Air Trainer 180 kết hợp đệm phản ứng với rãnh flex sâu để hấp thụ tác động vượt trội và chuyển động tự nhiên trong khi tập luyện cường độ cao.',3),
-('Nike Free Trainer V7','Huấn luyện trọng lượng cơ thể của Nike Free Trainer V7, Gym Gym mang đến sự ổn định và linh hoạt mà bạn cần cho các bài luyện tập cường độ cao — và bổ sung tính linh hoạt đáng kinh ngạc của bản Nike Free.',3),
-('NB FW MEN CUSHIONING MRUSHYR US7.5','NB FWMEN - Mẫu giày New Balance chính hãng đã trở lại với phối màu đỉnh cao Triple Black  Quan trọng là giá vẫn rất mềm cho ae nhé. Đây là một trong những dòng giày Nike bán chạy nhất từ trước tới nay, với thiết kế hiện đại và cực kỳ êm ái. Upper làm bằng chất liệu vải thun, tạo cảm giác ôm chân cũng như dễ hoạt động',5),
-('NB FW MEN CUSHIONING MSVRCFLF US7','NB CUSHIONING chính hãng vừa cập bến shop với phối màu xám mới nhất ! Upper da cao cấp, cùng với đế NB nổi tiếng của Nike ! Hàng chính hãng 100% Full box, full tem tag. Bao check, bao test. Cam kết đền tiền x3 khi khách hàng phát hiện không chính hãng ! ',6),
-('NB FW MEN CLASSIC MRL996KE US8.5','Giày NB CLASSIC chính hãng - Cái tên đã làm mưa làm gió suốt cả một thời gian dài trong cộng đồng giày. Thiết kế chữ A ôm sát phần upper thực sự là một thiết kế đỉnh của đỉnh, gọn nhẹ đề cao tính thời trang của Nike. Đế Air siêu êm ái cũng là một điểm nổi bật của đôi Air Uptempo này! ',6),
-('Junior 4040v4 Rubber Molded','Lấy bánh răng các chuyên gia mặc, với các cao su 4040v4 cao su đúc. Giày có tính năng tương tự như bền, linh hoạt / lưới trên như phiên bản dành cho người lớn. Cleat cũng có hỗ trợ chân giữa cao cấp, cleats thấp cho độ bám tuyệt vời và đệm đặt chiến lược để bạn có thể tấn công các tấm với sự tự tin.',6),
-('Hook and Loop 680v5','Hook loop 680v5 của nam giới khuyến khích thời gian chơi không sợ hãi bằng cách biến đổi phong cách và hiệu suất của chiếc giày chạy bộ phổ biến 680 của chúng tôi thành một chiếc sneaker mà anh ấy có thể đeo mỗi ngày. Với đệm đệm ABZORB của nó để hỗ trợ trong việc hấp thụ tác động và da và lưới trên ôm chân với trọng lượng nhẹ, thoải mái thở, giày này chắc chắn sẽ là một yêu thích tất cả các năm dài. Một kết nối hook-and-loop thuận tiện giúp anh ta di chuyển trong nháy mắt.',6),
-('Fresh Foam Lazr','Fresh Foam Lazr khiến họ trông giống những người thách thức nghiêm túc. Phiên bản trẻ em này của một chiếc giày thể thao cao cấp mang lại sự thoải mái và hỗ trợ mà họ cần để bắt đầu đẩy giới hạn vật lý của họ. Một hình bóng tiến bộ trong màu sắc nóng nhất hiện nay giúp trẻ em trên các cạnh cắt của thời trang, và xây dựng bootie slip-on làm cho mặc quần áo một snap.',5),
-('Mens Fresh Foam Cruz v2 Sport','Trượt trên của chúng tôi Fresh Foam Cruz v2 thể thao chạy giày của nam giới và đi. Được chế tác từ dây kéo co giãn trên đệm Foam sang trọng, giày này mang lại sự thoải mái, dễ chịu cả ngày.',5),
-('Mens New Balance 624','Một số người nói rằng huấn luyện viên mới của Balance Balance 624 không thể tốt hơn. Và họ sẽ sai. Trình bày bản cập nhật 624 với độ linh hoạt cao, đệm nâng cao và chiều rộng rộng hơn bao giờ hết (4E và 6E). Thông số kỹ thuật bao gồm bàn chân EVA, IMEVA (Mút đúc EVA EVA), đệm ABZORB®, chân bên trong và bộ lót Phantom Liner nhẹ của chúng tôi.',5),
-('NB 247 Decon','Lối sống suốt ngày đêm của bạn kêu gọi một chiếc giày tối ưu hóa cả phong cách và hiệu suất cho tính linh hoạt cao cấp. 247 Sport của nam giới thêm phong cách thể thao cho cái nhìn hàng ngày của bạn và cung cấp một sự phù hợp cạnh tranh nhất với một phong cách bootie nhẹ và linh hoạt trên. Với cấu hình sạch sẽ và đệm lót cao cấp REVlite, chiếc giày này hoàn toàn phù hợp cho mọi thứ từ ngày làm việc của bạn đến các nhu cầu của cuộc sống hiện đại.',5),
-('NB 247 LFC','Gói sản phẩm Fresh Foam Cruz Retro Hoodie Pack mang giày chạy êm ái của chúng tôi cho người đàn ông và làm cho nó thoải mái hơn với phần trên được làm bằng vải dệt căng được lấy cảm hứng từ chiếc áo thun yêu thích của bạn. Một chiếc xe đạp dệt ngược chân giữa giúp mang lại một chuyến đi vừa vặn và an toàn, và thiết kế trượt, thuận tiện giúp bạn di chuyển trong tích tắc.',5);
+',2,1),
+('Nike Varsity Complete Trainer','Đôi giày sử dụng đế giữa mang công nghệ Dynamic Support với mật độ kép lõi Phylon và Cushlon, tăng cường đệm dưới chân đồng thời làm giảm đáng kể khả năng bàn chân bị lật má trong.Upper lưới được chế tác linh hoạt và thích ứng tốt với bàn chân, cùng công nghệ Flywire giữ bàn chân cực kì cố định. Ngoài ra, giày Nike Air Zoom Structure 21 có đế ngoài vân waffle cho độ bền và độ bám cao trên đường chạy.',2,1),
+('Nike Lunar Fingertrap TR','Giày tập luyện của Nike Lunar Fingertrap TR Men có thiết kế dệt độc đáo và đệm lót cho cảm giác thoải mái, giống như vớ và cảm giác đáp ứng trong suốt quá trình tập luyện của bạn.',2,1),
+('Nike Zoom Command College (Ohio State)','Giày đào tập luyện cho nam giới của Nike Zoom Command College (Ohio State) là hoàn hảo cho ngày thi đấu hoặc phòng tập thể dục. Nó có công nghệ Flywire để hỗ trợ khóa xuống và đệm Nike Zoom Air cho cảm giác nhẹ, nhạy cảm trong các bài luyện tập cường độ cao như luyện tập chéo và đấm bốc.',2,1),
+('Nike Air Trainer 180','Giày tập luyện của nam giới Nike Air Trainer 180 kết hợp đệm phản ứng với rãnh flex sâu để hấp thụ tác động vượt trội và chuyển động tự nhiên trong khi tập luyện cường độ cao.',2,1),
+('Nike Free Trainer V7','Huấn luyện trọng lượng cơ thể của Nike Free Trainer V7, Gym Gym mang đến sự ổn định và linh hoạt mà bạn cần cho các bài luyện tập cường độ cao — và bổ sung tính linh hoạt đáng kinh ngạc của bản Nike Free.',2,0),
+('NB FW MEN CUSHIONING MRUSHYR US7.5','NB FWMEN - Mẫu giày New Balance chính hãng đã trở lại với phối màu đỉnh cao Triple Black  Quan trọng là giá vẫn rất mềm cho ae nhé. Đây là một trong những dòng giày Nike bán chạy nhất từ trước tới nay, với thiết kế hiện đại và cực kỳ êm ái. Upper làm bằng chất liệu vải thun, tạo cảm giác ôm chân cũng như dễ hoạt động',3,1),
+('NB FW MEN CUSHIONING MSVRCFLF US7','NB CUSHIONING chính hãng vừa cập bến shop với phối màu xám mới nhất ! Upper da cao cấp, cùng với đế NB nổi tiếng của Nike ! Hàng chính hãng 100% Full box, full tem tag. Bao check, bao test. Cam kết đền tiền x3 khi khách hàng phát hiện không chính hãng ! ',3,0),
+('NB FW MEN CLASSIC MRL996KE US8.5','Giày NB CLASSIC chính hãng - Cái tên đã làm mưa làm gió suốt cả một thời gian dài trong cộng đồng giày. Thiết kế chữ A ôm sát phần upper thực sự là một thiết kế đỉnh của đỉnh, gọn nhẹ đề cao tính thời trang của Nike. Đế Air siêu êm ái cũng là một điểm nổi bật của đôi Air Uptempo này! ',3,0),
+('Junior 4040v4 Rubber Molded','Lấy bánh răng các chuyên gia mặc, với các cao su 4040v4 cao su đúc. Giày có tính năng tương tự như bền, linh hoạt / lưới trên như phiên bản dành cho người lớn. Cleat cũng có hỗ trợ chân giữa cao cấp, cleats thấp cho độ bám tuyệt vời và đệm đặt chiến lược để bạn có thể tấn công các tấm với sự tự tin.',3,1),
+('Hook and Loop 680v5','Hook loop 680v5 của nam giới khuyến khích thời gian chơi không sợ hãi bằng cách biến đổi phong cách và hiệu suất của chiếc giày chạy bộ phổ biến 680 của chúng tôi thành một chiếc sneaker mà anh ấy có thể đeo mỗi ngày. Với đệm đệm ABZORB của nó để hỗ trợ trong việc hấp thụ tác động và da và lưới trên ôm chân với trọng lượng nhẹ, thoải mái thở, giày này chắc chắn sẽ là một yêu thích tất cả các năm dài. Một kết nối hook-and-loop thuận tiện giúp anh ta di chuyển trong nháy mắt.',3,0),
+('Fresh Foam Lazr','Fresh Foam Lazr khiến họ trông giống những người thách thức nghiêm túc. Phiên bản trẻ em này của một chiếc giày thể thao cao cấp mang lại sự thoải mái và hỗ trợ mà họ cần để bắt đầu đẩy giới hạn vật lý của họ. Một hình bóng tiến bộ trong màu sắc nóng nhất hiện nay giúp trẻ em trên các cạnh cắt của thời trang, và xây dựng bootie slip-on làm cho mặc quần áo một snap.',3,0),
+('Mens Fresh Foam Cruz v2 Sport','Trượt trên của chúng tôi Fresh Foam Cruz v2 thể thao chạy giày của nam giới và đi. Được chế tác từ dây kéo co giãn trên đệm Foam sang trọng, giày này mang lại sự thoải mái, dễ chịu cả ngày.',3,1),
+('Mens New Balance 624','Một số người nói rằng huấn luyện viên mới của Balance Balance 624 không thể tốt hơn. Và họ sẽ sai. Trình bày bản cập nhật 624 với độ linh hoạt cao, đệm nâng cao và chiều rộng rộng hơn bao giờ hết (4E và 6E). Thông số kỹ thuật bao gồm bàn chân EVA, IMEVA (Mút đúc EVA EVA), đệm ABZORB®, chân bên trong và bộ lót Phantom Liner nhẹ của chúng tôi.',3,1),
+('NB 247 Decon','Lối sống suốt ngày đêm của bạn kêu gọi một chiếc giày tối ưu hóa cả phong cách và hiệu suất cho tính linh hoạt cao cấp. 247 Sport của nam giới thêm phong cách thể thao cho cái nhìn hàng ngày của bạn và cung cấp một sự phù hợp cạnh tranh nhất với một phong cách bootie nhẹ và linh hoạt trên. Với cấu hình sạch sẽ và đệm lót cao cấp REVlite, chiếc giày này hoàn toàn phù hợp cho mọi thứ từ ngày làm việc của bạn đến các nhu cầu của cuộc sống hiện đại.',3,0),
+('NB 247 LFC','Gói sản phẩm Fresh Foam Cruz Retro Hoodie Pack mang giày chạy êm ái của chúng tôi cho người đàn ông và làm cho nó thoải mái hơn với phần trên được làm bằng vải dệt căng được lấy cảm hứng từ chiếc áo thun yêu thích của bạn. Một chiếc xe đạp dệt ngược chân giữa giúp mang lại một chuyến đi vừa vặn và an toàn, và thiết kế trượt, thuận tiện giúp bạn di chuyển trong tích tắc.',3,0);
 
 
 
@@ -289,7 +287,20 @@ values(1,1,1),(1,1,2),(1,1,3),
 		(1,24,2),(1,24,3),(1,24,5),
 		(1,25,1),(1,25,2),(1,25,3);
 		
+--insert quyen
+insert into poly_project2.quyen(ten_quyen) values ('ROLE_ADMIN');
+insert into poly_project2.quyen(ten_quyen) values ('ROLE_KHACHHANG');
+insert into poly_project2.quyen(ten_quyen) values ('ROLE_NHANVIEN');
 
+--insert taikhoan
+insert into poly_project2.tai_khoan(mat_khau,ten_tai_khoan) values('admin','123456');
+insert into poly_project2.tai_khoan(mat_khau,ten_tai_khoan) values('user1','123456');
+insert into poly_project2.tai_khoan(mat_khau,ten_tai_khoan) values('nhanvien1','123456');
+
+--insert quyen tai khoan
+insert into poly_project2.quyen_tai_khoan values(1,1);
+insert into poly_project2.quyen_tai_khoan values(2,2);
+insert into poly_project2.quyen_tai_khoan values(3,3);
 
 
 

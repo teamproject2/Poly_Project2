@@ -9,6 +9,6 @@ import poly.soft.project2.entity.LoaiGiay;
 
 public interface LoaiGiayRepository extends JpaRepository<LoaiGiay, Integer> {
 
-	@Query("from LoaiGiay lg group by lg.tenLoai")
+	@Query("from LoaiGiay")
 	List<LoaiGiay> getLoaiGiay();
 }

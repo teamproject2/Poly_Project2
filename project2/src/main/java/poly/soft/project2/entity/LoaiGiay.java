@@ -29,9 +29,6 @@ public class LoaiGiay {
 	@Column(name="TEN_LOAI")
 	private String tenLoai;
 	
-	@Column(name="GIOI_TINH")
-	private GioiTinhEnum gioiTinh;
-	
 	@OneToMany(mappedBy="loaiGiay",fetch= FetchType.LAZY)
 	private List<SanPham> sanPham;
 	
@@ -47,12 +44,7 @@ public class LoaiGiay {
 	public void setTenLoai(String tenLoai) {
 		this.tenLoai = tenLoai;
 	}
-	public GioiTinhEnum getGioiTinh() {
-		return gioiTinh;
-	}
-	public void setGioiTinh(GioiTinhEnum gioiTinh) {
-		this.gioiTinh = gioiTinh;
-	}
+	
 	public List<SanPham> getSanPham() {
 		return sanPham;
 	}
