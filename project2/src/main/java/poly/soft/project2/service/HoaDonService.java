@@ -17,6 +17,8 @@ public interface HoaDonService {
 	
 	HoaDon save(HoaDon hoaDon);
 	
+	HoaDon update(HoaDon hoaDon);
+	
 	boolean delete(int id);
 		
 	

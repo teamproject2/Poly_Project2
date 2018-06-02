@@ -15,9 +15,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import poly.soft.project2.enumeration.HDTrangThaiEnum;
+
 @Entity
 @Table(name="HOA_DON")
-public class HoaDon{
+public class HoaDon implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -26,6 +28,9 @@ public class HoaDon{
 	
 	@Column(name="NGAY")
 	private Date ngay;
+	
+	@Column(name="TRANG_THAI")
+	private HDTrangThaiEnum trangThai;
 	
 	@OneToMany(mappedBy="hoaDon",fetch = FetchType.LAZY)
 	private List<ChiTietHoaDon> chiTietHoaDon; 
@@ -77,6 +82,14 @@ public class HoaDon{
 
 	public void setKhachHang(KhachHang khachHang) {
 		this.khachHang = khachHang;
+	}
+
+	public HDTrangThaiEnum getTrangThai() {
+		return trangThai;
+	}
+
+	public void setTrangThai(HDTrangThaiEnum trangThai) {
+		this.trangThai = trangThai;
 	}
 	
 	

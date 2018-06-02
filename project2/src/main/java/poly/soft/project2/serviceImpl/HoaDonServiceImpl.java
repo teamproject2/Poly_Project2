@@ -15,12 +15,14 @@ import org.springframework.stereotype.Service;
 
 import poly.soft.project2.dto.HoaDonAdminDTO;
 import poly.soft.project2.entity.HoaDon;
+import poly.soft.project2.enumeration.HDTrangThaiEnum;
 import poly.soft.project2.repository.HoaDonRepository;
 import poly.soft.project2.service.HoaDonService;
 
 @Service
 @Transactional
 public class HoaDonServiceImpl implements HoaDonService{
+
 	private SimpleDateFormat timeformat = new SimpleDateFormat("dd/MM/yyyy");
 	
 	@Autowired
@@ -41,6 +43,14 @@ public class HoaDonServiceImpl implements HoaDonService{
 			hd.setNgay(timeformat.format(new Date(Timestamp.valueOf(String.valueOf(arr[1])).getTime())));
 			hd.setTenKhachHang(String.valueOf(arr[2]));
 			hd.setTenNhanVien(String.valueOf(arr[3]));
+			HDTrangThaiEnum[] enums = HDTrangThaiEnum.values();
+			int state = Integer.parseInt(String.valueOf(arr[4]));
+			for(HDTrangThaiEnum en: enums) {
+				if(en.getState() == state) {
+					hd.setTrangThai(en);
+					break;
+				}
+			}
 			listHDAdmin.add(hd);
 		}
 		return listHDAdmin;
@@ -54,17 +64,26 @@ public class HoaDonServiceImpl implements HoaDonService{
 
 	@Override
 	public HoaDon save(HoaDon hoaDon) {
+		
 		HoaDon hd = hoaDonRepository.save(hoaDon);
 		return hd;
 	}
 
 	@Override
 	public boolean delete(int id) {
-		
-		hoaDonRepository.deleteById(id);
-		return false;
+		HoaDon hd = findById(id);
+		if(hd == null) {
+			return false;
+		}else {
+			hoaDonRepository.deleteById(id);
+			return true;			
+		}
 	}
 	
-	
+	@Override
+	public HoaDon update(HoaDon hoaDon) {
+		
+		return null;
+	}
 	
 }

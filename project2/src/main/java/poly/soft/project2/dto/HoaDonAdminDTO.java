@@ -1,6 +1,6 @@
 package poly.soft.project2.dto;
 
-import java.util.Date;
+import poly.soft.project2.enumeration.HDTrangThaiEnum;
 
 public class HoaDonAdminDTO {
 
@@ -8,6 +8,8 @@ public class HoaDonAdminDTO {
 	private String ngay;
 	private String tenKhachHang;
 	private String tenNhanVien;
+	private HDTrangThaiEnum trangThai;
+	
 	public int getId() {
 		return id;
 	}
@@ -31,6 +33,12 @@ public class HoaDonAdminDTO {
 	}
 	public void setTenNhanVien(String tenNhanVien) {
 		this.tenNhanVien = tenNhanVien;
+	}
+	public HDTrangThaiEnum getTrangThai() {
+		return trangThai;
+	}
+	public void setTrangThai(HDTrangThaiEnum trangThai) {
+		this.trangThai = trangThai;
 	}
 	
 	

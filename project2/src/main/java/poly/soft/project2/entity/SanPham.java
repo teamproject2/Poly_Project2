@@ -15,10 +15,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import poly.soft.project2.enumeration.GioiTinhEnum;
 
 @Entity
 @Table(name="SAN_PHAM")
+@JsonIgnoreProperties({"chiTietHoaDon"})
 public class SanPham {
 	
 	@Id

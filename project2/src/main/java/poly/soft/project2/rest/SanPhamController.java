@@ -52,5 +52,4 @@ public class SanPhamController {
 		}
 		return new ResponseEntity<SanPham>(sp,HttpStatus.OK);
 	}
-	
 }
