@@ -2,6 +2,8 @@ package poly.soft.project2.dto;
 
 import java.io.Serializable;
 
+import poly.soft.project2.enumeration.GioiTinhEnum;
+
 public class SanPhamHomePageDTO implements Serializable{
 	
 	/**
@@ -14,6 +16,7 @@ public class SanPhamHomePageDTO implements Serializable{
 	private double donGia;
 	private double chietKhau;
 	private String hinh;
+	private GioiTinhEnum gioiTinh;
 	
 	public SanPhamHomePageDTO() {
 		super();
@@ -63,5 +66,12 @@ public class SanPhamHomePageDTO implements Serializable{
 	public void setChiTiet(String chiTiet) {
 		this.chiTiet = chiTiet;
 	}
+	public GioiTinhEnum getGioiTinh() {
+		return gioiTinh;
+	}
+	public void setGioiTinh(GioiTinhEnum gioiTinh) {
+		this.gioiTinh = gioiTinh;
+	}
+	
 	
 }

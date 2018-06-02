@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -37,6 +37,21 @@ public class HangTrongKho {
 	
 	@Column(name="CHIET_KHAU")
 	private double chietKhau;
+	
+	@JsonGetter
+	private int getSanPhamId() {
+		return sanPham.getId();
+	}
+	
+	@JsonGetter
+	private String getTenSanPham() {
+		return sanPham.getTenSanPham();
+	}
+	
+	@JsonGetter
+	private String getHinhSanPham() {
+		return sanPham.getHinhSanPham().get(0).getHinh();
+	}
 	
 	public int getId() {
 		return id;

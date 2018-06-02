@@ -22,8 +22,7 @@ public class KhoServiceImpl implements KhoService {
 
 	@Override
 	public Kho findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return khoRepository.findById(id).orElse(null);
 	}
 
 	@Override

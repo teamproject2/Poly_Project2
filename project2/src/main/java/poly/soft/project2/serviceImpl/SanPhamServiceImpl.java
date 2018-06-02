@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import poly.soft.project2.dto.SanPhamHomePageDTO;
 import poly.soft.project2.entity.SanPham;
+import poly.soft.project2.enumeration.GioiTinhEnum;
+import poly.soft.project2.enumeration.HDTrangThaiEnum;
 import poly.soft.project2.repository.SanPhamRepository;
 import poly.soft.project2.service.SanPhamService;
 
@@ -73,6 +75,14 @@ public class SanPhamServiceImpl  implements SanPhamService{
 			sp.setDonGia(Double.parseDouble(String.valueOf(arr[3])));
 			sp.setChietKhau(Double.parseDouble(String.valueOf(arr[4])));
 			sp.setHinh(String.valueOf(arr[5]));
+			GioiTinhEnum[] enums = GioiTinhEnum.values();
+			int gender = Integer.parseInt(String.valueOf(arr[6]));
+			for(GioiTinhEnum en: enums) {
+				if(en.getCode() == gender) {
+					sp.setGioiTinh(en);
+					break;
+				}
+			}
 			listSPByCategory.add(sp);
 		}
 		return listSPByCategory;

@@ -48,7 +48,6 @@ public class SanPham {
 				,inverseJoinColumns=@JoinColumn(name="KICH_THUOC_ID"))
 	private List<KichThuoc> kichThuoc;
 	
-	
 	@ManyToOne
 	@JoinColumn(name="LOAI_GIAY_ID")
 	private LoaiGiay loaiGiay;
