@@ -28,73 +28,27 @@ import { UserprofileComponent } from './components/userprofile/userprofile.compo
 
 // Khai báo Router
 const routes: Routes = [
-    {
-        path: '',
-        redirectTo : '/dashboard',
-        pathMatch : 'full'
-      },
-      {
-        path: 'dashboard',
-        component: DashboardComponent
-      },
-      {
-        path: 'inbox',
-        component: InboxComponent
-      },
-      {
-        path: 'chat',
-        component: ChatComponent
-      },
-      {
-        path: 'table-sanpham',
-        component: TableSanphamComponent
-      },
-      {
-        path: 'table-nhanvien',
-        component: TableNhanvienComponent
-      },
-      {
-        path: 'table-kho',
-        component: TableKhoComponent
-      },
-      {
-        path: 'table-khachhang',
-        component: TableKhachhangComponent
-      }, 
-       {
-        path: 'table-hoadon',
-        component: TableHoadonComponent
-      },
-      {
-        path: 'form-product',
-        component: FormSanphamComponent
-      },
-      {
-        path: 'form-user',
-        component: FormUserComponent
-      },
-      {
-        path: 'form-customer',
-        component: FormKhachhangComponent
-      },
-      {
-        path: 'Invoice',
-        component: InvoiceComponent
-      },
-      {
-        path: 'User-Profile',
-        component: UserprofileComponent
-      },
-      {
-        path: 'Marketing',
-        component: TaskboardComponent
-      }
-      
-    ]; 
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'inbox', component: InboxComponent },
+  { path: 'chat', component: ChatComponent },
+  { path: 'table-sanpham', component: TableSanphamComponent },
+  { path: 'table-nhanvien', component: TableNhanvienComponent },
+  { path: 'table-kho', component: TableKhoComponent },
+  { path: 'table-khachhang', component: TableKhachhangComponent },
+  { path: 'table-hoadon', component: TableHoadonComponent },
+  { path: 'form-product', component: FormSanphamComponent },
+  { path: 'form-user', component: FormUserComponent },
+  { path: 'form-customer', component: FormKhachhangComponent },
+  { path: 'Invoice', component: InvoiceComponent },
+  { path: 'User-Profile', component: UserprofileComponent },
+  { path: 'Marketing', component: TaskboardComponent }
+
+];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 
 export class AppRoutingModule { }

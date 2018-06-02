@@ -3,6 +3,9 @@ import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 import { HttpHeaders } from '@angular/common/http';
 import "rxjs/Rx";
+// jquyery phan trang
+declare var jquery:any;
+declare var $ :any;
 //Services
 import { UserService } from '../../services/user.service';
 //Models
@@ -22,6 +25,10 @@ export class TableKhachhangComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadData();
+    // Phan trang
+    $(document).ready(function() {
+      $('#table_kh').DataTable();
+  } );
   }
 // Load all Customer
   loadData() {

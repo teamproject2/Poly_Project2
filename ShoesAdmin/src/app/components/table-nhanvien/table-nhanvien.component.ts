@@ -1,9 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Nhanvien } from '../.././models/nhanvien';
 import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 import { HttpHeaders } from '@angular/common/http';
 import "rxjs/Rx";
+// jquyery phan trang
+declare var jquery:any;
+declare var $ :any;
+//Models
+import { Nhanvien } from '../.././models/nhanvien';
+// services
 import { UserService } from '../../services/user.service';
 @Component({
 	selector: 'app-table-nhanvien',
@@ -23,6 +28,9 @@ export class TableNhanvienComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.loadData();
+		$(document).ready(function() {
+			$('#table_nv').DataTable();
+		} );
 	}
 // Load all staff
 	loadData() {

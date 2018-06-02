@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Http, Response, RequestOptions } from "@angular/http";
-import { map } from 'rxjs/operators';
+import { map, catchError, tap } from 'rxjs/operators';
 
 // import models
 import { Nhanvien } from '../models/nhanvien'
@@ -31,10 +31,11 @@ export class UserService {
   }
   //
   // add_nv(nv: Nhanvien): Observable<Nhanvien>{
-  //   return this.http.post(this.API + this.URL_NV).pipe(map(data => {
-  //     return <Nhanvien[]>data.json();
+  //    return this.http.post<Nhanvien>(this.API, nv).pipe(
+  //     tap((nv: Nhanvien) => this.log(`added hero w/ id=${nv.id}`)),
+  //     catchError(this.handleError<Nhanvien>('addHero'))
   //   }));
-  // }
+  // // }
     //
 //     update_nv(nv: Nhanvien): Observable<Nhanvien>{
 //       return this.http.put(`${this.API}/${nv.id}`, {

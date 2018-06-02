@@ -1,3 +1,4 @@
+// import thu vien
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
@@ -5,8 +6,7 @@ import { FormsModule }   from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { Http } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-
-//Components
+// import Components
 import { AppComponent } from './app.component';
 import { IndexComponent } from './components/index/index.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -30,10 +30,11 @@ import { TaskboardComponent } from './components/taskboard/taskboard.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
 // import service
-// import { NhanvienService } from './services/nhanvien.service';
 import { UserService } from './services/user.service';
+import { SanphamService } from './services/sanpham.service';
 
 @NgModule({
+  // khai bao component
   declarations: [
     AppComponent,
     IndexComponent,
@@ -58,13 +59,17 @@ import { UserService } from './services/user.service';
     TimelineComponent,
     UserprofileComponent
   ],
+  // import thu vien
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpModule
   ],
+  // Import services
   providers: [
-    UserService
+    UserService,
+    SanphamService
+    
   ],
   bootstrap: [AppComponent]
 })
