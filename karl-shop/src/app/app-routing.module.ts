@@ -8,8 +8,6 @@ import { ProductsComponent } from './components/product-content/products/product
 import { ProductContentComponent } from './components/product-content/product-content.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 
-
-
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../../services/data.service';
 import { HomeProduct } from '../../../entity/home-product';
 
+declare var jquery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-products',
@@ -13,10 +15,12 @@ export class ProductsComponent implements OnInit {
 
   _productArray: HomeProduct[] = [];
   _detailArray: HomeProduct[] = [];
-  constructor(private dataService: DataService) { }
+  
+  constructor(private dataService: DataService) {
+   }
 
   ngOnInit() {
-    this.getProduct();
+    this.getProduct(); 
   }
 
 
@@ -34,5 +38,6 @@ export class ProductsComponent implements OnInit {
   getDetailModal(pro: any) {
     this._detailArray = pro;
   }
+
 
 }

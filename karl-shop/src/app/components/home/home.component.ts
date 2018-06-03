@@ -6,6 +6,7 @@ import { HomeLoaiGiay } from '../../entity/home-loaigiay';
 import { Routes, Router } from '@angular/router';
 import { DetailProducts } from '../../entity/detail-products';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -15,11 +16,11 @@ import { DetailProducts } from '../../entity/detail-products';
 export class HomeComponent implements OnInit {
   _productArray: HomeProduct[] = [];
   _productArrayTemp: HomeProduct[];
-
   _loaiGiayArray: HomeLoaiGiay[];
   _detailArray: HomeProduct[];
   _tenGiay: string[] = [];
   tenLoai: string;
+  
   constructor(private dataService: DataService, private loaigiayService: LoaigiayService,
     private router: Router) { }
 
@@ -69,5 +70,7 @@ export class HomeComponent implements OnInit {
     this.tenLoai = name;
     this.router.navigate(['/products/category', this.tenLoai]);    
   }
+
+  
 
 }

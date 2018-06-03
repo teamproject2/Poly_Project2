@@ -10,12 +10,13 @@ import { IndexComponent } from "../index/index.component";
 import { HomeComponent } from "../home/home.component";
 import { ProductsRoutingModule } from "./products-routing.module";
 import { ProductCategoryComponent } from "./products/product-category/product-category.component";
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
     imports:[
         CommonModule,
-        ProductsRoutingModule
+        ProductsRoutingModule,
+        NgxPaginationModule
     ],
     declarations:[
         ProductsComponent,
