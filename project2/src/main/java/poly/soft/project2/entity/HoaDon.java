@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import poly.soft.project2.enumeration.HDTrangThaiEnum;
+import poly.soft.project2.enumeration.ThanhToanEnum;
 
 @Entity
 @Table(name = "HOA_DON")
@@ -34,6 +35,9 @@ public class HoaDon implements Serializable {
 
 	@Column(name = "TRANG_THAI")
 	private HDTrangThaiEnum trangThai;
+	
+	@Column(name = "THANH_TOAN")
+	private ThanhToanEnum thanhToan;
 
 	@OneToMany(mappedBy = "hoaDon", fetch = FetchType.LAZY)
 	private List<ChiTietHoaDon> chiTietHoaDon;
@@ -94,4 +98,12 @@ public class HoaDon implements Serializable {
 		this.trangThai = trangThai;
 	}
 
+	public ThanhToanEnum getThanhToan() {
+		return thanhToan;
+	}
+
+	public void setThanhToan(ThanhToanEnum thanhToan) {
+		this.thanhToan = thanhToan;
+	}
+	
 }

@@ -11,8 +11,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name="QUYEN")
+@JsonIgnoreProperties(value= {"taiKhoan"})
 public class Quyen {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

@@ -2,15 +2,22 @@ package poly.soft.project2.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import poly.soft.project2.entity.TaiKhoan;
+import poly.soft.project2.repository.TaiKhoanRepository;
 import poly.soft.project2.service.TaiKhoanService;
 
+@Service
 public class TaiKhoanServiceImpl implements TaiKhoanService {
 
+	@Autowired
+	TaiKhoanRepository taiKhoanRepository;
+	
 	@Override
 	public List<TaiKhoan> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return taiKhoanRepository.findAll();
 	}
 
 	@Override
