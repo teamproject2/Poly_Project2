@@ -1,5 +1,7 @@
 package poly.soft.project2.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,48 +13,56 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name="HANG_TRONG_KHO")
-@JsonIgnoreProperties({"sanPham","kho"})
-public class HangTrongKho {
+@Table(name = "HANG_TRONG_KHO")
+@JsonInclude(value = Include.NON_NULL)
+@JsonIgnoreProperties(value = { "sanPham", "kho" }, ignoreUnknown = true)
+public class HangTrongKho implements Serializable {
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private int id;
-	
+
 	@ManyToOne
-	@JoinColumn(name="SAN_PHAM_ID")
+	@JoinColumn(name = "SAN_PHAM_ID")
 	private SanPham sanPham;
-	
+
 	@ManyToOne
-	@JoinColumn(name="KHO_ID")
+	@JoinColumn(name = "KHO_ID")
 	private Kho kho;
-	
-	@Column(name="SO_LUONG")
+
+	@Column(name = "SO_LUONG")
 	private int soLuong;
-	
-	@Column(name="DON_GIA")
+
+	@Column(name = "DON_GIA")
 	private double donGia;
-	
-	@Column(name="CHIET_KHAU")
+
+	@Column(name = "CHIET_KHAU")
 	private double chietKhau;
-	
-	@JsonGetter
+
+	@JsonGetter(value = "sanPhamID")
 	private int getSanPhamId() {
 		return sanPham.getId();
 	}
-	
-	@JsonGetter
-	private String getTenSanPham() {
+
+	@JsonProperty(value = "khoSanPham")
+	public Kho getKhoSP() {
+		return new Kho(kho.getId(), kho.getTenKho());
+	}
+
+	public String getTenSanPham() {
 		return sanPham.getTenSanPham();
 	}
-	
-	@JsonGetter
-	private String getHinhSanPham() {
+
+	public String getHinhSanPham() {
 		return sanPham.getHinhSanPham().get(0).getHinh();
 	}
-	
+
 	public int getId() {
 		return id;
 	}
@@ -100,6 +110,5 @@ public class HangTrongKho {
 	public void setChietKhau(double chietKhau) {
 		this.chietKhau = chietKhau;
 	}
-	
-	
+
 }

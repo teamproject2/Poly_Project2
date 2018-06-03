@@ -1,5 +1,6 @@
 package poly.soft.project2.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,9 +12,13 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 @Entity
 @Table(name="KHO")
-public class Kho {
+@JsonInclude(value=Include.NON_NULL)
+public class Kho implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -29,16 +34,21 @@ public class Kho {
 	@OneToMany(mappedBy="kho",fetch = FetchType.LAZY)
 	private List<HangTrongKho> hangTrongKho;
 	
-	
-	
-	
-
 	public List<HangTrongKho> getHangTrongKho() {
 		return hangTrongKho;
 	}
 
 	public void setHangTrongKho(List<HangTrongKho> hangTrongKho) {
 		this.hangTrongKho = hangTrongKho;
+	}
+	
+	public Kho() {
+		super();
+	}
+
+	public Kho(int id, String tenKho) {
+		this.id = id;
+		this.tenKho = tenKho;
 	}
 
 	public int getId() {
@@ -64,6 +74,6 @@ public class Kho {
 	public void setDiaChi(String diaChi) {
 		this.diaChi = diaChi;
 	}
-	
+
 	
 }

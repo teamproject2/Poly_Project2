@@ -1,5 +1,6 @@
 package poly.soft.project2.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -22,7 +23,7 @@ import poly.soft.project2.enumeration.GioiTinhEnum;
 @Entity
 @Table(name="SAN_PHAM")
 @JsonIgnoreProperties({"chiTietHoaDon"})
-public class SanPham {
+public class SanPham implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -57,8 +58,6 @@ public class SanPham {
 	
 	@OneToMany(mappedBy="sanPham",fetch= FetchType.LAZY)
 	private List<ChiTietHoaDon> chiTietHoaDon;
-	
-	
 	
 	public List<HangTrongKho> getHangTrongKho() {
 		return hangTrongKho;
@@ -131,7 +130,5 @@ public class SanPham {
 
 	public void setChiTietHoaDon(List<ChiTietHoaDon> chiTietHoaDon) {
 		this.chiTietHoaDon = chiTietHoaDon;
-	}
-	
-	
+	}	
 }

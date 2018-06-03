@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import poly.soft.project2.entity.HangTrongKho;
 import poly.soft.project2.entity.Kho;
-import poly.soft.project2.entity.SanPham;
 import poly.soft.project2.service.KhoService;
 
 @RestController
@@ -28,6 +27,15 @@ public class KhoController {
 	public ResponseEntity<?> getListKho(){
 		List<Kho> list = khoService.findAll();
 		return new ResponseEntity<>(list,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/{idkho}",method=RequestMethod.GET)
+	public ResponseEntity<?> getKhoById(@PathVariable("idkho")int idkho){
+		Kho kho = khoService.findById(idkho);
+		if(kho == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);	
+		}
+		return new ResponseEntity<>(kho,HttpStatus.OK);
 	}
 	
 	@RequestMapping(value="/{idkho}/{idsanpham}",method=RequestMethod.GET)

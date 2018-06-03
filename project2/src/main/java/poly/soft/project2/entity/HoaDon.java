@@ -15,35 +15,37 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import poly.soft.project2.enumeration.HDTrangThaiEnum;
 
 @Entity
-@Table(name="HOA_DON")
-public class HoaDon implements Serializable{
+@Table(name = "HOA_DON")
+public class HoaDon implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private int id;
-	
-	@Column(name="NGAY")
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+	@Column(name = "NGAY")
 	private Date ngay;
-	
-	@Column(name="TRANG_THAI")
+
+	@Column(name = "TRANG_THAI")
 	private HDTrangThaiEnum trangThai;
-	
-	@OneToMany(mappedBy="hoaDon",fetch = FetchType.LAZY)
-	private List<ChiTietHoaDon> chiTietHoaDon; 
-	
+
+	@OneToMany(mappedBy = "hoaDon", fetch = FetchType.LAZY)
+	private List<ChiTietHoaDon> chiTietHoaDon;
+
 	@ManyToOne
-	@JoinColumn(name="NHAN_VIEN_ID")
+	@JoinColumn(name = "NHAN_VIEN_ID")
 	private NhanVien nhanVien;
-	
+
 	@ManyToOne
-	@JoinColumn(name="KHACH_HANG_ID")
+	@JoinColumn(name = "KHACH_HANG_ID")
 	private KhachHang khachHang;
-	
-	
+
 	public int getId() {
 		return id;
 	}
@@ -91,6 +93,5 @@ public class HoaDon implements Serializable{
 	public void setTrangThai(HDTrangThaiEnum trangThai) {
 		this.trangThai = trangThai;
 	}
-	
-	
+
 }
