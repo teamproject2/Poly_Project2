@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   _loaiGiayArray: HomeLoaiGiay[];
   _detailArray: HomeProduct[];
   _tenGiay: string[] = [];
-
+  tenLoai: string;
   constructor(private dataService: DataService, private loaigiayService: LoaigiayService,
     private router: Router) { }
 
@@ -63,6 +63,11 @@ export class HomeComponent implements OnInit {
   //show modal product
   getDetailModal(pro: any) {
     this._detailArray = pro;
+  }
+
+  getProductByCate(name) {
+    this.tenLoai = name;
+    this.router.navigate(['/products/category', this.tenLoai]);    
   }
 
 }
