@@ -28,6 +28,9 @@ public class TaiKhoan implements Serializable{
 	@Column(name="MAT_KHAU")
 	private String matKhau;
 	
+	@Column(name="EMAIL")
+	private String email;
+	
 	@ManyToMany
 	@JoinTable(name="QUYEN_TAI_KHOAN", joinColumns = @JoinColumn(name="TAI_KHOAN_ID"),
 	inverseJoinColumns = @JoinColumn(name="QUYEN_ID"))
@@ -65,4 +68,13 @@ public class TaiKhoan implements Serializable{
 		this.quyen = quyen;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	
 }

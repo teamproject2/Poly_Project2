@@ -293,9 +293,9 @@ insert into poly_project2.quyen(ten_quyen) values ('ROLE_KHACHHANG');
 insert into poly_project2.quyen(ten_quyen) values ('ROLE_NHANVIEN');
 
 --insert taikhoan
-insert into poly_project2.tai_khoan(mat_khau,ten_tai_khoan) values('admin','123456');
-insert into poly_project2.tai_khoan(mat_khau,ten_tai_khoan) values('user1','123456');
-insert into poly_project2.tai_khoan(mat_khau,ten_tai_khoan) values('nhanvien1','123456');
+insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau,email) values('admin','123456','admin@gmail.com');
+insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau,email) values('user1','123456','user1@gmail.com');
+insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau,email) values('nhanvien1','123456','nhanvien1@gmail.com');
 
 --insert quyen tai khoan
 insert into poly_project2.quyen_tai_khoan values(1,1);

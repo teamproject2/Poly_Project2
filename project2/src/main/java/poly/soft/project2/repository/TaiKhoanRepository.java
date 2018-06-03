@@ -6,4 +6,5 @@ import poly.soft.project2.entity.TaiKhoan;
 
 public interface TaiKhoanRepository extends JpaRepository<TaiKhoan, Integer> {
 
+	TaiKhoan findByTenTaiKhoan(String tenTaiKhoan);
 }
