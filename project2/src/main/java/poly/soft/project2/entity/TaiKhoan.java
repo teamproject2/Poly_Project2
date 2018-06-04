@@ -18,6 +18,11 @@ import javax.persistence.Table;
 @Table(name="TAI_KHOAN")
 public class TaiKhoan implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID")
@@ -29,8 +34,7 @@ public class TaiKhoan implements Serializable{
 	@Column(name="MAT_KHAU")
 	private String matKhau;
 	
-	@Column(name="EMAIL")
-	private String email;
+
 	
 	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name="QUYEN_TAI_KHOAN", joinColumns = @JoinColumn(name="TAI_KHOAN_ID"),
@@ -69,13 +73,7 @@ public class TaiKhoan implements Serializable{
 		this.quyen = quyen;
 	}
 
-	public String getEmail() {
-		return email;
-	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
 
 	
 }

@@ -32,7 +32,10 @@ public class HoaDon implements Serializable {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	@Column(name = "NGAY")
 	private Date ngay;
-
+	
+	@Column(name="TONG_TIEN")
+	private double tongTien;
+	
 	@Column(name = "TRANG_THAI")
 	private HDTrangThaiEnum trangThai;
 	
@@ -49,7 +52,8 @@ public class HoaDon implements Serializable {
 	@ManyToOne
 	@JoinColumn(name = "KHACH_HANG_ID")
 	private KhachHang khachHang;
-
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -104,6 +108,14 @@ public class HoaDon implements Serializable {
 
 	public void setThanhToan(ThanhToanEnum thanhToan) {
 		this.thanhToan = thanhToan;
+	}
+
+	public double getTongTien() {
+		return tongTien;
+	}
+
+	public void setTongTien(double tongTien) {
+		this.tongTien = tongTien;
 	}
 	
 }

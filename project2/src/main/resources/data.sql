@@ -230,32 +230,32 @@ insert into poly_project2.hinh_san_pham(hinh,san_pham_id) values
 
 
 --insert into hoa_don
-insert into poly_project2.hoa_don(ngay,khach_hang_id,nhan_vien_id,trang_thai,thanh_toan)
-values('2018-5-20',1,1,1,0),
-('2018-5-21',2,2,1,0),
-('2018-5-22',3,3,1,0),
-('2018-5-23',4,4,1,0),
-('2018-5-24',5,1,1,0),
-('2018-5-25',6,2,1,0),
-('2018-5-26',7,3,1,0),
-('2018-5-27',1,4,1,0),
-('2018-5-28',11,1,1,0),
-('2018-5-29',9,2,1,0),
-('2018-5-30',10,3,1,0),
-('2018-6-01',3,1,1,0),
-('2018-6-02',5,4,1,0),
-('2018-6-03',7,3,1,0),
-('2018-6-04',1,4,1,0),
-('2018-6-05',11,1,1,0),
-('2018-6-06',9,2,1,0),
-('2018-6-07',10,3,1,0),
-('2018-6-08',3,1,1,0),
-('2018-6-09',5,4,1,0),
-('2018-6-10',7,3,1,0),
-('2018-6-11',1,4,1,0),
-('2018-6-12',11,1,1,0),
-('2018-6-13',9,2,1,0),
-('2018-6-14',10,3,1,0),
+insert into poly_project2.hoa_don(ngay,khach_hang_id,nhan_vien_id,trang_thai,thanh_toan,tong_tien)
+values('2018-5-20',1,1,1,0,8640000),
+('2018-5-21',2,2,1,0,8640000),
+('2018-5-22',3,3,1,0,10260000),
+('2018-5-23',4,4,1,0,7020000),
+('2018-5-24',5,1,1,0,7020000),
+('2018-5-25',6,2,1,0,10260000),
+('2018-5-26',7,3,1,0,7020000),
+('2018-5-27',1,4,1,0,10260000),
+('2018-5-28',11,1,1,0,7020000),
+('2018-5-29',9,2,1,0,10260000),
+('2018-5-30',10,3,1,0,10260000),
+('2018-6-01',3,1,1,0,7020000),
+('2018-6-02',5,4,1,0,8640000),
+('2018-6-03',7,3,1,0,8640000),
+('2018-6-04',1,4,1,0,7020000),
+('2018-6-05',11,1,1,0,7020000),
+('2018-6-06',9,2,1,0,10260000),
+('2018-6-07',10,3,1,0,7020000),
+('2018-6-08',3,1,1,0,8640000),
+('2018-6-09',5,4,1,0,8640000),
+('2018-6-10',7,3,1,0,8640000),
+('2018-6-11',1,4,1,0,7020000),
+('2018-6-12',11,1,1,0,10260000),
+('2018-6-13',9,2,1,0,8640000),
+('2018-6-14',10,3,1,0,8640000),
 ('2018-6-15',3,1,0,0),
 ('2018-6-16',5,4,0,0);
 
@@ -293,9 +293,9 @@ insert into poly_project2.quyen(ten_quyen) values ('ROLE_KHACHHANG');
 insert into poly_project2.quyen(ten_quyen) values ('ROLE_NHANVIEN');
 
 --insert taikhoan
-insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau,email) values('admin','123456','admin@gmail.com');
-insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau,email) values('user1','123456','user1@gmail.com');
-insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau,email) values('nhanvien1','123456','nhanvien1@gmail.com');
+insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau) values('admin','123456');
+insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau) values('user1','123456');
+insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau) values('nhanvien1','123456');
 
 --insert quyen tai khoan
 insert into poly_project2.quyen_tai_khoan values(1,1);

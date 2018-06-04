@@ -1,7 +1,7 @@
 package poly.soft.project2.enumeration;
 
 public enum HDTrangThaiEnum {
-	IN_PROGRESS(0), DONE(1);
+	IN_PROGRESS(0), DONE(1),CANCEL(2);
 	
 	
 	private HDTrangThaiEnum(int state) {
