@@ -5,23 +5,30 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CartComponent } from './components/cart/cart.component';
 import { PageNotFoundComponent } from './page-not-found.component';
+import { IndexComponent } from './components/index.component';
+import { IndexModule } from './components/index.module';
+import { AdminModule } from './admin/admin.module';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   {
     path: 'home',
-    loadChildren: 'app/components/index.module#IndexModule'
+    loadChildren: () => IndexModule,
   },
   {
     path: 'admin',
-    loadChildren: 'app/admin/admin.module#AdminModule'
+    loadChildren: () => AdminModule,
   },
   { path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
+  exports: [
+    RouterModule
+  ]
 })
 
 export class AppRoutingModule {
