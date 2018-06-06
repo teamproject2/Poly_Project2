@@ -101,7 +101,7 @@
                     <span>$130</span>
                   </h5>
                   <p>{{_detailArray.chiTiet}}</p>
-                  <a [routerLink]="['/detail', _detailArray.id]">Xem chi tiết</a>
+                  <a [routerLink]="['/home/detail', _detailArray.id]">Xem chi tiết</a>
                 </div>
                 <!-- Add to Cart Form -->
                 <form class="cart" method="post">
@@ -193,7 +193,7 @@
         </div>
         <div class="product-description">
           <h4 class="product-price">{{pro.donGia | currency:'VNĐ' : 'code':'1.0'}}</h4>
-          <p [routerLink]="['/detail', pro.id]">{{pro.tenSanPham}}</p>
+          <p [routerLink]="['/home/detail', pro.id]">{{pro.tenSanPham}}</p>
           <a class="add-to-cart-btn">Thêm vào giỏ hàng</a>
         </div>
       </div>

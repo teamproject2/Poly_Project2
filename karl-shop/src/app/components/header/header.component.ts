@@ -39,7 +39,7 @@ export class HeaderComponent implements OnInit {
 
   //GET product by category
   getProductByCate(name) {
-    this.router.navigate(['/products/category', name]);
+    this.router.navigate(['/home/category', name]);
   }
 
 }

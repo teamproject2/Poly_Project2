@@ -22,7 +22,7 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.getDetailProduct(this.id);
-    console.log(this.id);
+    // console.log(this.id);
   }
 
   getDetailProduct(id) {
@@ -34,7 +34,7 @@ export class ProductDetailComponent implements OnInit {
           for (var i = 0; i < this._detailProduct.hinhSanPham.length; i++) {
             this._hinhSanPham[i] = this._detailProduct.hinhSanPham[i].hinh;
           }
-          console.log(this._hinhSanPham);
+          // console.log(this._hinhSanPham);
 
         },
         error => console.error("Error " + error)

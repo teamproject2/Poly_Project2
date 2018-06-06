@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../../../services/data.service';
-import { HomeProduct } from '../../../entity/home-product';
+import { DataService } from '../../services/data.service';
+import { HomeProduct } from '../../entity/home-product';
 
 declare var jquery: any;
 declare var $: any;

@@ -1,23 +1,24 @@
-import { Component, OnInit, Input, EventEmitter } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { LoaigiayService } from '../../services/loaigiay.service';
-import { HomeLoaiGiay } from '../../entity/home-loaigiay';
-import { DataService } from '../../services/data.service';
+import { Component, OnInit } from '@angular/core';
 import { HomeProduct } from '../../entity/home-product';
+import { HomeLoaiGiay } from '../../entity/home-loaigiay';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LoaigiayService } from '../../services/loaigiay.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
-  selector: 'app-product-content',
-  templateUrl: './product-content.component.html',
-  styleUrls: ['./product-content.component.css'],
+  selector: 'side-bar',
+  templateUrl: './side-bar.component.html',
+  styleUrls: ['./side-bar.component.css'],
   providers:[LoaigiayService, DataService]
 })
-export class ProductContentComponent implements OnInit {
+export class SideBarComponent implements OnInit {
+
   _recommendArray: HomeProduct[];
   _loaiGiayArray: HomeLoaiGiay[];
   _tenGiay: string[] = [];
   _productArray: HomeProduct[];
   constructor(private route: ActivatedRoute, private router: Router,
-            private loaigiayService: LoaigiayService, private dataService: DataService) { }
+    private loaigiayService: LoaigiayService, private dataService: DataService) { }
 
 
   ngOnInit() {
@@ -40,16 +41,16 @@ export class ProductContentComponent implements OnInit {
   }
 
   goCate(name): void {
-      this.router.navigate(['/products/category', name]);
+    this.router.navigate(['/home/category', name]);
   }
 
 
   //GET recommend products
   getRecommendProducts(name: string) {
     this.dataService.getData(name)
-    .subscribe(resultArray => {
-      this._recommendArray = resultArray;
-    }), error => console.error('Error: ' + error);
+      .subscribe(resultArray => {
+        this._recommendArray = resultArray;
+      }), error => console.error('Error: ' + error);
   }
 
 }

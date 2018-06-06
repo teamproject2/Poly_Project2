@@ -68,7 +68,7 @@ export class HomeComponent implements OnInit {
 
   getProductByCate(name) {
     this.tenLoai = name;
-    this.router.navigate(['/products/category', this.tenLoai]);    
+    this.router.navigate(['/home/category', this.tenLoai]);    
   }
 
   

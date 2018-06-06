@@ -7,7 +7,7 @@
           <li class="breadcrumb-item">
             <a routerLink="/home">Trang Chủ</a>
           </li>
-          <li class="breadcrumb-item active">{{_detailProduct.tenSanPham}}</li>
+          <li *ngIf="_detailProduct != null" class="breadcrumb-item active">{{_detailProduct.tenSanPham}}</li>
         </ol>
         <a class="backToHome d-block">
           <i class="fa fa-angle-double-left"></i> Quay lại</a>

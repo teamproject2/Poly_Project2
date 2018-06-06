@@ -1,11 +1,10 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { DataService } from '../../../../services/data.service';
-import { LoaigiayService } from '../../../../services/loaigiay.service';
-import { HomeProduct } from '../../../../entity/home-product';
 import { EventEmitter } from 'protractor';
-import { ProductContentComponent } from '../../product-content.component';
 import { ValueTransformer } from '@angular/compiler/src/util';
+import { LoaigiayService } from '../../../services/loaigiay.service';
+import { DataService } from '../../../services/data.service';
+import { HomeProduct } from '../../../entity/home-product';
 
 @Component({
   selector: 'app-product-category',
@@ -21,8 +20,7 @@ export class ProductCategoryComponent implements OnInit,OnDestroy {
   eventVal: string;
   sub :any;
   constructor(private loaigiayService: LoaigiayService, private dataService: DataService,
-    private route: ActivatedRoute, private router: Router,
-    private val: ProductContentComponent, ) {
+    private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit() {
