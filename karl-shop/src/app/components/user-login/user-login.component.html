@@ -1,3 +1,61 @@
-<p>
-  user-login works!
-</p>
+<mat-tab-group>
+
+  <mat-tab label="Đăng nhập">
+    <div class="example-container">
+
+      <div class="button-row">
+        <button mat-raised-button color="primary">Đăng nhập Facebook
+          <i class="fab fa-facebook-f"></i>
+        </button>
+        <button mat-raised-button color="warn">Đăng nhập Google
+          <i class="fab fa-google"></i>
+        </button>
+      </div>
+
+      <mat-form-field>
+        <input matInput placeholder="Email" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Mật khẩu" [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </mat-form-field>
+      <div class="button-row">
+        <button mat-raised-button color="primary" class="btnLogin">Đăng nhập</button>
+      </div>
+      <small>Quên mật khẩu ?</small>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Đăng ký">
+
+    <div class="example-container">
+      <mat-form-field>
+        <input matInput placeholder="Tên tài khoản">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Mật khẩu" [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Xác nhận mật khẩu" [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Email" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+
+      <section class="example-section">
+        <mat-checkbox class="example-margin">Tôi đồng ý với điều khoản và dịch vụ</mat-checkbox>
+        <div class="button-row">
+          <button mat-raised-button color="primary" class="btnLogin">Đăng ký</button>
+        </div>
+        <small>Đã có tài khoản</small>
+      </section>
+    </div>
+
+  </mat-tab>
+</mat-tab-group>

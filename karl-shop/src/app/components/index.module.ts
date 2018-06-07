@@ -15,11 +15,41 @@ import { UserProfileComponent } from "./user-login/user-profile/user-profile.com
 import { CommonModule } from "@angular/common";
 import { IndexRoutingModule } from "./index-routing.module";
 import { IndexComponent } from "./index.component";
+import {
+    MatButtonModule,
+    MatCheckboxModule,
+    MatTabsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatInputModule,
+    MatIconModule,
+    MatRadioModule,
+    MatPaginatorModule,
+    MatTableModule
+} from '@angular/material';
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { CdkTableModule } from "@angular/cdk/table";
+
 @NgModule({
     imports: [
         NgxPaginationModule,
         CommonModule,
-        IndexRoutingModule
+        IndexRoutingModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatTabsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatOptionModule,
+        MatInputModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatIconModule,
+        MatRadioModule,
+        MatPaginatorModule,
+        CdkTableModule,
+        MatTableModule
     ],
     declarations: [
         SideBarComponent,
