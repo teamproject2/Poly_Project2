@@ -1,5 +1,4 @@
-import {Kichthuoc} from './kichthuoc'
-
+import {Kichthuoc} from './kichthuoc';
 export class Sanpham{
     public id: string;
     public tenSanPham: string;

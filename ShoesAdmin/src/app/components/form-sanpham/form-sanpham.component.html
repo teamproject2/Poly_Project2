@@ -32,18 +32,20 @@
                   </div>
 
                   <div class="form-group row">
-                    <label class="col-md-3 label-control" for="projectinput3">Loại: </label>
+                    <label class="col-md-3 label-control" for="projectinput3">Giới Tính: </label>
                     <div class="col-md-9">
-                      <input type="text" id="projectinput3" class="form-control" name="email">
+                        <div class="custom-control custom-radio display-inline-block ml-1">
+                            <input type="radio" id="customRadioInline2" name="customRadioInline2" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadioInline2">Yes</label>
+                        </div>
+                        <div class="custom-control custom-radio display-inline-block">
+                            <input type="radio" id="customRadioInline3" checked name="customRadioInline2" class="custom-control-input">
+                            <label class="custom-control-label" for="customRadioInline3">No</label>
+                        </div>
+                      <!-- <input type="text" id="projectinput3" class="form-control" name="email"> -->
                     </div>
                   </div>
 
-                  <!-- <div class="form-group row">
-                    <label class="col-md-3 label-control" for="projectinput4">Chi Tiết: </label>
-                    <div class="col-md-9">
-                      <input type="text" id="projectinput4" class="form-control" name="phone">
-                    </div>
-                  </div> -->
 
                   <h4 class="form-section">
                     <i class="ft-file-text"></i> Requirements</h4>
@@ -55,21 +57,18 @@
                     </div>
                   </div>
 
-                  <!-- <div class="form-group row">
-                    <label class="col-md-3 label-control" for="projectinput6">Interested in: </label>
+                  <div class="form-group row">
+                    <label class="col-md-3 label-control" for="projectinput6">Loại Giày: </label>
                     <div class="col-md-9">
                       <select id="projectinput6" name="interested" class="form-control">
-                        <option value="none" selected="" disabled="">Interested in</option>
-                        <option value="design">design</option>
-                        <option value="development">development</option>
-                        <option value="illustration">illustration</option>
-                        <option value="branding">branding</option>
-                        <option value="video">video</option>
+                        <option value="Adidas">Adidas</option>
+                        <option value="Nike">Nike</option>
+                        <option value="NB">NB</option>
                       </select>
                     </div>
-                  </div> -->
+                  </div>
 
-                  <!-- <div class="form-group row">
+                  <div class="form-group row">
                     <label class="col-md-3 label-control" for="projectinput7">Budget: </label>
                     <div class="col-md-9">
                       <select id="projectinput7" name="budget" class="form-control">
@@ -80,7 +79,7 @@
                         <option value="more than 20000$">more than 20000$</option>
                       </select>
                     </div>
-                  </div> -->
+                  </div>
 
                   <div class="form-group row">
                     <label class="col-md-3 label-control">Chọn ảnh: </label>
@@ -100,7 +99,7 @@
                   </div>
                 </div>
 
-                <div class="form-actions">
+                <div class="form-actions center">
                   <button type="button" class="btn btn-raised btn-warning mr-1">
                     <i class="ft-x"></i> Cancel
                   </button>

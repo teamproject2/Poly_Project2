@@ -29,9 +29,11 @@ import { RegisterComponent } from './components/register/register.component';
 import { TaskboardComponent } from './components/taskboard/taskboard.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
+import { ChitietSanphamComponent } from './components/chitiet-sanpham/chitiet-sanpham.component';
 // import service
 import { UserService } from './services/user.service';
 import { SanphamService } from './services/sanpham.service';
+
 
 @NgModule({
   // khai bao component
@@ -57,7 +59,8 @@ import { SanphamService } from './services/sanpham.service';
     RegisterComponent,
     TaskboardComponent,
     TimelineComponent,
-    UserprofileComponent
+    UserprofileComponent,
+    ChitietSanphamComponent
   ],
   // import thu vien
   imports: [

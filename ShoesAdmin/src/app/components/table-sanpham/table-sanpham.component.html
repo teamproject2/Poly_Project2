@@ -14,6 +14,11 @@
                   </div>
                   <div class="card-body">
                       <div class="card-block">
+                            <div class="mb-3"> 
+                            <a  class="btn btn-raised gradient-pomegranate white"[routerLink]= "['/table-sanpham/add']">
+                                        Thêm sản phẩm mới
+                                    </a> 
+                                </div>
                           <table id="table_sp" class="table table-responsive-md-md text-center">
                               <thead>
                                   <tr>
@@ -27,15 +32,15 @@
                                   </tr>
                               </thead>
                               <tbody>
-                                  <tr *ngFor= "let sp of list_sp">
-                                      <td>{{sp.id}}</td>
-                                      <td>{{sp.tenSanPham}}</td>
-                                      <td>{{sp.loaiGiay.tenLoai}}</td>
-                                      <td>{{sp.hinhSanPham.hinh}}</td>
-                                      <td>
+                                  <tr *ngFor= "let sp of list_sp" >
+                                      <td style="vertical-align: middle">{{sp.id}}</td>
+                                      <td style="vertical-align: middle">{{sp.tenSanPham}}</td>
+                                      <td style="vertical-align: middle">{{sp.loaiGiay.tenLoai}}</td>
+                                      <td style="vertical-align: middle"><img src="{{sp.hinhSanPham[0].hinh}}" width="100"></td>
+                                      <td style="vertical-align: middle">
                                           <span *ngFor="let size of sp.kichThuoc">{{size.tenKichThuoc}}<span>  </span></span>
                                           </td>
-                                      <td>
+                                      <td style="vertical-align: middle">
                                           <a class="info p-0" data-original-title="" title="">
                                               <i class="ft-user font-medium-3 mr-2"></i>
                                           </a>

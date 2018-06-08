@@ -24,7 +24,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { TaskboardComponent } from './components/taskboard/taskboard.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
-
+import { ChitietSanphamComponent } from './components/chitiet-sanpham/chitiet-sanpham.component';
 
 // Khai báo Router
 const routes: Routes = [
@@ -32,17 +32,33 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'inbox', component: InboxComponent },
   { path: 'chat', component: ChatComponent },
-  { path: 'table-sanpham', component: TableSanphamComponent },
+  { path: 'table-sanpham', component: TableSanphamComponent, 
+    children : [
+      {
+        path: '',
+        component: TableSanphamComponent
+      },
+      {
+        path: 'add',
+        component: FormSanphamComponent
+      },
+      {
+        path: 'id/edit',
+        component: TableSanphamComponent
+      }
+    ]
+  },
   { path: 'table-nhanvien', component: TableNhanvienComponent },
   { path: 'table-kho', component: TableKhoComponent },
   { path: 'table-khachhang', component: TableKhachhangComponent },
   { path: 'table-hoadon', component: TableHoadonComponent },
-  { path: 'form-product', component: FormSanphamComponent },
+  // { path: 'form-product', component: FormSanphamComponent },
   { path: 'form-user', component: FormUserComponent },
   { path: 'form-customer', component: FormKhachhangComponent },
   { path: 'Invoice', component: InvoiceComponent },
   { path: 'User-Profile', component: UserprofileComponent },
-  { path: 'Marketing', component: TaskboardComponent }
+  { path: 'Marketing', component: TaskboardComponent },
+  { path: 'chitiet-sp', component: ChitietSanphamComponent }
 
 ];
 
