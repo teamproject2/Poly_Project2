@@ -1,21 +1,30 @@
 package poly.soft.project2.enumeration;
 
 public enum HDTrangThaiEnum {
-	IN_PROGRESS(0), DONE(1),CANCEL(2);
-	
-	
-	private HDTrangThaiEnum(int state) {
+	IN_PROGRESS(0, "Đang chờ"), DONE(1, "Hoàn thành"), CANCEL(2, "Hủy đơn hàng");
+
+	private HDTrangThaiEnum(int code, String state) {
+		this.code = code;
 		this.state = state;
 	}
-	private int state;
 
-	public int getState() {
+	private int code;
+	private String state;
+
+	public int getCode() {
+		return code;
+	}
+
+	public void setCode(int code) {
+		this.code = code;
+	}
+
+	public String getState() {
 		return state;
 	}
 
-	public void setState(int state) {
+	public void setState(String state) {
 		this.state = state;
 	}
-	
-	
+
 }
