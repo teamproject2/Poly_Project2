@@ -4,7 +4,7 @@ import { Http, Response, RequestOptions } from "@angular/http";
 import { map, catchError, tap } from 'rxjs/operators';
 
 // import models
-import { Sanpham } from '../models/sanpham'
+import { Sanpham } from '../models/sanpham';
 import { Khohang } from '../models/khohang';
 import { Hoadon } from '../models/hoadon';
 
@@ -30,9 +30,9 @@ export class SanphamService {
     }));
   }
   // Get all San pham trong hoa don
-  getAllSP_HD(): Observable<Hoadon[]> {
-    return this.http.get(this.API + this.URL_HD).pipe(map(data => {
-      return <Hoadon[]>data.json();
-    }));
-  }
+  // getAllSP_HD(): Observable<Hoadon[]> {
+  //   return this.http.get(this.API + this.URL_HD).pipe(map(data => {
+  //     return <Hoadon[]>data.json();
+  //   }));
+  // }
 }

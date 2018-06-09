@@ -14,7 +14,7 @@
                     </div>
                     <div class="card-body">
                         <div class="card-block">
-                            <table id="table_sp" class="table table-responsive-md-md text-center">
+                            <table id="table_hd" class="table table-responsive-md-md text-center">
                                 <thead>
                                     <tr>
                                         <th>No.ID</th>
@@ -22,20 +22,22 @@
                                         <th>Tên nhân viên</th>
                                         <th>Ngày</th>
                                         <th>Trạng Thái</th>
-                                        <th>Actions</th>
+                                        <th>Tổng Tiền</th>
+                                        <th>Chức năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor= "let hd of list_hd">
+                                    <tr *ngFor="let hd of list_hd">
                                         <td>{{hd.id}}</td>
                                         <td>{{hd.tenKhachHang}}</td>
                                         <td>{{hd.tenNhanVien}}</td>
                                         <td>{{hd.ngay}}</td>
                                         <td>
-                                            <button type="button" class="btn btn-raised btn-warning btn-min-width mr-1 mb-1">Cancel</button>
-                                            <button type="button" class="btn btn-raised btn-danger btn-min-width mr-1 mb-1">In_progress</button>
-                                            <button type="button" class="btn btn-raised btn-success btn-min-width mr-1 mb-1">Done</button>
+                                            <button *ngIf ="hd.trangThai === 'Đang chờ'" type="button" class="btn btn-raised btn-warning btn-min-width mr-1 mb-1" style="width:130px">{{hd.trangThai}}</button>
+                                            <button *ngIf ="hd.trangThai === 'Hủy đơn hàng'" type="button" class="btn btn-raised btn-danger btn-min-width mr-1 mb-1" style="width:130px">{{hd.trangThai}}</button>
+                                            <button *ngIf ="hd.trangThai === 'Hoàn thành'" type="button" class="btn btn-raised btn-success btn-min-width mr-1 mb-1" style="width:130px">{{hd.trangThai}}</button>
                                         </td>
+                                        <td>{{hd.tongTien | currency: "VND" : true}}</td>
                                         <td>
                                             <a class="info p-0" data-original-title="" title="">
                                                 <i class="ft-user font-medium-3 mr-2"></i>
@@ -43,9 +45,9 @@
                                             <a class="success p-0" data-original-title="" title="">
                                                 <i class="ft-edit-2 font-medium-3 mr-2"></i>
                                             </a>
-                                            <a class="danger p-0" data-original-title="" title="">
+                                            <!-- <a class="danger p-0" data-original-title="" title="">
                                                 <i class="ft-x font-medium-3 mr-2"></i>
-                                            </a>
+                                            </a> -->
                                         </td>
                                     </tr>
                                 </tbody>

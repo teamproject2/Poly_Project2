@@ -1,15 +1,15 @@
---Insert into loai_giay
+-- Insert into loai_giay
 INSERT INTO poly_project2.loai_giay(ten_loai) 
 VALUES ('Adidas'),('Nike'),('NB');
 
---Loại giày 1,3,5 là nam
---Loại giày 2,4,6 là nữ
+-- Loại giày 1,3,5 là nam
+-- Loại giày 2,4,6 là nữ
 
---1,2 là Adidas
---3,4 là Nike
---5,6 là NB
+-- 1,2 là Adidas
+-- 3,4 là Nike
+-- 5,6 là NB
 		
---Insert into kich_thuoc
+-- Insert into kich_thuoc
 insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('35');
 insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('36');
 insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('37');
@@ -22,7 +22,7 @@ insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('43');
 insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('44');
 insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('45');
 
---Insert into san_pham
+-- Insert into san_pham
 insert into poly_project2.san_pham(ten_san_pham,chi_tiet,loai_giay_id,gioi_tinh)
 values('Adidas NMD R2 Black and White','Giày Adidas NMD R2 Primeknit - Một trong những phối màu thời trang tươi tắn nhất của dòng giày NMD R2 chính hãng .Với công nghệ Prime knit kết hợp với bộ đế boost êm ái đã tạo ra một tuyệt phẩm NMD siêu hot, hãy ghé shop để là một trong những người sở hữu đôi giày NMD PK Black đầu tiên nhé.',1,0),
 ('Adidas NMD R1 Burgundy and Olive','Giày Adidas NMD R1 Burgundy and Olive -Một trong những phối màu thời trang tươi tắn nhất của dòng giày NMD R1 chính hãng.Với công nghệ Prime knit kết hợp với bộ đế boost êm ái đã tạo ra một tuyệt phẩm NMD siêu hot, hãy ghé shop để là một trong những người sở hữu đôi giày NMD đầu tiên nhé.',1,0),
@@ -97,10 +97,10 @@ values(1,6),(1,7),(1,9),(1,10),
 (30,2),(30,4),(30,6),(30,8),(30,10),(30,11);
 
 
---insert into kho
+-- insert into kho
 insert into poly_project2.kho(ten_kho,dia_chi) values('Kho Lê Lợi','123 Lê Lợi P10, Q1, TP.HCM');
 
---insert into hang_trong_kho
+-- insert into hang_trong_kho
 insert into poly_project2.hang_trong_kho(so_luong,don_gia,chiet_khau,san_pham_id,kho_id)
 values(10,3800000,0.1,1,1),(10,3800000,0.1,2,1),(10,2000000,0.1,3,1),
 (30,3800000,0.1,4,1),(30,3800000,0.1,5,1),(30,2000000,0.1,6,1),
@@ -113,7 +113,7 @@ values(10,3800000,0.1,1,1),(10,3800000,0.1,2,1),(10,2000000,0.1,3,1),
 (30,3800000,0.1,25,1),(30,3800000,0.1,26,1),(30,2000000,0.1,27,1),
 (30,3800000,0.1,28,1),(30,3800000,0.1,29,1),(30,2000000,0.1,30,1);
 
---insert into khach_hang
+-- insert into khach_hang
 insert into poly_project2.khach_hang(ten_khach_hang,dia_chi,email,so_dien_thoai)
 values('Khoa','123 Hoàng Hoa Thám Q.PN, TP.HCM','conque6@gmail.com','01698300191'),
 ('Hòa','99 Lê Lợi Q.1, TP.HCM','hoanv@gmail.com','01698309267'),
@@ -128,14 +128,14 @@ values('Khoa','123 Hoàng Hoa Thám Q.PN, TP.HCM','conque6@gmail.com','016983001
 ('Am','1230 Phạm Văn Đồng Q.TĐ, TP.HCM','amnn@gmail.com','01698307956');
 
 
---insert into nhan_vien
+-- insert into nhan_vien
 insert into poly_project2.nhan_vien(ten_nhan_vien,ngay_sinh,gioi_tinh,dia_chi,email,so_dien_thoai)
 values('Nguyễn Vũ Hòa','1995-2-5',0,'12 Điện Biên Phủ Q.Bình Thạnh, TP.HCM','skynguyen79@gmail.com','01657154932'),
 ('Vũ Hoàng Long','1990-2-5',0,'123 Nguyễn Du Q.1, TP.HCM','longvh@gmail.com','01657154876'),
 ('Phạm Xuân Khoa','1996-8-5',0,'111 Lê Duẩn Q.1, TP.HCM','khoapx@gmail.com','01650754932'),
 ('Trượng Bông Lai','1996-9-5',0,'282 Nam Kỳ Khởi Nghĩa Q.3, TP.HCM','laitb@gmail.com','01657150642');
 
---insert into image san pham
+-- insert into image san pham
 insert into poly_project2.hinh_san_pham(hinh,san_pham_id) values('https://firebasestorage.googleapis.com/v0/b/poly2-977b3.appspot.com/o/adidas-nmd-r2-white-black-1.jpg?alt=media&token=45131b12-9998-43ed-bd85-8eefef4b458f',1);
 insert into poly_project2.hinh_san_pham(hinh,san_pham_id) values
 ('https://firebasestorage.googleapis.com/v0/b/poly2-977b3.appspot.com/o/adidas-nmd-r2-white-black-2.jpg?alt=media&token=01a3d3e1-d422-4530-b6ec-af3f3c94494e',1),
@@ -229,7 +229,7 @@ insert into poly_project2.hinh_san_pham(hinh,san_pham_id) values
 ('https://firebasestorage.googleapis.com/v0/b/poly2-977b3.appspot.com/o/nb-10.2.png?alt=media&token=4d2e74a9-6e62-4ff3-95a0-9aa00c714353',30);
 
 
---insert into hoa_don
+-- insert into hoa_don
 insert into poly_project2.hoa_don(ngay,khach_hang_id,nhan_vien_id,trang_thai,thanh_toan,tong_tien)
 values('2018-5-20',1,1,1,0,8640000),
 ('2018-5-21',2,2,1,0,8640000),
@@ -259,7 +259,7 @@ values('2018-5-20',1,1,1,0,8640000),
 ('2018-6-15',3,1,0,0,0),
 ('2018-6-16',5,4,0,0,0);
 
---insert into cthd
+-- insert into cthd
 insert into poly_project2.chi_tiet_hoa_don(so_luong,hoa_don_id,san_pham_id)
 values(1,1,1),(1,1,2),(1,1,3),
 		(1,2,4),(1,2,5),(1,2,9),
@@ -287,17 +287,17 @@ values(1,1,1),(1,1,2),(1,1,3),
 		(1,24,2),(1,24,3),(1,24,5),
 		(1,25,1),(1,25,2),(1,25,3);
 		
---insert quyen
+-- insert quyen
 insert into poly_project2.quyen(ten_quyen) values ('ROLE_ADMIN');
 insert into poly_project2.quyen(ten_quyen) values ('ROLE_KHACHHANG');
 insert into poly_project2.quyen(ten_quyen) values ('ROLE_NHANVIEN');
 
---insert taikhoan
+-- insert taikhoan
 insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau) values('admin','123456');
 insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau) values('user1','123456');
 insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau) values('nhanvien1','123456');
 
---insert quyen tai khoan
+-- insert quyen tai khoan
 insert into poly_project2.quyen_tai_khoan values(1,1);
 insert into poly_project2.quyen_tai_khoan values(2,2);
 insert into poly_project2.quyen_tai_khoan values(3,3);

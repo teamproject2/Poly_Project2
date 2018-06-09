@@ -9,7 +9,7 @@ declare var $: any;
 //Models
 import { Hoadon } from '../.././models/hoadon';
 // services
-import { SanphamService } from '../../services/sanpham.service';
+import { HoadonService } from '../../services/hoadon.service';
 
 @Component({
   selector: 'app-table-hoadon',
@@ -20,7 +20,7 @@ export class TableHoadonComponent implements OnInit, OnDestroy {
   public list_hd: Hoadon[] = [];
   public subscription: Subscription;
   constructor(
-    private hoadonServices: SanphamService
+    private hoadonServices: HoadonService
   ) { }
 
   ngOnInit() {

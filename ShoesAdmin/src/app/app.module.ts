@@ -33,6 +33,7 @@ import { ChitietSanphamComponent } from './components/chitiet-sanpham/chitiet-sa
 // import service
 import { UserService } from './services/user.service';
 import { SanphamService } from './services/sanpham.service';
+import {HoadonService } from './services/hoadon.service';
 
 
 @NgModule({
@@ -71,7 +72,8 @@ import { SanphamService } from './services/sanpham.service';
   // Import services
   providers: [
     UserService,
-    SanphamService
+    SanphamService,
+    HoadonService
     
   ],
   bootstrap: [AppComponent]
