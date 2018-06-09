@@ -30,3 +30,6 @@ button.btn:hover{
 .quickview_pro_img img {
     width: 289px;
 }
+a.add-to-cart-btn {
+    cursor: pointer;
+}

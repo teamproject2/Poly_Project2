@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DetailsService } from '../../services/details.service';
 import { DetailProducts } from '../../entity/detail-products';
 import { ActivatedRoute, Router } from '@angular/router';
-
+import {ProductSelected} from '../../entity/product-selected-cart';
+import { SizeProduct } from '../../entity/size-product';
 declare var jquery: any;
 declare var $: any;
 
@@ -17,6 +18,8 @@ export class ProductDetailComponent implements OnInit {
   _detailProduct: DetailProducts;
   _hinhSanPham: string[] = [];
   id: number;
+  productSelect: ProductSelected = {idSP:1,sizeSP:""};
+
   constructor(private detailService: DetailsService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -41,6 +44,10 @@ export class ProductDetailComponent implements OnInit {
       )
   }
 
-
+  selectSize(size: SizeProduct) {
+    this.productSelect.idSP = this.id;
+    this.productSelect.sizeSP = size.tenKichThuoc;
+    console.log(this.productSelect);
+  }
 
 }

@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   _loaiGiayArray: HomeLoaiGiay[];
   _detailArray: HomeProduct[];
   _tenGiay: string[] = [];
+  _idSelected: number[] = [];
   tenLoai: string;
   
   constructor(private dataService: DataService, private loaigiayService: LoaigiayService,
@@ -70,6 +71,13 @@ export class HomeComponent implements OnInit {
     this.tenLoai = name;
     this.router.navigate(['/home/category', this.tenLoai]);    
   }
+
+
+  // addCart(id: any) {
+  //   this._idSelected[this._idSelected.length] = id;
+  //   console.log(this._idSelected);
+
+  // }
 
   
 

@@ -104,7 +104,7 @@
                   <a [routerLink]="['/home/detail', _detailArray.id]">Xem chi tiết</a>
                 </div>
                 <!-- Add to Cart Form -->
-                <form class="cart" method="post">
+                <!-- <form class="cart" method="post">
                   <div class="quantity">
                     <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;">
                       <i class="fa fa-minus" aria-hidden="true"></i>
@@ -116,20 +116,17 @@
                       <i class="fa fa-plus" aria-hidden="true"></i>
                     </span>
                   </div>
-                  <button type="submit" name="addtocart" value="5" class="cart-submit">Thêm vào giỏ hàng</button>
-                  <!-- Wishlist -->
                   <div class="modal_pro_wishlist">
                     <a href="wishlist.html" target="_blank">
                       <i class="ti-heart"></i>
                     </a>
                   </div>
-                  <!-- Compare -->
                   <div class="modal_pro_compare">
                     <a href="compare.html" target="_blank">
                       <i class="ti-stats-up"></i>
                     </a>
                   </div>
-                </form>
+                </form> -->
 
                 <div class="share_wf mt-30">
                   <p>Chia sẽ ngay</p>
@@ -192,9 +189,9 @@
           </div>
         </div>
         <div class="product-description">
-          <h4 class="product-price">{{pro.donGia | currency:'VNĐ' : 'code':'1.0'}}</h4>
+          <h4 class="product-price">{{pro.donGia | currency:"VND" : 'code':'1.0'}}</h4>
           <p [routerLink]="['/home/detail', pro.id]">{{pro.tenSanPham}}</p>
-          <a class="add-to-cart-btn">Thêm vào giỏ hàng</a>
+          <!-- <a class="add-to-cart-btn" (click)="addCart(pro.id)" >Thêm vào giỏ hàng</a> -->
         </div>
       </div>
     </div>
