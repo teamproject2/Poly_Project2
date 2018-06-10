@@ -18,7 +18,7 @@ export class ProductDetailComponent implements OnInit {
   _detailProduct: DetailProducts;
   _hinhSanPham: string[] = [];
   id: number;
-  productSelect: ProductSelected = { idSP: 1, sizeSP: "" };
+  productSelect: ProductSelected = {id:1,tenSanPham:'',tenKichThuoc:'',chietKhau:1,donGia:1,hinhSanPham:'',soLuong:1,soLuongKho:1};
   _productInCart: ProductSelected[] = [];
   _productInCartOldLength: number;
 
@@ -51,22 +51,27 @@ export class ProductDetailComponent implements OnInit {
   }
 
   selectSize(size: SizeProduct) {
-    this.productSelect.idSP = this.id;
-    this.productSelect.sizeSP = size.tenKichThuoc;
-    
+    this.productSelect.id = this.id;
+    this.productSelect.tenKichThuoc = size.tenKichThuoc;
+    this.productSelect.tenSanPham = this._detailProduct.tenSanPham;
+    this.productSelect.chietKhau = this._detailProduct.hangTrongKho[0].chietKhau;
+    this.productSelect.donGia = this._detailProduct.hangTrongKho[0].donGia;
+    this.productSelect.hinhSanPham = this._detailProduct.hinhSanPham[0].hinh;
+    this.productSelect.soLuongKho = this._detailProduct.hangTrongKho[0].soLuong;
+
     let count = 0;
-    if(this._productInCart.length === 0){
+    if (this._productInCart.length === 0) {
       this._productInCart.push(this.productSelect);
-    }else{
-      if(this._productInCart.length > this._productInCartOldLength){
+    } else {
+      if (this._productInCart.length > this._productInCartOldLength) {
         this._productInCart.pop();
       }
       for (let i = 0; i < this._productInCart.length; i++) {
-        if(JSON.stringify(this._productInCart[i]) === JSON.stringify(this.productSelect)){
+        if (JSON.stringify(this._productInCart[i]) === JSON.stringify(this.productSelect)) {
           count++;
         }
       }
-      if(count === 0){
+      if (count === 0) {
         this._productInCart.push(this.productSelect);
       }
     }
