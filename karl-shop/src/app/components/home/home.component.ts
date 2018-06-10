@@ -72,13 +72,4 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/home/category', this.tenLoai]);    
   }
 
-
-  // addCart(id: any) {
-  //   this._idSelected[this._idSelected.length] = id;
-  //   console.log(this._idSelected);
-
-  // }
-
-  
-
 }

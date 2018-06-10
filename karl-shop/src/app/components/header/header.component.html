@@ -1,19 +1,22 @@
 <div class="catagories-side-menu2">
-    <!-- Close Icon -->
-    <div id="sideMenuClose" (click)="hideMenu()">
-      <i class="ti-close"></i>
-    </div>
-    <!--  Side Nav  -->
-    <div class="nav-side-menu">
-      <div class="menu-list">
-        <h6>Categories</h6>
-        <ul id="menu-content" class="menu-content collapse out">
-          <li class="home-menu" (click)="getProductByCate(loai.tenLoai)" *ngFor="let loai of _loaigiayArray"> <span class="icons"><i class="fa fa-chevron-right"></i></span> {{loai.tenLoai}}</li>
-        </ul>
-      </div>
+  <!-- Close Icon -->
+  <div id="sideMenuClose" (click)="hideMenu()">
+    <i class="ti-close"></i>
+  </div>
+  <!--  Side Nav  -->
+  <div class="nav-side-menu">
+    <div class="menu-list">
+      <h6>Categories</h6>
+      <ul id="menu-content" class="menu-content collapse out">
+        <li class="home-menu" (click)="getProductByCate(loai.tenLoai)" *ngFor="let loai of _loaigiayArray">
+          <span class="icons">
+            <i class="fa fa-chevron-right"></i>
+          </span> {{loai.tenLoai}}</li>
+      </ul>
     </div>
   </div>
-  
+</div>
+
 <!-- ****** Header Area Start ****** -->
 <header class="header_area">
   <!-- Top Header Area Start -->
@@ -33,9 +36,9 @@
             <div class="header-cart-menu d-flex align-items-center ml-auto">
               <!-- Cart Area -->
               <div class="cart">
-                <a id="header-cart-btn" target="_blank">
-                  <span class="cart_quantity">2</span>
-                  <i class="ti-bag"></i> Giỏ Hàng $20</a>
+                <a id="header-cart-btn" routerLink="/home/cart">
+                  <i class="ti-bag"></i> Giỏ Hàng
+                </a>
                 <!-- Cart List Area Start -->
                 <ul class="cart-list">
                   <li>
@@ -83,7 +86,7 @@
                   <i class="ti-menu" aria-hidden="true"></i>
                 </a>
               </div>
-              
+
             </div>
           </div>
         </div>
@@ -127,37 +130,20 @@
               <div class="collapse navbar-collapse align-items-start collapse" id="karl-navbar">
                 <ul class="navbar-nav animated" id="nav">
                   <li class="nav-item active">
-                    <a class="nav-link" routerLink="/home">Trang Chủ</a>
+                    <a class="nav-link" routerLink="/home">Trang chủ</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" routerLink="/home/products">Sản Phẩm</a>
+                    <a class="nav-link">Giới thiệu</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" routerLink="/home/cart">Giỏ Hàng</a>
+                    <a class="nav-link" routerLink="/home/products">Sản phẩm</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" routerLink="/home/checkout">Thanh Toán</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link">Chi Tiết</a>
+                    <a class="nav-link" routerLink="/home/account">Tài khoản</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Liên Hệ</a>
                   </li>
-                  <li class="nav-item">
-                      <a class="nav-link" routerLink="/home/account">Tài khoản</a>
-                    </li>
-                  <!-- <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="karlDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-                      aria-expanded="false">Pages</a>
-                    <div class="dropdown-menu" aria-labelledby="karlDropdown">
-                      <a class="dropdown-item" routerLink="/home">Trang Chủ</a>
-                      <a class="dropdown-item" routerLink="/products">Sản Phẩm</a>
-                      <a class="dropdown-item" routerLink="/detailID">Chi Tiết</a>
-                      <a class="dropdown-item" routerLink="/cart">Giỏ Hàng</a>
-                      <a class="dropdown-item" routerLink="/checkout">Thanh Toán</a>
-                    </div>
-                  </li> -->
                 </ul>
               </div>
             </nav>
@@ -180,18 +166,18 @@
   <div class="single-discount-area">
     <h5>Miễn Phí Ship &amp; Đổi Trả</h5>
     <h6>
-      <a href="#">MUA NGAY</a>
+      <a>MUA NGAY</a>
     </h6>
   </div>
   <!-- Single Discount Area -->
   <div class="single-discount-area">
-    <h5>Giảm 20% giày tập luyện</h5>
-    <h6>Mã giảm giá: pt12201</h6>
+    <h5>Giảm 10% giày NB</h5>
+    <a>MUA NGAY</a>
   </div>
   <!-- Single Discount Area -->
   <div class="single-discount-area">
-    <h5>Giảm 20% cho học sinh</h5>
-    <h6>Mã giảm giá: stu001</h6>
+    <h5>Giảm 10% cho học sinh</h5>
+    <a>MUA NGAY</a>
   </div>
 </section>
 <!-- ****** Top Discount Area End ****** -->

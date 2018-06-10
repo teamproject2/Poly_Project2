@@ -1,3 +1,58 @@
 a.cart-submit {
     cursor: pointer;
 }
+i.far.remove {
+    font-size: 18px;
+    color: #ff084e;
+}
+
+.removeProduct {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    line-height: 20px;
+    text-align: center;
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+}
+
+.cart-table .table td, .cart-table .table th {
+    text-align: center;
+}
+.btnRemove{
+    position: relative;
+}
+span.quantityMax {
+    color: #ff084e;
+    font-weight: 700;
+}
+
+.cart-page-heading {
+    text-align: center;
+    background: #5f5757;
+    padding: 20px;
+    margin-bottom: 0;
+}
+
+.cart-page-heading h5 {
+    color: #fff;
+}
+
+a.karl-checkout-btn, a.continue:hover{
+    background: #009688;
+    color: #fff;
+}
+
+div.update-checkout.w-50.text-right a.destroy{
+    background: #ff084e;
+    color: #fff;
+    cursor: pointer;
+}
+/* .cart_area .update-checkout a:last-child, .cart_area .update-checkout a:first-child{
+    color: none;
+    background: none;
+} */

@@ -9,6 +9,7 @@ import { ProductSelected } from '../../entity/product-selected-cart';
 export class CartComponent implements OnInit {
   _productInCart: ProductSelected[] = [];
   _sumOfMoney: number = 0;
+
   constructor() { }
 
   ngOnInit() {
@@ -19,6 +20,8 @@ export class CartComponent implements OnInit {
       })
     }
     console.log("In cart:" + JSON.stringify(this._productInCart));
+
+    // this.isDisabled();
   }
 
   minusQuantity(id,tenKichThuoc,soLuong){
@@ -41,4 +44,6 @@ export class CartComponent implements OnInit {
     });
     console.log("plus: " + JSON.stringify(this._productInCart));
   }
+
+
 }

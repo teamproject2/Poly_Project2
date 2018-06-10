@@ -1,5 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+.fa-facebook-f{
+    /* background: #4267B2; */
+    color: #fff;
+}
+.fa-google-plus-g{
+    color: #fff;
+}
+
 body.modal-open{
     overflow: overlay;
 }
@@ -32,4 +42,41 @@ button.btn:hover{
 }
 a.add-to-cart-btn {
     cursor: pointer;
+}
+.product-description p{
+    color: #ff084e;
+    font-weight: 600;
+}
+.product-description .product-price{
+    color: #ccc;
+    text-decoration: line-through;
+    font-weight: 100;
+}
+h4.product-sale{
+    color: #000;
+    font-weight: 600;
+}
+.product-description {
+    text-align: center;
+}
+
+.col-12.col-sm-6.col-md-4.single_gallery_item {
+    border: 1px solid #eae9e7;
+    box-sizing: border-box;
+    padding: 5px;
+    transition: 0.4s;
+}
+.col-12.col-sm-6.col-md-4.single_gallery_item:hover {
+    box-shadow: 2px 1px 6px 2px #ccc;
+    transition: 0.4s;
+}
+.product-description p:focus {
+    outline: none;
+}
+h4.title {
+    color: #fc084d;
+}
+.share_wf p {
+    color: red;
+    font-weight: 600;
 }

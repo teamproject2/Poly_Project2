@@ -12,3 +12,10 @@
     box-sizing: border-box;
     padding: 5px;
 }
+li.sizes.actives {
+    background: #ff084e;
+    color: #fff;
+}
+/* li#ss37{
+    color: aquamarine !important;
+} */

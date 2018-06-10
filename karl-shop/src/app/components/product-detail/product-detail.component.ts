@@ -18,10 +18,10 @@ export class ProductDetailComponent implements OnInit {
   _detailProduct: DetailProducts;
   _hinhSanPham: string[] = [];
   id: number;
-  productSelect: ProductSelected = {id:1,tenSanPham:'',tenKichThuoc:'',chietKhau:1,donGia:1,hinhSanPham:'',soLuong:1,soLuongKho:1};
+  productSelect: ProductSelected = { id: 1, tenSanPham: '', tenKichThuoc: '', chietKhau: 1, donGia: 1, hinhSanPham: '', soLuong: 1, soLuongKho: 1 };
   _productInCart: ProductSelected[] = [];
   _productInCartOldLength: number;
-
+  demo: any;
   constructor(private detailService: DetailsService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
@@ -76,10 +76,17 @@ export class ProductDetailComponent implements OnInit {
       }
     }
     console.log("2:" + JSON.stringify(this._productInCart));
+
   }
 
   addToCart() {
     sessionStorage.productInCart = JSON.stringify(this._productInCart);
     this.router.navigate(["home/cart"]);
+  }
+
+  selectActive(size) {
+    $("#ss"+this.demo).removeClass('actives');
+    $("#ss"+size).addClass('actives');
+    this.demo = size;
   }
 }
