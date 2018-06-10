@@ -16,7 +16,7 @@
                 <th></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody *ngIf="_productInCart!=null">
               <tr *ngFor="let pro of _productInCart">
                 <td class="cart_product_img d-flex align-items-center">
                   <a href="#">
@@ -51,7 +51,7 @@
                 </td>
                 <td class="btnRemove">
                   <div class="removeProduct">
-                    <i class="far fa-trash-alt remove"></i>
+                    <i (click)="deleteProduct(pro.id,pro.tenKichThuoc)" class="far fa-trash-alt remove"></i>
                   </div>
                 </td>
               </tr>
@@ -67,7 +67,7 @@
             <a class="continue" routerLink="/home/products">Tiếp tục mua sắm</a>
           </div>
           <div class="update-checkout w-50 text-right">
-            <a class="destroy">Hủy đơn hàng</a>
+            <a (click) = "cancelAllProducts()" class="destroy">Hủy đơn hàng</a>
             <!-- <a class="cart-submit" (click)="updateCart()">Cập nhật đơn hàng</a> -->
           </div>
         </div>
@@ -115,3 +115,4 @@
 </div>
 
 <!-- ****** Cart Area End ****** -->
+

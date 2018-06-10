@@ -24,20 +24,20 @@ export class CartComponent implements OnInit {
     // this.isDisabled();
   }
 
-  minusQuantity(id,tenKichThuoc,soLuong){
+  minusQuantity(id, tenKichThuoc, soLuong) {
     this._productInCart.forEach(p => {
-      if(p.id === id && p.tenKichThuoc === tenKichThuoc && soLuong > 1){
+      if (p.id === id && p.tenKichThuoc === tenKichThuoc && soLuong > 1) {
         p.soLuong = --soLuong;
         this._sumOfMoney -= p.donGia * (1 - p.chietKhau);
       }
     });
     console.log("minus: " + JSON.stringify(this._productInCart));
-    
+
   }
 
-  plusQuantity(id,tenKichThuoc,soLuong){
+  plusQuantity(id, tenKichThuoc, soLuong) {
     this._productInCart.forEach(p => {
-      if(p.id === id && p.tenKichThuoc === tenKichThuoc && soLuong < p.soLuongKho){
+      if (p.id === id && p.tenKichThuoc === tenKichThuoc && soLuong < p.soLuongKho) {
         p.soLuong = ++soLuong;
         this._sumOfMoney += p.donGia * (1 - p.chietKhau);
       }
@@ -45,5 +45,23 @@ export class CartComponent implements OnInit {
     console.log("plus: " + JSON.stringify(this._productInCart));
   }
 
+  deleteProduct(id, tenKichThuoc) {
+    this._productInCart.forEach(p => {
+      if (p.id === id && p.tenKichThuoc === tenKichThuoc) {
+        this._productInCart.splice(this._productInCart.indexOf(p), 1);
+        sessionStorage.productInCart = JSON.stringify(this._productInCart);
+        this._sumOfMoney -= p.donGia * (1 - p.chietKhau) * p.soLuong;
+        console.log(this._productInCart);
+        return;
+      }
+    })
+  }
+
+  cancelAllProducts() {
+    this._productInCart = [];
+    sessionStorage.productInCart = JSON.stringify(this._productInCart);
+    this._sumOfMoney = 0;
+    console.log(this._productInCart);
+  }
 
 }
