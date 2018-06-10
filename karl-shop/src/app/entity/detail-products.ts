@@ -8,7 +8,6 @@ export interface DetailProducts {
     id: number;
     tenSanPham: string;
     chiTiet: string;
-    donGia: number;
     hinhSanPham: ImageProduct[];
     kichThuoc: SizeProduct[];
     loaiGiay: HomeLoaiGiay;
