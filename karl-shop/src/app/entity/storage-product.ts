@@ -1,6 +1,8 @@
+import { SizeProduct } from "./size-product";
+
 export interface StorageProduct {
     id: number;
     soLuong: number;
-    donGia: number;
-    chietKhau: number;
+    kichThuoc: SizeProduct;
+    hinhSanPham: string;
 }

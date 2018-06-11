@@ -4,6 +4,7 @@ import { DetailProducts } from '../../entity/detail-products';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductSelected } from '../../entity/product-selected-cart';
 import { SizeProduct } from '../../entity/size-product';
+import { StorageProduct } from '../../entity/storage-product';
 declare var jquery: any;
 declare var $: any;
 
@@ -54,10 +55,14 @@ export class ProductDetailComponent implements OnInit {
     this.productSelect.id = this.id;
     this.productSelect.tenKichThuoc = size.tenKichThuoc;
     this.productSelect.tenSanPham = this._detailProduct.tenSanPham;
-    this.productSelect.chietKhau = this._detailProduct.hangTrongKho[0].chietKhau;
-    this.productSelect.donGia = this._detailProduct.hangTrongKho[0].donGia;
+    this.productSelect.chietKhau = this._detailProduct.chietKhau;
+    this.productSelect.donGia = this._detailProduct.donGia;
     this.productSelect.hinhSanPham = this._detailProduct.hinhSanPham[0].hinh;
-    this.productSelect.soLuongKho = this._detailProduct.hangTrongKho[0].soLuong;
+    this._detailProduct.hangTrongKho.forEach(p => {
+      if (p.kichThuoc.tenKichThuoc === size.tenKichThuoc) {
+        this.productSelect.soLuongKho = p.soLuong;
+      }
+    })
 
     let count = 0;
     if (this._productInCart.length === 0) {
@@ -85,8 +90,8 @@ export class ProductDetailComponent implements OnInit {
   }
 
   selectActive(size) {
-    $("#ss"+this.demo).removeClass('actives');
-    $("#ss"+size).addClass('actives');
+    $("#ss" + this.demo).removeClass('actives');
+    $("#ss" + size).addClass('actives');
     this.demo = size;
   }
 }

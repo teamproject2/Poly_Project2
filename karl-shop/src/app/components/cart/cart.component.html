@@ -9,8 +9,9 @@
               <tr>
                 <th>Sản phẩm</th>
                 <th>Kích thước</th>
-                <th>Giá</th>
+                <th>Giá cũ</th>
                 <th>Chiết khấu</th>
+                <th>Giá mới</th>
                 <th>Số lượng</th>
                 <th>Tổng</th>
                 <th></th>
@@ -32,6 +33,9 @@
                 </td>
                 <td class="price">
                   <span>{{ pro.chietKhau * 100 }}%</span>
+                </td>
+                <td class="price">
+                  <span>{{ pro.donGia * (1 - pro.chietKhau) | number:'1.0' }} đ</span>
                 </td>
                 <td class="qty">
                   <div class="quantity">

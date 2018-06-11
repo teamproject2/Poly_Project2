@@ -42,6 +42,9 @@ public class HoaDon implements Serializable {
 	@Column(name = "THANH_TOAN")
 	private ThanhToanEnum thanhToan;
 
+	@Column(name = "GHI_CHU", length = 800)
+	private String ghiChu;
+
 	@OneToMany(mappedBy = "hoaDon", fetch = FetchType.LAZY)
 	private List<ChiTietHoaDon> chiTietHoaDon;
 
@@ -115,6 +118,14 @@ public class HoaDon implements Serializable {
 
 	public void setTongTien(double tongTien) {
 		this.tongTien = tongTien;
+	}
+
+	public String getGhiChu() {
+		return ghiChu;
+	}
+
+	public void setGhiChu(String ghiChu) {
+		this.ghiChu = ghiChu;
 	}
 
 }

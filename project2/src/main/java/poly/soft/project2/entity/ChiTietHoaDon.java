@@ -10,25 +10,29 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
-@Table(name="CHI_TIET_HOA_DON")
-@JsonIgnoreProperties({"hoaDon"})
+@Table(name = "CHI_TIET_HOA_DON")
+@JsonIgnoreProperties({ "hoaDon" })
 public class ChiTietHoaDon {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="ID")
+	@Column(name = "ID")
 	private int id;
-	
+
 	@ManyToOne
-	@JoinColumn(name="SAN_PHAM_ID")
+	@JoinColumn(name = "SAN_PHAM_ID")
 	private SanPham sanPham;
-	
+
 	@ManyToOne
-	@JoinColumn(name="HOA_DON_ID")
+	@JoinColumn(name = "HOA_DON_ID")
 	private HoaDon hoaDon;
-	
-	@Column(name="SO_LUONG")
+
+	@Column(name = "SO_LUONG")
 	private int soLuong;
+
+	@Column(name = "TEN_KICH_THUOC")
+	private String tenKichThuoc;
 
 	public int getId() {
 		return id;
@@ -61,5 +65,13 @@ public class ChiTietHoaDon {
 	public void setSoLuong(int soLuong) {
 		this.soLuong = soLuong;
 	}
-	
+
+	public String getTenKichThuoc() {
+		return tenKichThuoc;
+	}
+
+	public void setTenKichThuoc(String tenKichThuoc) {
+		this.tenKichThuoc = tenKichThuoc;
+	}
+
 }

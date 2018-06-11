@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -18,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name = "HANG_TRONG_KHO")
+@Table(name = "HANG_TRONG_KHO", uniqueConstraints={@UniqueConstraint(columnNames = {"KHO_ID", "SAN_PHAM_ID" , "KICH_THUOC_ID"})})
 @JsonInclude(value = Include.NON_NULL)
 @JsonIgnoreProperties(value = { "sanPham", "kho" }, ignoreUnknown = true)
 public class HangTrongKho implements Serializable {
@@ -39,11 +40,9 @@ public class HangTrongKho implements Serializable {
 	@Column(name = "SO_LUONG")
 	private int soLuong;
 
-	@Column(name = "DON_GIA")
-	private double donGia;
-
-	@Column(name = "CHIET_KHAU")
-	private double chietKhau;
+	@ManyToOne
+	@JoinColumn(name = "KICH_THUOC_ID")
+	private KichThuoc kichThuoc;
 
 	@JsonGetter(value = "sanPhamID")
 	private int getSanPhamId() {
@@ -95,20 +94,12 @@ public class HangTrongKho implements Serializable {
 		this.soLuong = soLuong;
 	}
 
-	public double getDonGia() {
-		return donGia;
+	public KichThuoc getKichThuoc() {
+		return kichThuoc;
 	}
 
-	public void setDonGia(double donGia) {
-		this.donGia = donGia;
-	}
-
-	public double getChietKhau() {
-		return chietKhau;
-	}
-
-	public void setChietKhau(double chietKhau) {
-		this.chietKhau = chietKhau;
+	public void setKichThuoc(KichThuoc kichThuoc) {
+		this.kichThuoc = kichThuoc;
 	}
 
 }

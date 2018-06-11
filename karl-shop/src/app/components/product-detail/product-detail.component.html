@@ -53,7 +53,7 @@
           </h4>
 
           <!-- missing price -->
-          <h4 class="price">{{_detailProduct.hangTrongKho[0].donGia | currency: 'VND' : 'code' : '1.0'}}</h4>
+          <h4 class="price">{{_detailProduct.donGia | currency: 'VND' : 'code' : '1.0'}}</h4>
           <!-- missing price -->
           
           <p class="available">Trạng Thái:
@@ -72,8 +72,8 @@
             <h6 class="widget-title">Kích cỡ</h6>
             <div class="widget-desc">
               <ul>
-                <li id="ss{{size.tenKichThuoc}}" (click)="selectActive(size.tenKichThuoc)" class="sizes" *ngFor="let size of _detailProduct.kichThuoc">
-                  <a (click)="selectSize(size)">{{size.tenKichThuoc}}</a>
+                <li id="ss{{size.kichThuoc.tenKichThuoc}}" (click)="selectActive(size.kichThuoc.tenKichThuoc)" class="sizes" *ngFor="let size of _detailProduct.hangTrongKho">
+                  <a (click)="selectSize(size.kichThuoc)">{{size.kichThuoc.tenKichThuoc}}</a>
                 </li>
               </ul>
             </div>

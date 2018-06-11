@@ -21,44 +21,47 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import poly.soft.project2.enumeration.GioiTinhEnum;
 
 @Entity
-@Table(name="SAN_PHAM")
-@JsonIgnoreProperties({"chiTietHoaDon"})
-public class SanPham implements Serializable{
-	
+@Table(name = "SAN_PHAM")
+@JsonIgnoreProperties({ "chiTietHoaDon" })
+public class SanPham implements Serializable {
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID")
 	private int id;
-	
-	@Column(name="TEN_SAN_PHAM")
+
+	@Column(name = "TEN_SAN_PHAM")
 	private String tenSanPham;
-	
-	@Column(name="CHI_TIET", length = 750)
+
+	@Column(name = "CHI_TIET", length = 750)
 	private String chiTiet;
-	
-	
-	@OneToMany(mappedBy="sanPham",fetch=FetchType.LAZY)
+
+	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
 	private List<HinhSanPham> hinhSanPham;
-	
-	@Column(name="GIOI_TINH")
+
+	@Column(name = "GIOI_TINH")
 	private GioiTinhEnum gioiTinh;
 
-	@ManyToMany
-	@JoinTable(name="KICH_THUOC_SP"
-				,joinColumns=@JoinColumn(name="SAN_PHAM_ID")
-				,inverseJoinColumns=@JoinColumn(name="KICH_THUOC_ID"))
-	private List<KichThuoc> kichThuoc;
-	
+	@Column(name = "DON_GIA")
+	private double donGia;
+
+	@Column(name = "CHIET_KHAU")
+	private double chietKhau;
+
+//	@ManyToMany
+//	@JoinTable(name = "KICH_THUOC_SP", joinColumns = @JoinColumn(name = "SAN_PHAM_ID"), inverseJoinColumns = @JoinColumn(name = "KICH_THUOC_ID"))
+//	private List<KichThuoc> kichThuoc;
+
 	@ManyToOne
-	@JoinColumn(name="LOAI_GIAY_ID")
+	@JoinColumn(name = "LOAI_GIAY_ID")
 	private LoaiGiay loaiGiay;
-	
-	@OneToMany(mappedBy="sanPham",fetch = FetchType.LAZY)
+
+	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
 	private List<HangTrongKho> hangTrongKho;
-	
-	@OneToMany(mappedBy="sanPham",fetch= FetchType.LAZY)
+
+	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
 	private List<ChiTietHoaDon> chiTietHoaDon;
-	
+
 	public List<HangTrongKho> getHangTrongKho() {
 		return hangTrongKho;
 	}
@@ -91,7 +94,6 @@ public class SanPham implements Serializable{
 		this.chiTiet = chiTiet;
 	}
 
-
 	public List<HinhSanPham> getHinhSanPham() {
 		return hinhSanPham;
 	}
@@ -108,13 +110,13 @@ public class SanPham implements Serializable{
 		this.gioiTinh = gioiTinh;
 	}
 
-	public List<KichThuoc> getKichThuoc() {
-		return kichThuoc;
-	}
-
-	public void setKichThuoc(List<KichThuoc> kichThuoc) {
-		this.kichThuoc = kichThuoc;
-	}
+//	public List<KichThuoc> getKichThuoc() {
+//		return kichThuoc;
+//	}
+//
+//	public void setKichThuoc(List<KichThuoc> kichThuoc) {
+//		this.kichThuoc = kichThuoc;
+//	}
 
 	public LoaiGiay getLoaiGiay() {
 		return loaiGiay;
@@ -130,5 +132,21 @@ public class SanPham implements Serializable{
 
 	public void setChiTietHoaDon(List<ChiTietHoaDon> chiTietHoaDon) {
 		this.chiTietHoaDon = chiTietHoaDon;
-	}	
+	}
+
+	public double getDonGia() {
+		return donGia;
+	}
+
+	public void setDonGia(double donGia) {
+		this.donGia = donGia;
+	}
+
+	public double getChietKhau() {
+		return chietKhau;
+	}
+
+	public void setChietKhau(double chietKhau) {
+		this.chietKhau = chietKhau;
+	}
 }
