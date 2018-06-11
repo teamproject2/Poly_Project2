@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     this.getLoaiGiay();
   }
-
+  
   // SHOW left-bar-menu
   showLeftBar() {
     var ele = document.querySelector('.catagories-side-menu2');

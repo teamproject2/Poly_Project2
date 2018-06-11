@@ -4,12 +4,13 @@
     <div class="example-container">
 
       <div class="button-row">
-        <button mat-raised-button color="primary">Đăng nhập Facebook
+        <button mat-raised-button color="primary" (click)="socialSignIn('facebook')">Đăng nhập Facebook
           <i class="fab fa-facebook-f"></i>
         </button>
-        <button mat-raised-button color="warn">Đăng nhập Google
+        <button mat-raised-button color="warn" (click)="socialSignIn('google')">Đăng nhập Google
           <i class="fab fa-google"></i>
         </button>
+        
       </div>
 
       <mat-form-field>

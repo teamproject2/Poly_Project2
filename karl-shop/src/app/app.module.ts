@@ -16,7 +16,7 @@ import {
   MatTabsModule,
   MatFormFieldModule,
   MatOptionModule,
-  MatSelectModule,  
+  MatSelectModule,
   MatInputModule,
   MatIconModule,
   MatRadioModule,
@@ -24,6 +24,33 @@ import {
   MatTableModule
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  // GoogleLoginProvider,
+  FacebookLoginProvider,
+} from "angular5-social-login";
+
+
+// Configs 
+export function getAuthServiceConfigs() {
+  let config = new AuthServiceConfig(
+    [
+      {
+        id: FacebookLoginProvider.PROVIDER_ID,
+        provider: new FacebookLoginProvider("1713001288749635")
+      }
+      // {
+      //   id: GoogleLoginProvider.PROVIDER_ID,
+      //   provider: new GoogleLoginProvider("671348599262-i45l62rjuek2ikh0e2opabai9u7h8rfi.apps.googleusercontent.com")
+      // },
+    ]
+  )
+  return config;
+}
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,9 +79,15 @@ import { CdkTableModule } from '@angular/cdk/table';
     MatRadioModule,
     MatPaginatorModule,
     CdkTableModule,
-    MatTableModule
-    ],
-  providers: [],
+    MatTableModule,
+    SocialLoginModule
+  ],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
