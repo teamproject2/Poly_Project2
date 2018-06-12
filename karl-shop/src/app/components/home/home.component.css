@@ -15,40 +15,15 @@ footer.footer_area {
 }
 .product-img {
     height: 288px;
-    border-bottom: 1px solid #edcccc;
 }
 
 .product-img img {
     height: 240px;
 }
-.product-description {
-    padding: 20px 0;
-}
+
 
 section .container {
     margin-bottom: 50px;
 }
-.modal-body {
-    background: #cccccc29;
-}
 
-.sale {
-    border: 1px solid #ab6a7d;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 50px;
-    height: 50px;
-    background: #ff4081;
-    border-radius: 50%;
-    text-align: center;
-    line-height: 50px;
-    z-index: 3;
-    box-shadow: 2px 2px 8px 0px #b6a8a8;
-}
 
-.sale span {
-    font-size: 14px;
-    color: #fff;
-    font-weight: 700;
-}

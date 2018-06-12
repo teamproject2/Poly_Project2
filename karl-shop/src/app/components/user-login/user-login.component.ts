@@ -25,7 +25,7 @@ export class UserLoginComponent implements OnInit {
   constructor(private socialAuthService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    
+
   }
 
   public socialSignIn(socialPlatform: string) {
@@ -45,9 +45,9 @@ export class UserLoginComponent implements OnInit {
 
         this.sub = this.route.params.subscribe(params => {
           this.id = params['id'];
-          this.router.navigate(['/account/',userData.id]);
+          this.router.navigate(['/home/account/', userData.id]);
         });
-        
+
       }
     )
   }

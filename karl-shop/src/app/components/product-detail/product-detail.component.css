@@ -16,6 +16,23 @@ li.sizes.actives {
     background: #ff084e;
     color: #fff;
 }
-/* li#ss37{
-    color: aquamarine !important;
-} */
+.single_product_desc {
+    background: #9e9e9e3b;
+    box-sizing: border-box;
+    padding: 15px;
+    border-radius: 10px 0 10px 0;
+}
+div#headingOne, div#headingThree {
+    background: #ccc;
+}
+.single_product_desc .card-body p {
+    font-size: 14px;
+    color: #615a5a;
+}
+.card-body{
+    background: none;
+}
+div#collapseOne, div#collapseThree {
+    box-sizing: border-box;
+    padding: 15px;
+}

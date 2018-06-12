@@ -11,20 +11,24 @@
         <div class="shop_grid_product_area">
           <div class="row">
 
-            <div *ngFor="let pro of _productArray | paginate: { itemsPerPage: 9, currentPage: p}" class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig"
+            <div *ngFor="let pro of _productArray | paginate: { itemsPerPage: 9, currentPage: p}" class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig card-deck"
               data-wow-delay="0.2s">
-              <div class="product-img" (click)="getDetailModal(pro)">
-                <img src="{{pro.hinh}}" alt="">
-                <div class="product-quicview">
-                  <a href="#" data-toggle="modal" data-target="#quickview">
-                    <i class="ti-plus"></i>
-                  </a>
+              <div class="card">
+                <div class="product-img" (click)="getDetailModal(pro)">
+                  <img src="{{pro.hinh}}" alt="">
+                  <div class="product-quicview">
+                    <a href="#" data-toggle="modal" data-target="#quickview">
+                      <i class="ti-plus"></i>
+                    </a>
+                  </div>
                 </div>
-              </div>
-              <div class="product-description">
-                <h5 class="product-price">{{pro.donGia | number:'1.0'}} đ</h5>
-                <h4 class="product-sale">{{pro.donGia * (1-pro.chietKhau) | number:'1.0'}} đ</h4>
-                <p [routerLink]="['/home/detail', pro.id]">{{pro.tenSanPham}}</p>
+                <div class="card-body">
+                  <div class="product-description">
+                    <h5 class="product-price">{{pro.donGia | number:'1.0'}} đ</h5>
+                    <h4 class="product-sale">{{pro.donGia * (1-pro.chietKhau) | number:'1.0'}} đ</h4>
+                    <p [routerLink]="['/home/detail', pro.id]">{{pro.tenSanPham}}</p>
+                  </div>
+                </div>
               </div>
             </div>
 
