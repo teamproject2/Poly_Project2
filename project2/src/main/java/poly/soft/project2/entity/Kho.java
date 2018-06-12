@@ -15,9 +15,9 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-@Entity
-@Table(name="KHO")
-@JsonInclude(value=Include.NON_NULL)
+//@Entity
+//@Table(name="KHO")
+//@JsonInclude(value=Include.NON_NULL)
 public class Kho implements Serializable{
 	
 	@Id

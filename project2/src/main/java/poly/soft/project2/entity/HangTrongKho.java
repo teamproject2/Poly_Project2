@@ -19,9 +19,9 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
-@Table(name = "HANG_TRONG_KHO", uniqueConstraints={@UniqueConstraint(columnNames = {"KHO_ID", "SAN_PHAM_ID" , "KICH_THUOC_ID"})})
+@Table(name = "HANG_TRONG_KHO", uniqueConstraints={@UniqueConstraint(columnNames = {"SAN_PHAM_ID" , "KICH_THUOC_ID"})})
 @JsonInclude(value = Include.NON_NULL)
-@JsonIgnoreProperties(value = { "sanPham", "kho" }, ignoreUnknown = true)
+@JsonIgnoreProperties(value = { "sanPham" }, ignoreUnknown = true)
 public class HangTrongKho implements Serializable {
 
 	@Id
@@ -33,9 +33,9 @@ public class HangTrongKho implements Serializable {
 	@JoinColumn(name = "SAN_PHAM_ID")
 	private SanPham sanPham;
 
-	@ManyToOne
-	@JoinColumn(name = "KHO_ID")
-	private Kho kho;
+//	@ManyToOne
+//	@JoinColumn(name = "KHO_ID")
+//	private Kho kho;
 
 	@Column(name = "SO_LUONG")
 	private int soLuong;
@@ -49,10 +49,10 @@ public class HangTrongKho implements Serializable {
 		return sanPham.getId();
 	}
 
-	@JsonProperty(value = "khoSanPham")
-	public Kho getKhoSP() {
-		return new Kho(kho.getId(), kho.getTenKho());
-	}
+//	@JsonProperty(value = "khoSanPham")
+//	public Kho getKhoSP() {
+//		return new Kho(kho.getId(), kho.getTenKho());
+//	}
 
 	public String getTenSanPham() {
 		return sanPham.getTenSanPham();
@@ -78,13 +78,13 @@ public class HangTrongKho implements Serializable {
 		this.sanPham = sanPham;
 	}
 
-	public Kho getKho() {
-		return kho;
-	}
-
-	public void setKho(Kho kho) {
-		this.kho = kho;
-	}
+//	public Kho getKho() {
+//		return kho;
+//	}
+//
+//	public void setKho(Kho kho) {
+//		this.kho = kho;
+//	}
 
 	public int getSoLuong() {
 		return soLuong;
