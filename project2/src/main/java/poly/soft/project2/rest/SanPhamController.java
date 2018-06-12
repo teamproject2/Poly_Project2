@@ -52,4 +52,13 @@ public class SanPhamController {
 		}
 		return new ResponseEntity<SanPham>(sp,HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/kichthuoc/{idKichThuoc}",method=RequestMethod.GET)
+	public ResponseEntity<?> getSanPhamByKichThuoc(@PathVariable("idKichThuoc") int idKichThuoc){
+		List<SanPhamHomePageDTO> list = sanPhamService.getListSanPhamByKichThuoc(idKichThuoc);
+		if(list.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<>(list,HttpStatus.OK);
+	}
 }

@@ -87,6 +87,31 @@ public class SanPhamServiceImpl  implements SanPhamService{
 		}
 		return listSPByCategory;
 	}
+	
+	@Override
+	public List<SanPhamHomePageDTO> getListSanPhamByKichThuoc(int idKichThuoc) {
+		List<Object[]> list = sanPhamRepository.getListSanPhamByKichThuoc(idKichThuoc);
+		List<SanPhamHomePageDTO> listSPByKichThuoc = new ArrayList<>();
+		for(Object[] arr : list) {
+			SanPhamHomePageDTO sp = new SanPhamHomePageDTO();
+			sp.setId(Integer.parseInt(String.valueOf(arr[0])));
+			sp.setTenSanPham(String.valueOf(arr[1]));
+			sp.setChiTiet(String.valueOf(arr[2]));
+			sp.setDonGia(Double.parseDouble(String.valueOf(arr[3])));
+			sp.setChietKhau(Double.parseDouble(String.valueOf(arr[4])));
+			sp.setHinh(String.valueOf(arr[5]));
+			GioiTinhEnum[] enums = GioiTinhEnum.values();
+			int gender = Integer.parseInt(String.valueOf(arr[6]));
+			for(GioiTinhEnum en: enums) {
+				if(en.getCode() == gender) {
+					sp.setGioiTinh(en);
+					break;
+				}
+			}
+			listSPByKichThuoc.add(sp);
+		}
+		return listSPByKichThuoc;
+	}
 
 		
 }

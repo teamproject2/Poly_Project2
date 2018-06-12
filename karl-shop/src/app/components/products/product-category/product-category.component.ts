@@ -5,6 +5,7 @@ import { ValueTransformer } from '@angular/compiler/src/util';
 import { LoaigiayService } from '../../../services/loaigiay.service';
 import { DataService } from '../../../services/data.service';
 import { HomeProduct } from '../../../entity/home-product';
+import { KichthuocService } from '../../../services/kichthuoc.service';
 
 @Component({
   selector: 'app-product-category',
@@ -12,13 +13,14 @@ import { HomeProduct } from '../../../entity/home-product';
   styleUrls: ['./product-category.component.css'],
   providers: [DataService, LoaigiayService]
 })
-export class ProductCategoryComponent implements OnInit,OnDestroy {
+export class ProductCategoryComponent implements OnInit, OnDestroy {
 
   _detailArray: HomeProduct[] = [];
   _productArray: HomeProduct[] = [];
   name: string;
   eventVal: string;
-  sub :any;
+  sub: any;
+  idsize: number = 0;
   constructor(private loaigiayService: LoaigiayService, private dataService: DataService,
     private route: ActivatedRoute, private router: Router) {
   }
@@ -26,7 +28,13 @@ export class ProductCategoryComponent implements OnInit,OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
       this.name = params['name'];
-      this.getProduct(this.name);
+      this.idsize = params['idsize'];
+      if (this.name !== null) {
+        this.getProduct(this.name);
+      }
+      if (this.idsize !== 0) {
+        this.getProductByKichThuoc(this.idsize);
+      }
     });
   }
 
@@ -42,10 +50,21 @@ export class ProductCategoryComponent implements OnInit,OnDestroy {
       )
   }
 
-//show modal product
-getDetailModal(pro: any) {
-  this._detailArray = pro;
-}
+  //show modal product
+  getDetailModal(pro: any) {
+    this._detailArray = pro;
+  }
+
+  //get product by size
+  getProductByKichThuoc(size){
+    this.dataService.getProductByKichThuoc(size).subscribe(
+      resultArray => {
+        this._productArray = resultArray;
+        console.log("Probysize:" + this._productArray);
+        
+      }, error => console.error('Error: ' + error)
+    ) 
+  }
 
   ngOnDestroy() {
     this.sub.unsubscribe();

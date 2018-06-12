@@ -25,4 +25,10 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Integer>{
 			"join poly_project2.hinh_san_pham HSP on SP.id = HSP.san_pham_id " + 
 			"where LG.ten_loai =:tenLoai group by sp.ten_san_pham",nativeQuery=true)
 	List<Object[]> getListSanPhamByCategory(@Param("tenLoai") String tenLoai);
+	
+	@Query(value="select SP.id, SP.ten_san_pham, SP.chi_tiet, SP.don_gia, SP.chiet_khau, HSP.hinh, SP.gioi_tinh " + 
+			"from poly_project2.san_pham SP join poly_project2.hang_trong_kho HTK on SP.id = HTK.san_pham_id " + 
+			"join poly_project2.hinh_san_pham HSP on SP.id = HSP.san_pham_id " + 
+			"where HTK.kich_thuoc_id =:idKichThuoc group by sp.ten_san_pham",nativeQuery=true)
+	List<Object[]> getListSanPhamByKichThuoc(@Param("idKichThuoc") int idKichThuoc);
 }

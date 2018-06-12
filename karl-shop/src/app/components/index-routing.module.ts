@@ -22,6 +22,7 @@ const indexRoutes: Routes = [
             { path: 'products', component: ProductsComponent },
             { path: 'detail/:id', component: ProductDetailComponent },
             { path: 'category/:name', component: ProductCategoryComponent },
+            { path: 'size/:idsize', component: ProductCategoryComponent },
             { path: 'account', component: UserLoginComponent},
             { path: 'account/:id', component: UserProfileComponent}
         ]

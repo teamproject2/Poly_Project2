@@ -42,6 +42,16 @@ export class DataService {
       .catch(this.handleError);
   }
 
+  getProductByKichThuoc(size: string):Observable<HomeProduct[]>{
+    return this.http
+    .get(this._apiUrl + "sanpham/kichthuoc/" + size)
+    .map((response: Response) => {
+      return <HomeProduct[]>response.json();
+    })
+    .catch(this.handleError);
+
+  }
+
   private handleError(error: Response) {
     return Observable.throw(error.statusText);
   }

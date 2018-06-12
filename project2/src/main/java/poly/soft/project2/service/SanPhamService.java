@@ -23,4 +23,6 @@ public interface SanPhamService {
 	
 	List<SanPhamHomePageDTO> getListSanPhamByCategory(String tenLoai);
 	
+	List<SanPhamHomePageDTO> getListSanPhamByKichThuoc(int idKichThuoc);
+	
 }
