@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import {
   AuthService,
@@ -8,7 +8,11 @@ import {
 } from 'angular5-social-login';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserData } from '../../entity/user-data';
+import { ToastrService } from '../../services/toastr.service';
+import { EventEmitter } from 'events';
+import { Http } from '@angular/http';
 
+declare let toastr
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -22,35 +26,42 @@ export class UserLoginComponent implements OnInit {
   hide = true;
   sub: any;
   id: string;
-  constructor(private socialAuthService: AuthService, private router: Router, private route: ActivatedRoute) { }
+  platForm: string;
+
+  constructor(private socialAuthService: AuthService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private toastrService: ToastrService,
+    private http: Http
+  ) { }
 
   ngOnInit() {
-
   }
 
   public socialSignIn(socialPlatform: string) {
     let socialPlatformProvider;
     if (socialPlatform == "facebook") {
-      socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
+        socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
     }
 
-    this.socialAuthService.signIn(socialPlatformProvider).then(
-      (userData) => {
-        console.log(socialPlatform + " sign in data : ", userData);
-        // Now sign-in with userData
-        this._userData = userData;
-        this._storeData.push(this._userData);
+    return this.socialAuthService.signIn(socialPlatformProvider).then(
+        (userData) => {
+            console.log(socialPlatform + " sign in data : ", userData);
 
-        console.log(this._storeData);
+            // Now sign-in with userData -->
+            this._userData = userData;
+            this._storeData.push(this._userData);
+            // Now sign-in with userData <--
 
-        this.sub = this.route.params.subscribe(params => {
-          this.id = params['id'];
-          this.router.navigate(['/home/account/', userData.id]);
-        });
+            // Alert when user login -->
+            this.toastrService.success(`${userData.name}, Nice to meet you !`);
+            // Alert when user login <--
 
-      }
+            this.router.navigate(['/home/account/',userData.id]);
+        },
+        error => this.toastrService.error(`${error}`)
     )
-  }
+}
 
   getErrorMessage() {
     return this.email.hasError('required') ? 'You must enter a value' :

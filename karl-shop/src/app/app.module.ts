@@ -30,6 +30,7 @@ import {
   // GoogleLoginProvider,
   FacebookLoginProvider,
 } from "angular5-social-login";
+import { ToastrService } from './services/toastr.service';
 
 
 // Configs 
@@ -83,6 +84,7 @@ export function getAuthServiceConfigs() {
     SocialLoginModule
   ],
   providers: [
+    ToastrService,
     {
       provide: AuthServiceConfig,
       useFactory: getAuthServiceConfigs

@@ -32,7 +32,7 @@
                   <span>-{{pro.chietKhau * 100 | number: '1.0'}}%</span>
                 </div>
               </div>
-              
+
             </div>
 
           </div>
@@ -75,8 +75,7 @@
                             <i class="fa fa-star" aria-hidden="true"></i>
                             <i class="fa fa-star" aria-hidden="true"></i>
                           </div>
-                          <h5 class="price">{{_detailArray.donGia | currency :'VNĐ':'code':'1.0'}}
-                          </h5>
+                          <h4 class="product-sale">{{_detailArray.donGia * (1-_detailArray.chietKhau) | number:'1.0'}} đ</h4>
                           <p>{{_detailArray.chiTiet}}</p>
                           <a [routerLink]="['/home/detail', _detailArray.id]">Xem chi tiết</a>
                         </div>

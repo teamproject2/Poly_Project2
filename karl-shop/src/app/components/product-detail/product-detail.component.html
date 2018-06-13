@@ -52,10 +52,8 @@
             <a href="#">{{_detailProduct.tenSanPham}}</a>
           </h4>
 
-          <!-- missing price -->
-          <h4 class="price">{{_detailProduct.donGia | currency: 'VND' : 'code' : '1.0'}}</h4>
-          <!-- missing price -->
-          
+          <!-- <h4 class="price">{{_detailProduct.donGia | currency: 'VND' : 'code' : '1.0'}}</h4> -->
+          <h4 class="product-sale">{{_detailProduct.donGia * (1-_detailProduct.chietKhau) | number:'1.0'}} đ</h4>
           <p class="available">Trạng Thái:
             <span class="text-muted">Còn hàng</span>
           </p>
@@ -107,18 +105,18 @@
                 </div>
               </div>
             </div>
-            <div class="card">
-              <!-- <div class="card-header" role="tab" id="headingTwo">
+            <!-- <div class="card">
+              <div class="card-header" role="tab" id="headingTwo">
                 <h6 class="mb-0">
                   <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Chi tiết giỏ hàng</a>
                 </h6>
-              </div> -->
+              </div>
               <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
                 <div class="card-body">
                   <p>Giỏ hàng của bạn đang trống</p>
                 </div>
               </div>
-            </div>
+            </div> -->
             <div class="card">
               <div class="card-header" role="tab" id="headingThree">
                 <h6 class="mb-0">

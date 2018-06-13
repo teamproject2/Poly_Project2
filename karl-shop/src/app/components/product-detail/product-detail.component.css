@@ -33,6 +33,5 @@ div#headingOne, div#headingThree {
     background: none;
 }
 div#collapseOne, div#collapseThree {
-    box-sizing: border-box;
-    padding: 15px;
+    margin-left: 15px;
 }
