@@ -7,7 +7,7 @@
         <!-- Sidebar Header starts-->
         <div class="sidebar-header">
             <div class="logo clearfix">
-                <a href="index.html" class="logo-text float-left">
+                <a [routerLink]="['/']" class="logo-text float-left">
                     <div class="logo-img">
                         <img src="../assets/app-assets/img/logo.png" />
                     </div>
@@ -27,27 +27,27 @@
         <div class="sidebar-content">
             <div class="nav-container">
                 <ul id="main-menu-navigation" data-menu="menu-navigation" class="navigation navigation-main">
-                    <li class="nav-item">
-                        <a routerLink="">
+                    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <a [routerLink]="['/']">
                             <i class="ft-home"></i>
                             <span data-i18n="" class="menu-title">Dashboard</span>
-                            <span class="tag badge badge-pill badge-danger float-right mr-1 mt-1">2</span>
+                            <!-- <span class="tag badge badge-pill badge-danger float-right mr-1 mt-1">2</span> -->
                         </a>
                     </li>
-                    <li class=" nav-item">
-                        <a routerLink="inbox">
+                    <li class=" nav-item" routerLinkActive="active">
+                        <a [routerLink]="['/inbox']">
                             <i class="ft-mail"></i>
                             <span data-i18n="" class="menu-title">Inbox</span>
                         </a>
                     </li>
-                    <li class=" nav-item">
-                        <a routerLink="chat">
+                    <li class=" nav-item" routerLinkActive="active">
+                        <a [routerLink]="['/chat']">
                             <i class="ft-message-square"></i>
                             <span data-i18n="" class="menu-title">Chat</span>
                         </a>
                     </li>
-                    <li class=" nav-item">
-                        <a routerLink="Marketing">
+                    <li class="nav-item" routerLinkActive="active">
+                        <a [routerLink]="['/Marketing']">
                             <i class="ft-file-text"></i>
                             <span data-i18n="" class="menu-title">Marketing</span>
                         </a>
@@ -58,51 +58,57 @@
                             <span data-i18n="" class="menu-title">Forms</span>
                         </a>
                         <ul class="menu-content">
-                            <li>
-                                <a routerLink="form-user" class="menu-item">Chi tiết nhân viên</a>
+                            <li routerLinkActive="active">
+                                <a [routerLink]="['/form-user']" class="menu-item">Chi tiết nhân viên</a>
                             </li>
-                            <li>
-                                <a routerLink="form-product" class="menu-item">Chi tiết sản phẩm</a>
+                            <li routerLinkActive="active">
+                                <a [routerLink]="['form-product']" class="menu-item">add sp sản phẩm</a>
                             </li>
-                            <li>
-                                <a routerLink="form-customer" class="menu-item">Chi tiết khách hàng</a>
+                            <li routerLinkActive="active">
+                                <a [routerLink]="['form-customer']" class="menu-item">Chi tiết khách hàng</a>
                             </li>
-                            <li>
-                                <a routerLink="form-hoadon" class="menu-item">Chi tiết Hóa đơn</a>
+                            <li routerLinkActive="active">
+                                <a [routerLink]="['Invoice']" class="menu-item">Chi tiết Hóa đơn</a>
                             </li>
-                            <li>
-                                <a routerLink="chitiet-sp" class="menu-item">Chi tiết sp</a>
+                            <li routerLinkActive="active">
+                                <a [routerLink]="['chitiet-sp']" class="menu-item">Chi tiết sp</a>
                              </li>
                         </ul>
                     </li>
-                    <li class="has-sub nav-item">
+                    <!-- <li class="has-sub nav-item">
                         <a>
                             <i class="ft-grid"></i>
                             <span data-i18n="" class="menu-title">Tables</span>
                         </a>
                         <ul class="menu-content">
-                            <li>
+                            <li routerLinkActive="active">
                                 <a class="menu-item" routerLink="table-khachhang">khách Hàng</a>
                             </li>
-                            <li>
+                            <li routerLinkActive="active">
                                 <a class="menu-item" routerLink="table-nhanvien">Nhân Viên</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li class="has-sub nav-item">
                         <a>
                             <i class="ft-layout"></i>
                             <span data-i18n="" class="menu-title">Data Tables</span>
                         </a>
                         <ul class="menu-content">
-                            <li>
-                                <a routerLink="table-sanpham" class="menu-item">Sản Phẩm</a>
+                            <li routerLinkActive="active">
+                                <a [routerLink]="['sanpham']" class="menu-item">Sản Phẩm</a>
                             </li>
-                            <li>
-                                <a routerLink="table-kho" class="menu-item">Kho Hàng</a>
+                            <li routerLinkActive="active">
+                                <a [routerLink]="['kho']" class="menu-item">Kho Hàng</a>
                             </li>
-                            <li>
-                                <a routerLink="table-hoadon" class="menu-item">Hóa Đơn</a>
+                            <li routerLinkActive="active">
+                                <a [routerLink]="['hoadon']" class="menu-item">Hóa Đơn</a>
+                            </li>
+                            <li routerLinkActive="active">
+                                <a class="menu-item" [routerLink]="['khachhang']">khách Hàng</a>
+                            </li>
+                            <li routerLinkActive="active">
+                                <a class="menu-item" [routerLink]="['nhanvien']">Nhân Viên</a>
                             </li>
                         </ul>
                     </li>

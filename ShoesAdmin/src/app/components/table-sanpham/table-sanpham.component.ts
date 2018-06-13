@@ -10,6 +10,7 @@ declare var $ :any;
 import { Sanpham } from '../.././models/sanpham';
 // services
 import { SanphamService } from '../../services/sanpham.service';
+import { Router, ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-table-sanpham',
   templateUrl: './table-sanpham.component.html',
@@ -20,24 +21,36 @@ export class TableSanphamComponent implements OnInit {
   public list_sp: Sanpham[] = [];
   public subscription: Subscription;
   constructor(
-    private sanphamServices: SanphamService
+    private sanphamServices: SanphamService,
+    public routerService: Router,
+    public activatedRoute: ActivatedRoute
+    
   ) { }
 
   ngOnInit() {
-    this.loadData();
     // load phan trang
     $(document).ready(function() {
 			$('#table_sp').DataTable();
-		} );
+    } );
+    
+    this.loadData();
+    // console.log(this.activatedRoute.snapshot.params['id']);
+    
   }
   // Load san pham
   loadData(){
     this.sanphamServices.getAllSanPham().subscribe(data =>{
-      console.log(data);
+      // console.log(data);
       this.list_sp = data
     },
     error => {
       console.log(error);
     });
   }
+  //
+
+  // navigate(url: string){
+  //   this.routerService.navigateByUrl(url);
+  //   console.log(url);
+  // }
 }

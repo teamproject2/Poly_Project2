@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Route } from '@angular/router';
+import { SanphamService } from '../../services/sanpham.service';
 
 @Component({
   selector: 'app-index',

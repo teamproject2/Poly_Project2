@@ -28,7 +28,7 @@
                                       <th>Type</th>
                                       <th>Image</th>
                                       <th>Size</th>
-                                      <th>Actions</th>
+                                      <th>Chức năng</th>
                                   </tr>
                               </thead>
                               <tbody>
@@ -40,16 +40,18 @@
                                       <td style="vertical-align: middle">
                                           <span *ngFor="let size of sp.kichThuoc">{{size.tenKichThuoc}}<span>  </span></span>
                                           </td>
-                                      <td style="vertical-align: middle">
-                                          <a class="info p-0" data-original-title="" title="">
-                                              <i class="ft-user font-medium-3 mr-2"></i>
+                                      <td style="vertical-align: middle" routerLinkActive="active">
+                                          <a class="info p-0" data-original-title="" title="Chi tiết" 
+                                        routerLink="/sanpham/{{sp.id}}">
+                                              <i class="ft-list font-medium-3 mr-2"></i>
                                           </a>
-                                          <a class="success p-0" data-original-title="" title="">
+                                          <a class="success p-0" data-original-title="" title="Cập nhật" (click)="navigate('edit_sp')">
                                               <i class="ft-edit-2 font-medium-3 mr-2"></i>
                                           </a>
-                                          <a class="danger p-0" data-original-title="" title="">
+                                          <a class="danger p-0" data-original-title="" title="Xóa" id="confirm-cancel">
                                               <i class="ft-x font-medium-3 mr-2"></i>
                                           </a>
+                                          <!-- <button type="button" class="btn btn-primary btn-raised btn-block" id="confirm-cancel" >Buttons Actions</button> -->
                                       </td>
                                   </tr>
                               </tbody>

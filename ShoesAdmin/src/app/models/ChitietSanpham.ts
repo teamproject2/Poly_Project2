@@ -1,5 +1,5 @@
 import {Kichthuoc} from './kichthuoc';
-export class Sanpham{
+export class ChitietSanpham{
     public id: number;
     public tenSanPham: string;
     public chiTiet: string;

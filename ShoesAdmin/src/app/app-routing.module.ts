@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, Router } from '@angular/router';
 
 // Component
 import { IndexComponent } from './components/index/index.component';
@@ -32,27 +32,28 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'inbox', component: InboxComponent },
   { path: 'chat', component: ChatComponent },
-  { path: 'table-sanpham', component: TableSanphamComponent, 
-    children : [
-      {
-        path: '',
-        component: TableSanphamComponent
-      },
-      {
-        path: 'add',
-        component: FormSanphamComponent
-      },
-      {
-        path: 'id/edit',
-        component: TableSanphamComponent
-      }
-    ]
-  },
-  { path: 'table-nhanvien', component: TableNhanvienComponent },
-  { path: 'table-kho', component: TableKhoComponent },
-  { path: 'table-khachhang', component: TableKhachhangComponent },
-  { path: 'table-hoadon', component: TableHoadonComponent },
-  // { path: 'form-product', component: FormSanphamComponent },
+  { path: 'sanpham', component: TableSanphamComponent},
+  // { path: 'detail_sp/:id', component: ChitietSanphamComponent },
+  { path: 'sanpham/:id', component: ChitietSanphamComponent },
+  // {
+  //   path: 'sanpham',
+  //   component: TableSanphamComponent,
+  //   children: [
+  //     {
+  //       path: '',
+  //       component: TableSanphamComponent
+  //     },
+  //     {
+  //       path: ':id',
+  //       component: ChitietSanphamComponent
+  //     }
+  //   ]
+  // },
+  { path: 'nhanvien', component: TableNhanvienComponent },
+  { path: 'kho', component: TableKhoComponent },
+  { path: 'khachhang', component: TableKhachhangComponent },
+  { path: 'hoadon', component: TableHoadonComponent },
+  { path: 'form-product', component: FormSanphamComponent },
   { path: 'form-user', component: FormUserComponent },
   { path: 'form-customer', component: FormKhachhangComponent },
   { path: 'Invoice', component: InvoiceComponent },
@@ -67,4 +68,6 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class AppRoutingModule { }
+export class AppRoutingModule {
+
+}

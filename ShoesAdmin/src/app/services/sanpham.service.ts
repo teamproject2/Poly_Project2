@@ -7,13 +7,18 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { Sanpham } from '../models/sanpham';
 import { Khohang } from '../models/khohang';
 import { Hoadon } from '../models/hoadon';
+import { ChitietSanpham } from '../models/ChitietSanpham';
 
 @Injectable()
 export class SanphamService {
   public API: string = "http://localhost:9099/";
   private URL_SP: string = "sanpham";
+  private URL_SPID: string = "sanpham/";
   private URL_HD: string = "hoadon";
   private URL_SPKHO: string = "kho";
+  public sanpham: Sanpham[]=[];
+  public ChitietSanpham: ChitietSanpham[]=[];
+//
   constructor(
     public http: Http
   ) { }
@@ -29,10 +34,20 @@ export class SanphamService {
       return <Khohang[]>data.json();
     }));
   }
-  // Get all San pham trong hoa don
-  // getAllSP_HD(): Observable<Hoadon[]> {
-  //   return this.http.get(this.API + this.URL_HD).pipe(map(data => {
-  //     return <Hoadon[]>data.json();
-  //   }));
+  // Get all San pham by ID
+  getSanphamByID(id: number):Observable<ChitietSanpham[]> {
+    const url = `${this.URL_SP}/${id}`
+    return this.http.get(url).pipe(map(data => {
+      return <ChitietSanpham[]>data.json();
+    }));
+      /** GET hero by id. Will 404 if id not found */
+  // getSanphambyId(id: number): Observable<Sanpham> {
+  //   const url = `${this.URL_SP}/${id}`;
+  //   return this.http.get<Sanpham>(url).pipe(
+  //     tap(_ => this.log(`fetched sanpham id=${id}`)),
+  //     catchError(this.handleError<Hero>(`getSanphambyId id=${id}`))
+  //   );
   // }
+  }
+  
 }

@@ -8,16 +8,24 @@ import { Hoadon } from '../models/hoadon';
 
 @Injectable()
 export class HoadonService {
-  public API: string = "http://localhost:9099/";
-  private URL_HD: string = "hoadon";
+  public URL_HD: string = "http://localhost:9099/hoadon";
+  // private URL_HD: string = "hoadon";
   constructor(
     public http: Http
   ) { }
-  // Get all San pham trong hoa don
+  // Lay tat ca San pham trong hoa don
   getAllSP_HD(): Observable<Hoadon[]> {
-    return this.http.get(this.API + this.URL_HD).pipe(map(data => {
+    return this.http.get(this.URL_HD).pipe(map(data => {
       return <Hoadon[]>data.json();
     }));
   }
+  // Lay 1 san pham theo id
+  getDetailSP_HD(id: number): Observable<Hoadon[]> {
+    return this.http.get(this.URL_HD + id).pipe(map(data => {
+      return <Hoadon[]>data.json();
+    }));
+  }
+  // Update
+ 
 
 }
