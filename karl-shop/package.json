@@ -23,8 +23,10 @@
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
-    "angular5-social-login": "^1.0.9",
+    "angularfire2": "^5.0.0-rc.10",
+    "angularx-social-login": "^1.2.0",
     "core-js": "^2.4.1",
+    "firebase": "^5.0.4",
     "ngx-pagination": "^3.1.1",
     "rxjs": "^5.5.6",
     "zone.js": "^0.8.19"

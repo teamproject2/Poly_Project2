@@ -24,32 +24,12 @@ import {
   MatTableModule
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
-import {
-  SocialLoginModule,
-  AuthServiceConfig,
-  // GoogleLoginProvider,
-  FacebookLoginProvider,
-} from "angular5-social-login";
 import { ToastrService } from './services/toastr.service';
 
-
-// Configs 
-export function getAuthServiceConfigs() {
-  let config = new AuthServiceConfig(
-    [
-      {
-        id: FacebookLoginProvider.PROVIDER_ID,
-        provider: new FacebookLoginProvider("1713001288749635")
-      }
-      // {
-      //   id: GoogleLoginProvider.PROVIDER_ID,
-      //   provider: new GoogleLoginProvider("671348599262-i45l62rjuek2ikh0e2opabai9u7h8rfi.apps.googleusercontent.com")
-      // },
-    ]
-  )
-  return config;
-}
-
+import { AngularFireModule } from 'angularfire2';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -81,15 +61,14 @@ export function getAuthServiceConfigs() {
     MatPaginatorModule,
     CdkTableModule,
     MatTableModule,
-    SocialLoginModule
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features
   ],
   providers: [
-    ToastrService,
-    {
-      provide: AuthServiceConfig,
-      useFactory: getAuthServiceConfigs
-    }
+    ToastrService
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

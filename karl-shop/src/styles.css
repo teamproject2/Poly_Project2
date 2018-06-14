@@ -78,10 +78,9 @@ h4.product-sale {
 }
 
 .col-12.single_gallery_item {
-  border: 1px solid #eae9e7;
   box-sizing: border-box;
-  padding: 5px;
   transition: 0.4s;
+  padding: 15px;
 }
 
 .col-12.single_gallery_item:hover {

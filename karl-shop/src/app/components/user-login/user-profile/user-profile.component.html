@@ -1,7 +1,7 @@
 <mat-tab-group>
 
   <mat-tab label="Thông tin tài khoản" class="mattab">
-    <div class="example-container">
+    <div class="example-container" *ngIf="_storeUser != null">
 
       <div class="name">
         <label class="lblName">Họ tên</label>
