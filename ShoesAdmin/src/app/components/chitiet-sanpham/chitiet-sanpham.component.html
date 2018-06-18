@@ -13,12 +13,22 @@
               <form class="form">
                 <div class="form-body">
                   <h4 class="form-section">
-                    <i class="ft-user"></i> Mã sản phẩm:</h4>
+                    <i class="ft-user"></i> Mã sản phẩm: {{ chitietSp.id }}</h4>
                   <div class="row">
                     <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="projectinput1">Tên sản phẩm</label>
-                        <input type="text" id="projectinput1" class="form-control" name="fname">
+                      <div class="form-group1">
+                        <label for="projectinput1">Tên sản phẩm:</label>
+                        <span>{{chitietSp.tenSanPham}}</span> <br>
+                        <label for="projectinput3">Nhà sản xuất:</label>
+                        <span>{{chitietSp.loaiGiay.tenLoai}}</span><br>
+                        <label for="projectinput3">Đơn Giá:</label>
+                        <span>{{chitietSp.donGia}}</span>
+                        <br>
+                        <label for="projectinput3">chietKhau:</label>
+                        <span>{{chitietSp.chietKhau}}</span>
+                        <br>
+                        <label for="projectinput3">chiTiet:</label>
+                        <span>{{chitietSp.chiTiet}}</span>
                       </div>
                     </div>
                     <!-- <div class="col-md-6">
@@ -28,10 +38,10 @@
                         </div>
                       </div> -->
                   </div>
-                  <div class="row">
+                  <!-- <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="projectinput3">Nhà sản xuất</label>
+                        <label for="projectinput3">Nhà sản xuất:</label>
                         <input type="text" id="projectinput3" class="form-control" name="email">
                       </div>
                     </div>
@@ -48,7 +58,7 @@
                   <div class="form-group">
                     <label for="projectinput8">Mô tả</label>
                     <textarea id="projectinput8" rows="5" class="form-control" name="comment"></textarea>
-                  </div>
+                  </div> -->
                 </div>
 
               </form>
@@ -77,13 +87,13 @@
                           </ol>
                           <div class="carousel-inner" role="listbox">
                             <div class="carousel-item active">
-                              <img src="../assets/app-assets/img/photos/11.jpg" alt="First slide">
+                              <img src="{{chitietSp.hinhSanPham[0].hinh}}" alt="First slide">
                             </div>
                             <div class="carousel-item">
-                              <img src="../assets/app-assets/img/photos/06.jpg" alt="Second slide">
+                              <img src="{{chitietSp.hinhSanPham[1].hinh}}" alt="Second slide">
                             </div>
                             <div class="carousel-item">
-                              <img src="../assets/app-assets/img/photos/01.jpg" alt="Third slide">
+                              <img src="{{chitietSp.hinhSanPham[2].hinh}}" alt="Third slide">
                             </div>
                           </div>
                           <a class="carousel-control-prev" href="#carousel-keyboard" role="button" data-slide="prev">
@@ -103,7 +113,7 @@
       </div>
     </div>
     <br>
-    <div class="row">
+    <!-- <div class="row">
       <div class="extended">
         <h4> Kho hàng:</h4>
       </div>
@@ -114,7 +124,7 @@
           <table id="table_sp" class="table table-responsive-md-md text-center">
             <thead>
               <tr>
-                <!-- <th></th> -->
+                 <th></th> 
                 <th>Tên Kho</th>
                 <th>Số lượng</th>
                 <th>Đơn giá</th>
@@ -132,7 +142,7 @@
           </table>
         </div>
       </div>
-    </div>
+    </div> -->
   </section>
 
 </div>

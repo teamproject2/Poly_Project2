@@ -1,4 +1,4 @@
 export class Kichthuoc{
-public id: string;
-public tenKichThuoc: number
+public id: number;
+public tenKichThuoc: string
 }

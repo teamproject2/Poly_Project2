@@ -35,11 +35,17 @@ export class SanphamService {
     }));
   }
   // Get all San pham by ID
-  getSanphamByID(id: number):Observable<ChitietSanpham[]> {
-    const url = `${this.URL_SP}/${id}`
-    return this.http.get(url).pipe(map(data => {
-      return <ChitietSanpham[]>data.json();
-    }));
+  getSanphamByID(id: number):Observable<ChitietSanpham> {
+    return this.http
+      .get(this.API + "sanpham/" + id)
+      .map((response: Response) => {
+        return <ChitietSanpham>response.json();
+      })
+      .catch(this.handleError);
+    // const url = `${this.URL_SP}/${id}`
+    // return this.http.get(url).pipe(map(data => {
+    //   return <ChitietSanpham[]>data.json();
+    // }));
       /** GET hero by id. Will 404 if id not found */
   // getSanphambyId(id: number): Observable<Sanpham> {
   //   const url = `${this.URL_SP}/${id}`;
@@ -48,6 +54,9 @@ export class SanphamService {
   //     catchError(this.handleError<Hero>(`getSanphambyId id=${id}`))
   //   );
   // }
+  }
+  private handleError(error: Response) {
+    return Observable.throw(error.statusText);
   }
   
 }

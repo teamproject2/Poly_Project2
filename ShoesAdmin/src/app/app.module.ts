@@ -30,10 +30,13 @@ import { TaskboardComponent } from './components/taskboard/taskboard.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { ChitietSanphamComponent } from './components/chitiet-sanpham/chitiet-sanpham.component';
+import { ChitietkhohangComponent } from './components/chitietkhohang/chitietkhohang.component';
+
 // import service
 import { UserService } from './services/user.service';
 import { SanphamService } from './services/sanpham.service';
 import {HoadonService } from './services/hoadon.service';
+import { KichthuocService } from './services/kichthuoc.service';
 
 
 @NgModule({
@@ -61,7 +64,8 @@ import {HoadonService } from './services/hoadon.service';
     TaskboardComponent,
     TimelineComponent,
     UserprofileComponent,
-    ChitietSanphamComponent
+    ChitietSanphamComponent,
+    ChitietkhohangComponent
   ],
   // import thu vien
   imports: [
@@ -73,8 +77,8 @@ import {HoadonService } from './services/hoadon.service';
   providers: [
     UserService,
     SanphamService,
-    HoadonService
-    
+    HoadonService,
+    KichthuocService
   ],
   bootstrap: [AppComponent]
 })

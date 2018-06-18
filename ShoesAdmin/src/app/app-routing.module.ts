@@ -25,6 +25,7 @@ import { TaskboardComponent } from './components/taskboard/taskboard.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
 import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { ChitietSanphamComponent } from './components/chitiet-sanpham/chitiet-sanpham.component';
+import { ChitietkhohangComponent } from './components/chitietkhohang/chitietkhohang.component';
 
 // Khai báo Router
 const routes: Routes = [
@@ -50,6 +51,7 @@ const routes: Routes = [
   //   ]
   // },
   { path: 'nhanvien', component: TableNhanvienComponent },
+  { path: 'chitietkhohang', component: ChitietkhohangComponent},
   { path: 'kho', component: TableKhoComponent },
   { path: 'khachhang', component: TableKhachhangComponent },
   { path: 'hoadon', component: TableHoadonComponent },

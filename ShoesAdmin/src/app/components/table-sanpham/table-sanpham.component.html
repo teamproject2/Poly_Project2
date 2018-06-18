@@ -22,7 +22,6 @@
                           <table id="table_sp" class="table table-responsive-md-md text-center">
                               <thead>
                                   <tr>
-                                      <!-- <th></th> -->
                                       <th>No.ID</th>
                                       <th>Name</th>
                                       <th>Type</th>
@@ -38,7 +37,9 @@
                                       <td style="vertical-align: middle">{{sp.loaiGiay.tenLoai}}</td>
                                       <td style="vertical-align: middle"><img src="{{sp.hinhSanPham[0].hinh}}" width="100"></td>
                                       <td style="vertical-align: middle">
-                                          <span *ngFor="let size of sp.kichThuoc">{{size.tenKichThuoc}}<span>  </span></span>
+                                          <span *ngFor="let size of sp.hangTrongKho">
+                                              {{size.kichThuoc.tenKichThuoc}}
+                                              <span>  </span></span>
                                           </td>
                                       <td style="vertical-align: middle" routerLinkActive="active">
                                           <a class="info p-0" data-original-title="" title="Chi tiết" 

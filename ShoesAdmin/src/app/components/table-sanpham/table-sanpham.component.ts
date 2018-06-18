@@ -40,7 +40,7 @@ export class TableSanphamComponent implements OnInit {
   // Load san pham
   loadData(){
     this.sanphamServices.getAllSanPham().subscribe(data =>{
-      // console.log(data);
+      console.log(data);
       this.list_sp = data
     },
     error => {
