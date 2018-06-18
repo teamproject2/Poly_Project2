@@ -61,7 +61,7 @@
                     <img src="{{product.hinh}}" alt="">
                   </div>
                   <div class="single-recommended-desc">
-                    <h6>{{product.tenSanPham}}</h6>
+                    <h6 [routerLink]="['/home/detail/',product.id ]">{{product.tenSanPham}}</h6>
                     <p>{{product.donGia | currency : 'VNĐ' : 'code' : '1.0'}}</p>
                   </div>
                 </div>

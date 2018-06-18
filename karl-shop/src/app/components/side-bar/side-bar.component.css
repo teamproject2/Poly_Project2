@@ -27,7 +27,6 @@ li.sizes:nth-child(2n) {
     left: -20px;
 }
 .widget.size .widget-desc a:hover {
-    /* border-radius: 8px 0 8px 0; */
     transition: 0.4s;
 }
 .widget.catagory.mb-50 {
@@ -39,4 +38,7 @@ h6.widget-title{
 li.sizes {
     border: 1px solid gray;
     border-radius: 3px;
+}
+.single-recommended-desc h6{
+    cursor: pointer;
 }
