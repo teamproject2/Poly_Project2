@@ -44,12 +44,9 @@ export class CheckoutComponent implements OnInit {
   ngOnInit() {
     if (sessionStorage.productInCart !== null) {
       this._productInCart = JSON.parse(sessionStorage.productInCart);
-
       this._productInCart.forEach(p => {
         this._sumOfMoney += p.donGia * (1 - p.chietKhau) * p.soLuong;
       })
-
-      
     }
   }
   

@@ -9,8 +9,8 @@
           </li>
           <li *ngIf="_detailProduct != null" class="breadcrumb-item active">{{_detailProduct.tenSanPham}}</li>
         </ol>
-        <a class="backToHome d-block">
-          <i class="fa fa-angle-double-left"></i> Quay lại</a>
+        <!-- <a class="backToHome d-block">
+          <i class="fa fa-angle-double-left"></i> Quay lại</a> -->
       </div>
     </div>
   </div>
@@ -52,7 +52,6 @@
             <a href="#">{{_detailProduct.tenSanPham}}</a>
           </h4>
 
-          <!-- <h4 class="price">{{_detailProduct.donGia | currency: 'VND' : 'code' : '1.0'}}</h4> -->
           <h4 class="product-sale">{{_detailProduct.donGia * (1-_detailProduct.chietKhau) | number:'1.0'}} đ</h4>
           <p class="available">Trạng Thái:
             <span class="text-muted">Còn hàng</span>
@@ -79,15 +78,6 @@
 
           <!-- Add to Cart Form -->
           <form class="cart clearfix mb-50 d-flex" method="post">
-            <!-- <div class="quantity">
-              <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;">
-                <i class="fa fa-minus" aria-hidden="true"></i>
-              </span>
-              <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
-              <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;">
-                <i class="fa fa-plus" aria-hidden="true"></i>
-              </span>
-            </div> -->
             <button (click)="addToCart()" name="addtocart" value="5" class="btn cart-submit d-block">Mua hàng</button>
           </form>
 
@@ -105,18 +95,7 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="card">
-              <div class="card-header" role="tab" id="headingTwo">
-                <h6 class="mb-0">
-                  <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Chi tiết giỏ hàng</a>
-                </h6>
-              </div>
-              <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-                <div class="card-body">
-                  <p>Giỏ hàng của bạn đang trống</p>
-                </div>
-              </div>
-            </div> -->
+            
             <div class="card">
               <div class="card-header" role="tab" id="headingThree">
                 <h6 class="mb-0">
@@ -200,101 +179,3 @@
   </div>
 </div>
 <!-- ****** Quick View Modal Area End ****** -->
-
-<!-- <section class="you_may_like_area clearfix">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <div class="section_heading text-center">
-          <h2>Sản phẩm đã xem</h2>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-12">
-        <div class="you_make_like_slider owl-carousel">
-
-          <div class="single_gallery_item">
-            <div class="product-img">
-              <img src="../assets/images/product-img/product-1.jpg" alt="">
-              <div class="product-quicview">
-                <a href="#" data-toggle="modal" data-target="#quickview">
-                  <i class="ti-plus"></i>
-                </a>
-              </div>
-            </div>
-            <div class="product-description">
-              <h4 class="product-price">$39.90</h4>
-              <p>Jeans midi cocktail dress</p>
-              <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-            </div>
-          </div>
-
-          <div class="single_gallery_item">
-            <div class="product-img">
-              <img src="../assets/images/product-img/product-2.jpg" alt="">
-              <div class="product-quicview">
-                <a href="#" data-toggle="modal" data-target="#quickview">
-                  <i class="ti-plus"></i>
-                </a>
-              </div>
-            </div>
-            <div class="product-description">
-              <h4 class="product-price">$39.90</h4>
-              <p>Jeans midi cocktail dress</p>
-              <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-            </div>
-          </div>
-
-          <div class="single_gallery_item">
-            <div class="product-img">
-              <img src="../assets/images/product-img/product-3.jpg" alt="">
-              <div class="product-quicview">
-                <a href="#" data-toggle="modal" data-target="#quickview">
-                  <i class="ti-plus"></i>
-                </a>
-              </div>
-            </div>
-            <div class="product-description">
-              <h4 class="product-price">$39.90</h4>
-              <p>Jeans midi cocktail dress</p>
-              <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-            </div>
-          </div>
-
-          <div class="single_gallery_item">
-            <div class="product-img">
-              <img src="../assets/images/product-img/product-4.jpg" alt="">
-              <div class="product-quicview">
-                <a href="#" data-toggle="modal" data-target="#quickview">
-                  <i class="ti-plus"></i>
-                </a>
-              </div>
-            </div>
-            <div class="product-description">
-              <h4 class="product-price">$39.90</h4>
-              <p>Jeans midi cocktail dress</p>
-              <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-            </div>
-          </div>
-
-          <div class="single_gallery_item">
-            <div class="product-img">
-              <img src="../assets/images/product-img/product-5.jpg" alt="">
-              <div class="product-quicview">
-                <a href="#" data-toggle="modal" data-target="#quickview">
-                  <i class="ti-plus"></i>
-                </a>
-              </div>
-            </div>
-            <div class="product-description">
-              <h4 class="product-price">$39.90</h4>
-              <p>Jeans midi cocktail dress</p>
-              <a href="#" class="add-to-cart-btn">ADD TO CART</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->

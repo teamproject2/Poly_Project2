@@ -74,4 +74,8 @@ export class CartComponent implements OnInit {
     console.log('all products' + JSON.stringify(this._productInCart));
   }
 
+  goShopping() {
+    sessionStorage.productInCart = JSON.stringify(this._productInCart);
+  }
+
 }

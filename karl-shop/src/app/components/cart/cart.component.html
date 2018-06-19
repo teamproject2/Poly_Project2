@@ -61,14 +61,11 @@
               </tr>
             </tbody>
           </table>
-
-
-
         </div>
 
         <div class="cart-footer d-flex mt-30">
           <div class="back-to-shop w-50">
-            <a class="continue" routerLink="/home/products">Tiếp tục mua sắm</a>
+            <a class="continue" routerLink="/home/products" (click)="goShopping()">Tiếp tục mua sắm</a>
           </div>
           <div class="update-checkout w-50 text-right">
             <a (click) = "cancelAllProducts()" class="destroy">Hủy đơn hàng</a>
