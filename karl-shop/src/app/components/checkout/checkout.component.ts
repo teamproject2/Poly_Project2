@@ -55,8 +55,15 @@ export class CheckoutComponent implements OnInit {
   
 
   payment(formValues) {
-    this.toastrService.success(`Thanh toán thành công!`)
-    console.log(formValues);
+    this.toastrService.success(`Chúc mừng ${formValues.name} đã thanh toán thành công!`);
+    //clear form after customer submit
+    this.checkoutForm.reset();
+    //clear session data after customer submit
+    sessionStorage.productInCart = [];
+    this._productInCart = [];
+
+    //reset money after customer submit
+    this._sumOfMoney = 0;
   }
 
 }

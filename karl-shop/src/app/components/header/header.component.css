@@ -4,3 +4,16 @@ a.nav-link {
 a.nav-link:hover {
     color: #ff084e;
 }
+.btn.fb, .btn.gg {
+    width: 200px;
+    margin-bottom: 5px;
+}
+.loginBtn {
+    padding-top: 10px;
+}
+i.fa-facebook-f, i.fa-google {
+    color: #fff;
+  }
+
+
+

@@ -6,7 +6,12 @@
   <!--  Side Nav  -->
   <div class="nav-side-menu">
     <div class="menu-list">
-      <h6>Categories</h6>
+
+      <div class="loginBtn text-center">
+        <a class="btn btn-primary fb">Đăng nhập bằng <i class="fab fa-facebook-f"></i></a>
+        <a class="btn btn-danger gg">Đăng nhập bằng <i class="fab fa-google"></i></a>
+      </div>
+      
       <ul id="menu-content" class="menu-content collapse out">
         <li class="home-menu" (click)="getProductByCate(loai.tenLoai)" *ngFor="let loai of _loaigiayArray">
           <span class="icons">

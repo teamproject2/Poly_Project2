@@ -26,8 +26,7 @@
                   <span>*</span>
                 </label>
                 <em *ngIf="phoneNumber.invalid && phoneNumber.dirty">Required</em>
-                <input formControlName="phoneNumber" placeholder="0987 654 321" class="form-control" id="phone_number" min="0"
-                  value="">
+                <input formControlName="phoneNumber" placeholder="0987 654 321" class="form-control" id="phone_number" min="0" value="">
               </div>
 
               <div class="col-12 mb-3 form-group" [ngClass]="{'error': address.invalid && address.dirty}">
@@ -63,28 +62,46 @@
         </div>
       </div>
 
-      <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
+      <div class="col-12 col-md-6 ml-lg-auto">
         <div class="order-details-confirmation">
 
-          <div class="cart-page-heading">
+          <div class="cart-page-heading text-center">
             <h5>Đơn hàng của bạn</h5>
           </div>
 
           <ul class="order-details-form mb-4">
-            <li>
-              <span class="title">Sản phẩm</span>
-              <span class="title">Tổng</span>
-            </li>
+            <div class="row">
+              <li class="big-title">
+                <div class="col-md-7">
+                  <span class="title">Sản phẩm</span>
+                </div>
+                <div class="col-md-2">
+                  Số lượng
+                </div>
+                <div class="col-md-3">
+                  <span class="title">Tổng</span>
+                </div>
+              </li>
+            </div>
+
 
             <div class="getAll" *ngFor="let pro of _productInCart">
 
-              <li class="infoPro">
-                <span>{{pro.tenSanPham}}</span>
-                <span>x
-                  <span>{{pro.soLuong}}</span>
-                </span>
-                <span>{{ pro.donGia * (1 - pro.chietKhau) * pro.soLuong | number:'1.0'}} đ</span>
-              </li>
+              <div class="row">
+                <li class="infoPro">
+                  <div class="col-md-7 ele">
+                    <span>{{pro.tenSanPham}} (size: {{pro.tenKichThuoc}})</span>
+                  </div>
+                  <div class="col-md-2 ele">
+                    <span>x
+                      <span>{{pro.soLuong}}</span>
+                    </span>
+                  </div>
+                  <div class="col-md-3 ele">
+                    <span>{{ pro.donGia * (1 - pro.chietKhau) * pro.soLuong | number:'1.0'}} đ</span>
+                  </div>
+                </li>
+              </div>
 
             </div>
 
@@ -94,8 +111,8 @@
             </li>
 
             <li *ngIf="_productInCart!=null" class="sum">
-                <span>Tổng</span>
-                <span>{{ _sumOfMoney | number:'1.0' }} đ</span>
+              <span>Tổng</span>
+              <span>{{ _sumOfMoney | number:'1.0' }} đ</span>
             </li>
 
           </ul>

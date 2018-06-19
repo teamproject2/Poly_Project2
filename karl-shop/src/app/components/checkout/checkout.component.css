@@ -31,9 +31,12 @@ ul.order-details-form li:last-child {
 
 .order-details-confirmation {
   background: #e9e9e9;
+  padding: 40px 5px;
   border-radius: 15px;
 }
-
+.order-details-confirmation .order-details-form li{
+  padding: 15px 0;
+}
 span.title {
   font-size: 15px;
   color: #000;
@@ -43,6 +46,7 @@ span.title {
   background: #ccc;
   border-radius: 5px;
   padding: 0 5px;
+  margin-bottom: 5px;
 }
 
 .infoPro span {
@@ -53,4 +57,17 @@ span.title {
 .sum {
     color: #28A745;
     font-weight: 600;
+}
+.mt-50{
+  margin-top: 40px;
+
+}
+
+.row li.infoPro {
+  padding: 15px 0;
+  margin: 0;
+  width: 100%;
+}
+.big-title{
+  width: 100%;
 }
