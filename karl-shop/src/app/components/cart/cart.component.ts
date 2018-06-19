@@ -21,10 +21,10 @@ export class CartComponent implements OnInit {
     }
     console.log("In cart:" + JSON.stringify(this._productInCart));
 
-    // this.isDisabled();
   }
 
   minusQuantity(id, tenKichThuoc, soLuong) {
+    // this._productInCart = JSON.parse(sessionStorage.productInCart);
     this._productInCart.forEach(p => {
       if (p.id === id && p.tenKichThuoc === tenKichThuoc && soLuong > 1) {
         p.soLuong = --soLuong;
@@ -36,6 +36,7 @@ export class CartComponent implements OnInit {
   }
 
   plusQuantity(id, tenKichThuoc, soLuong) {
+    // this._productInCart = JSON.parse(sessionStorage.productInCart);
     this._productInCart.forEach(p => {
       if (p.id === id && p.tenKichThuoc === tenKichThuoc && soLuong < p.soLuongKho) {
         p.soLuong = ++soLuong;
@@ -46,6 +47,7 @@ export class CartComponent implements OnInit {
   }
 
   deleteProduct(id, tenKichThuoc) {
+    // this._productInCart = JSON.parse(sessionStorage.productInCart);
     this._productInCart.forEach(p => {
       if (p.id === id && p.tenKichThuoc === tenKichThuoc) {
         this._productInCart.splice(this._productInCart.indexOf(p), 1);
@@ -62,6 +64,14 @@ export class CartComponent implements OnInit {
     sessionStorage.productInCart = JSON.stringify(this._productInCart);
     this._sumOfMoney = 0;
     console.log(this._productInCart);
+  }
+
+  getAllProductInCart() {
+    sessionStorage.productInCart = JSON.stringify(this._productInCart);
+    this._productInCart.forEach(p => {
+      this._sumOfMoney += p.donGia * (1 - p.chietKhau) * p.soLuong;
+    })
+    console.log('all products' + JSON.stringify(this._productInCart));
   }
 
 }

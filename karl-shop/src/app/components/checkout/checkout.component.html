@@ -10,41 +10,52 @@
             <h5>Thông tin hóa đơn</h5>
           </div>
 
-          <form action="#" method="post">
+          <form method="post" [formGroup]="checkoutForm" (ngSubmit)="payment(checkoutForm.value)">
             <div class="row">
-              <div class="col-md-12 mb-3">
+              <div class="col-md-12 mb-3 form-group" [ngClass]="{'error': name.invalid && name.dirty}">
                 <label for="first_name">Họ tên
                   <span>*</span>
                 </label>
-                <input type="text" placeholder="Nguyễn Thị Ngọc Trinh" class="form-control" id="first_name" value="" required>
+                <em *ngIf="name.invalid && name.dirty">Required</em>
+                <input formControlName="name" type="text" placeholder="Nguyễn Thị Ngọc Trinh" class="form-control" id="first_name" value=""
+                  required>
               </div>
 
-              <div class="col-12 mb-3">
+              <div class="col-12 mb-3 form-group" [ngClass]="{'error': phoneNumber.invalid && phoneNumber.dirty}">
                 <label for="phone_number">Số điện thoại
                   <span>*</span>
                 </label>
-                <input type="number" placeholder="0987 654 321" class="form-control" id="phone_number" min="0" value="">
+                <em *ngIf="phoneNumber.invalid && phoneNumber.dirty">Required</em>
+                <input formControlName="phoneNumber" placeholder="0987 654 321" class="form-control" id="phone_number" min="0"
+                  value="">
               </div>
 
-              <div class="col-12 mb-3">
+              <div class="col-12 mb-3 form-group" [ngClass]="{'error': address.invalid && address.dirty}">
                 <label for="street_address">Địa chỉ
                   <span>*</span>
                 </label>
-                <input type="text" placeholder="111 Nam Kỳ Khởi Nghĩa" class="form-control mb-3" id="street_address" value="">
+                <em *ngIf="address.invalid && address.dirty">Required</em>
+                <input formControlName="address" type="text" placeholder="111 Nam Kỳ Khởi Nghĩa" class="form-control mb-3" id="street_address"
+                  value="">
               </div>
 
-              <div class="col-12 mb-4">
+              <div class="col-12 mb-4 form-group" [ngClass]="{'error': email.invalid && email.dirty}">
                 <label for="email_address">Email
                   <span>*</span>
                 </label>
-                <input type="email" placeholder="ngoctrinhnt@gmail.com" class="form-control" id="email_address" value="">
+                <em *ngIf="email.invalid && email.dirty">Required</em>
+                <input formControlName="email" type="email" placeholder="ngoctrinhnt@gmail.com" class="form-control" id="email_address" value="">
               </div>
 
-              <div class="col-12 mb-4">
+              <div class="col-12 mb-4 form-group">
                 <label for="note">Ghi chú
                   <span>*</span>
                 </label>
-                <textarea type="textarea" name="note" id="note" cols="" rows="10"></textarea>
+                <textarea formControlName="note" type="textarea" name="note" id="note" cols="" rows="10"></textarea>
+              </div>
+
+              <div class="btnSubmit">
+                <button [disabled]="checkoutForm.invalid" type="submit" class="btn btn-success btnCheckout">Xác nhận thanh toán</button>
               </div>
 
             </div>
@@ -61,88 +72,35 @@
 
           <ul class="order-details-form mb-4">
             <li>
-              <span>Sản phẩm</span>
-              <span>Tổng</span>
+              <span class="title">Sản phẩm</span>
+              <span class="title">Tổng</span>
             </li>
-            <li>
-              <span>Adidas Cloudfoam X5</span>
-              <span>$599</span>
-            </li>
-            <li>
-              <span>Tiền sản phẩm</span>
-              <span>$59.90</span>
-            </li>
+
+            <div class="getAll" *ngFor="let pro of _productInCart">
+
+              <li class="infoPro">
+                <span>{{pro.tenSanPham}}</span>
+                <span>x
+                  <span>{{pro.soLuong}}</span>
+                </span>
+                <span>{{ pro.donGia * (1 - pro.chietKhau) * pro.soLuong | number:'1.0'}} đ</span>
+              </li>
+
+            </div>
+
             <li>
               <span>Phí vận chuyển</span>
               <span>Miễn phí</span>
             </li>
-            <li>
-              <span>Tổng</span>
-              <span>$59.90</span>
+
+            <li *ngIf="_productInCart!=null" class="sum">
+                <span>Tổng</span>
+                <span>{{ _sumOfMoney | number:'1.0' }} đ</span>
             </li>
+
           </ul>
 
 
-          <div id="accordion" role="tablist" class="mb-4">
-            <div class="card">
-              <div class="card-header" role="tab" id="headingOne">
-                <h6 class="mb-0">
-                  <a data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                    <i class="fa fa-circle-o mr-3"></i>Paypal</a>
-                </h6>
-              </div>
-
-              <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pharetra tempor so dales. Phasellus sagittis
-                    auctor gravida. Integ er bibendum sodales arcu id te mpus. Ut consectetur lacus.</p>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-header" role="tab" id="headingTwo">
-                <h6 class="mb-0">
-                  <a class="collapsed" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    <i class="fa fa-circle-o mr-3"></i>cash on delievery</a>
-                </h6>
-              </div>
-              <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-                <div class="card-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo quis in veritatis officia inventore,
-                    tempore provident dignissimos.</p>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-header" role="tab" id="headingThree">
-                <h6 class="mb-0">
-                  <a class="collapsed" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    <i class="fa fa-circle-o mr-3"></i>credit card</a>
-                </h6>
-              </div>
-              <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                <div class="card-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse quo sint repudiandae suscipit ab soluta
-                    delectus voluptate, vero vitae</p>
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-header" role="tab" id="headingFour">
-                <h6 class="mb-0">
-                  <a class="collapsed" data-toggle="collapse" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-                    <i class="fa fa-circle-o mr-3"></i>direct bank transfer</a>
-                </h6>
-              </div>
-              <div id="collapseFour" class="collapse show" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                <div class="card-body">
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est cum autem eveniet saepe fugit, impedit magni.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <a href="#" class="btn karl-checkout-btn">Xác nhận thanh toán</a>
         </div>
       </div>
 

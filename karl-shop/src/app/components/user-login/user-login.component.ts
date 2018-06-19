@@ -51,4 +51,8 @@ export class UserLoginComponent implements OnInit {
     this.authService.doGoogleLogin();
   }
 
+  forgotPassword() {
+    window.location.assign('https://www.facebook.com/login/identify?ctx=recover&lwv=111');
+  }
+
 }
