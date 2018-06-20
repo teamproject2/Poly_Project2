@@ -16,7 +16,6 @@ import { TableKhoComponent } from './components/table-kho/table-kho.component';
 import { TableHoadonComponent } from './components/table-hoadon/table-hoadon.component';
 import { TableSanphamComponent } from './components/table-sanpham/table-sanpham.component';
 import { FormSanphamComponent } from './components/form-sanpham/form-sanpham.component';
-import { FormKhachhangComponent } from './components/form-khachhang/form-khachhang.component';
 import { FormUserComponent } from './components/form-user/form-user.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { ComingsoonComponent } from './components/comingsoon/comingsoon.component';
@@ -51,7 +50,6 @@ import { KichthuocService } from './services/kichthuoc.service';
     TableHoadonComponent,
     TableSanphamComponent,
     FormSanphamComponent,
-    FormKhachhangComponent,
     FormUserComponent,
     ChatComponent,
     ComingsoonComponent,

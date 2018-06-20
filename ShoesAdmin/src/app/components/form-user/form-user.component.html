@@ -1,119 +1,112 @@
-<div class="content-wrapper"><!-- Basic form layout section start -->
-  <section id="basic-form-layouts">
-    <div class="row">
-          <div class="col-sm-12">
-              <div class="content-header">Nhân Viên</div>
-          </div>
-      </div>
-    <div class="row">
-      <div class="col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <!-- <h4 class="card-title" id="bordered-layout-colored-controls">User Profile</h4> -->
-                </div>
-                <div class="card-body">
-                    <div class="px-3">
-                        <form class="form form-horizontal form-bordered">
-                          <div class="form-body">
-                            <h4 class="form-section"><i class="ft-info"></i> Thông tin Nhân Viên</h4>
-                            <div class="row">
-                              <div class="col-md-6">
-                                  <div class="form-group row">
-                                    <label class="col-md-3 label-control" for="userinput1">Mã Nhân Viên</label>
-                                    <div class="col-md-9">
-                                        <input type="text" id="userinput1" class="form-control border-primary" placeholder="ID" name="ID" readonly>
-                                      </div>
-                                  </div>
-                              </div>
-                              <div class="col-md-6">
-                                  <div class="form-group row">
-                                    <label class="col-md-3 label-control" for="userinput2">Giới Tính</label>
-                                    <div class="col-md-9">
-                                        <div class="custom-control custom-radio display-inline-block ml-1">
-                                            <input type="radio" id="customRadioInline2" name="customRadioInline2" class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadioInline2">Nam</label>
+<div class="content-wrapper">
+    <!-- Basic form layout section start -->
+    <section id="basic-form-layouts">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="content-header">Nhân Viên</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <!-- <h4 class="card-title" id="bordered-layout-colored-controls">User Profile</h4> -->
+                    </div>
+                    <div class="card-body">
+                        <div class="px-3">
+                            <form class="form form-horizontal form-bordered">
+                                <div class="form-body">
+                                    <h4 class="form-section">
+                                        <i class="ft-info"></i> Thông tin Nhân Viên</h4>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control" for="userinput1">Mã Nhân Viên</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" id="userinput1" class="form-control border-primary" placeholder="ID" name="ID" readonly value="{{chitiet_NV.id}}">
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="custom-control custom-radio display-inline-block">
-                                            <input type="radio" id="customRadioInline3" checked name="customRadioInline2" class="custom-control-input">
-                                            <label class="custom-control-label" for="customRadioInline3">Nữ</label>
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control" for="userinput2">Giới Tính</label>
+                                                <div class="col-md-9">
+                                                    <div class="custom-control custom-radio display-inline-block ml-1">
+                                                        <input type="radio" id="customRadioInline2" name="customRadioInline2" class="custom-control-input">
+                                                        <label class="custom-control-label" for="customRadioInline2">Nam</label>
+                                                    </div>
+                                                    <div class="custom-control custom-radio display-inline-block">
+                                                        <input type="radio" id="customRadioInline3" checked name="customRadioInline2" class="custom-control-input">
+                                                        <label class="custom-control-label" for="customRadioInline3">Nữ</label>
+                                                    </div>
+                                                    <!-- <input type="text" id="userinput2" class="form-control border-primary" placeholder="Last Name" name="lastname"> -->
+                                                </div>
+                                            </div>
                                         </div>
-                                        <!-- <input type="text" id="userinput2" class="form-control border-primary" placeholder="Last Name" name="lastname"> -->
                                     </div>
-                                  </div>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row last">
+                                                <label class="col-md-3 label-control" for="userinput3">Họ & Tên</label>
+                                                <div class="col-md-9">
+                                                    <input type="text" id="userinput3" class="form-control border-primary" placeholder="Username" name="username" value="{{chitiet_NV.tenNhanVien}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group row last">
+                                                <label class="col-md-3 label-control" for="userinput4">Ngày Sinh</label>
+                                                <div class="col-md-9">
+                                                    <input type="date" id="userinput4" class="form-control border-primary" placeholder="Nick Name" name="nickname" value="{{chitiet_NV.ngaySinh}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h4 class="form-section">
+                                        <i class="ft-mail"></i> Thông tin liên lạc</h4>
+
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control" for="userinput5">Email</label>
+                                                <div class="col-md-9">
+                                                    <input class="form-control border-primary" type="email" placeholder="email" id="userinput5" value="{{chitiet_NV.email}}">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-md-3 label-control" for="userinput6">Địa Chỉ</label>
+                                                <div class="col-md-9">
+                                                    <input class="form-control border-primary" type="url" placeholder="123/ABC" id="userinput6"value="{{chitiet_NV.diaChi}}">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row last">
+                                                <label class="col-md-3 label-control">Số Điện Thoại</label>
+                                                <div class="col-md-9">
+                                                    <input class="form-control border-primary" type="tel" placeholder="0123456789" id="userinput7" value="{{chitiet_NV.soDienThoai}}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                              </div>
-                              
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <div class="form-group row last">
-                                    <label class="col-md-3 label-control" for="userinput3">Họ & Tên</label>
-                                    <div class="col-md-9">
-                                        <input type="text" id="userinput3" class="form-control border-primary" placeholder="Username" name="username">
-                                    </div>
-                                   </div>
-                                 </div>
-                                 <div class="col-md-6">
-                                  <div class="form-group row last">
-                                    <label class="col-md-3 label-control" for="userinput4">Ngày Sinh</label>
-                                    <div class="col-md-9">
-                                        <input type="date" id="userinput4" class="form-control border-primary" placeholder="Nick Name" name="nickname">
-                                    </div>
-                                  </div>
-                              </div>
-                              </div>
-                              
-                              <h4 class="form-section"><i class="ft-mail"></i> Thông tin liên lạc</h4>
-  
-                              <div class="row">
-                                <div class="col-md-6">
-                                  <div class="form-group row">
-                                    <label class="col-md-3 label-control" for="userinput5">Email</label>
-                                    <div class="col-md-9">
-                          <input class="form-control border-primary" type="email" placeholder="email" id="userinput5">
-                                    </div>
+
+                                <div class="form-actions center">
+                                    <button type="button" class="btn btn-raised btn-warning mr-1">
+                                        <i class="ft-x"></i> Cancel
+                                    </button>
+                                    <button type="button" class="btn btn-raised btn-primary">
+                                        <i class="fa fa-check-square-o"></i> Save
+                                    </button>
                                 </div>
-  
-                                <div class="form-group row">
-                                    <label class="col-md-3 label-control" for="userinput6">Địa Chỉ</label>
-                                    <div class="col-md-9">
-                          <input class="form-control border-primary" type="url" placeholder="123/ABC" id="userinput6">
+                            </form>
+
                         </div>
-                      </div>
-  
-                      <div class="form-group row last">
-                                    <label class="col-md-3 label-control">Số Điện Thoại</label>
-                                    <div class="col-md-9">
-                          <input class="form-control border-primary" type="tel" placeholder="0123456789" id="userinput7">
-                        </div>
-                                  </div>
-                                </div>
-                                <!-- <div class="col-md-6">
-                                  <div class="form-group row last">
-                                    <label class="col-md-3 label-control" for="userinput8">Mo</label>
-                                    <div class="col-md-9">
-                                        <textarea id="userinput8" rows="6" class="form-control col-md-9 border-primary" name="bio" placeholder="Bio"></textarea>
-                                       </div>
-                                  </div>
-                                </div> -->
-                              </div>
-                </div>
-  
-                            <div class="form-actions right">
-                                <button type="button" class="btn btn-raised btn-warning mr-1">
-                                  <i class="ft-x"></i> Cancel
-                                </button>
-                                <button type="button" class="btn btn-raised btn-primary">
-                                    <i class="fa fa-check-square-o"></i> Save
-                                </button>
-                            </div>
-                        </form>
-  
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
-  </section>
-  <!-- // Basic form layout section end -->
-            </div>
+    </section>
+</div>

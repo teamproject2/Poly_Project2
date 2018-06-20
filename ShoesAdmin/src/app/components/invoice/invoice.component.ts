@@ -8,6 +8,7 @@ import "rxjs/Rx";
 import { Hoadon } from '../.././models/hoadon';
 // services
 import { HoadonService } from '../../services/hoadon.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-invoice',
@@ -18,18 +19,20 @@ export class InvoiceComponent implements OnInit {
   public detail_hd: Hoadon[] = [];
   public subscription: Subscription;
   id: number;
+  public chitiet_HD: any;
   constructor(
-    private detailHDServices: HoadonService
+    private detailHDServices: HoadonService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.loaddetail_Data(this.id);
+    this.id = this.route.snapshot.params['id'];
+    this.getChitiet_HD(this.id);
   }
-  // Load all Hoa don
-  loaddetail_Data(id:number) {
-    this.detailHDServices.getDetailSP_HD(id).subscribe(data => {
-      console.log(data);
-      this.detail_hd = data
+  getChitiet_HD(id:number): void {
+    this.detailHDServices.getHoadonByID(id).subscribe(data => {
+      this.chitiet_HD = data;
+      // console.log("HD:" + this.chitiet_HD.trangThai);
     },
       error => {
         console.log(error);

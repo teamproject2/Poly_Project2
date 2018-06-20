@@ -21,12 +21,12 @@
             <div class="col-6 text-right">
               <h2>THÔNG TIN HÓA ĐƠN</h2>
               <p>
-                <span class="text-muted">Mã Hóa Đơn:</span> HD01
+                <span class="text-muted">Mã Hóa Đơn:{{chitiet_HD.id}}</span>
               <p>
               <!-- <p class="pb-3">Mã Hóa Đơn:</p> -->
               <ul class="px-0 list-unstyled">
                 <li>Tổng Tiền Thanh Toán: </li>
-                <li class="lead text-bold-800">$ 12,000.00</li>
+                <li class="lead text-bold-800">{{chitiet_HD.tongTien}}</li>
               </ul>
             </div>
           </div>
@@ -38,15 +38,15 @@
             </div>
             <div class="col-6 text-left">
               <ul class="px-0 list-unstyled">
-                <li class="text-bold-800">Tên KH</li>
+                <li class="text-bold-800">{{chitiet_HD.nhanVien[1].tenNhanvien}}</li>
                 <li>địa chỉ</li>
               </ul>
             </div>
             <div class="col-6 text-right">
               <p>
-                <span class="text-muted">Trạng Thái :</span> Hoàn Thành</p>
+                <span class="text-muted">Trạng Thái :</span> {{chitiet_HD.trangThai}}</p>
               <p>
-                <span class="text-muted">Ngày :</span> 10/05/2016</p>
+                <span class="text-muted">Ngày :</span>{{chitiet_HD.ngay}}</p>
             </div>
           </div>
           <!--/ Invoice Customer Details -->
@@ -57,7 +57,7 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th>Mã hóa đơn</th>
+                      <th>Mã sản phẩm</th>
                       <th>Tên sản phẩm</th>
                       <th class="text-right">Chiết khấu</th>
                       <th class="text-right">Số Lượng</th>
@@ -65,11 +65,12 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <th scope="row">1</th>
+                    <tr>  
+                      <th scope="row">{{chitiet_HD.chiTietHoaDon[0].id}}</th>
                       <td>
-                        <p>Create PSD for mobile APP</p>
-                        <p class="text-muted">Simply dummy text of the printing and typesetting industry.</p>
+                          {{chitiet_HD.tenSanPham}}
+                        <!-- <p>Create PSD for mobile APP</p>
+                        <p class="text-muted">Simply dummy text of the printing and typesetting industry.</p> -->
                       </td>
                       <td class="text-right">$ 20.00/hr</td>
                       <td class="text-right">120</td>

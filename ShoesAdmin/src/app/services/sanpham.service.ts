@@ -16,9 +16,9 @@ export class SanphamService {
   private URL_SPID: string = "sanpham/";
   private URL_HD: string = "hoadon";
   private URL_SPKHO: string = "kho";
-  public sanpham: Sanpham[]=[];
-  public ChitietSanpham: ChitietSanpham[]=[];
-//
+  public sanpham: Sanpham[] = [];
+  public ChitietSanpham: ChitietSanpham[] = [];
+  //
   constructor(
     public http: Http
   ) { }
@@ -35,28 +35,16 @@ export class SanphamService {
     }));
   }
   // Get all San pham by ID
-  getSanphamByID(id: number):Observable<ChitietSanpham> {
+  getSanphamByID(id: number): Observable<ChitietSanpham> {
     return this.http
       .get(this.API + "sanpham/" + id)
       .map((response: Response) => {
         return <ChitietSanpham>response.json();
       })
       .catch(this.handleError);
-    // const url = `${this.URL_SP}/${id}`
-    // return this.http.get(url).pipe(map(data => {
-    //   return <ChitietSanpham[]>data.json();
-    // }));
-      /** GET hero by id. Will 404 if id not found */
-  // getSanphambyId(id: number): Observable<Sanpham> {
-  //   const url = `${this.URL_SP}/${id}`;
-  //   return this.http.get<Sanpham>(url).pipe(
-  //     tap(_ => this.log(`fetched sanpham id=${id}`)),
-  //     catchError(this.handleError<Hero>(`getSanphambyId id=${id}`))
-  //   );
-  // }
   }
   private handleError(error: Response) {
     return Observable.throw(error.statusText);
   }
-  
+
 }

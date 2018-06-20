@@ -11,7 +11,6 @@ import { TableKhoComponent } from './components/table-kho/table-kho.component';
 import { TableHoadonComponent } from './components/table-hoadon/table-hoadon.component';
 import { TableSanphamComponent } from './components/table-sanpham/table-sanpham.component';
 import { FormSanphamComponent } from './components/form-sanpham/form-sanpham.component';
-import { FormKhachhangComponent } from './components/form-khachhang/form-khachhang.component';
 import { FormUserComponent } from './components/form-user/form-user.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { ComingsoonComponent } from './components/comingsoon/comingsoon.component';
@@ -36,6 +35,7 @@ const routes: Routes = [
   { path: 'sanpham', component: TableSanphamComponent},
   // { path: 'detail_sp/:id', component: ChitietSanphamComponent },
   { path: 'sanpham/:id', component: ChitietSanphamComponent },
+  { path: 'nhanvien/:id', component: FormUserComponent },
   // {
   //   path: 'sanpham',
   //   component: TableSanphamComponent,
@@ -55,10 +55,10 @@ const routes: Routes = [
   { path: 'kho', component: TableKhoComponent },
   { path: 'khachhang', component: TableKhachhangComponent },
   { path: 'hoadon', component: TableHoadonComponent },
+  { path: 'hoadon/:id', component: InvoiceComponent },
   { path: 'form-product', component: FormSanphamComponent },
   { path: 'form-user', component: FormUserComponent },
-  { path: 'form-customer', component: FormKhachhangComponent },
-  { path: 'Invoice', component: InvoiceComponent },
+  // { path: 'Invoice', component: InvoiceComponent },
   { path: 'User-Profile', component: UserprofileComponent },
   { path: 'Marketing', component: TaskboardComponent },
   { path: 'chitiet-sp', component: ChitietSanphamComponent }

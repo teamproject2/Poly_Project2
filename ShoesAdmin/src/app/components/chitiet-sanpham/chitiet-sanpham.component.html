@@ -18,7 +18,8 @@
                     <div class="col-md-6">
                       <div class="form-group1">
                         <label for="projectinput1">Tên sản phẩm:</label>
-                        <span>{{chitietSp.tenSanPham}}</span> <br>
+                        <input type="text" id="projectinput2" class="form-control"  name="lname" value="{{chitietSp.tenSanPham}}">
+                        <!-- <span>{{chitietSp.tenSanPham}}</span> <br>
                         <label for="projectinput3">Nhà sản xuất:</label>
                         <span>{{chitietSp.loaiGiay.tenLoai}}</span><br>
                         <label for="projectinput3">Đơn Giá:</label>
@@ -28,21 +29,21 @@
                         <span>{{chitietSp.chietKhau}}</span>
                         <br>
                         <label for="projectinput3">chiTiet:</label>
-                        <span>{{chitietSp.chiTiet}}</span>
+                        <span>{{chitietSp.chiTiet}}</span> -->
                       </div>
                     </div>
                     <!-- <div class="col-md-6">
                         <div class="form-group">
                           <label for="projectinput2">Nhà sản xuất</label>
-                          <input type="text" id="projectinput2" class="form-control"  name="lname">
+                          <input type="text" id="projectinput2" class="form-control"  name="lname" value="{{chitietSp.loaiGiay.tenLoai}}">
                         </div>
                       </div> -->
                   </div>
-                  <!-- <div class="row">
+                  <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="projectinput3">Nhà sản xuất:</label>
-                        <input type="text" id="projectinput3" class="form-control" name="email">
+                        <input type="text" id="projectinput3" class="form-control" name="email" value="{{chitietSp.loaiGiay.tenLoai}}">
                       </div>
                     </div>
                    
@@ -51,14 +52,22 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="projectinput4">Kích thước</label>
-                        <input type="text" id="projectinput4" class="form-control" name="phone">
+                        <select id="size" name="interested" class="form-control">
+                          <option value="none" selected="" disabled="">39</option>
+                          <option value="design">39</option>
+                          <option value="development">40</option>
+                          <option value="illustration">41</option>
+                          <option value="branding">42</option>
+                          <option value="video">43</option>
+                        </select>
+                        <!-- <input type="text" id="projectinput4" class="form-control" name="phone"> -->
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="projectinput8">Mô tả</label>
-                    <textarea id="projectinput8" rows="5" class="form-control" name="comment"></textarea>
-                  </div> -->
+                    <textarea id="projectinput8" rows="5" class="form-control" name="comment"> {{chitietSp.chiTiet}}</textarea>
+                  </div>
                 </div>
 
               </form>
@@ -77,6 +86,13 @@
                   <h4 class="form-section">
                     <i class="ft-info"></i> Hình ảnh</h4>
                   <div class="row">
+                      <label class="col-md-3 label-control">Chọn ảnh:</label>
+                      <div class="col-md-6">
+                        <label id="projectinput8" class="file center-block">
+                          <input type="file" id="file">
+                          <span class="file-custom"></span>
+                        </label>
+                      </div>
                   </div>
                 </div>
                         <div id="carousel-keyboard" class="carousel slide" data-ride="carousel" data-keyboard="false">
@@ -106,43 +122,20 @@
                           </a>
                   </div>
               </form>
-
             </div>
           </div>
         </div>
       </div>
     </div>
     <br>
-    <!-- <div class="row">
-      <div class="extended">
-        <h4> Kho hàng:</h4>
-      </div>
+    <div class="form-actions center">
+      <button type="button" class="btn btn-raised btn-raised btn-warning mr-1">
+        <i class="ft-x"></i> Cancel
+      </button>
+      <button type="button" class="btn btn-raised btn-raised btn-primary">
+        <i class="fa fa-check-square-o"></i> Save
+      </button>
     </div>
-    <div class="row">
-      <div class="card-body">
-        <div class="card-block">
-          <table id="table_sp" class="table table-responsive-md-md text-center">
-            <thead>
-              <tr>
-                 <th></th> 
-                <th>Tên Kho</th>
-                <th>Số lượng</th>
-                <th>Đơn giá</th>
-                <th>Chiết Khấu</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td style="vertical-align: middle">Tên Kho</td>
-                <td style="vertical-align: middle">Số lượng</td>
-                <td style="vertical-align: middle">Đơn giá</td>
-                <td style="vertical-align: middle">Chiết Khấu</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div> -->
   </section>
 
 </div>

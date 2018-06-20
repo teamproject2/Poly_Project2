@@ -5,11 +5,12 @@ import { map, catchError, tap } from 'rxjs/operators';
 
 // import models
 import { Hoadon } from '../models/hoadon';
+import { Chitiethoadon } from '../models/chitiethoadon';
 
 @Injectable()
 export class HoadonService {
   public URL_HD: string = "http://localhost:9099/hoadon";
-  // private URL_HD: string = "hoadon";
+  public Chitiet_HD : Chitiethoadon[]=[];
   constructor(
     public http: Http
   ) { }
@@ -19,13 +20,18 @@ export class HoadonService {
       return <Hoadon[]>data.json();
     }));
   }
-  // Lay 1 san pham theo id
-  getDetailSP_HD(id: number): Observable<Hoadon[]> {
-    return this.http.get(this.URL_HD + id).pipe(map(data => {
-      return <Hoadon[]>data.json();
-    }));
-  }
-  // Update
- 
+
+ // Get all Hoa don by ID
+ getHoadonByID(id: number): Observable<Chitiethoadon> {
+  return this.http
+    .get(this.URL_HD +"/" + id)
+    .map((response: Response) => {
+      return <Chitiethoadon>response.json();
+    })
+    .catch(this.handleError);
+}
+private handleError(error: Response) {
+  return Observable.throw(error.statusText);
+}
 
 }
