@@ -1,17 +1,16 @@
-import {Kichthuoc} from './kichthuoc';
-export class Sanpham{
-    public id: number;
-    public tenSanPham: string;
-    public chiTiet: string;
-    public hinhSanPham: string;
-    public kichThuoc: Kichthuoc;
-    public loaiGiay: string;
+import { HinhSanPham } from './hinhSanPham';
+import { LoaiGiay } from './loaiGiay';
+import { HangTrongKho } from './hangTrongKho';
 
-    constructor(tenSanPham: string, chiTiet: string, hinhSanPham:string, kichThuoc:Kichthuoc, loaiGiay:string){
-        this.tenSanPham = tenSanPham;
-        this.chiTiet = chiTiet;
-        this.hinhSanPham = hinhSanPham;
-        this.kichThuoc = kichThuoc;
-        this.loaiGiay = loaiGiay;
-    }
+export class Sanpham{
+    id: number;
+    tenSanPham: string;
+    chiTiet: string;
+    hinhSanPham: HinhSanPham;
+    gioiTinh: string;
+    donGia: number;
+    chietKhau: number;
+    loaiGiay: LoaiGiay;
+    hangTrongKho: HangTrongKho[];
+    
 }

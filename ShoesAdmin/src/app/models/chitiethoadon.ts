@@ -1,14 +1,8 @@
-export class Chitiethoadon {
-    public id: string;
-    public tenKhachHang: string;
-    public tenNhanVien: string;
-    public trangThai: string;
-    public ngay: Date;
+import { Sanpham } from "./sanpham";
 
-    constructor(tenKhachHang: string, tenNhanVien:string, trangThai: string, ngay: Date){
-        this.tenKhachHang = tenKhachHang;
-        this.tenNhanVien = tenNhanVien;
-        this.trangThai = trangThai;
-        this.ngay = ngay;
-    }
+export class Chitiethoadon {
+    id: number;
+    sanPham: Sanpham[];
+    soLuong: number;
+    tenKichThuoc: string;
 }
