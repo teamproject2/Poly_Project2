@@ -26,6 +26,7 @@ export class ChitietSanphamComponent implements OnInit {
     // 
     private route: ActivatedRoute,
     private sanphamService: SanphamService,
+    private router: Router
     // private location: Location
   ) { }
 
@@ -42,6 +43,10 @@ export class ChitietSanphamComponent implements OnInit {
       error => {
         console.log(error);
       });
+  }
+
+  goHangTrongKho(id){
+    this.router.navigate(['sanpham/hangtrongkho/',id]);
   }
 
 

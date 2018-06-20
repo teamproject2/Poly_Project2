@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import poly.soft.project2.dto.SanPhamHomePageDTO;
 import poly.soft.project2.entity.SanPham;
 import poly.soft.project2.enumeration.GioiTinhEnum;
-import poly.soft.project2.enumeration.HDTrangThaiEnum;
 import poly.soft.project2.repository.SanPhamRepository;
 import poly.soft.project2.service.SanPhamService;
 
@@ -36,8 +35,8 @@ public class SanPhamServiceImpl  implements SanPhamService{
 
 	@Override
 	public SanPham save(SanPham sanPham) {
-		// TODO Auto-generated method stub
-		return null;
+		SanPham sp = sanPhamRepository.save(sanPham);
+		return sp;
 	}
 
 	@Override

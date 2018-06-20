@@ -69,7 +69,8 @@ import { KichthuocService } from './services/kichthuoc.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule
+    HttpModule,
+    FormsModule
   ],
   // Import services
   providers: [

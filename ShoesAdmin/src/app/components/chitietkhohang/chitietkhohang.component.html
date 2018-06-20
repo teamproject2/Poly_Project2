@@ -3,7 +3,7 @@
   <section id="basic-carousel">
     <div class="row">
       <div class="col-sm-12 mt-2">
-        <div class="content-header">Thông tin chi tiết sản phẩm trong kho</div>
+        <div class="content-header">Hàng trong kho</div>
       </div>
 
       <div class="col-md-6">
@@ -17,20 +17,20 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="projectinput1">Tên sản phẩm</label>:
-                        <label>sản phẩm 1</label>
-                        <br>
-                        <br>
                         <label for="projectinput1">Mã sản phẩm</label>:
-                        <label>Mã sản phẩm 1</label>
+                        <label>{{ chitietSp.id }}</label>
+                        <br>
+                        <br>
+                        <label for="projectinput1">Tên sản phẩm</label>:
+                        <label>{{ chitietSp.tenSanPham }}</label>
                         <br>
                         <br>
                         <label for="projectinput1">Đơn giá</label>:
-                        <label> Đơn giá sản phẩm 1</label>
+                        <label>{{ chitietSp.donGia | number }} VNĐ</label>
                         <br>
                         <br>
                         <label for="projectinput1">Chiết khấu</label>:
-                        <label>Mã sản phẩm 1</label>
+                        <label>{{ chitietSp.chietKhau * 100 }}%</label>
                       </div>
                     </div>
                   </div>
@@ -57,24 +57,20 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="projectinput5">Chọn size</label>
-                      <select id="size" name="interested" class="form-control">
-                        <option value="none" selected="" disabled=""></option>
-                        <option value="design">39</option>
-                        <option value="development">40</option>
-                        <option value="illustration">41</option>
-                        <option value="branding">42</option>
-                        <option value="video">43</option>
+                      <select (change)="onChange($event.target.value)" id="size" name="interested" class="form-control">
+                        <option value="0" selected="">--Select--</option>
+                        <option value="{{s.id}}" *ngFor="let s of listSizeAll">{{s.tenKichThuoc}}</option>
                       </select>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="projectinput4">Số lượng</label>
-                      <input type="text" id="soluong" class="form-control" name="phone">
+                      <input *ngIf="chk ? 'disabled' : ''" [(ngModel)]='soLuong' type="text" id="soluong" class="form-control" name="phone">
                     </div>
                   </div>
                   <div class="form-group">
-                    <button type="button" class="btn btn-raised btn-danger mr-1">+</button>
+                    <button type="button" (click)="addSize()" class="btn btn-raised btn-danger mr-1">+</button>
                   </div>
                 </div>
                 <table id="table_sp" class="table table-responsive-md-md text-center">
@@ -88,13 +84,13 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let size of listSize;let i = index">
-                      <td style="vertical-align: middle">{{ index + 1 }}</td>
+                    <tr *ngFor="let size of listSizeOfProduct;let i = index">
+                      <td style="vertical-align: middle">{{ i + 1 }}</td>
                       <td style="vertical-align: middle">{{ size.tenKichThuoc }}</td>
                       <td style="vertical-align: middle">{{ size.soLuong }}</td>
                       <td style="vertical-align: middle">
                         <a class="danger p-0" data-original-title="" title="Xóa" id="confirm-cancel">
-                          <i (click)="delSize(size.id)" class="ft-x font-medium-3 mr-2"></i>
+                          <i (click)="delSize(size.kichThuocId)" class="ft-x font-medium-3 mr-2"></i>
                         </a>
                       </td>
                     </tr>
@@ -104,7 +100,7 @@
                   <button type="button" class="btn btn-raised btn-raised btn-warning mr-1">
                     <i class="ft-x"></i> Cancel
                   </button>
-                  <button type="button" class="btn btn-raised btn-raised btn-primary">
+                  <button (click)="saveHangTrongKho()" type="button" class="btn btn-raised btn-raised btn-primary">
                     <i class="fa fa-check-square-o"></i> Save
                   </button>
                 </div>

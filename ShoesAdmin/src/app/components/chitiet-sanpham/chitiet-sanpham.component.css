@@ -7,3 +7,9 @@
     padding : 1.25rem;
     background-color:  white;
   }
+
+.form-group .box-size{
+  border: 1px solid black;
+  text-align: center;
+  margin: 3px;
+}

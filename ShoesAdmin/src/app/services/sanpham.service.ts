@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http, Response, RequestOptions } from "@angular/http";
+import { Http, Response, RequestOptions,URLSearchParams } from "@angular/http";
 import { map, catchError, tap } from 'rxjs/operators';
 
 // import models
@@ -18,6 +18,7 @@ export class SanphamService {
   private URL_SPKHO: string = "kho";
   public sanpham: Sanpham[] = [];
   public ChitietSanpham: ChitietSanpham[] = [];
+  listSizeOfProductData= new Array();
   //
   constructor(
     public http: Http
@@ -47,4 +48,8 @@ export class SanphamService {
     return Observable.throw(error.statusText);
   }
 
+  saveHangTrongKho(id, list) : Observable<Response>{
+    let search = new URLSearchParams();
+    return this.http.put(this.API + "sanpham/hangtrongkho/" + id, list, {search});
+  }
 }

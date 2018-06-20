@@ -35,6 +35,7 @@ const routes: Routes = [
   { path: 'sanpham', component: TableSanphamComponent},
   // { path: 'detail_sp/:id', component: ChitietSanphamComponent },
   { path: 'sanpham/:id', component: ChitietSanphamComponent },
+  { path: 'sanpham/hangtrongkho/:id', component: ChitietkhohangComponent },
   { path: 'nhanvien/:id', component: FormUserComponent },
   // {
   //   path: 'sanpham',

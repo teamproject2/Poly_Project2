@@ -62,6 +62,12 @@ public class HangTrongKho implements Serializable {
 		return sanPham.getHinhSanPham().get(0).getHinh();
 	}
 
+	@Override
+	public String toString() {
+		return "[id=" + id + ", soLuong=" + soLuong + ", kichThuoc=" + kichThuoc
+				+ "]";
+	}
+
 	public int getId() {
 		return id;
 	}

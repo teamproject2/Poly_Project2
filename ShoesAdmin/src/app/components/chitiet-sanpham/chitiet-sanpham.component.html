@@ -16,33 +16,16 @@
                     <i class="ft-user"></i> Mã sản phẩm: {{ chitietSp.id }}</h4>
                   <div class="row">
                     <div class="col-md-6">
-                      <div class="form-group1">
+                      <div class="form-group">
                         <label for="projectinput1">Tên sản phẩm:</label>
                         <input type="text" id="projectinput2" class="form-control"  name="lname" value="{{chitietSp.tenSanPham}}">
-                        <!-- <span>{{chitietSp.tenSanPham}}</span> <br>
-                        <label for="projectinput3">Nhà sản xuất:</label>
-                        <span>{{chitietSp.loaiGiay.tenLoai}}</span><br>
-                        <label for="projectinput3">Đơn Giá:</label>
-                        <span>{{chitietSp.donGia}}</span>
-                        <br>
-                        <label for="projectinput3">chietKhau:</label>
-                        <span>{{chitietSp.chietKhau}}</span>
-                        <br>
-                        <label for="projectinput3">chiTiet:</label>
-                        <span>{{chitietSp.chiTiet}}</span> -->
                       </div>
                     </div>
-                    <!-- <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="projectinput2">Nhà sản xuất</label>
-                          <input type="text" id="projectinput2" class="form-control"  name="lname" value="{{chitietSp.loaiGiay.tenLoai}}">
-                        </div>
-                      </div> -->
                   </div>
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="projectinput3">Nhà sản xuất:</label>
+                        <label for="projectinput3">Loại giày:</label>
                         <input type="text" id="projectinput3" class="form-control" name="email" value="{{chitietSp.loaiGiay.tenLoai}}">
                       </div>
                     </div>
@@ -51,16 +34,30 @@
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
+                        <label for="projectinput3">Đơn giá:</label>
+                        <input type="text" id="projectinput3" class="form-control" name="email" value="{{chitietSp.donGia}}">
+                      </div>
+                    </div>
+                   
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="projectinput3">Chiết khấu:</label>
+                        <input type="text" id="projectinput3" class="form-control" name="email" value="{{chitietSp.chietKhau}}">
+                      </div>
+                    </div>
+                   
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
                         <label for="projectinput4">Kích thước</label>
-                        <select id="size" name="interested" class="form-control">
-                          <option value="none" selected="" disabled="">39</option>
-                          <option value="design">39</option>
-                          <option value="development">40</option>
-                          <option value="illustration">41</option>
-                          <option value="branding">42</option>
-                          <option value="video">43</option>
-                        </select>
-                        <!-- <input type="text" id="projectinput4" class="form-control" name="phone"> -->
+                        <br>
+                        <span class="box-size" *ngFor="let size of chitietSp.hangTrongKho">{{ size.kichThuoc.tenKichThuoc }} &nbsp;</span>
+                        <button (click)="goHangTrongKho(chitietSp.id)" type="button" class="btn btn-raised btn-raised btn-primary">
+                          Kho hàng
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -129,7 +126,7 @@
     </div>
     <br>
     <div class="form-actions center">
-      <button type="button" class="btn btn-raised btn-raised btn-warning mr-1">
+      <button type="button" class="btn btn-raised btn-raised btn-warning">
         <i class="ft-x"></i> Cancel
       </button>
       <button type="button" class="btn btn-raised btn-raised btn-primary">
