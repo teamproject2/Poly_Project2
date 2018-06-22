@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { SanphamService } from '../../services/sanpham.service';
 import { ActivatedRoute } from '@angular/router';
 import { Kichthuoc } from '../../models/kichthuoc';
 import { KichthuocService } from '../../services/kichthuoc.service';
+import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-chitietkhohang',
   templateUrl: './chitietkhohang.component.html',
   styleUrls: ['./chitietkhohang.component.css']
 })
+
 export class ChitietkhohangComponent implements OnInit {
 
   listSizeOfProduct = new Array();
@@ -23,7 +25,10 @@ export class ChitietkhohangComponent implements OnInit {
 
 
   constructor(private route: ActivatedRoute, private sanphamService: SanphamService,
-    private kichthuocService: KichthuocService) { }
+    private kichthuocService: KichthuocService,  private _vcr: ViewContainerRef,
+    private toastr: ToastsManager) {
+      this.toastr.setRootViewContainerRef(_vcr);
+     }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -42,9 +47,9 @@ export class ChitietkhohangComponent implements OnInit {
     this.sanphamService.getSanphamByID(id).subscribe(data => {
       this.chitietSp = data;
       this.chitietSp.hangTrongKho.forEach(p => {
-          let object = {kichThuocId:p.kichThuoc.id, tenKichThuoc:p.kichThuoc.tenKichThuoc, soLuong:p.soLuong};
-          this.listSizeOfProduct.push(object);
-        }
+        let object = { kichThuocId: p.kichThuoc.id, tenKichThuoc: p.kichThuoc.tenKichThuoc, soLuong: p.soLuong };
+        this.listSizeOfProduct.push(object);
+      }
       )
     },
       error => {
@@ -101,16 +106,19 @@ export class ChitietkhohangComponent implements OnInit {
     })
   }
 
-  saveHangTrongKho(){
-    this.listSizeOfProductData=[];
-    this.listSizeOfProduct.forEach(p=>{
-      let object = {kichThuocId:p.kichThuocId, soLuong:p.soLuong};
+  saveHangTrongKho() {
+    this.listSizeOfProductData = [];
+    this.listSizeOfProduct.forEach(p => {
+      let object = { kichThuocId: p.kichThuocId, soLuong: p.soLuong };
       this.listSizeOfProductData.push(object);
     })
     this.sanphamService.saveHangTrongKho(this.id, this.listSizeOfProductData)
-    .subscribe(
-      res => console.log(res),
-      error => console.log(error)
-    );
+      .subscribe(
+        res => {
+          console.log(res);
+          this.toastr.success('Saved success!');
+        }
+        , error => console.log(error)
+      );
   }
 }

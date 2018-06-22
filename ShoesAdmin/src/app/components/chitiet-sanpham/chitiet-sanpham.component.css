@@ -1,15 +1,33 @@
 .card-body {
-    -webkit-box-flex : 1;
-    -webkit-flex : 1 1 auto;
-    -moz-box-flex : 1;
-    -ms-flex : 1 1 auto;
-    flex : 1 1 auto;
-    padding : 1.25rem;
-    background-color:  white;
-  }
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 auto;
+  -moz-box-flex: 1;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  padding: 1.25rem;
+  background-color: white;
+}
 
-.form-group .box-size{
-  border: 1px solid black;
-  text-align: center;
-  margin: 3px;
+.box {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: #CCCFD5;
+  line-height: 40px;
+  margin: 0 5px;
+  color: #000;
+  border-radius: 2px;
+}
+
+.btnKho {
+  margin-top: 20px;
+  margin-left: 15px;
+}
+
+form .form-actions{
+  border-top: 0;
+}
+input#file {
+  padding: 5px 10px;
+  background: #E9EAEC;
 }

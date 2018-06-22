@@ -1,5 +1,5 @@
 
-  select#size {
+select#size {
     width: 180px;
 }
   input#soluong {
@@ -7,5 +7,10 @@
 }
 .card .card-body {
   padding : 0;
-  height: 450px;
+}
+.btn.btn-raised.btn-danger.mr-1 {
+  margin-top: 65%;
+}
+form .form-actions{
+  border-top: 0;
 }

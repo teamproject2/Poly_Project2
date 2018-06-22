@@ -36,7 +36,8 @@ import { UserService } from './services/user.service';
 import { SanphamService } from './services/sanpham.service';
 import {HoadonService } from './services/hoadon.service';
 import { KichthuocService } from './services/kichthuoc.service';
-
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   // khai bao component
@@ -70,7 +71,9 @@ import { KichthuocService } from './services/kichthuoc.service';
     BrowserModule,
     AppRoutingModule,
     HttpModule,
-    FormsModule
+    FormsModule,
+    ToastModule.forRoot(),
+    BrowserAnimationsModule
   ],
   // Import services
   providers: [
