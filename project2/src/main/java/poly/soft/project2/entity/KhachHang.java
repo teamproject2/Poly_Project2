@@ -35,6 +35,9 @@ public class KhachHang implements Serializable{
 	@Column(name="EMAIL")
 	private String email;
 	
+	@Column(name="ID_ACCOUNT")
+	private String idAccount;
+	
 	@JsonIgnore
 	@OneToMany(mappedBy="khachHang",fetch= FetchType.LAZY)
 	private List<HoaDon> hoaDon;
@@ -86,6 +89,14 @@ public class KhachHang implements Serializable{
 
 	public void setHoaDon(List<HoaDon> hoaDon) {
 		this.hoaDon = hoaDon;
+	}
+
+	public String getIdAccount() {
+		return idAccount;
+	}
+
+	public void setIdAccount(String idAccount) {
+		this.idAccount = idAccount;
 	}
 	
 	

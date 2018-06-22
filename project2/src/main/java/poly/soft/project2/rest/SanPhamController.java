@@ -73,7 +73,7 @@ public class SanPhamController {
 	}
 
 	@RequestMapping(value = "/hangtrongkho/{id}", method = RequestMethod.PUT)
-	public void addSoLuongByKichThuoc(@PathVariable("id") int id, @RequestBody ArrayList<KTSoLuongDTO> list) {
+	public ResponseEntity<?> addSoLuongByKichThuoc(@PathVariable("id") int id, @RequestBody ArrayList<KTSoLuongDTO> list) {
 		SanPham sanPham = sanPhamService.findById(id);
 		List<HangTrongKho> listHTK = sanPham.getHangTrongKho();
 		List<HangTrongKho> listNew = new ArrayList<>();
@@ -113,6 +113,7 @@ public class SanPhamController {
 			htk.setKichThuoc(kichThuocService.findById(p.getKichThuocId()));
 			htk.setSoLuong(p.getSoLuong());
 			hangTrongKhoService.save(htk);
-		});			
+		});		
+		return new ResponseEntity<>("Cập nhật thành công!", HttpStatus.OK);
 	}
 }

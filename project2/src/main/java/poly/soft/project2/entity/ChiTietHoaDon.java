@@ -34,6 +34,9 @@ public class ChiTietHoaDon {
 	@Column(name = "TEN_KICH_THUOC")
 	private String tenKichThuoc;
 
+	@Column(name = "THANH_TIEN")
+	private double thanhTien;
+
 	public int getId() {
 		return id;
 	}
@@ -72,6 +75,14 @@ public class ChiTietHoaDon {
 
 	public void setTenKichThuoc(String tenKichThuoc) {
 		this.tenKichThuoc = tenKichThuoc;
+	}
+
+	public double getThanhTien() {
+		return thanhTien;
+	}
+
+	public void setThanhTien(double thanhTien) {
+		this.thanhTien = thanhTien;
 	}
 
 }

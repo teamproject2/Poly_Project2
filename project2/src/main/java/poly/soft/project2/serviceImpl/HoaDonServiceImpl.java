@@ -13,11 +13,16 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import poly.soft.project2.dto.ChiTietHoaDonDTO;
 import poly.soft.project2.dto.HoaDonAdminDTO;
+import poly.soft.project2.entity.ChiTietHoaDon;
 import poly.soft.project2.entity.HoaDon;
 import poly.soft.project2.enumeration.HDTrangThaiEnum;
 import poly.soft.project2.enumeration.ThanhToanEnum;
+import poly.soft.project2.repository.ChiTietHoaDonRepository;
 import poly.soft.project2.repository.HoaDonRepository;
+import poly.soft.project2.repository.KhachHangRepository;
+import poly.soft.project2.repository.SanPhamRepository;
 import poly.soft.project2.service.HoaDonService;
 
 @Service
@@ -28,6 +33,15 @@ public class HoaDonServiceImpl implements HoaDonService {
 
 	@Autowired
 	HoaDonRepository hoaDonRepository;
+	
+	@Autowired
+	KhachHangRepository khachHangRepository;
+	
+	@Autowired
+	SanPhamRepository sanPhamRepository;
+	
+	@Autowired
+	ChiTietHoaDonRepository chiTietHoaDonRepository;
 
 	@Override
 	public List<HoaDon> findAll() {
@@ -61,6 +75,7 @@ public class HoaDonServiceImpl implements HoaDonService {
 					break;
 				}
 			}
+			hd.setGhiChu(String.valueOf(arr[7]));
 			listHDAdmin.add(hd);
 		}
 		return listHDAdmin;
@@ -74,7 +89,6 @@ public class HoaDonServiceImpl implements HoaDonService {
 
 	@Override
 	public HoaDon save(HoaDon hoaDon) {
-
 		HoaDon hd = hoaDonRepository.save(hoaDon);
 		return hd;
 	}
@@ -94,6 +108,29 @@ public class HoaDonServiceImpl implements HoaDonService {
 	public HoaDon update(HoaDon hoaDon) {
 
 		return null;
+	}
+	
+	@Override
+	public void createHoaDon(String ghiChu, int idKhachHang, double tongTien, List<ChiTietHoaDonDTO> list) {
+		HoaDon hoaDon = new HoaDon();
+		Date date = new Date();
+		hoaDon.setNgay(date);
+		hoaDon.setThanhToan(ThanhToanEnum.TIỀN_MẶT);
+		hoaDon.setTrangThai(HDTrangThaiEnum.IN_PROGRESS);
+		hoaDon.setGhiChu(ghiChu);
+		hoaDon.setKhachHang(khachHangRepository.findById(idKhachHang).orElse(null));
+		hoaDon.setTongTien(tongTien);
+		HoaDon hd = hoaDonRepository.save(hoaDon);
+		
+		list.forEach(p -> {
+			ChiTietHoaDon cthd = new ChiTietHoaDon();
+			cthd.setSanPham(sanPhamRepository.findById(p.getSanPhamId()).orElse(null));
+			cthd.setSoLuong(p.getSoLuong());
+			cthd.setTenKichThuoc(p.getTenKichThuoc());
+			cthd.setThanhTien(p.getThanhTien());
+			cthd.setHoaDon(hd);
+			chiTietHoaDonRepository.save(cthd);
+		});
 	}
 
 }

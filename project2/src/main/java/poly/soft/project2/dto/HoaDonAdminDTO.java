@@ -9,6 +9,7 @@ public class HoaDonAdminDTO {
 	private String trangThai;
 	private double tongTien;
 	private String thanhToan;
+	private String ghiChu;
 
 	public int getId() {
 		return id;
@@ -64,6 +65,14 @@ public class HoaDonAdminDTO {
 
 	public void setThanhToan(String thanhToan) {
 		this.thanhToan = thanhToan;
+	}
+
+	public String getGhiChu() {
+		return ghiChu;
+	}
+
+	public void setGhiChu(String ghiChu) {
+		this.ghiChu = ghiChu;
 	}
 
 }

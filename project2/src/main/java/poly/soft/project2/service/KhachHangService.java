@@ -18,4 +18,6 @@ public interface KhachHangService {
 	KhachHang save(KhachHang khachHang);
 	
 	boolean delete(int id);
+
+	KhachHang findByIdAccountAndEmail(String idAccount, String email);
 }

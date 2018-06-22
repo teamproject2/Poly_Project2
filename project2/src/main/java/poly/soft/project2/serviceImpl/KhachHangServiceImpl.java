@@ -8,21 +8,27 @@ import org.springframework.stereotype.Service;
 import poly.soft.project2.entity.KhachHang;
 import poly.soft.project2.repository.KhachHangRepository;
 import poly.soft.project2.service.KhachHangService;
+
 @Service
 public class KhachHangServiceImpl implements KhachHangService {
-	
+
 	@Autowired
 	KhachHangRepository khachHangRepository;
-	
+
 	@Override
 	public List<KhachHang> findAll() {
-		
 		return khachHangRepository.findAll();
 	}
 
 	@Override
 	public KhachHang findById(int id) {
-		KhachHang khachHang= khachHangRepository.findById(id).get();
+		KhachHang khachHang = khachHangRepository.findById(id).orElse(null);
+		return khachHang;
+	}
+	
+	@Override
+	public KhachHang findByIdAccountAndEmail(String idAccount, String email) {
+		KhachHang khachHang = khachHangRepository.findByIdAccountAndEmail(idAccount, email);
 		return khachHang;
 	}
 
@@ -37,5 +43,5 @@ public class KhachHangServiceImpl implements KhachHangService {
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 }

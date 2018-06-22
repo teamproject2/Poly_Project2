@@ -48,8 +48,11 @@ export class SanphamService {
     return Observable.throw(error.statusText);
   }
 
-  saveHangTrongKho(id, list) : Observable<Response>{
+  saveHangTrongKho(id, list) : Observable<string>{
     let search = new URLSearchParams();
-    return this.http.put(this.API + "sanpham/hangtrongkho/" + id, list, {search});
+    return this.http.put(this.API + "sanpham/hangtrongkho/" + id, list, {search})
+    .map(response => {
+      return response.json();
+    });
   }
 }

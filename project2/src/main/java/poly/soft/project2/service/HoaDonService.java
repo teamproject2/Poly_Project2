@@ -4,6 +4,7 @@ package poly.soft.project2.service;
 import java.text.ParseException;
 import java.util.List;
 
+import poly.soft.project2.dto.ChiTietHoaDonDTO;
 import poly.soft.project2.dto.HoaDonAdminDTO;
 import poly.soft.project2.entity.HoaDon;
 
@@ -20,6 +21,8 @@ public interface HoaDonService {
 	HoaDon update(HoaDon hoaDon);
 	
 	boolean delete(int id);
+
+	void createHoaDon(String ghiChu, int idKhachHang, double tongTien, List<ChiTietHoaDonDTO> list);
 		
 	
 }
