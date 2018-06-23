@@ -38,6 +38,8 @@ import {HoadonService } from './services/hoadon.service';
 import { KichthuocService } from './services/kichthuoc.service';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoaigiayComponent } from './components/loaigiay/loaigiay.component';
+import { LoaigiayService } from './services/loaigiay.service';
 
 @NgModule({
   // khai bao component
@@ -64,7 +66,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TimelineComponent,
     UserprofileComponent,
     ChitietSanphamComponent,
-    ChitietkhohangComponent
+    ChitietkhohangComponent,
+    LoaigiayComponent
   ],
   // import thu vien
   imports: [
@@ -80,7 +83,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UserService,
     SanphamService,
     HoadonService,
-    KichthuocService
+    KichthuocService,
+    LoaigiayService
   ],
   bootstrap: [AppComponent]
 })
