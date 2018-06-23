@@ -34,19 +34,30 @@
           <!-- Invoice Customer Details -->
           <div id="invoice-customer-details" class="row pt-2">
             <div class="col-sm-12 text-left">
-              <p class="text-muted">Thông tin Khách hàng:</p>
+              <!-- <p class="text-muted">Thông tin Khách hàng:</p> -->
             </div>
             <div class="col-6 text-left" *ngIf="_detailInvoice.khachHang != null">
-              <ul class="px-0 list-unstyled">
-                <li class="text-bold-800">{{_detailInvoice.khachHang.tenKhachHang}}</li>
-                <li>Địa chỉ: {{_detailInvoice.khachHang.diaChi}}</li>
-              </ul>
-            </div>
-            <div class="col-6 text-right">
               <p>
-                <span class="text-muted">Trạng Thái :</span> {{_detailInvoice.trangThai}}</p>
+                <span class="text-muted">Tên Khách hàng :</span>{{_detailInvoice.khachHang.tenKhachHang}}</p>
+              <p>
+                <p>
+                  <span class="text-muted">Số điện thoại :</span>{{_detailInvoice.khachHang.soDienThoai}}</p>
+                <p>
+                  <p>
+                    <span class="text-muted">Địa chỉ :</span>{{_detailInvoice.khachHang.diaChi}}</p>
+                  <p>
+                    <p>
+                      <span class="text-muted">Email :</span>{{_detailInvoice.khachHang.email}}</p>
+                    <p>
+
+            </div>
+            <div class="col-6 text-right" *ngIf="_detailInvoice.nhanVien != null">
+              <p>
+                <span class="text-muted">Tên Nhân Viên :</span> {{_detailInvoice.nhanVien.tenNhanVien}}</p>
               <p>
                 <span class="text-muted">Ngày :</span>{{_detailInvoice.ngay}}</p>
+              <p>
+                <span class="text-muted">Trạng Thái :</span> {{_detailInvoice.trangThai}}</p>
             </div>
           </div>
           <!--/ Invoice Customer Details -->
@@ -80,47 +91,13 @@
                 </table>
               </div>
             </div>
-            <div class="row">
-              <div class="col-md-6 col-sm-12">
-                <p class="lead">Hóa đơn thanh toán</p>
-                <div class="table-responsive">
-                  <table class="table">
-                    <tbody>
-                      <tr>
-                        <td>Tổng tiền sản phẩm</td>
-                        <td class="text-right">{{_sumMoney}}</td>
-                      </tr>
-                      <tr>
-                        <td>Chiết khấu (12%)</td>
-                        <td class="text-right">$ 1,788.00</td>
-                      </tr>
-                      <tr>
-                        <td class="text-bold-800">Tổng tiền thanh toán</td>
-                        <td class="text-bold-800 text-right"> $ 16,688.00</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div class="text-center">
-                  <p>Kí Tên</p>
-                  <img src="../assets/app-assets/img/pages/signature-scan.png" alt="signature" class="width-250">
-                  <h6>Amanda Orton</h6>
-                  <p class="text-muted">Managing Director</p>
-                </div>
-              </div>
-            </div>
           </div>
           <!-- Invoice Footer -->
           <div id="invoice-footer">
             <div class="row">
-              <div class="col-md-9 col-sm-12">
-                <h6>Lưu ý:</h6>
-                <p>You know, being a test pilot isn't always the healthiest business in the world. We predict too much for the
-                  next year and yet far too little for the next 10.</p>
-              </div>
               <div class="col-md-3 col-sm-12 text-center">
-                <button type="button" class="btn btn-primary btn-raised my-1">
-                  <i class="fa fa-paper-plane-o"></i> Gửi hóa đơn</button>
+                <button type="button" class="btn btn-primary btn-raised my-1" routerLink="/hoadon">
+                  <i class="ft-corner-up-left"></i> Quay lại</button>
               </div>
             </div>
           </div>

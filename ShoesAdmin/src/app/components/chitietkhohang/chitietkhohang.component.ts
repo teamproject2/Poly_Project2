@@ -115,7 +115,6 @@ export class ChitietkhohangComponent implements OnInit {
     this.sanphamService.saveHangTrongKho(this.id, this.listSizeOfProductData)
       .subscribe(
         res => {
-          console.log(res);
           this.toastr.success('Saved success!');
         }
         , error => console.log(error)
