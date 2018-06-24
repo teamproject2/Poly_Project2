@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges, OnDestroy, OnChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 import { HttpHeaders } from '@angular/common/http';
 import "rxjs/Rx";
 // jquyery phan trang
 declare var jquery:any;
-declare var $ :any;
+declare var $:any;
 //Models
 import { Sanpham } from '../.././models/sanpham';
 // services
@@ -28,15 +28,18 @@ export class TableSanphamComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // load phan trang
+  this.showDataTable();    
+    this.loadData();
+    // console.log(this.activatedRoute.snapshot.params['id']);
+  }
+
+  showDataTable(){
     $(document).ready(function() {
 			$('#table_sp').DataTable();
     } );
-    
-    this.loadData();
-    // console.log(this.activatedRoute.snapshot.params['id']);
-    
   }
+
+
   // Load san pham
   loadData(){
     this.sanphamServices.getAllSanPham().subscribe(data =>{
@@ -47,6 +50,7 @@ export class TableSanphamComponent implements OnInit {
       console.log(error);
     });
   }
+
   //
 
   // navigate(url: string){

@@ -28,11 +28,15 @@ export class TableNhanvienComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.loadData();
+		this.showDataTable();
+	}
+// Load all staff
+
+	showDataTable(){
 		$(document).ready(function() {
 			$('#table_nv').DataTable();
 		} );
 	}
-// Load all staff
 	loadData() {
 		this.nhanvienService.getAllNhanvien().subscribe(data => {
 			// console.log(data);

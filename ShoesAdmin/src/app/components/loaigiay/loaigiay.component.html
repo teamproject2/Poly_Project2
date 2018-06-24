@@ -1,55 +1,83 @@
 <div class="content-wrapper">
-  <!--Extended Table starts-->
-  <div class="row">
-      <div class="col-12">
-          <div class="content-header">THÔNG TIN LOẠI GIÀY</div>
-      </div>
-  </div>
-  <section id="extended">
-      <div class="row">
-          <div class="col-sm-12">
-              <div class="card">
-                  <div class="card-header">
-                      <h4 class="card-title">LOẠI GIÀY</h4>
-                  </div>
-                  <div class="card-body">
-                      <div class="card-block">
-                            <div class="mb-3"> 
-                            <a  class="btn btn-raised gradient-pomegranate white"[routerLink]= "['']">
-                                        Thêm mới
-                                    </a> 
-                                </div>
-                          <table id="table_sp" class="table table-responsive-md-md text-center">
-                              <thead>
-                                  <tr>
-                                      <th>Mã Giày</th>
-                                      <th>Tên Loại Giày</th>
-                                      <th>Chức năng</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                  <tr *ngFor= "let giay of list_giay" >
-                                      <td style="vertical-align: middle">{{giay.id}}</td>
-                                      <td style="vertical-align: middle">{{giay.tenLoai}}</td>
-                                      <td style="vertical-align: middle" routerLinkActive="active">
-                                          <a class="info p-0" data-original-title="" title="Chi tiết" 
-                                        routerLink="">
-                                              <i class="ft-list font-medium-3 mr-2"></i>
-                                          </a>
-                                          <a class="success p-0" data-original-title="" title="Cập nhật" >
-                                              <i class="ft-edit-2 font-medium-3 mr-2"></i>
-                                          </a>
-                                          <a class="danger p-0" data-original-title="" title="Xóa" id="confirm-cancel">
-                                              <i class="ft-x font-medium-3 mr-2"></i>
-                                          </a>
-                                      </td>
-                                  </tr>
-                              </tbody>
-                          </table>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </section>
+    <!--Extended Table starts-->
+    <div class="row">
+        <div class="col-12">
+            <div class="content-header">THÔNG TIN LOẠI GIÀY</div>
+        </div>
+    </div>
+    <section id="extended">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">LOẠI GIÀY</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-block">
+                            <div class="mb-3">
+                            </div>
+                            <table id="table_sp" class="table table-responsive-md-md text-center">
+                                <thead>
+                                    <tr>
+                                        <th>Mã Giày</th>
+                                        <th>Tên Loại Giày</th>
+                                        <th>Chức năng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let giay of list_giay">
+                                        <td style="vertical-align: middle">{{giay.id}}</td>
+                                        <td style="vertical-align: middle">{{giay.tenLoai}}</td>
+                                        <td style="vertical-align: middle" routerLinkActive="active">
+                                            <a class="success p-0" data-original-title="" title="Cập nhật" data-toggle="modal" (click)="showModal()">
+                                                <i class="ft-edit-2 font-medium-3 mr-2"></i>
+                                            </a>
+                                            <a class="info p-0" data-original-title="" title="Thêm mới" data-toggle="modal" (click)="showModal()">
+                                                    <i class="ft-plus-square"></i>
+                                                </a>
+                                            <a class="danger p-0" data-original-title="" title="Xóa" id="confirm-cancel">
+                                                <i class="ft-x font-medium-3 mr-2"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL -->
+    <div class="modal-wrapper" (click)="removeModal()"></div>
+
+    <div class="modal1">
+        <div class="modal-header">
+            <label class="modal-title text-text-bold-600 title">Thông tin loại giày</label>
+            <button (click)="removeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form action="#">
+            <div>
+                <label class="title">Mã giày: </label>
+                <div class="form-group">
+                    <input type="text" class="form-control" readonly>
+                </div>
+                <label class="title">Loại giày: </label>
+                <div class="form-group">
+                    <input type="text" class="form-control">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <button type="button" class="btn btn-raised btn-raised btn-warning but1">
+                        <i class="fa fa-check-square-o"></i> Lưu
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- MODAL -->
 </div>
