@@ -6,11 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import poly.soft.project2.entity.KhachHang;
 import poly.soft.project2.entity.LoaiGiay;
+import poly.soft.project2.entity.NhanVien;
 import poly.soft.project2.service.LoaiGiayService;
 
 @RestController
@@ -25,4 +28,25 @@ public class LoaiGiayController {
 	public ResponseEntity<?> getListLoaiGiay(){
 		return new ResponseEntity<List<LoaiGiay>>(loaiGiayService.getLoaiGiay(), HttpStatus.OK);
 	}
+	@RequestMapping(method= RequestMethod.POST )
+	public ResponseEntity<?> saveLoaiGiay(@RequestBody LoaiGiay loaiGiay) {
+		try {
+			LoaiGiay loaigiay = loaiGiayService.save(loaiGiay); 
+			return new ResponseEntity<LoaiGiay>(loaigiay,HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+	}
+	@RequestMapping(method = RequestMethod.PUT)
+	public ResponseEntity<?> updateLoaiGiay(@RequestBody LoaiGiay loaiGiay) {
+		try {
+			LoaiGiay loaigiay = loaiGiayService.save(loaiGiay);
+			return new ResponseEntity<LoaiGiay>(loaigiay, HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+
+	}
+
 }

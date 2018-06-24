@@ -28,8 +28,8 @@ public class LoaiGiayServiceImpl implements LoaiGiayService {
 
 	@Override
 	public LoaiGiay save(LoaiGiay loaiGiay) {
-		// TODO Auto-generated method stub
-		return null;
+		LoaiGiay  loaigiay= loaiGiayRepository.save(loaiGiay);
+		return loaigiay;
 	}
 
 	@Override
