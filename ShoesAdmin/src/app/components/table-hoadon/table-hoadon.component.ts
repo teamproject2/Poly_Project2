@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy,SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 import { HttpHeaders } from '@angular/common/http';
@@ -16,7 +16,7 @@ import { HoadonService } from '../../services/hoadon.service';
   templateUrl: './table-hoadon.component.html',
   styleUrls: ['./table-hoadon.component.css']
 })
-export class TableHoadonComponent implements OnInit, OnDestroy, OnChanges {
+export class TableHoadonComponent implements OnInit, OnDestroy{
   public list_hd: Hoadon[] = [];
   public subscription: Subscription;
   constructor(
@@ -25,36 +25,31 @@ export class TableHoadonComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit() {
     // load phan trang
-    //  this.showDataTable();
     this.loadData();
 
   }
-  // Load all Hoa don
-
+  
+    // Phan trang
   showDataTable() {
     $(document).ready(function () {
       $('#table_hd').DataTable();
     });
   }
+  // Load all Hoa don
   loadData() {
     this.hoadonServices.getAllSP_HD().subscribe(data => {
       console.log(data);
       this.list_hd = data;
-      $(document).ready(function () {
-        $('#table_hd').DataTable();
-      });
+      this.showDataTable();
     },
       error => {
         console.log(error);
       });
   }
   //
-  ngOnChanges(changes: SimpleChanges) {
-    this.showDataTable();
-  }
 
   ngOnDestroy() {
-    // this.showDataTable();
+
   }
 
 }

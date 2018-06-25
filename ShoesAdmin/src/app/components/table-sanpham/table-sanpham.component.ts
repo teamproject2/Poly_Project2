@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { HttpHeaders } from '@angular/common/http';
 import "rxjs/Rx";
 // jquyery phan trang
-declare var jquery:any;
-declare var $:any;
+declare var jquery: any;
+declare var $: any;
 //Models
 import { Sanpham } from '../.././models/sanpham';
 // services
@@ -17,40 +17,36 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./table-sanpham.component.css']
 })
 export class TableSanphamComponent implements OnInit {
-   
+
   public list_sp: Sanpham[] = [];
   public subscription: Subscription;
   constructor(
     private sanphamServices: SanphamService,
     public routerService: Router,
     public activatedRoute: ActivatedRoute
-    
+
   ) { }
 
   ngOnInit() {
-  // this.showDataTable();    
+
     this.loadData();
   }
-
-  showDataTable(){
-    $(document).ready(function() {
-			$('#table_sp').DataTable();
-    } );
-  }
-
-  // Load san pham
-  loadData(){
-    this.sanphamServices.getAllSanPham().subscribe(data =>{
-      console.log(data);
-      this.list_sp = data;
-      $(document).ready(function() {
-        $('#table_sp').DataTable();
-      } );
-    },
-    error => {
-      console.log(error);
+  // Phan trang
+  showDataTable() {
+    $(document).ready(function () {
+      $('#table_sp').DataTable();
     });
   }
 
-  
+  // Load san pham
+  loadData() {
+    this.sanphamServices.getAllSanPham().subscribe(data => {
+      this.list_sp = data;
+      this.showDataTable();
+    },
+      error => {
+        console.log(error);
+      });
+  }
+
 }

@@ -3,7 +3,7 @@ import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 import { HttpHeaders } from '@angular/common/http';
 import "rxjs/Rx";
-// jquyery phan trang
+// jquery phan trang
 declare var jquery: any;
 declare var $: any;
 //Models
@@ -19,31 +19,26 @@ export class TableNhanvienComponent implements OnInit, OnDestroy {
 
 	public list_nv: Nhanvien[] = [];
 	public subscription: Subscription;
-	// a: any;
 	constructor(
-		// private nhanvienService : NhanvienService
 		private nhanvienService: UserService
 
 	) { }
 
 	ngOnInit() {
 		this.loadData();
-		// this.showDataTable();
 	}
-	// Load all staff
 
+	// Phan Trang
 	showDataTable() {
 		$(document).ready(function () {
 			$('#table_nv').DataTable();
 		});
 	}
+	// Load all staff
 	loadData() {
 		this.nhanvienService.getAllNhanvien().subscribe(data => {
-			// console.log(data);
 			this.list_nv = data;
-			$(document).ready(function () {
-				$('#table_nv').DataTable();
-			});
+			this.showDataTable();
 		}, error => {
 			console.log(error);
 		});

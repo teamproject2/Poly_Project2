@@ -25,15 +25,18 @@ export class TableKhachhangComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.loadData();
-    // Phan trang
-    $(document).ready(function() {
-      $('#table_kh').DataTable();
-  } );
   }
+  // phân trang
+  showDataTable() {
+		$(document).ready(function () {
+			$('#table_kh').DataTable();
+		});
+	}
 // Load all Customer
   loadData() {
 		this.khachhangService.getAllKhachhang().subscribe(data => {
-			this.list_kh = data;
+      this.list_kh = data;
+      this.showDataTable();
 		}, error => {
 			console.log(error);
 		});
