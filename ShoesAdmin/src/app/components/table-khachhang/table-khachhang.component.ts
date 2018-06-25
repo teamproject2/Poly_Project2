@@ -33,7 +33,6 @@ export class TableKhachhangComponent implements OnInit, OnDestroy {
 // Load all Customer
   loadData() {
 		this.khachhangService.getAllKhachhang().subscribe(data => {
-			// console.log(data);
 			this.list_kh = data;
 		}, error => {
 			console.log(error);

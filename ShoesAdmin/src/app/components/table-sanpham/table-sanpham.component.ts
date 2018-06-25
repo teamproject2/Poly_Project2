@@ -28,9 +28,8 @@ export class TableSanphamComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-  this.showDataTable();    
+  // this.showDataTable();    
     this.loadData();
-    // console.log(this.activatedRoute.snapshot.params['id']);
   }
 
   showDataTable(){
@@ -39,22 +38,19 @@ export class TableSanphamComponent implements OnInit {
     } );
   }
 
-
   // Load san pham
   loadData(){
     this.sanphamServices.getAllSanPham().subscribe(data =>{
       console.log(data);
-      this.list_sp = data
+      this.list_sp = data;
+      $(document).ready(function() {
+        $('#table_sp').DataTable();
+      } );
     },
     error => {
       console.log(error);
     });
   }
 
-  //
-
-  // navigate(url: string){
-  //   this.routerService.navigateByUrl(url);
-  //   console.log(url);
-  // }
+  
 }

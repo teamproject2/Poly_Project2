@@ -4,8 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { HttpHeaders } from '@angular/common/http';
 import "rxjs/Rx";
 // jquyery phan trang
-declare var jquery:any;
-declare var $ :any;
+declare var jquery: any;
+declare var $: any;
 //Models
 import { Nhanvien } from '../.././models/nhanvien';
 // services
@@ -28,19 +28,22 @@ export class TableNhanvienComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.loadData();
-		this.showDataTable();
+		// this.showDataTable();
 	}
-// Load all staff
+	// Load all staff
 
-	showDataTable(){
-		$(document).ready(function() {
+	showDataTable() {
+		$(document).ready(function () {
 			$('#table_nv').DataTable();
-		} );
+		});
 	}
 	loadData() {
 		this.nhanvienService.getAllNhanvien().subscribe(data => {
 			// console.log(data);
 			this.list_nv = data;
+			$(document).ready(function () {
+				$('#table_nv').DataTable();
+			});
 		}, error => {
 			console.log(error);
 		});
