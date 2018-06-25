@@ -1,11 +1,13 @@
 import { Injectable } from "@angular/core";
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase/app';
+import { Observable } from "rxjs";
+import { Http } from "@angular/http";
 
 @Injectable()
 export class AuthService {
-
-    constructor(public afAuth: AngularFireAuth) { }
+    private _apiUrl = "http://localhost:9099/";
+    constructor(public afAuth: AngularFireAuth, private http: Http) { }
 
     doFacebookLogin() {
         return new Promise<any>((resolve, reject) => {
@@ -36,5 +38,12 @@ export class AuthService {
         })
     }
 
-
+    checkKhachHang(option: any): Observable<any> {
+        console.log(option);
+        return this.http
+            .get(this._apiUrl + "khachhang/findKhachHang", option)
+            .map(response => {
+                return response.json();
+              });
+    }
 }

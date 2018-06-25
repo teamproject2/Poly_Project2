@@ -8,10 +8,14 @@
     <div class="menu-list">
 
       <div class="loginBtn text-center">
-        <a class="btn btn-primary fb">Đăng nhập bằng <i class="fab fa-facebook-f"></i></a>
-        <a class="btn btn-danger gg">Đăng nhập bằng <i class="fab fa-google"></i></a>
+        <a class="btn btn-primary fb">Đăng nhập bằng
+          <i class="fab fa-facebook-f"></i>
+        </a>
+        <a class="btn btn-danger gg">Đăng nhập bằng
+          <i class="fab fa-google"></i>
+        </a>
       </div>
-      
+
       <ul id="menu-content" class="menu-content collapse out">
         <li class="home-menu" (click)="getProductByCate(loai.tenLoai)" *ngFor="let loai of _loaigiayArray">
           <span class="icons">
@@ -106,59 +110,73 @@
       <div class="row h-100">
         <div class="col-12 d-md-flex justify-content-between">
           <!-- Header Social Area -->
-          <div class="header-social-area">
-            <a href="#">
-              <span class="karl-level">New</span>
-              <i class="fab fa-pinterest-p" aria-hidden="true"></i>
-            </a>
-            <a href="#">
-              <i class="fab fa-facebook-f" aria-hidden="true"></i>
-            </a>
-            <a href="#">
-              <i class="fab fa-twitter" aria-hidden="true"></i>
-            </a>
-            <a href="#">
-              <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-            </a>
-          </div>
-          <!-- Menu Area -->
-          <div class="main-menu-area">
-            <nav class="navbar navbar-expand-lg align-items-start">
 
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#karl-navbar" aria-controls="karl-navbar"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon">
-                  <i class="ti-menu"></i>
-                </span>
-              </button>
-
-              <div class="collapse navbar-collapse align-items-start collapse" id="karl-navbar">
-                <ul class="navbar-nav animated" id="nav">
-                  <li class="nav-item active">
-                    <a class="nav-link" routerLink="/home">Trang chủ</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link">Giới thiệu</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" routerLink="/home/products">Sản phẩm</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" routerLink="/home/account">Tài khoản</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Liên Hệ</a>
-                  </li>
-                </ul>
+          <div class="row">
+            <div class="col-md-12">
+              <!-- Help Line -->
+              <div class="help-line">
+                <a href="tel:+346573556778">
+                  <i class="ti-headphone-alt"></i> +84 090 3556 778</a>
               </div>
-            </nav>
+            </div>
           </div>
-          <!-- Help Line -->
-          <div class="help-line">
-            <a href="tel:+346573556778">
-              <i class="ti-headphone-alt"></i> +84 090 3556 778</a>
-              <!-- <img src="" alt=""> -->
+
+          <div class="row">
+            <div class="col-md-12">
+              <!-- Menu Area -->
+              <div class="main-menu-area">
+                <nav class="navbar navbar-expand-lg align-items-start">
+
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#karl-navbar" aria-controls="karl-navbar"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon">
+                      <i class="ti-menu"></i>
+                    </span>
+                  </button>
+                  <div class="collapse navbar-collapse align-items-start collapse" id="karl-navbar">
+                    <ul class="navbar-nav animated" id="nav">
+                      <li class="nav-item active">
+                        <a class="nav-link" routerLink="/home">Trang chủ</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link">Giới thiệu</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" routerLink="/home/products">Sản phẩm</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" routerLink="/home/account">Tài khoản</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">Liên Hệ</a>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
+              </div>
+            </div>
           </div>
+
+
+
+          <div class="row row-avatar">
+            <div class="col-md-8">
+              <div class="customer">
+                <span *ngIf="_infoFB[0]!=null">
+                  <p class="name">Hello, {{_infoFB[0].name}}</p>
+                </span>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <span *ngIf="_infoFB[0]!=null">
+                <img class="avatar" src="{{_infoFB[0].image}}" alt="Customer avatar">
+              </span>
+            </div>
+          </div>
+
+
+
         </div>
       </div>
     </div>

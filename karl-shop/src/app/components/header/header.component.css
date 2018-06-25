@@ -15,5 +15,20 @@ i.fa-facebook-f, i.fa-google {
     color: #fff;
   }
 
+p.name {
+    font-size: 11px;
+    font-weight: 700;
+    color: #000;
+    display: inline;
+}
+
+img.avatar {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;  
+}
+.row-avatar{
+    padding-top: 5px;
+}
 
 

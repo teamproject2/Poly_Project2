@@ -17,7 +17,7 @@
                   <span>*</span>
                 </label>
                 <em *ngIf="name.invalid && name.dirty">Required</em>
-                <input formControlName="name" type="text" placeholder="Nguyễn Thị Ngọc Trinh" class="form-control" id="first_name" value=""
+                <input formControlName="name" type="text" placeholder="Nguyễn Thị Ngọc Trinh" class="form-control" id="first_name" value="{{customer.tenKhachHang}}"
                   required>
               </div>
 
@@ -26,7 +26,7 @@
                   <span>*</span>
                 </label>
                 <em *ngIf="phoneNumber.invalid && phoneNumber.dirty">Required</em>
-                <input formControlName="phoneNumber" placeholder="0987 654 321" class="form-control" id="phone_number" min="0" value="">
+                <input formControlName="phoneNumber" placeholder="0987 654 321" class="form-control" id="phone_number" min="0" value="{{customer.soDienThoai}}">
               </div>
 
               <div class="col-12 mb-3 form-group" [ngClass]="{'error': address.invalid && address.dirty}">
@@ -35,7 +35,7 @@
                 </label>
                 <em *ngIf="address.invalid && address.dirty">Required</em>
                 <input formControlName="address" type="text" placeholder="111 Nam Kỳ Khởi Nghĩa" class="form-control mb-3" id="street_address"
-                  value="">
+                value="{{customer.diaChi}}">
               </div>
 
               <div class="col-12 mb-4 form-group" [ngClass]="{'error': email.invalid && email.dirty}">
@@ -43,7 +43,7 @@
                   <span>*</span>
                 </label>
                 <em *ngIf="email.invalid && email.dirty">Required</em>
-                <input formControlName="email" type="email" placeholder="ngoctrinhnt@gmail.com" class="form-control" id="email_address" value="">
+                <input formControlName="email" type="email" placeholder="ngoctrinhnt@gmail.com" class="form-control" id="email_address" value="{{customer.email}}">
               </div>
 
               <div class="col-12 mb-4 form-group">

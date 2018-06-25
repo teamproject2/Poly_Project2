@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, FormControl, Validators, FormGroup } from '@angular/forms';
 import { ToastrService } from '../../services/toastr.service';
 import { ProductSelected } from '../../entity/product-selected-cart';
+import { Customer } from '../../entity/customer';
 
 @Component({
   selector: 'app-checkout',
@@ -12,6 +13,12 @@ export class CheckoutComponent implements OnInit {
 
   _productInCart:     ProductSelected[] = [];
   _sumOfMoney:        number = 0;
+  customer:           Customer = {id: 0,
+    tenKhachHang: '',
+    diaChi: '',
+    soDienThoai: '',
+    email: '',
+    idAccount:''};
 
   checkoutForm: FormGroup;
   phoneNumber:  FormControl;
@@ -25,6 +32,7 @@ export class CheckoutComponent implements OnInit {
   emailPattern  = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
   constructor(private toastrService: ToastrService) {
+    
     this.name = new FormControl('', [Validators.required, Validators.pattern(this.namePattern)]);
     this.phoneNumber = new FormControl('', [Validators.required, Validators.pattern(this.phonePattern)]);
     this.address = new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]);
@@ -42,8 +50,13 @@ export class CheckoutComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.customer = JSON.parse(sessionStorage.customer);
+      console.log("aaaaa " + JSON.parse(sessionStorage.customer));
+      
     if (sessionStorage.productInCart !== null) {
       this._productInCart = JSON.parse(sessionStorage.productInCart);
+      
+      
       this._productInCart.forEach(p => {
         this._sumOfMoney += p.donGia * (1 - p.chietKhau) * p.soLuong;
       })

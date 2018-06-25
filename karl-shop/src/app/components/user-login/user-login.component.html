@@ -13,7 +13,7 @@
 
       </div>
 
-      <mat-form-field>
+      <!-- <mat-form-field>
         <input matInput placeholder="Email" [formControl]="email" required>
         <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
@@ -24,36 +24,40 @@
       <div class="button-row">
         <button mat-raised-button color="primary" class="btnLogin">Đăng nhập</button>
       </div>
-      <small (click)="forgotPassword()">Quên mật khẩu ?</small>
+      <small (click)="forgotPassword()">Quên mật khẩu ?</small> -->
     </div>
   </mat-tab>
 
   <mat-tab label="Đăng ký">
+    <form [formGroup]="regisForm" (ngSubmit)="saveNewCustomer(regisForm.value)">
+      <div class="example-container">
+        <mat-form-field>
+          <input matInput placeholder="Email" [formControl]="email" value="{{newCustomer.email}}">
+          <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+        </mat-form-field>
 
-    <!-- <div class="example-container">
-      <mat-form-field>
-        <input matInput placeholder="Email" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Name" [formControl]="tenKhachHang" value="{{newCustomer.tenKhachHang}}">
+        </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Mật khẩu" [type]="hide ? 'password' : 'text'">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Phone" [formControl]="soDienThoai" value="{{newCustomer.soDienThoai}}" required>
+        </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Xác nhận mật khẩu" [type]="hide ? 'password' : 'text'">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Adress" [formControl]="diaChi" value="{{newCustomer.diaChi}}" required>
+        </mat-form-field>
 
-      <section class="example-section">
-        <mat-checkbox class="example-margin">Tôi đồng ý với điều khoản và dịch vụ</mat-checkbox>
-        <div class="button-row">
-          <button mat-raised-button color="primary" class="btnLogin">Đăng ký</button>
-        </div>
-        <small>Đã có tài khoản</small>
-      </section>
-    </div> -->
+        <section class="example-section">
+          <div class="button-row">
+            <button mat-raised-button color="primary" type="submit" class="btnLogin">Đăng ký</button>
+          </div>
+          <small>Đã có tài khoản</small>
+        </section>
+
+      </div>
+
+    </form>
 
   </mat-tab>
 </mat-tab-group>
