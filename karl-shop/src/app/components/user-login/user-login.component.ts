@@ -1,4 +1,4 @@
-import { Component, OnInit, Output} from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormControl, Validators, ReactiveFormsModule, FormGroup } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from '../../services/toastr.service';
@@ -44,8 +44,7 @@ export class UserLoginComponent implements OnInit {
 
   constructor(private router: Router, private toastrService: ToastrService,
     private authService: AuthService, private sharedService: SharedService,
-    private customerService: CustomerService,
-    private route: ActivatedRoute) {
+    private customerService: CustomerService) {
 
     this.regisForm = new FormGroup({
       tenKhachHang: this.tenKhachHang,
@@ -59,12 +58,12 @@ export class UserLoginComponent implements OnInit {
 
 
   ngOnInit() {
-
     if (sessionStorage.customer != null) {
       this.newCustomer = JSON.parse(sessionStorage.customer);
     }
 
   }
+
 
   saveNewCustomer(customer) {
     this.newCustomer.soDienThoai = customer.soDienThoai;
