@@ -1,35 +1,7 @@
 <mat-tab-group>
 
-  <mat-tab label="Đăng nhập">
-    <div class="example-container">
-
-      <div class="button-row">
-        <button mat-raised-button color="primary" (click)="signInWithFB()">Đăng nhập Facebook
-          <i class="fab fa-facebook-f"></i>
-        </button>
-        <button mat-raised-button color="warn" (click)="signInWithGoogle()">Đăng nhập Google
-          <i class="fab fa-google"></i>
-        </button>
-
-      </div>
-
-      <!-- <mat-form-field>
-        <input matInput placeholder="Email" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Mật khẩu" [type]="hide ? 'password' : 'text'">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-      </mat-form-field>
-      <div class="button-row">
-        <button mat-raised-button color="primary" class="btnLogin">Đăng nhập</button>
-      </div>
-      <small (click)="forgotPassword()">Quên mật khẩu ?</small> -->
-    </div>
-  </mat-tab>
-
   <mat-tab label="Đăng ký">
-    <form [formGroup]="regisForm" (ngSubmit)="saveNewCustomer(regisForm.value)">
+    <form [formGroup]="regisForm" (ngSubmit)="saveNewCustomer(regisForm.value)" class="regis">
       <div class="example-container">
         <mat-form-field>
           <input matInput placeholder="Email" [formControl]="email" value="{{newCustomer.email}}">
@@ -60,4 +32,33 @@
     </form>
 
   </mat-tab>
+  
+  <mat-tab label="Đăng nhập">
+    <div class="example-container">
+
+      <div class="button-row">
+        <button mat-raised-button color="primary" (click)="signInWithFB()">Đăng nhập Facebook
+          <i class="fab fa-facebook-f"></i>
+        </button>
+        <button mat-raised-button color="warn" (click)="signInWithGoogle()">Đăng nhập Google
+          <i class="fab fa-google"></i>
+        </button>
+
+      </div>
+
+      <!-- <mat-form-field>
+        <input matInput placeholder="Email" [formControl]="email" required>
+        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Mật khẩu" [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </mat-form-field>
+      <div class="button-row">
+        <button mat-raised-button color="primary" class="btnLogin">Đăng nhập</button>
+      </div>
+      <small (click)="forgotPassword()">Quên mật khẩu ?</small> -->
+    </div>
+  </mat-tab>
+
 </mat-tab-group>

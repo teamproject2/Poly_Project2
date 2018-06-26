@@ -11,7 +11,7 @@
         <div class="shop_grid_product_area">
           <div class="row">
 
-            <div *ngFor="let pro of _productArray | paginate: { itemsPerPage: 9, currentPage: p}" class="col-12 col-sm-6 col-lg-4 single_gallery_item wow fadeInUpBig card-deck"
+            <div *ngFor="let pro of _productArray | paginate: { itemsPerPage: 9, currentPage: p}" class="col-12 col-sm-4 single_gallery_item wow fadeInUpBig card-deck"
               data-wow-delay="0.2s">
               <div class="card">
                 <div class="product-img" (click)="getDetailModal(pro)">

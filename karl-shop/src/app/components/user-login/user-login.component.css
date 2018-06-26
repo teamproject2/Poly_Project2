@@ -35,3 +35,9 @@ small:hover{
 section.example-section {
   margin-top: 20px;
 }
+
+form.regis {
+  width: 60%;
+  margin-left: 20%;
+  padding: 20px 0;
+}

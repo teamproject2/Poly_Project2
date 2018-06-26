@@ -4,24 +4,19 @@ a.nav-link {
 a.nav-link:hover {
     color: #ff084e;
 }
-.btn.fb, .btn.gg {
-    width: 200px;
-    margin-bottom: 5px;
+a.ff, a.gg {
+    font-size: 14px;
 }
-.loginBtn {
-    padding-top: 10px;
-}
-i.fa-facebook-f, i.fa-google {
-    color: #fff;
-  }
-
 p.name {
     font-size: 11px;
     font-weight: 700;
     color: #000;
     display: inline;
 }
-
+.row.login-row {
+    padding-top: 15px;
+    padding-right: 15px;
+}
 img.avatar {
     border-radius: 50%;
     width: 40px;
@@ -31,4 +26,9 @@ img.avatar {
     padding-top: 5px;
 }
 
-
+a.btn.btn-primary.ff, a.btn.gg {
+    color: #fff;
+}
+.cart:hover a#header-cart-btn {
+    color: #ff084e;
+}

@@ -68,7 +68,7 @@
             <a class="continue" routerLink="/home/products" (click)="goShopping()">Tiếp tục mua sắm</a>
           </div>
           <div class="update-checkout w-50 text-right">
-            <a (click) = "cancelAllProducts()" class="destroy">Hủy đơn hàng</a>
+            <a (click)="cancelAllProducts()" class="destroy">Hủy đơn hàng</a>
             <!-- <a class="cart-submit" (click)="updateCart()">Cập nhật đơn hàng</a> -->
           </div>
         </div>
@@ -106,14 +106,34 @@
               </span>
             </li>
           </ul>
-          <a routerLink="/home/checkout" class="btn karl-checkout-btn" (click)="getAllProductInCart()">Tiến hành thanh toán</a>
+          <a class="btn karl-checkout-btn" (click)="getAllProductInCart()">Tiến hành thanh toán</a>
         </div>
       </div>
 
     </div>
 
   </div>
+
+  <div class="modal-login">
+    <div class="modal-content">
+      <div class="row row-title">
+        <div class="col-sm-12 text-center col-title">
+          <span>Đăng nhập</span>
+        </div>
+      </div>
+      <div class="row modal-row">
+        <div class="col-sm-12 text-center">
+          <a class="btn btn-primary ff" (click)="signInWithFB()">Đăng nhập
+            <i class="fab fa-facebook-f icon"></i>
+          </a>
+          <a class="btn btn-danger gg" (click)="signInWithGoogle()">Đăng nhập
+            <i class="fab fa-google icon"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
 </div>
-
-<!-- ****** Cart Area End ****** -->
-

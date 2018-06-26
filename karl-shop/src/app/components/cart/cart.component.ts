@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductSelected } from '../../entity/product-selected-cart';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -10,7 +11,7 @@ export class CartComponent implements OnInit {
   _productInCart: ProductSelected[] = [];
   _sumOfMoney: number = 0;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     if (sessionStorage.productInCart !== null) {
@@ -71,7 +72,7 @@ export class CartComponent implements OnInit {
     this._productInCart.forEach(p => {
       this._sumOfMoney += p.donGia * (1 - p.chietKhau) * p.soLuong;
     })
-    console.log('all products' + JSON.stringify(this._productInCart));
+    // console.log('all products' + JSON.stringify(this._productInCart));
   }
 
   goShopping() {

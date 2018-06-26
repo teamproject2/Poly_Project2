@@ -7,14 +7,14 @@
   <div class="nav-side-menu">
     <div class="menu-list">
 
-      <div class="loginBtn text-center">
+      <!-- <div class="loginBtn text-center">
         <a class="btn btn-primary fb">Đăng nhập bằng
           <i class="fab fa-facebook-f"></i>
         </a>
         <a class="btn btn-danger gg">Đăng nhập bằng
           <i class="fab fa-google"></i>
         </a>
-      </div>
+      </div> -->
 
       <ul id="menu-content" class="menu-content collapse out">
         <li class="home-menu" (click)="getProductByCate(loai.tenLoai)" *ngFor="let loai of _loaigiayArray">
@@ -28,6 +28,14 @@
 
 <!-- ****** Header Area Start ****** -->
 <header class="header_area">
+
+  <div class="row login-row">
+    <div class="col-md-12 text-right">
+      <a class="btn btn-primary ff" (click)="signInWithFB()">Đăng nhập <i class="fab fa-facebook-f icon"></i></a>
+      <a class="btn btn-danger gg" (click)="signInWithGoogle()">Đăng nhập <i class="fab fa-google icon"></i></a>
+    </div>
+  </div>
+
   <!-- Top Header Area Start -->
   <div class="top_header_area">
     <div class="container h-100">
@@ -48,8 +56,7 @@
                 <a id="header-cart-btn" routerLink="/home/cart">
                   <i class="ti-bag"></i> Giỏ Hàng
                 </a>
-                <!-- Cart List Area Start -->
-                <ul class="cart-list">
+                <!-- <ul class="cart-list">
                   <li>
                     <a href="#" class="image">
                       <img src="../assets/images/product-img/product-10.jpg" class="cart-thumb" alt="">
@@ -87,7 +94,7 @@
                     <a href="cart.html" class="btn btn-sm btn-cart">Cart</a>
                     <a href="checkout-1.html" class="btn btn-sm btn-checkout">Thanh Toán</a>
                   </li>
-                </ul>
+                </ul> -->
               </div>
 
               <div class="header-right-side-menu ml-15" (click)="showLeftBar()">
@@ -157,8 +164,6 @@
             </div>
           </div>
 
-
-
           <div class="row row-avatar">
             <div class="col-md-8">
               <div class="customer">
@@ -174,8 +179,6 @@
               </span>
             </div>
           </div>
-
-
 
         </div>
       </div>

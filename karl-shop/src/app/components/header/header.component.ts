@@ -4,14 +4,19 @@ import { HomeLoaiGiay } from '../../entity/home-loaigiay';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UserData } from '../../entity/user-data';
 import { SharedService } from '../../services/shared.service';
+import { AuthService } from '../../services/auth.service';
+import { ToastrService } from '../../services/toastr.service';
+import { CustomerService } from '../../services/customer.service';
+import { RequestOptions, Headers } from '@angular/http';
+import { Customer } from '../../entity/customer';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  providers: [LoaigiayService, SharedService]
+  providers: [LoaigiayService, SharedService, AuthService, CustomerService]
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
 
   _loaigiayArray: HomeLoaiGiay[];
   _infoFB: UserData[] = [];
@@ -19,17 +24,23 @@ export class HeaderComponent implements OnInit{
   sub: any;
   idFB: string;
   person: any;
+  _userData: any;
+  _storeUser: UserData[] = [];
+  chkData: Customer;
 
   constructor(private loaiGiayService: LoaigiayService,
-              private router: Router,
-              private route: ActivatedRoute, private sharedService: SharedService) { }
+    private router: Router,
+    private route: ActivatedRoute, private sharedService: SharedService,
+    private toastrService: ToastrService,
+    private authService: AuthService,
+    private customerService: CustomerService) { }
 
   ngOnInit() {
     this.getLoaiGiay();
 
     this.sharedService.changeEmitted$.subscribe(text => {
       console.log(text);
-      
+
     })
 
     if (sessionStorage.tenKhachHang != null) {
@@ -62,6 +73,61 @@ export class HeaderComponent implements OnInit{
   //GET product by category
   getProductByCate(name) {
     this.router.navigate(['/home/category', name]);
+  }
+
+
+  signInWithFB() {
+    this.authService.doFacebookLogin().then(result => {
+      
+      this._userData = result;
+      this._storeUser.push(this._userData.additionalUserInfo.profile);
+
+      if (this._storeUser != null) {
+
+        this.toastrService.success(`Xin chào, ${this._userData.additionalUserInfo.profile.name}!`);
+        let object = {
+          name: this._userData.additionalUserInfo.profile.name,
+          image: this._userData.additionalUserInfo.profile.picture.data.url,
+          idAccount: this._userData.additionalUserInfo.profile.id
+        };
+        sessionStorage.tenKhachHang = JSON.stringify(object);
+        this.sharedService.emitChange(JSON.stringify(object));
+
+        const headers = new Headers();
+        headers.append('idAccount', this._userData.additionalUserInfo.profile.id)
+        headers.append('email', this._userData.additionalUserInfo.profile.email);
+        console.log(headers.get('idAccount'));
+        const options = new RequestOptions({ headers: headers });
+
+        this.authService.checkKhachHang(options).subscribe(
+          data => {
+            this.chkData = data;
+            console.log("Data: " + this.chkData);
+            sessionStorage.customer = JSON.stringify(this.chkData);
+            this.router.navigate(['/home/checkout']);
+          },
+          error => {
+            console.error('Error: ' + error);
+            let customer1: any;
+            customer1 = {
+              tenKhachHang: this._userData.additionalUserInfo.profile.name,
+              email: this._userData.additionalUserInfo.profile.email,
+              idAccount: this._userData.additionalUserInfo.profile.id
+            };
+            sessionStorage.customer = JSON.stringify(customer1);
+            
+            
+            this.router.navigate(['/home/account']);
+          }
+        )
+
+        this.router.navigate(['/home/account/', this._userData.additionalUserInfo.profile.id]);
+      }
+    });
+  }
+
+  signInWithGoogle() {
+    this.authService.doGoogleLogin();
   }
 
 }

@@ -11,28 +11,30 @@ import { Customer } from '../../entity/customer';
 })
 export class CheckoutComponent implements OnInit {
 
-  _productInCart:     ProductSelected[] = [];
-  _sumOfMoney:        number = 0;
-  customer:           Customer = {id: 0,
+  _productInCart: ProductSelected[] = [];
+  _sumOfMoney: number = 0;
+  customer: Customer = {
+    id: 0,
     tenKhachHang: '',
     diaChi: '',
     soDienThoai: '',
     email: '',
-    idAccount:''};
+    idAccount: ''
+  };
 
   checkoutForm: FormGroup;
-  phoneNumber:  FormControl;
-  address:      FormControl;
-  email:        FormControl;
-  name:         FormControl;
-  note:         FormControl;
+  phoneNumber: FormControl;
+  address: FormControl;
+  email: FormControl;
+  name: FormControl;
+  note: FormControl;
 
-  namePattern   = "[a-zA-Z][a-zA-Z ]+";
-  phonePattern  = "^((\\+91-?)|0)?[0-9]{10}$";
-  emailPattern  = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+  namePattern = "[a-zA-Z][a-zA-Z ]+";
+  phonePattern = "^((\\+91-?)|0)?[0-9]{10}$";
+  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
 
   constructor(private toastrService: ToastrService) {
-    
+
     this.name = new FormControl('', [Validators.required, Validators.pattern(this.namePattern)]);
     this.phoneNumber = new FormControl('', [Validators.required, Validators.pattern(this.phonePattern)]);
     this.address = new FormControl('', [Validators.required, Validators.minLength(6), Validators.maxLength(50)]);
@@ -40,29 +42,30 @@ export class CheckoutComponent implements OnInit {
     this.note = new FormControl();
 
     this.checkoutForm = new FormGroup({
-      name:         this.name,
-      phoneNumber:  this.phoneNumber,
-      address:      this.address,
-      email:        this.email,
-      note:         this.note
+      name: this.name,
+      phoneNumber: this.phoneNumber,
+      address: this.address,
+      email: this.email,
+      note: this.note
     });
 
   }
 
   ngOnInit() {
-    this.customer = JSON.parse(sessionStorage.customer);
+    if (sessionStorage.customer != null) {
+      this.customer = JSON.parse(sessionStorage.customer);
       console.log("aaaaa " + JSON.parse(sessionStorage.customer));
-      
+    }
+
     if (sessionStorage.productInCart !== null) {
       this._productInCart = JSON.parse(sessionStorage.productInCart);
-      
-      
+
       this._productInCart.forEach(p => {
         this._sumOfMoney += p.donGia * (1 - p.chietKhau) * p.soLuong;
       })
     }
   }
-  
+
 
   payment(formValues) {
     this.toastrService.success(`Chúc mừng ${formValues.name} đã thanh toán thành công!`);

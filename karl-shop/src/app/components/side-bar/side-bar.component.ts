@@ -7,11 +7,14 @@ import { DataService } from '../../services/data.service';
 import { KichthuocService } from '../../services/kichthuoc.service';
 import { SizeProduct } from '../../entity/size-product';
 
+declare var jquery: any;
+declare var $: any;
+
 @Component({
   selector: 'side-bar',
   templateUrl: './side-bar.component.html',
   styleUrls: ['./side-bar.component.css'],
-  providers: [LoaigiayService, DataService,KichthuocService]
+  providers: [LoaigiayService, DataService, KichthuocService]
 })
 export class SideBarComponent implements OnInit {
 
@@ -20,7 +23,8 @@ export class SideBarComponent implements OnInit {
   _tenGiay: string[] = [];
   _productArray: HomeProduct[];
   _kichThuocArray: SizeProduct[];
-
+  _flag: boolean;
+  btns: any;
   constructor(private route: ActivatedRoute, private router: Router,
     private loaigiayService: LoaigiayService, private dataService: DataService,
     private kichthuocService: KichthuocService) { }
@@ -48,11 +52,12 @@ export class SideBarComponent implements OnInit {
 
   goCate(name): void {
     this.router.navigate(['/home/category', name]);
+    
   }
 
   goSize(idsize): void {
     console.log("idSize: " + idsize);
-    
+
     this.router.navigate(['/home/size', idsize]);
   }
 
