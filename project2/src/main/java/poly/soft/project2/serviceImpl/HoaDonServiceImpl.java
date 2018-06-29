@@ -16,12 +16,17 @@ import org.springframework.stereotype.Service;
 import poly.soft.project2.dto.ChiTietHoaDonDTO;
 import poly.soft.project2.dto.HoaDonAdminDTO;
 import poly.soft.project2.entity.ChiTietHoaDon;
+import poly.soft.project2.entity.HangTrongKho;
 import poly.soft.project2.entity.HoaDon;
+import poly.soft.project2.entity.KichThuoc;
+import poly.soft.project2.entity.SanPham;
 import poly.soft.project2.enumeration.HDTrangThaiEnum;
 import poly.soft.project2.enumeration.ThanhToanEnum;
 import poly.soft.project2.repository.ChiTietHoaDonRepository;
+import poly.soft.project2.repository.HangTrongKhoRepository;
 import poly.soft.project2.repository.HoaDonRepository;
 import poly.soft.project2.repository.KhachHangRepository;
+import poly.soft.project2.repository.KichThuocRepository;
 import poly.soft.project2.repository.SanPhamRepository;
 import poly.soft.project2.service.HoaDonService;
 
@@ -43,6 +48,12 @@ public class HoaDonServiceImpl implements HoaDonService {
 	@Autowired
 	ChiTietHoaDonRepository chiTietHoaDonRepository;
 
+	@Autowired
+	HangTrongKhoRepository hangTrongKhoRepository;
+	
+	@Autowired
+	KichThuocRepository kichThuocRepository;
+	
 	@Override
 	public List<HoaDon> findAll() {
 		return hoaDonRepository.findAll();
@@ -124,12 +135,22 @@ public class HoaDonServiceImpl implements HoaDonService {
 		
 		list.forEach(p -> {
 			ChiTietHoaDon cthd = new ChiTietHoaDon();
-			cthd.setSanPham(sanPhamRepository.findById(p.getSanPhamId()).orElse(null));
+			SanPham sp = sanPhamRepository.findById(p.getSanPhamId()).orElse(null);
+			KichThuoc kt = kichThuocRepository.findByTenKichThuoc(p.getTenKichThuoc());
+			cthd.setSanPham(sp);
 			cthd.setSoLuong(p.getSoLuong());
 			cthd.setTenKichThuoc(p.getTenKichThuoc());
 			cthd.setThanhTien(p.getThanhTien());
 			cthd.setHoaDon(hd);
 			chiTietHoaDonRepository.save(cthd);
+			
+			HangTrongKho htk = hangTrongKhoRepository.findBySanPhamAndKichThuoc(sp, kt);
+			if(htk.getSoLuong() > p.getSoLuong()) {
+				htk.setSoLuong(htk.getSoLuong() - p.getSoLuong());
+				hangTrongKhoRepository.save(htk);
+			}else if(htk.getSoLuong() == p.getSoLuong()) {
+				hangTrongKhoRepository.delete(htk);
+			}
 		});
 	}
 
