@@ -30,6 +30,7 @@ import {
 } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { CdkTableModule } from "@angular/cdk/table";
+import { AngularFireAuthModule } from "angularfire2/auth";
 
 @NgModule({
     imports: [
@@ -49,7 +50,8 @@ import { CdkTableModule } from "@angular/cdk/table";
         MatRadioModule,
         MatPaginatorModule,
         CdkTableModule,
-        MatTableModule
+        MatTableModule,
+        AngularFireAuthModule
     ],
     declarations: [
         SideBarComponent,

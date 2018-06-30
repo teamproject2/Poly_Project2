@@ -1,53 +1,39 @@
-import { Component, OnInit, OnChanges, Input, SimpleChanges } from '@angular/core';
-import { LoaigiayService } from '../../services/loaigiay.service';
-import { HomeLoaiGiay } from '../../entity/home-loaigiay';
-import { Router, ActivatedRoute } from '@angular/router';
-import { UserData } from '../../entity/user-data';
-import { SharedService } from '../../services/shared.service';
-import { AuthService } from '../../services/auth.service';
-import { ToastrService } from '../../services/toastr.service';
-import { CustomerService } from '../../services/customer.service';
-import { RequestOptions, Headers } from '@angular/http';
-import { Customer } from '../../entity/customer';
+import { Component, OnInit }        from '@angular/core';
+import { LoaigiayService }          from '../../services/loaigiay.service';
+import { HomeLoaiGiay }             from '../../entity/home-loaigiay';
+import { Router}                    from '@angular/router';
+import { UserData }                 from '../../entity/user-data';
+import { AuthService }              from '../../services/auth.service';
+import { ToastrService }            from '../../services/toastr.service';
+import { RequestOptions, Headers }  from '@angular/http';
+import { Customer }                 from '../../entity/customer';
+import { UserInfo } from '../../entity/userInfo';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
-  providers: [LoaigiayService, SharedService, AuthService, CustomerService]
+  selector:     'app-header',
+  templateUrl:  './header.component.html',
+  styleUrls:    ['./header.component.css'],
+  providers:    [LoaigiayService, AuthService]
 })
 export class HeaderComponent implements OnInit {
 
-  _loaigiayArray: HomeLoaiGiay[];
-  _infoFB: UserData[] = [];
-  _tenKhachHang: any;
-  sub: any;
-  idFB: string;
-  person: any;
-  _userData: any;
-  _storeUser: UserData[] = [];
-  chkData: Customer;
+  _loaigiayArray:     HomeLoaiGiay[];
+  _storeUser:         UserData[] = [];
+  chkData:            Customer;
+  _userData:          any;
+  userInfo:           UserInfo;
+  
 
   constructor(private loaiGiayService: LoaigiayService,
     private router: Router,
-    private route: ActivatedRoute, private sharedService: SharedService,
     private toastrService: ToastrService,
-    private authService: AuthService,
-    private customerService: CustomerService) { }
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     this.getLoaiGiay();
-
-    this.sharedService.changeEmitted$.subscribe(text => {
-      console.log(text);
-
-    })
-
-    if (sessionStorage.tenKhachHang != null) {
-      this._tenKhachHang = JSON.parse(sessionStorage.tenKhachHang);
-      this._infoFB.push(this._tenKhachHang);
-    }
-
+    // this.sharedService.changeEmitted$.subscribe(text => {
+    // })
   }
 
   // SHOW left-bar-menu
@@ -78,12 +64,11 @@ export class HeaderComponent implements OnInit {
 
   signInWithFB() {
     this.authService.doFacebookLogin().then(result => {
-      
+
       this._userData = result;
       this._storeUser.push(this._userData.additionalUserInfo.profile);
 
       if (this._storeUser != null) {
-
         this.toastrService.success(`Xin chào, ${this._userData.additionalUserInfo.profile.name}!`);
         let object = {
           name: this._userData.additionalUserInfo.profile.name,
@@ -91,18 +76,19 @@ export class HeaderComponent implements OnInit {
           idAccount: this._userData.additionalUserInfo.profile.id
         };
         sessionStorage.tenKhachHang = JSON.stringify(object);
-        this.sharedService.emitChange(JSON.stringify(object));
+        this.userInfo = JSON.parse(sessionStorage.tenKhachHang);
+        // this.sharedService.emitChange(JSON.stringify(object));
 
         const headers = new Headers();
         headers.append('idAccount', this._userData.additionalUserInfo.profile.id)
         headers.append('email', this._userData.additionalUserInfo.profile.email);
-        console.log(headers.get('idAccount'));
+        // console.log(headers.get('idAccount'));
         const options = new RequestOptions({ headers: headers });
 
         this.authService.checkKhachHang(options).subscribe(
           data => {
             this.chkData = data;
-            console.log("Data: " + this.chkData);
+            // console.log("Data: " + this.chkData);
             sessionStorage.customer = JSON.stringify(this.chkData);
             this.router.navigate(['/home/checkout']);
           },
@@ -115,8 +101,8 @@ export class HeaderComponent implements OnInit {
               idAccount: this._userData.additionalUserInfo.profile.id
             };
             sessionStorage.customer = JSON.stringify(customer1);
-            
-            
+
+
             this.router.navigate(['/home/account']);
           }
         )
@@ -128,6 +114,12 @@ export class HeaderComponent implements OnInit {
 
   signInWithGoogle() {
     this.authService.doGoogleLogin();
+  }
+
+  signOut() {
+    window.location.assign('http://localhost:4200/home');
+    sessionStorage.tenKhachHang = [];
+    sessionStorage.customer = [];
   }
 
 }

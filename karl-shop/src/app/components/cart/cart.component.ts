@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ProductSelected } from '../../entity/product-selected-cart';
 import { Router } from '@angular/router';
 
+declare var jquery: any;
+declare var $: any;
+
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -68,11 +71,38 @@ export class CartComponent implements OnInit {
   }
 
   getAllProductInCart() {
+
+    if (sessionStorage.tenKhachHang == null || sessionStorage.customer == null) {
+      $(document).ready(function () {
+        $('.modal-wrapper').addClass('show');
+        $('.modal-login').addClass('show');
+
+        $('.modal-wrapper').on('click', function () {
+          $('.modal-login').removeClass('show');
+          $('.modal-wrapper').removeClass('show');
+        })
+      });
+    }else {
+      this.router.navigate(['/home/checkout']);
+    }
+
+
     sessionStorage.productInCart = JSON.stringify(this._productInCart);
     this._productInCart.forEach(p => {
-      this._sumOfMoney += p.donGia * (1 - p.chietKhau) * p.soLuong;
-    })
-    // console.log('all products' + JSON.stringify(this._productInCart));
+
+      let quantityPro = p.soLuong; // Fix auto increase _sumOfMoney
+      if (quantityPro > p.soLuong) {
+        this._sumOfMoney += p.donGia * (1 - p.chietKhau) * p.soLuong;
+      }
+    });
+    console.log(this._sumOfMoney);
+  }
+
+  removeModal() {
+    $(document).ready(function () {
+      $('.modal-login').removeClass('show');
+      $('.modal-wrapper').removeClass('show');
+    });
   }
 
   goShopping() {

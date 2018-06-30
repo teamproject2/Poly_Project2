@@ -1,48 +1,40 @@
 <mat-tab-group>
 
   <mat-tab label="Thông tin tài khoản" class="mattab">
-    <div class="example-container" *ngIf="_storeUser != null">
+    <div class="example-container">
+      <form [formGroup]="profileForm" (ngSubmit)="updateProfile(profileForm.value)">
+        <div class="email">
+          <label class="lblName">Email</label>
+          <mat-form-field>
+            <input [readonly]="true" formControlName="email" matInput value="{{newCustomer.email}}">
+          </mat-form-field>
+        </div>
 
-      <div class="name">
-        <label class="lblName">Họ tên</label>
-        <mat-form-field>
-          <input matInput placeholder="Nguyễn Văn A">
-        </mat-form-field>
-      </div>
+        <div class="name">
+          <label class="lblName">Họ tên</label>
+          <mat-form-field>
+            <input matInput formControlName="tenKhachHang" [readonly]="true" value="{{newCustomer.tenKhachHang}}">
+          </mat-form-field>
+        </div>
 
-      <div class="hotline">
-        <label class="lblName">Số điện thoại</label>
-        <mat-form-field floatPlaceholder="never">
-          <input matInput placeholder="098 9874 123">
-        </mat-form-field>
-      </div>
+        <div class="hotline">
+          <label class="lblName">Số điện thoại</label>
+          <mat-form-field>
+            <input matInput formControlName="soDienThoai" value="{{newCustomer.soDienThoai}}">
+          </mat-form-field>
+        </div>
 
-      <div class="address">
-        <label class="lblName">Địa chỉ</label>
-        <mat-form-field>
-          <input matInput placeholder="111 Nguyễn Du, Q.1, HCM.">
-        </mat-form-field>
-      </div>
+        <div class="address">
+          <label class="lblName">Địa chỉ</label>
+          <mat-form-field>
+            <input matInput formControlName="diaChi" value="{{newCustomer.diaChi}}">
+          </mat-form-field>
+        </div>
 
-      <div class="email">
-        <label class="lblName">Email</label>
-        <mat-form-field>
-          <input matInput placeholder="user1@gmail.com">
-        </mat-form-field>
-      </div>
-
-      <!-- <div class="gender">
-        <label class="lblName">Giới tính</label>
-        <mat-radio-group class="example-radio-group" [(ngModel)]="favoriteSeason">
-          <mat-radio-button class="example-radio-button" *ngFor="let season of seasons" [value]="season">
-            {{season}}
-          </mat-radio-button>
-        </mat-radio-group>
-      </div> -->
-
-      <div class="button-row">
-        <button mat-raised-button color="primary" class="btnLogin">Cập nhật</button>
-      </div>
+        <div class="button-row">
+          <button mat-raised-button color="primary" [disabled]="profileForm.invalid" type="submit" class="btnLogin">Cập nhật</button>
+        </div>
+      </form>
 
     </div>
 
@@ -50,7 +42,7 @@
 
 
   <mat-tab label="Lịch sử thanh toán">
-    
+
     <h1 style="color: red;">Lịch sử thanh toán của bạn đang trống</h1>
 
   </mat-tab>

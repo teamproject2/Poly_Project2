@@ -17,7 +17,7 @@
                   <span>*</span>
                 </label>
                 <em *ngIf="name.invalid && name.dirty">Required</em>
-                <input formControlName="name" type="text" placeholder="Nguyễn Thị Ngọc Trinh" class="form-control" id="first_name" value="{{customer.tenKhachHang}}"
+                <input formControlName="name" type="text" placeholder="Nhập họ tên của bạn" class="form-control" id="first_name" value="{{customer.tenKhachHang}}"
                   required>
               </div>
 
@@ -26,7 +26,7 @@
                   <span>*</span>
                 </label>
                 <em *ngIf="phoneNumber.invalid && phoneNumber.dirty">Required</em>
-                <input formControlName="phoneNumber" placeholder="0987 654 321" class="form-control" id="phone_number" min="0" value="{{customer.soDienThoai}}">
+                <input formControlName="phoneNumber" placeholder="Nhập số điện thoại của bạn" class="form-control" id="phone_number" min="0" value="{{customer.soDienThoai}}">
               </div>
 
               <div class="col-12 mb-3 form-group" [ngClass]="{'error': address.invalid && address.dirty}">
@@ -34,7 +34,7 @@
                   <span>*</span>
                 </label>
                 <em *ngIf="address.invalid && address.dirty">Required</em>
-                <input formControlName="address" type="text" placeholder="111 Nam Kỳ Khởi Nghĩa" class="form-control mb-3" id="street_address"
+                <input formControlName="address" type="text" placeholder="Nhập địa chỉ của bạn" class="form-control mb-3" id="street_address"
                 value="{{customer.diaChi}}">
               </div>
 
@@ -43,14 +43,14 @@
                   <span>*</span>
                 </label>
                 <em *ngIf="email.invalid && email.dirty">Required</em>
-                <input formControlName="email" type="email" placeholder="ngoctrinhnt@gmail.com" class="form-control" id="email_address" value="{{customer.email}}">
+                <input formControlName="email" type="email" placeholder="Nhập Email của bạn" class="form-control" id="email_address" value="{{customer.email}}">
               </div>
 
               <div class="col-12 mb-4 form-group">
                 <label for="note">Ghi chú
                   <span>*</span>
                 </label>
-                <textarea formControlName="note" type="textarea" name="note" id="note" cols="" rows="10"></textarea>
+                <textarea formControlName="note" placeholder="Ghi chú" type="textarea" name="note" id="note" cols="" rows="10"></textarea>
               </div>
 
               <div class="btnSubmit">

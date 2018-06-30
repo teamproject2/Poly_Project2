@@ -114,11 +114,16 @@
 
   </div>
 
+
+  <!-- Show login-modal after (click)="getAllProductInCart()" -->
+  <div class="modal-wrapper"></div>
+
   <div class="modal-login">
     <div class="modal-content">
       <div class="row row-title">
         <div class="col-sm-12 text-center col-title">
           <span>Đăng nhập</span>
+          <i class="fas fa-times icon-trash" (click)="removeModal()"></i>
         </div>
       </div>
       <div class="row modal-row">
@@ -131,9 +136,11 @@
           </a>
         </div>
       </div>
-
+      <div class="row modal-row-footer">
+        <div class="col-sm-12 text-center" routerLink="/home/checkout">Tiếp tục thanh toán</div>
+      </div>
     </div>
   </div>
-
-
+  <!-- Show login-modal after (click)="getAllProductInCart()" -->
+  
 </div>

@@ -12,6 +12,9 @@ import { Customer } from '../../entity/customer';
 import { CustomerService } from '../../services/customer.service';
 
 declare let toastr: any;
+declare var jquery: any;
+declare var $: any;
+
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -20,18 +23,20 @@ declare let toastr: any;
 })
 export class UserLoginComponent implements OnInit {
 
+  phonePattern =    "^((\\+91-?)|0)?[0-9]{10}$";
 
-  regisForm: FormGroup;
-  email = new FormControl('');
-  tenKhachHang = new FormControl('');
-  soDienThoai = new FormControl('');
-  diaChi = new FormControl('');
+  regisForm:        FormGroup;
+  email =           new FormControl('');
+  tenKhachHang =    new FormControl('');
+  soDienThoai =     new FormControl('');
+  diaChi =          new FormControl('');
+
   hide = true;
   _userData: any;
   _storeUser: UserData[] = [];
   httpOptions: any;
   chkData: Customer;
-
+  
   newCustomer: Customer = {
     id: 0,
     tenKhachHang: '',
@@ -45,6 +50,8 @@ export class UserLoginComponent implements OnInit {
   constructor(private router: Router, private toastrService: ToastrService,
     private authService: AuthService, private sharedService: SharedService,
     private customerService: CustomerService) {
+
+    this.soDienThoai = new FormControl('', [Validators.required, Validators.pattern(this.phonePattern)]);
 
     this.regisForm = new FormGroup({
       tenKhachHang: this.tenKhachHang,
@@ -61,21 +68,18 @@ export class UserLoginComponent implements OnInit {
     if (sessionStorage.customer != null) {
       this.newCustomer = JSON.parse(sessionStorage.customer);
     }
-
   }
 
 
   saveNewCustomer(customer) {
     this.newCustomer.soDienThoai = customer.soDienThoai;
     this.newCustomer.diaChi = customer.diaChi;
-    console.log(this.newCustomer);
+
     this.customerService.saveCustomer(this.newCustomer).subscribe(result => {
       this.newCustomer = result;
       sessionStorage.customer = JSON.stringify(result);
       this.router.navigate(['/home/checkout']);
     });
-    
-    
   }
 
   getErrorMessage() {
@@ -135,8 +139,23 @@ export class UserLoginComponent implements OnInit {
     this.authService.doGoogleLogin();
   }
 
-  forgotPassword() {
-    window.location.assign('https://www.facebook.com/login/identify?ctx=recover&lwv=111');
+  showModal() {
+    $(document).ready(function () {
+      $('.modal-wrapper').addClass('show');
+      $('.modal-login').addClass('show');
+
+      $('.modal-wrapper').on('click', function () {
+        $('.modal-login').removeClass('show');
+        $('.modal-wrapper').removeClass('show');
+      })
+    });
+  }
+
+  removeModal() {
+    $(document).ready(function () {
+      $('.modal-login').removeClass('show');
+      $('.modal-wrapper').removeClass('show');
+    });
   }
 
 }

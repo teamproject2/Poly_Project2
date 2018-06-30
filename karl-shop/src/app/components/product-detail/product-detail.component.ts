@@ -22,8 +22,12 @@ export class ProductDetailComponent implements OnInit {
   productSelect: ProductSelected = { id: 1, tenSanPham: '', tenKichThuoc: '', chietKhau: 1, donGia: 1, hinhSanPham: '', soLuong: 1, soLuongKho: 1 };
   _productInCart: ProductSelected[] = [];
   _productInCartOldLength: number;
-  demo: any;
-  constructor(private detailService: DetailsService, private route: ActivatedRoute, private router: Router) { }
+  selectedSize: any;
+  _sumOfMoney: number = 0;
+
+  constructor(private detailService: DetailsService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -90,8 +94,8 @@ export class ProductDetailComponent implements OnInit {
   }
 
   selectActive(size) {
-    $("#ss" + this.demo).removeClass('actives');
+    $("#ss" + this.selectedSize).removeClass('actives');
     $("#ss" + size).addClass('actives');
-    this.demo = size;
+    this.selectedSize = size;
   }
 }

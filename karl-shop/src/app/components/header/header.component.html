@@ -31,8 +31,12 @@
 
   <div class="row login-row">
     <div class="col-md-12 text-right">
-      <a class="btn btn-primary ff" (click)="signInWithFB()">Đăng nhập <i class="fab fa-facebook-f icon"></i></a>
-      <a class="btn btn-danger gg" (click)="signInWithGoogle()">Đăng nhập <i class="fab fa-google icon"></i></a>
+      <a class="btn btn-primary ff" (click)="signInWithFB()">Đăng nhập
+        <i class="fab fa-facebook-f icon"></i>
+      </a>
+      <a class="btn btn-danger gg" (click)="signInWithGoogle()">Đăng nhập
+        <i class="fab fa-google icon"></i>
+      </a>
     </div>
   </div>
 
@@ -167,15 +171,25 @@
           <div class="row row-avatar">
             <div class="col-md-8">
               <div class="customer">
-                <span *ngIf="_infoFB[0]!=null">
-                  <p class="name">Hello, {{_infoFB[0].name}}</p>
+                <span *ngIf="userInfo != null">
+                  <p class="name">Hello, {{userInfo.name}}</p>
                 </span>
+                <div class="dropdown arrow" *ngIf="userInfo != null">
+                  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                    aria-expanded="false">
+                    <!-- <i class="fas fa-chevron-down"></i> -->
+                  </button>
+                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" [routerLink]="['/home/account', userInfo.idAccount]">Thông tin tài khoản</a>
+                    <a class="dropdown-item" (click)="signOut()">Đăng xuất</a>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div class="col-md-4">
-              <span *ngIf="_infoFB[0]!=null">
-                <img class="avatar" src="{{_infoFB[0].image}}" alt="Customer avatar">
+              <span *ngIf="userInfo != null">
+                <img class="avatar" src="{{userInfo.image}}" alt="Customer avatar">
               </span>
             </div>
           </div>

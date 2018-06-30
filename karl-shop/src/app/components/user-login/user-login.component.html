@@ -4,16 +4,16 @@
     <form [formGroup]="regisForm" (ngSubmit)="saveNewCustomer(regisForm.value)" class="regis">
       <div class="example-container">
         <mat-form-field>
-          <input matInput placeholder="Email" [formControl]="email" value="{{newCustomer.email}}">
+          <input matInput [readonly]="true" placeholder="Email" [formControl]="email" value="{{newCustomer.email}}">
           <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Name" [formControl]="tenKhachHang" value="{{newCustomer.tenKhachHang}}">
+          <input matInput [readonly]="true" placeholder="Name" [formControl]="tenKhachHang" value="{{newCustomer.tenKhachHang}}">
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Phone" [formControl]="soDienThoai" value="{{newCustomer.soDienThoai}}" required>
+          <input matInput placeholder="Mobile Phone" [formControl]="soDienThoai" value="{{newCustomer.soDienThoai}}" required>
         </mat-form-field>
 
         <mat-form-field>
@@ -22,9 +22,9 @@
 
         <section class="example-section">
           <div class="button-row">
-            <button mat-raised-button color="primary" type="submit" class="btnLogin">Đăng ký</button>
+            <button mat-raised-button [disabled]="regisForm.invalid" color="primary" type="submit" class="btnLogin">Đăng ký</button>
           </div>
-          <small>Đã có tài khoản</small>
+          <small (click)="showModal()">Đã có tài khoản</small>
         </section>
 
       </div>
@@ -32,8 +32,8 @@
     </form>
 
   </mat-tab>
-  
-  <mat-tab label="Đăng nhập">
+
+  <!-- <mat-tab label="Đăng nhập">
     <div class="example-container">
 
       <div class="button-row">
@@ -45,20 +45,31 @@
         </button>
 
       </div>
-
-      <!-- <mat-form-field>
-        <input matInput placeholder="Email" [formControl]="email" required>
-        <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Mật khẩu" [type]="hide ? 'password' : 'text'">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-      </mat-form-field>
-      <div class="button-row">
-        <button mat-raised-button color="primary" class="btnLogin">Đăng nhập</button>
-      </div>
-      <small (click)="forgotPassword()">Quên mật khẩu ?</small> -->
     </div>
-  </mat-tab>
+  </mat-tab> -->
 
 </mat-tab-group>
+<!-- Show login-modal after (click)="getAllProductInCart()" -->
+<div class="modal-wrapper"></div>
+
+<div class="modal-login">
+  <div class="modal-content">
+    <div class="row row-title">
+      <div class="col-sm-12 text-center col-title">
+        <span>Đăng nhập</span>
+        <i class="fas fa-times icon-trash" (click)="removeModal()"></i>
+      </div>
+    </div>
+    <div class="row modal-row">
+      <div class="col-sm-12 text-center">
+        <a class="btn btn-primary ff" (click)="signInWithFB()">Đăng nhập
+          <i class="fab fa-facebook-f icon"></i>
+        </a>
+        <a class="btn btn-danger gg" (click)="signInWithGoogle()">Đăng nhập
+          <i class="fab fa-google icon"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Show login-modal after (click)="getAllProductInCart()" -->
