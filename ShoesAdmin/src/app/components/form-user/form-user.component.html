@@ -32,14 +32,13 @@
                                                 <label class="col-md-3 label-control" for="userinput2">Giới Tính</label>
                                                 <div class="col-md-9">
                                                     <div class="custom-control custom-radio display-inline-block ml-1">
-                                                        <input type="radio" id="customRadioInline2" name="customRadioInline2" class="custom-control-input">
+                                                        <input type="radio" id="customRadioInline2" [checked]="chitiet_NV.gioiTinh === 'NAM'" name="customRadioInline2" class="custom-control-input">
                                                         <label class="custom-control-label" for="customRadioInline2">Nam</label>
                                                     </div>
                                                     <div class="custom-control custom-radio display-inline-block">
-                                                        <input type="radio" id="customRadioInline3" checked name="customRadioInline2" class="custom-control-input">
+                                                        <input type="radio" id="customRadioInline3" [checked]="chitiet_NV.gioiTinh === 'NỮ'" name="customRadioInline2" class="custom-control-input">
                                                         <label class="custom-control-label" for="customRadioInline3">Nữ</label>
                                                     </div>
-                                                    <!-- <input type="text" id="userinput2" class="form-control border-primary" placeholder="Last Name" name="lastname"> -->
                                                 </div>
                                             </div>
                                         </div>

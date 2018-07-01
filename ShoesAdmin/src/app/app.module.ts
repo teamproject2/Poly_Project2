@@ -17,7 +17,6 @@ import { TableSanphamComponent } from './components/table-sanpham/table-sanpham.
 import { FormSanphamComponent } from './components/form-sanpham/form-sanpham.component';
 import { FormUserComponent } from './components/form-user/form-user.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
-import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { ChitietSanphamComponent } from './components/chitiet-sanpham/chitiet-sanpham.component';
 import { ChitietkhohangComponent } from './components/chitietkhohang/chitietkhohang.component';
 
@@ -45,7 +44,6 @@ import { LoaigiayService } from './services/loaigiay.service';
     FormSanphamComponent,
     FormUserComponent,
     InvoiceComponent,
-    UserprofileComponent,
     ChitietSanphamComponent,
     ChitietkhohangComponent,
     LoaigiayComponent

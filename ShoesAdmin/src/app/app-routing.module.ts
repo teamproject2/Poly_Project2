@@ -12,7 +12,6 @@ import { TableSanphamComponent } from './components/table-sanpham/table-sanpham.
 import { FormSanphamComponent } from './components/form-sanpham/form-sanpham.component';
 import { FormUserComponent } from './components/form-user/form-user.component';
 import { InvoiceComponent } from './components/invoice/invoice.component';
-import { UserprofileComponent } from './components/userprofile/userprofile.component';
 import { ChitietSanphamComponent } from './components/chitiet-sanpham/chitiet-sanpham.component';
 import { ChitietkhohangComponent } from './components/chitietkhohang/chitietkhohang.component';
 import { LoaigiayComponent } from './components/loaigiay/loaigiay.component';
@@ -32,7 +31,6 @@ const routes: Routes = [
   { path: 'hoadon/:id', component: InvoiceComponent },
   { path: 'form-product', component: FormSanphamComponent },
   { path: 'form-user', component: FormUserComponent },
-  { path: 'User-Profile', component: UserprofileComponent },
   { path: 'chitiet-sp', component: ChitietSanphamComponent },
   { path: 'loaigiay', component: LoaigiayComponent }
 
