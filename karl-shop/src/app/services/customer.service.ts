@@ -19,4 +19,18 @@ export class CustomerService {
                 return response.json();
             })  
     }
+
+    getCustomerByIdAccount(id: any): Observable<any> {
+        return this.http.get(this._url + "khachhang/" + id)
+        .map(response => {
+            return response.json();
+        })
+    }
+
+    getHoaDonByCustomerId(id: any): Observable<any> {
+        return this.http.get(this._url + "hoadon/khachhang/" + id)
+        .map(response => {
+            return response.json();
+        })
+    }
 }

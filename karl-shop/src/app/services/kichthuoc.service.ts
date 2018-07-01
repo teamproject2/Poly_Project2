@@ -16,9 +16,7 @@ export class KichthuocService {
       return <SizeProduct[]>response.json();
     }).catch(this.handleError);
   }
-
   
-
   private handleError(error: Response) {
     return Observable.throw(error.statusText);
   }

@@ -122,4 +122,13 @@ export class HeaderComponent implements OnInit {
     sessionStorage.customer = [];
   }
 
+  showProfile(){
+    console.log(JSON.stringify(this.chkData));
+    
+    if(this.chkData !== null){
+      console.log("aaaaaaaaaaaaaaaa " + this.chkData.id);
+      this.router.navigate(['/home/account/', this.chkData.id]);
+    }
+  }
+
 }

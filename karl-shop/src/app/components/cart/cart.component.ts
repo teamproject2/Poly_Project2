@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductSelected } from '../../entity/product-selected-cart';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { UserData } from '../../entity/user-data';
+import { Customer } from '../../entity/customer';
+import { ToastrService } from '../../services/toastr.service';
+import { UserInfo } from '../../entity/userInfo';
+import { RequestOptions, Headers } from '@angular/http';
 
 declare var jquery: any;
 declare var $: any;
@@ -8,13 +14,20 @@ declare var $: any;
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
+  providers: [AuthService]
 })
 export class CartComponent implements OnInit {
   _productInCart: ProductSelected[] = [];
   _sumOfMoney: number = 0;
-
-  constructor(private router: Router) { }
+  _storeUser:         UserData[] = [];
+  chkData:            Customer;
+  _userData:          any;
+  userInfo:           UserInfo;
+  
+  constructor(private router: Router,
+              private authService: AuthService,
+              private toastrService: ToastrService) { }
 
   ngOnInit() {
     if (sessionStorage.productInCart !== null) {
@@ -82,20 +95,11 @@ export class CartComponent implements OnInit {
           $('.modal-wrapper').removeClass('show');
         })
       });
-    }else {
+    } else {
       this.router.navigate(['/home/checkout']);
     }
 
-
     sessionStorage.productInCart = JSON.stringify(this._productInCart);
-    this._productInCart.forEach(p => {
-
-      let quantityPro = p.soLuong; // Fix auto increase _sumOfMoney
-      if (quantityPro > p.soLuong) {
-        this._sumOfMoney += p.donGia * (1 - p.chietKhau) * p.soLuong;
-      }
-    });
-    console.log(this._sumOfMoney);
   }
 
   removeModal() {
@@ -107,6 +111,56 @@ export class CartComponent implements OnInit {
 
   goShopping() {
     sessionStorage.productInCart = JSON.stringify(this._productInCart);
+  }
+
+  signInWithFB() {
+    this.authService.doFacebookLogin().then(result => {
+
+      this._userData = result;
+      this._storeUser.push(this._userData.additionalUserInfo.profile);
+
+      if (this._storeUser != null) {
+        this.toastrService.success(`Xin chào, ${this._userData.additionalUserInfo.profile.name}!`);
+        let object = {
+          name: this._userData.additionalUserInfo.profile.name,
+          image: this._userData.additionalUserInfo.profile.picture.data.url,
+          idAccount: this._userData.additionalUserInfo.profile.id
+        };
+        sessionStorage.tenKhachHang = JSON.stringify(object);
+        this.userInfo = JSON.parse(sessionStorage.tenKhachHang);
+        // this.sharedService.emitChange(JSON.stringify(object));
+
+        const headers = new Headers();
+        headers.append('idAccount', this._userData.additionalUserInfo.profile.id)
+        headers.append('email', this._userData.additionalUserInfo.profile.email);
+        // console.log(headers.get('idAccount'));
+        const options = new RequestOptions({ headers: headers });
+
+        this.authService.checkKhachHang(options).subscribe(
+          data => {
+            this.chkData = data;
+            // console.log("Data: " + this.chkData);
+            sessionStorage.customer = JSON.stringify(this.chkData);
+            this.router.navigate(['/home/checkout']);
+          },
+          error => {
+            console.error('Error: ' + error);
+            let customer1: any;
+            customer1 = {
+              tenKhachHang: this._userData.additionalUserInfo.profile.name,
+              email: this._userData.additionalUserInfo.profile.email,
+              idAccount: this._userData.additionalUserInfo.profile.id
+            };
+            sessionStorage.customer = JSON.stringify(customer1);
+
+
+            this.router.navigate(['/home/account']);
+          }
+        )
+
+        this.router.navigate(['/home/account/', this._userData.additionalUserInfo.profile.id]);
+      }
+    });
   }
 
 }
