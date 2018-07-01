@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -39,9 +40,8 @@ public class KhachHang implements Serializable{
 	private String idAccount;
 	
 	@JsonIgnore
-	@OneToMany(mappedBy="khachHang",fetch= FetchType.LAZY)
+	@OneToMany(mappedBy="khachHang",fetch= FetchType.EAGER)
 	private List<HoaDon> hoaDon;
-	
 
 	public int getId() {
 		return id;

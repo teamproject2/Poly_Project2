@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import poly.soft.project2.dto.HoaDonAdminDTO;
 import poly.soft.project2.dto.HoaDonDTO;
 import poly.soft.project2.entity.HoaDon;
-import poly.soft.project2.entity.SanPham;
-import poly.soft.project2.enumeration.HDTrangThaiEnum;
+import poly.soft.project2.entity.KhachHang;
 import poly.soft.project2.service.HoaDonService;
+import poly.soft.project2.service.KhachHangService;
 
 @RestController
 @RequestMapping("/hoadon")
@@ -28,6 +28,9 @@ public class HoaDonController {
 
 	@Autowired
 	HoaDonService hoaDonService;
+	
+	@Autowired
+	KhachHangService khachHangService;
 	
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<?> getListHoaDon() throws ParseException {
@@ -48,5 +51,15 @@ public class HoaDonController {
 	public ResponseEntity<?> saveHoaDon(@PathVariable("idKhachHang") int idKhachHang, @RequestBody HoaDonDTO hd){
 		hoaDonService.createHoaDon(hd.getGhiChu(), idKhachHang, hd.getTongTien(), hd.getListCTHD());
 		return new ResponseEntity<String>("Thêm hóa đơn thành công!",HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/khachhang/{id}",method=RequestMethod.GET)
+	public ResponseEntity<?> getHoaDonByKhachHangId(@PathVariable("id") int id){
+		KhachHang kh = khachHangService.findById(id);
+		List<HoaDon> list = kh.getHoaDon();
+		if(list.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
+		return new ResponseEntity<>(list,HttpStatus.OK);
 	}
 }
