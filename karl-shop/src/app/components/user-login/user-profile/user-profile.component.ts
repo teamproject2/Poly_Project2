@@ -111,7 +111,14 @@ export class UserProfileComponent implements OnInit {
         $('.modal-wrapper').removeClass('show');
       })
     });
-    
     this.invoiceDetail = chiTietHoaDon;
   }
+
+  removeModal() {
+    $(document).ready(function () {
+      $('.modal-login').removeClass('show');
+      $('.modal-wrapper').removeClass('show');
+    });
+  }
+
 }

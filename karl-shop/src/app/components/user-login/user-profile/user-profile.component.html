@@ -67,7 +67,7 @@
           <p>{{invoice.ngay}}</p>
         </div>
         <div class="col-md-4 text-center">
-          <p>{{invoice.tongTien | number}}</p>
+          <p>{{invoice.tongTien | number}} đ</p>
         </div>
         <div class="col-md-4 text-center">
           <a class="btn btn-success" (click)="showInvoice(invoice.chiTietHoaDon)">Chi tiết</a>
@@ -92,13 +92,13 @@
         <p>{{p.sanPham.tenSanPham}}</p>
       </div>
       <div class="col-sm-3 text-center">
-        <p>adidas nmd123</p>
+        <img class="img-product" src="{{p.sanPham.hinhSanPham[0].hinh}}" alt="">
       </div>
       <div class="col-sm-3 text-center">
-        <p>10</p>
+        <p>{{p.soLuong}}</p>
       </div>
       <div class="col-sm-3 text-center">
-        <p>200.000</p>
+        <p>{{p.thanhTien | number}} đ</p>
       </div>
     </div>
   </div>
