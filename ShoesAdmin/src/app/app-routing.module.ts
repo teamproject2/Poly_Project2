@@ -30,7 +30,6 @@ const routes: Routes = [
   { path: 'hoadon', component: TableHoadonComponent },
   { path: 'hoadon/:id', component: InvoiceComponent },
   { path: 'form-product', component: FormSanphamComponent },
-  { path: 'form-user', component: FormUserComponent },
   { path: 'chitiet-sp', component: ChitietSanphamComponent },
   { path: 'loaigiay', component: LoaigiayComponent }
 

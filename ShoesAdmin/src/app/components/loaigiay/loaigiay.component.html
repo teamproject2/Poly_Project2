@@ -9,9 +9,6 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="card-header">
-                        <h4 class="card-title">LOẠI GIÀY</h4>
-                    </div>
                     <div class="card-body">
                         <div class="card-block">
                             <div class="mb-3">
@@ -29,12 +26,12 @@
                                         <td style="vertical-align: middle">{{giay.id}}</td>
                                         <td style="vertical-align: middle">{{giay.tenLoai}}</td>
                                         <td style="vertical-align: middle" routerLinkActive="active">
-                                            <a class="success p-0" data-original-title="" title="Cập nhật" data-toggle="modal" (click)="showModal()">
+                                            <a class="success p-0" data-original-title="" title="Cập nhật" data-toggle="modal" (click)="showModal(giay)">
                                                 <i class="ft-edit-2 font-medium-3 mr-2"></i>
                                             </a>
                                             <a class="info p-0" data-original-title="" title="Thêm mới" data-toggle="modal" (click)="showModal()">
-                                                    <i class="ft-plus-square"></i>
-                                                </a>
+                                                <i class="ft-plus-square"></i>
+                                            </a>
                                             <a class="danger p-0" data-original-title="" title="Xóa" id="confirm-cancel">
                                                 <i class="ft-x font-medium-3 mr-2"></i>
                                             </a>
@@ -59,20 +56,20 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form action="#">
+        <form method="POST" [formGroup]="Loaigiay" (ngSubmit)="saveLoaigiay()">
             <div>
                 <label class="title">Mã giày: </label>
                 <div class="form-group">
-                    <input type="text" class="form-control" readonly>
+                    <input formControlName="id_Giay" type="text" class="form-control" readonly>
                 </div>
                 <label class="title">Loại giày: </label>
                 <div class="form-group">
-                    <input type="text" class="form-control">
+                    <input formControlName="ten_Giay" type="text" class="form-control">
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <button type="button" class="btn btn-raised btn-raised btn-warning but1">
+                    <button type="submit" class="btn btn-raised btn-raised btn-warning but1">
                         <i class="fa fa-check-square-o"></i> Lưu
                     </button>
                 </div>

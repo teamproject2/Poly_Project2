@@ -12,9 +12,9 @@ import { Chitietnhanvien } from '../models/chitietnhanvien';
 @Injectable()
 export class UserService {
   public API: string = "http://localhost:9099/";
-  private URL_NV: string ="nhanvien";
-  private URL_KH: string ="khachhang";
-  public Chitiet_NV : Chitietnhanvien[]=[];
+  private URL_NV: string = "nhanvien";
+  private URL_KH: string = "khachhang";
+  public Chitiet_NV: Chitietnhanvien[] = [];
   constructor(
     public http: Http
   ) { }
@@ -31,8 +31,8 @@ export class UserService {
       return <Khachhang[]>data.json();
     }));
   }
-  // Get all Nhan vien by ID
-  getSanphamByID(id: number): Observable<Chitietnhanvien> {
+  // Get  Nhan vien by ID
+  getNhanvienbyID(id: number): Observable<Chitietnhanvien> {
     return this.http
       .get(this.API + "nhanvien/" + id)
       .map((response: Response) => {
@@ -44,16 +44,12 @@ export class UserService {
     return Observable.throw(error.statusText);
   }
   //
-  // add_nv(nv: Nhanvien): Observable<Nhanvien>{
-  //    return this.http.post<Nhanvien>(this.API, nv).pipe(
-  //     tap((nv: Nhanvien) => this.log(`added hero w/ id=${nv.id}`)),
-  //     catchError(this.handleError<Nhanvien>('addHero'))
-  //   }));
-  // // }
-    //
-//     update_nv(nv: Nhanvien): Observable<Nhanvien>{
-//       return this.http.put(`${this.API}/${nv.id}`, {
-
-//       }));
-// }
+  update_nv(nhanvien: any): Observable<any> {
+    let search = new URLSearchParams();
+    return this.http.put(this.API + "nhanvien", nhanvien, {search});
+  }
+  insert_Nv(nhanvien: any): Observable<any> {
+    let search = new URLSearchParams();
+    return this.http.post(this.API + "nhanvien", nhanvien, {search});
+  }
 }

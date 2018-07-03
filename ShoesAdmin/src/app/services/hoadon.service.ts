@@ -25,7 +25,7 @@ export class HoadonService {
     }));
   }
 
- // Get all Hoa don by ID
+ // Get Hoa don by ID
  getHoadonByID(id: number): Observable<Invoice[]> {
   return this.http
     .get(this.URL_HD + id)

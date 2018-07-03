@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { LoaiGiay } from '../models/loaiGiay';
-import { Http } from '@angular/http';
+import {ChitietLoaigiay} from '../models/chitietLoaigiay';
+import { Http, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 
 @Injectable()
 export class LoaigiayService {
   public API: string = "http://localhost:9099/loaigiay";
-  public loaigiay: LoaiGiay[] = [];
+  public ChitietLoaigiay: ChitietLoaigiay[] = [];
   constructor(
     public http: Http
   ) { }
@@ -16,5 +17,23 @@ export class LoaigiayService {
     return this.http.get(this.API).pipe(map(data => {
       return <LoaiGiay[]>data.json();
     }));
+  }
+  //
+   // Get Loại Giay by ID
+   getLoaigiaybyID(id: number): Observable<ChitietLoaigiay> {
+    return this.http
+      .get(this.API + id)
+      .map((response: Response) => {
+        return <ChitietLoaigiay>response.json();
+      })
+      .catch(this.handleError);
+  }
+  private handleError(error: Response) {
+    return Observable.throw(error.statusText);
+  }
+  // insert
+  insert_Loaigiay(loaiGiay: any): Observable<any> {
+    let search = new URLSearchParams();
+    return this.http.post(this.API, loaiGiay, {search});
   }
 }
