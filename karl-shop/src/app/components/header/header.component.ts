@@ -1,28 +1,28 @@
-import { Component, OnInit }        from '@angular/core';
-import { LoaigiayService }          from '../../services/loaigiay.service';
-import { HomeLoaiGiay }             from '../../entity/home-loaigiay';
-import { Router}                    from '@angular/router';
-import { UserData }                 from '../../entity/user-data';
-import { AuthService }              from '../../services/auth.service';
-import { ToastrService }            from '../../services/toastr.service';
-import { RequestOptions, Headers }  from '@angular/http';
-import { Customer }                 from '../../entity/customer';
+import { Component, OnInit } from '@angular/core';
+import { LoaigiayService } from '../../services/loaigiay.service';
+import { HomeLoaiGiay } from '../../entity/home-loaigiay';
+import { Router } from '@angular/router';
+import { UserData } from '../../entity/user-data';
+import { AuthService } from '../../services/auth.service';
+import { ToastrService } from '../../services/toastr.service';
+import { RequestOptions, Headers } from '@angular/http';
+import { Customer } from '../../entity/customer';
 import { UserInfo } from '../../entity/userInfo';
 
 @Component({
-  selector:     'app-header',
-  templateUrl:  './header.component.html',
-  styleUrls:    ['./header.component.css'],
-  providers:    [LoaigiayService, AuthService]
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css'],
+  providers: [LoaigiayService, AuthService]
 })
 export class HeaderComponent implements OnInit {
 
-  _loaigiayArray:     HomeLoaiGiay[];
-  _storeUser:         UserData[] = [];
-  chkData:            Customer;
-  _userData:          any;
-  userInfo:           UserInfo;
-  
+  _loaigiayArray: HomeLoaiGiay[];
+  _storeUser: UserData[] = [];
+  chkData: Customer;
+  _userData: any;
+  userInfo: UserInfo;
+
 
   constructor(private loaiGiayService: LoaigiayService,
     private router: Router,
@@ -122,10 +122,10 @@ export class HeaderComponent implements OnInit {
     sessionStorage.customer = [];
   }
 
-  showProfile(){
+  showProfile() {
     console.log(JSON.stringify(this.chkData));
-    
-    if(this.chkData !== null){
+
+    if (this.chkData !== null) {
       console.log("aaaaaaaaaaaaaaaa " + this.chkData.id);
       this.router.navigate(['/home/account/', this.chkData.id]);
     }

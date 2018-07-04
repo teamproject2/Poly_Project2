@@ -31,3 +31,27 @@ input#file {
   padding: 5px 10px;
   background: #E9EAEC;
 }
+.upload {
+  margin: 0;
+}
+.row.upload .col-md-2, .row.upload .col-md-10 {
+  padding: 0;
+}
+
+.row.upload {
+  box-sizing: border-box;
+  padding: 10px;
+}
+.px-3 {
+  padding: 0 !important;
+}
+div.progress.hide {
+  visibility: hidden;
+  opacity:0;
+  transition:2s;
+}
+div.progress.show {
+  visibility: visible;
+  opacity:1;
+  transition:0.5s;
+}

@@ -39,5 +39,4 @@ export class ProductsComponent implements OnInit {
     this._detailArray = pro;
   }
 
-
 }

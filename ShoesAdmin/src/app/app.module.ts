@@ -4,8 +4,10 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
-import { Http } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
+
 // import Components
 import { AppComponent } from './app.component';
 import { IndexComponent } from './components/index/index.component';
@@ -30,6 +32,9 @@ import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoaigiayComponent } from './components/loaigiay/loaigiay.component';
 import { LoaigiayService } from './services/loaigiay.service';
+import { UploadFileService } from './services/uploadfile.service';
+import { DetailsUploadComponent } from './components/details-upload/details-upload.component';
+import { ListUploadComponent } from './components/list-upload/list-upload.component';
 
 @NgModule({
   // khai bao component
@@ -46,7 +51,9 @@ import { LoaigiayService } from './services/loaigiay.service';
     InvoiceComponent,
     ChitietSanphamComponent,
     ChitietkhohangComponent,
-    LoaigiayComponent
+    LoaigiayComponent,
+    DetailsUploadComponent,
+    ListUploadComponent
   ],
   // import thu vien
   imports: [
@@ -56,7 +63,9 @@ import { LoaigiayService } from './services/loaigiay.service';
     FormsModule,
     ReactiveFormsModule,
     ToastModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule
   ],
   // Import services
   providers: [
@@ -64,7 +73,8 @@ import { LoaigiayService } from './services/loaigiay.service';
     SanphamService,
     HoadonService,
     KichthuocService,
-    LoaigiayService
+    LoaigiayService,
+    UploadFileService
   ],
   bootstrap: [AppComponent]
 })
