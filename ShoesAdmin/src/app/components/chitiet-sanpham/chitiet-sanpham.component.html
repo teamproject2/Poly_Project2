@@ -4,11 +4,13 @@
 
     <div class="row">
       <div class="col-sm-12 mt-2">
-        <div class="content-header">Thông tin chi tiết sản phẩm</div>
+        <div class="content-header">Thông tin sản phẩm</div>
       </div>
-      <button (click)="goHangTrongKho(chitietSp.id)" type="button" class="btn btn-raised btn-raised btn-primary btnKho">
-        Kho hàng
-      </button>
+      <div id="buttonkhohang" *ngIf="chitietSp != null">
+        <button (click)="goHangTrongKho(chitietSp.id)" type="button" class="btn btn-raised btn-raised btn-primary btnKho">
+          Kho hàng
+        </button>
+      </div>
     </div>
 
     <div class="row">
@@ -17,46 +19,47 @@
         <div class="card">
           <div class="card-body">
             <div class="px-3">
-              <form class="form" *ngIf="chitietSp != null">
+              <!-- *ngIf="chitietSp != null" -->
+              <form class="form">
                 <div class="form-body">
                   <h4 class="form-section">
                     <i class="ft-user"></i> Mã sản phẩm: {{ chitietSp.id }}</h4>
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                       <div class="form-group">
-                        <label for="projectinput1">Tên sản phẩm:</label>
-                        <input type="text" id="projectinput2" class="form-control" name="lname" value="{{chitietSp.tenSanPham}}">
+                        <label for="userinput1">TÊN SẢN PHẨM</label>
+                        <input type="text" value="{{chitietSp.tenSanPham}}" id="userinput1" class="form-control border-primary" name="name">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="userinput2">Loại giày</label>
+                        <!-- <input type="text" value="{{chitietSp.loaiGiay.tenLoai}}"
+                         id="userinput2" class="form-control border-primary" name="company"> -->
+                        <select  id="issueinput5" name="priority" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                          data-title="Priority">
+                          <option value="0" selected="">Select</option>
+                          <option *ngFor="let giay of listgiay" 
+                          value="">{{giay.tenLoai}}</option>
+                        </select>
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                       <div class="form-group">
-                        <label for="projectinput3">Loại giày:</label>
-                        <input type="text" id="projectinput3" class="form-control" name="email" value="{{chitietSp.loaiGiay.tenLoai}}">
+                        <label for="userinput3">Đơn giá</label>
+                        <input type="text" value="{{chitietSp.donGia}}" id="userinput3" class="form-control border-primary" name="username">
                       </div>
                     </div>
-
-                  </div>
-                  <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                       <div class="form-group">
-                        <label for="projectinput3">Đơn giá:</label>
-                        <input type="text" id="projectinput3" class="form-control" name="email" value="{{chitietSp.donGia}}">
+                        <label for="userinput4">Chiết khấu</label>
+                        <input type="text" value="{{chitietSp.chietKhau}}" id="userinput4" class="form-control border-primary" name="nickname">
                       </div>
                     </div>
-
                   </div>
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="form-group">
-                        <label for="projectinput3">Chiết khấu:</label>
-                        <input type="text" id="projectinput3" class="form-control" name="email" value="{{chitietSp.chietKhau}}">
-                      </div>
-                    </div>
-
-                  </div>
-                  <div class="row">
+                  <div class="row" *ngIf="chitietSp != null">
                     <div class="col-md-12">
                       <div class="form-group">
                         <label for="projectinput4">Kích thước</label>
@@ -71,8 +74,8 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label for="projectinput8">Mô tả</label>
-                        <textarea id="projectinput8" rows="5" class="form-control" name="comment"> {{chitietSp.chiTiet}}</textarea>
+                        <label for="projectinput8">Chi tiết</label>
+                        <textarea id="projectinput8" rows="5" class="form-control1" name="comment"> {{chitietSp.chiTiet}}</textarea>
                       </div>
                     </div>
                   </div>
@@ -104,8 +107,8 @@
         <div class="card">
           <div class="card-body">
             <div class="px-3">
-
-              <form class="form" *ngIf="chitietSp != null">
+              <!-- *ngIf="chitietSp != null" -->
+              <form class="form">
                 <div class="form-body">
                   <h4 class="form-section">
                     <i class="ft-info"></i> Hình ảnh</h4>
@@ -136,7 +139,7 @@
                   </div>
 
                 </div>
-                <table id="table_sp" class="table table-responsive-md-md text-center">
+                <table id="table_sp" class="table table-responsive-md-md text-center" *ngIf="chitietSp != null">
                   <thead>
                     <tr>
                       <th>STT</th>
@@ -163,9 +166,6 @@
           </div>
         </div>
       </div>
-
     </div>
-
   </section>
-
 </div>

@@ -47,7 +47,16 @@ export class SanphamService {
   private handleError(error: Response) {
     return Observable.throw(error.statusText);
   }
-
+//
+update_Sp(sanpham: any): Observable<any> {
+  let search = new URLSearchParams();
+  return this.http.put(this.API + "sanpham", sanpham, {search});
+}
+insert_Sp(sanpham: any): Observable<any> {
+  let search = new URLSearchParams();
+  return this.http.post(this.API + "sanpham", sanpham, {search});
+}
+//
   saveHangTrongKho(id, list) : Observable<Response>{
     let search = new URLSearchParams();
     return this.http.put(this.API + "sanpham/hangtrongkho/" + id, list, {search});

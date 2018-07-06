@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 import { UploadFileService } from '../../services/uploadfile.service';
 import { FileUpload } from '../../models/fileupload';
 import { ChitietSanpham } from '../../models/ChitietSanpham';
+import { LoaigiayService } from '../../services/loaigiay.service';
+import { LoaiGiay } from '../../models/loaiGiay';
 
 @Component({
   selector: 'app-chitiet-sanpham',
@@ -24,12 +26,14 @@ export class ChitietSanphamComponent implements OnInit {
   public subscription: Subscription;
   // @Input() chitietSp: ChitietSanpham;
   public chitietSp: ChitietSanpham;
+  public listgiay: LoaiGiay[]=[];
 
   constructor(
     // 
     private route: ActivatedRoute,
     private sanphamService: SanphamService,
     private router: Router,
+    private loaigiayservice: LoaigiayService,
     private uploadService: UploadFileService
     // private location: Location
   ) { }
@@ -37,6 +41,7 @@ export class ChitietSanphamComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
     this.getChitiet_SP(this.id);
+    this.getLoaigiay();
   }
 
   selectFile(event) {
@@ -47,7 +52,7 @@ export class ChitietSanphamComponent implements OnInit {
     const file = this.selectedFiles.item(0);
     this.selectedFiles = undefined;
 
-    
+
     this.currentFileUpload = new FileUpload(file);
     this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress);
   }
@@ -55,12 +60,22 @@ export class ChitietSanphamComponent implements OnInit {
   getChitiet_SP(id: number): void {
     this.sanphamService.getSanphamByID(id).subscribe(data => {
       this.chitietSp = data;
+      
     },
       error => {
         console.log(error);
       });
   }
-
+  //
+  getLoaigiay() {
+    this.loaigiayservice.getLoaiGiay().subscribe(data => {
+      console.log(data);
+      this.listgiay = data;
+    }, error => {
+      console.log(error);
+    });
+  }
+  //
   goHangTrongKho(id) {
     this.router.navigate(['sanpham/hangtrongkho/', id]);
   }
