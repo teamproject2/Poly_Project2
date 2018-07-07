@@ -33,8 +33,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoaigiayComponent } from './components/loaigiay/loaigiay.component';
 import { LoaigiayService } from './services/loaigiay.service';
 import { UploadFileService } from './services/uploadfile.service';
-import { DetailsUploadComponent } from './components/details-upload/details-upload.component';
-import { ListUploadComponent } from './components/list-upload/list-upload.component';
 
 @NgModule({
   // khai bao component
@@ -51,9 +49,7 @@ import { ListUploadComponent } from './components/list-upload/list-upload.compon
     InvoiceComponent,
     ChitietSanphamComponent,
     ChitietkhohangComponent,
-    LoaigiayComponent,
-    DetailsUploadComponent,
-    ListUploadComponent
+    LoaigiayComponent
   ],
   // import thu vien
   imports: [

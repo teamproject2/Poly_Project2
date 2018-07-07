@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SanphamService } from '../../services/sanpham.service';
 import { Subscription } from 'rxjs';
 import { UploadFileService } from '../../services/uploadfile.service';
-import { FileUpload } from '../../models/fileupload';
 import { ChitietSanpham } from '../../models/ChitietSanpham';
+import * as _ from "lodash";
 import { LoaigiayService } from '../../services/loaigiay.service';
 import { LoaiGiay } from '../../models/loaiGiay';
 
@@ -17,25 +17,20 @@ import { LoaiGiay } from '../../models/loaiGiay';
 export class ChitietSanphamComponent implements OnInit {
 
   selectedFiles: FileList;
-  currentFileUpload: FileUpload;
-  progress: { percentage: number } = { percentage: 0 };
-
+  currentUpload: Upload;
+  _downloadArray: any[];
   public title: string = 'Routing';
-  // public chitietSp: ChitietSanpham[] = [];
   id: number;
   public subscription: Subscription;
-  // @Input() chitietSp: ChitietSanpham;
   public chitietSp: ChitietSanpham;
   public listgiay: LoaiGiay[]=[];
 
   constructor(
-    // 
     private route: ActivatedRoute,
     private sanphamService: SanphamService,
     private router: Router,
     private loaigiayservice: LoaigiayService,
     private uploadService: UploadFileService
-    // private location: Location
   ) { }
 
   ngOnInit() {
@@ -44,14 +39,27 @@ export class ChitietSanphamComponent implements OnInit {
     this.getLoaigiay();
   }
 
-  selectFile(event) {
+  detectFiles(event) {
     this.selectedFiles = event.target.files;
   }
 
-  upload() {
-    const file = this.selectedFiles.item(0);
-    this.selectedFiles = undefined;
+  uploadMulti() {
+    let files = this.selectedFiles;
+    let filesIndex = _.range(files.length);
+    _.each(filesIndex, (idx) => {
+      this.currentUpload = new Upload(files[idx]);
+      this.uploadService.pushUpload(this.currentUpload)
+    });
+  }
 
+  //Fixing
+  getListImg() {
+    this.uploadService.getFileUploads(100).snapshotChanges().map(changes => {
+      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+    }).subscribe(file => {
+      this._downloadArray = file;
+      console.log(this._downloadArray);
+    });
 
     this.currentFileUpload = new FileUpload(file);
     this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress);

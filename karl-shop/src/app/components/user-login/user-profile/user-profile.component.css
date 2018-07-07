@@ -172,6 +172,8 @@ i.icon-trash {
   background: #fff;
   box-sizing: border-box;
   padding: 5px;
+  height: 80px;
+  overflow: hidden;
 }
 
 .row.modal-row:nth-child(2n) {
