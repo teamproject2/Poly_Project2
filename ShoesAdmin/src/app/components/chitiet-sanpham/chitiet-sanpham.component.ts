@@ -8,6 +8,7 @@ import * as _ from "lodash";
 import { LoaigiayService } from '../../services/loaigiay.service';
 import { LoaiGiay } from '../../models/loaiGiay';
 import { Upload } from '../../models/fileupload';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-chitiet-sanpham',
@@ -21,24 +22,100 @@ export class ChitietSanphamComponent implements OnInit {
   currentUpload: Upload;
   _downloadArray: any[];
   public title: string = 'Routing';
-  id: number;
+  id: number = 0;
   public subscription: Subscription;
-  public chitietSp: ChitietSanpham;
-  public listgiay: LoaiGiay[]=[];
+
+  public listgiay: LoaiGiay[] = [];
+
+  selectedValue: string;
+  //
+  public chitietSp: any;
+
+  loaiGiayAA: LoaiGiay;
+
+  selectedTenLoai : string;
+
+  //
+  chitietSanpham: FormGroup;
+  idSp: FormControl;
+  tenSanPham: FormControl;
+  tenloaigiay: FormControl;
+  donGia: FormControl;
+  chietKhau: FormControl;
+  chiTiet: FormControl;
+
+
 
   constructor(
     private route: ActivatedRoute,
     private sanphamService: SanphamService,
     private router: Router,
     private loaigiayservice: LoaigiayService,
-    private uploadService: UploadFileService
+    private uploadService: UploadFileService,
+    private formBuilder: FormBuilder
   ) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    this.getChitiet_SP(this.id);
-    this.getLoaigiay();
+    if (this.id != 0) {
+      this.getChitiet_SP(this.id);
+    }
+
+    //
+    this.idSp = new FormControl('', Validators.required);
+    this.tenSanPham = new FormControl('', [Validators.required, Validators.minLength(3)]);
+    this.tenloaigiay = new FormControl('', Validators.required);
+    this.donGia = new FormControl('', Validators.required);
+    this.chietKhau = new FormControl('', Validators.required);
+    this.chiTiet = new FormControl('', Validators.required);
+
+    this.chitietSanpham = this.formBuilder.group({
+      idSp: this.idSp,
+      tenSanPham: this.tenSanPham,
+      tenloaigiay: this.tenloaigiay,
+      donGia: this.donGia,
+      chietKhau: this.chietKhau,
+      chiTiet: this.chiTiet
+    });
+
+    this.onChanges();
   }
+
+  //
+  //
+  onChanges(): void {
+    this.chitietSanpham.valueChanges.subscribe(val => {
+      this.chitietSp.id = val.idSp.length > 0 ? val.idSp : this.chitietSp.id;
+      this.chitietSp.tenSanPham = val.tenSanPham.length > 0 ? val.tenSanPham : this.chitietSp.tenSanPham;
+      this.chitietSp.chiTiet = val.chiTiet.length > 0 ? val.chiTiet : this.chitietSp.chiTiet;;
+      this.chitietSp.chietKhau = val.chietKhau.length > 0 ? val.chietKhau : this.chitietSp.chietKhau;
+      this.chitietSp.donGia = val.donGia.length > 0 ? val.donGia : this.chitietSp.donGia;
+      //this.chitietSp.loaiGiay = val.tenloaigiay.length > 0 ? val.tenloaigiay : this.chitietSp.loaiGiay;
+
+      console.log("sdsdaSPPPPP: " + JSON.stringify(this.chitietSp));
+    });
+  }
+  //
+
+
+  saveSanpham() {
+    if(this.selectedTenLoai == 'none'){
+      alert('Select LG');
+    }
+    
+    //this.chitietSp.loaiGiay = this.loaiGiay;
+    console.log("sdsda2: " + JSON.stringify(this.chitietSp.loaiGiay));
+
+    // this.sanphamService.insert_Sp(this.chitietSp).subscribe(
+    //   result => {
+    //     console.log("Saved!");
+    //     // this.router.navigate(['/nhanvien']);
+    //   },
+    //   error => console.error(error)
+    // )
+  }
+  //
+
 
   detectFiles(event) {
     this.selectedFiles = event.target.files;
@@ -69,7 +146,8 @@ export class ChitietSanphamComponent implements OnInit {
   getChitiet_SP(id: number): void {
     this.sanphamService.getSanphamByID(id).subscribe(data => {
       this.chitietSp = data;
-      
+      this.loaiGiayAA = this.chitietSp.loaiGiay;
+      this.getLoaigiay();
     },
       error => {
         console.log(error);
@@ -78,8 +156,8 @@ export class ChitietSanphamComponent implements OnInit {
   //
   getLoaigiay() {
     this.loaigiayservice.getLoaiGiay().subscribe(data => {
-      console.log(data);
       this.listgiay = data;
+      console.log(this.listgiay);
     }, error => {
       console.log(error);
     });
@@ -89,5 +167,20 @@ export class ChitietSanphamComponent implements OnInit {
     this.router.navigate(['sanpham/hangtrongkho/', id]);
   }
 
+  compareLoaiGiay(t1: LoaiGiay, t2: LoaiGiay): boolean {
+    return t1 && t2 ? t1.tenLoai === t2.tenLoai : t1 === t2;
+  }
 
+  getNewLG(event) {
+    this.listgiay.forEach(p=>{
+      if(p.tenLoai == event.target.value && event.target.value != 'none'){
+        this.chitietSp.loaiGiay.id = p.id;
+        this.chitietSp.loaiGiay.tenLoai = p.tenLoai;
+      }
+      if(event.target.value == 'none'){
+        this.selectedTenLoai = 'none';
+      }
+    });
+    console.log("Value : " + JSON.stringify(this.chitietSp.loaiGiay));
+  }
 }

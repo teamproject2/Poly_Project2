@@ -45,7 +45,7 @@ export class FormUserComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
-    console.log("ID: "+ this.id);
+    // console.log("ID: "+ this.id);
     if(this.id != 0){
       this.getChitiet_NV(this.id);
     }
@@ -81,8 +81,6 @@ export class FormUserComponent implements OnInit {
   //
   onChanges(): void {
     this.chitietNhanVien.valueChanges.subscribe(val => {
-      // this.chitiet_NV = val;
-      // console.log(this.chitiet_NV);
       this.chitiet_NV.id = val.idNv.length > 0 ? val.idNv : this.chitiet_NV.id;
       this.chitiet_NV.tenNhanVien = val.hoTen.length > 0 ? val.hoTen : this.chitiet_NV.tenNhanVien;
       this.chitiet_NV.gioiTinh = val.gioiTinh.length > 0 ? val.gioiTinh : this.chitiet_NV.gioiTinh;;
@@ -90,7 +88,6 @@ export class FormUserComponent implements OnInit {
       this.chitiet_NV.email = val.email.length > 0 ? val.email : this.chitiet_NV.email;
       this.chitiet_NV.ngaySinh = val.ngaySinh.length > 0 ? val.ngaySinh: this.chitiet_NV.ngaySinh;
       this.chitiet_NV.soDienThoai = val.soDienThoai.length > 0 ? val.soDienThoai: this.chitiet_NV.soDienThoai;
-      console.log("sdsda2: " + JSON.stringify(this.chitiet_NV));
     });
   }
 //
@@ -100,9 +97,9 @@ export class FormUserComponent implements OnInit {
     //   console.log("Matched!"); 
     // }else{
     //   console.log("Wrong");
-    // }
-    console.log("sdsda1: " + JSON.stringify(this.chitietNhanVien.value));
-    console.log("sdsda2: " + JSON.stringify(this.chitiet_NV));
+    //  }
+    // console.log("sdsda1: " + JSON.stringify(this.chitietNhanVien.value));
+    // console.log("sdsda2: " + JSON.stringify(this.chitiet_NV));
     
     if(this.id == 0){
       this.nhanvienservices.insert_Nv(this.chitiet_NV).subscribe(
