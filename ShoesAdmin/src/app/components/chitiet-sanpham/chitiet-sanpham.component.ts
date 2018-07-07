@@ -7,6 +7,7 @@ import { ChitietSanpham } from '../../models/ChitietSanpham';
 import * as _ from "lodash";
 import { LoaigiayService } from '../../services/loaigiay.service';
 import { LoaiGiay } from '../../models/loaiGiay';
+import { Upload } from '../../models/fileupload';
 
 @Component({
   selector: 'app-chitiet-sanpham',
@@ -61,8 +62,8 @@ export class ChitietSanphamComponent implements OnInit {
       console.log(this._downloadArray);
     });
 
-    this.currentFileUpload = new FileUpload(file);
-    this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress);
+    // this.currentFileUpload = new FileUpload(file);
+    // this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress);
   }
 
   getChitiet_SP(id: number): void {
