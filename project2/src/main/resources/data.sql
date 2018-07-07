@@ -8,17 +8,17 @@ VALUES ('Adidas'),('Nike'),('NB');
 -- 5,6 là NB
 		
 -- Insert into kich_thuoc
-insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('35');--1
-insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('36');--2
-insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('37');--3
-insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('38');--4
-insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('39');--5
-insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('40');--6
-insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('41');--7
-insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('42');--8
-insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('43');--9
-insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('44');--10
-insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('45');--11
+insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('35');-- 1
+insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('36');-- 2
+insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('37');-- 3
+insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('38');-- 4
+insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('39');-- 5
+insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('40');-- 6
+insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('41');-- 7
+insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('42');-- 8
+insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('43');-- 9
+insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('44');-- 10
+insert into poly_project2.kich_thuoc(ten_kich_thuoc) values('45');-- 11
 
 -- Insert into san_pham
 insert into poly_project2.san_pham(ten_san_pham,chi_tiet,loai_giay_id,don_gia,chiet_khau)

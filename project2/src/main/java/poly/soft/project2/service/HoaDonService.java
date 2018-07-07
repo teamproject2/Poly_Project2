@@ -23,6 +23,4 @@ public interface HoaDonService {
 	boolean delete(int id);
 
 	void createHoaDon(String ghiChu, int idKhachHang, double tongTien, List<ChiTietHoaDonDTO> list);
-		
-	
 }
