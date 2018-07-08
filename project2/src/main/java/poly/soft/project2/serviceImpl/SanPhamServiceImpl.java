@@ -112,5 +112,22 @@ public class SanPhamServiceImpl  implements SanPhamService{
 		return listSPByKichThuoc;
 	}
 
+	@Override
+	public List<SanPhamHomePageDTO> getListSanPhamByTenSanPham(String tenSanPham) {
+		List<Object[]> list = sanPhamRepository.getListSanPhamByTenSanPham(tenSanPham);
+		List<SanPhamHomePageDTO> listByProduct = new ArrayList<>();
+		for(Object[] arr : list) {
+			SanPhamHomePageDTO sp = new SanPhamHomePageDTO();
+			sp.setId(Integer.parseInt(String.valueOf(arr[0])));
+			sp.setTenSanPham(String.valueOf(arr[1]));
+			sp.setChiTiet(String.valueOf(arr[2]));
+			sp.setDonGia(Double.parseDouble(String.valueOf(arr[3])));
+			sp.setChietKhau(Double.parseDouble(String.valueOf(arr[4])));
+			sp.setHinh(String.valueOf(arr[5]));		
+			listByProduct.add(sp);
+		}
+		return listByProduct;
+	}
+
 		
 }

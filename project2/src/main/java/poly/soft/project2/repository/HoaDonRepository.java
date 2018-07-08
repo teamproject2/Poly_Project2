@@ -77,7 +77,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer>{
 			"poly_project2.loai_giay lg join poly_project2.san_pham sp on lg.id = sp.loai_giay_id " + 
 			"						   join poly_project2.chi_tiet_hoa_don ct on ct.san_pham_id = sp.id " + 
 			"                           join poly_project2.hoa_don hd on hd.id = ct.hoa_don_id " + 
-			"where month(hd.ngay) =6 and year(hd.ngay)=2018 " + 
+			"where month(hd.ngay) =?1 and year(hd.ngay)=?2 " + 
 			"group by lg.ten_loai,month(hd.ngay)	",nativeQuery=true)
 	public List<Object[]> statisticsSumOfLoaiGiayInMonth(int month,int year);
 	

@@ -25,4 +25,6 @@ public interface SanPhamService {
 	
 	List<SanPhamHomePageDTO> getListSanPhamByKichThuoc(int idKichThuoc);
 	
+	List<SanPhamHomePageDTO> getListSanPhamByTenSanPham(String tenSanPham);
+	
 }

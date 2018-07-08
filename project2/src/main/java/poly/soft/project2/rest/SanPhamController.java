@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -115,5 +116,12 @@ public class SanPhamController {
 			hangTrongKhoService.save(htk);
 		});		
 		return new ResponseEntity<>("Cập nhật thành công!", HttpStatus.OK);
+	}
+	
+	//Get product by Name
+	@RequestMapping(value = "/timsanpham", method = RequestMethod.GET)
+	public ResponseEntity<?> getListSanPhamByName(@Param("tensanpham") String tensanpham) {
+		List<SanPhamHomePageDTO> list = sanPhamService.getListSanPhamByTenSanPham(tensanpham);
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 }
