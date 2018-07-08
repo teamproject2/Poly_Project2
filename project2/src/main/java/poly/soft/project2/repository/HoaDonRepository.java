@@ -16,11 +16,11 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer>{
 	public List<Object[]> getListHoaDon();
 	//<=================================================>Statistics by some of money in year
 	
-	@Query(value="SELECT thang,sum(tongTien) as tongTien " + 
-			"FROM (" + 
+	@Query(value="SELECT thang,tongTien " + 
+			"FROM ( " + 
 			"    SELECT SUM(hd.tong_tien) AS tongTien, MONTH(hd.ngay) AS thang " + 
 			"    FROM poly_project2.hoa_don hd " + 
-			"    where year(hd.ngay) = ?1 " + 
+			"    where year(hd.ngay) = ?1" + 
 			"    GROUP by month(hd.ngay) " + 
 			"    UNION SELECT 0 AS tongTien, 1 AS thang " + 
 			"    UNION SELECT 0 AS tongTien,  2 AS thang " + 
@@ -35,7 +35,8 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer>{
 			"    UNION SELECT 0 AS tongTien,  11 AS thang " + 
 			"    UNION SELECT 0 AS tongTien,  12 AS thang " + 
 			") t " + 
-			"group by thang", nativeQuery= true)
+			"group by thang " + 
+			"order by thang asc", nativeQuery= true)
 	public List<Object[]> statisticSumOfMoney(int year);
 	
 	
@@ -51,7 +52,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer>{
 	//<=================================================>Loai giay trong nam
 	@Query(value="SELECT tongTien,thang " + 
 			"FROM (" + 
-			"    SELECT sum(hd.tong_tien) as tongTien,month(hd.ngay) as thang FROM " + 
+			"    SELECT sum(ct.thanh_tien) as tongTien,month(hd.ngay) as thang FROM " + 
 			"	poly_project2.loai_giay lg join poly_project2.san_pham sp on lg.id = sp.loai_giay_id  " + 
 			"						   join poly_project2.chi_tiet_hoa_don ct on ct.san_pham_id = sp.id " + 
 			"                           join poly_project2.hoa_don hd on hd.id = ct.hoa_don_id " + 
@@ -70,10 +71,10 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer>{
 			"    UNION SELECT  0 AS tongTien,  11 AS thang " + 
 			"    UNION SELECT  0 AS tongTien,  12 AS thang " + 
 			") t " + 
-			" group by thang",nativeQuery=true)
+			" group by thang order by thang asc",nativeQuery=true)
 	public List<Object[]> statisticsLoaiGiayInYear(String loaiGiay,int year);
 	//<=================================================>Sum of LoaiGiay in Month
-	@Query(value="SELECT lg.ten_loai, sum(hd.tong_tien) FROM " + 
+	@Query(value="SELECT lg.ten_loai, sum(ct.thanh_tien) FROM " + 
 			"poly_project2.loai_giay lg join poly_project2.san_pham sp on lg.id = sp.loai_giay_id " + 
 			"						   join poly_project2.chi_tiet_hoa_don ct on ct.san_pham_id = sp.id " + 
 			"                           join poly_project2.hoa_don hd on hd.id = ct.hoa_don_id " + 

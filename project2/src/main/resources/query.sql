@@ -22,7 +22,7 @@ where LG.ten_loai = 'Adidas'
 group by sp.ten_san_pham
 
 --Select tongtien trong hoadon
-select hd.id, sum(htk.don_gia*(1-htk.chiet_khau)*cthd.so_luong)
+select hd.id, sum(sp.don_gia*(1-sp.chiet_khau)*cthd.so_luong)
 from poly_project2.san_pham sp 
 join poly_project2.chi_tiet_hoa_don cthd on sp.id = cthd.san_pham_id 
 join poly_project2.hang_trong_kho htk on sp.id = htk.san_pham_id 
@@ -33,16 +33,16 @@ order by hd.id;
 
 
 ---Statistics by month with Loai_giay
-SELECT lg.ten_loai, sum(hd.tong_tien), month(hd.ngay) FROM 
+SELECT lg.ten_loai, sum(ct.thanh_tien), month(hd.ngay) FROM 
 poly_project2.loai_giay lg join poly_project2.san_pham sp on lg.id = sp.loai_giay_id
 						   join poly_project2.chi_tiet_hoa_don ct on ct.san_pham_id = sp.id
                            join poly_project2.hoa_don hd on hd.id = ct.hoa_don_id
-where month(hd.ngay) =6 and year(hd.ngay)=2018
+where month(hd.ngay) =5 and year(hd.ngay)=2018
 group by lg.ten_loai,month(hd.ngay)	
 ---Statistics by Loai_giay in year
 SELECT tongTien,thang
 FROM (
-    SELECT sum(hd.tong_tien) as tongTien,month(hd.ngay) as thang FROM 
+    SELECT sum(ct.thanh_tien) as tongTien,month(hd.ngay) as thang FROM 
 	poly_project2.loai_giay lg join poly_project2.san_pham sp on lg.id = sp.loai_giay_id
 						   join poly_project2.chi_tiet_hoa_don ct on ct.san_pham_id = sp.id
                            join poly_project2.hoa_don hd on hd.id = ct.hoa_don_id
@@ -62,6 +62,7 @@ FROM (
     UNION SELECT  0 AS tongTien,  12 AS thang 
 ) t 
 group by thang
+order by thang asc
 -----Top 10 product in month
 SELECT  sp.ten_san_pham,sum(ct.thanh_tien) FROM poly_project2.san_pham sp
 			   join poly_project2.chi_tiet_hoa_don ct on ct.san_pham_id = sp.id
@@ -71,11 +72,11 @@ group by sp.ten_san_pham
 order by sum(ct.thanh_tien) desc limit 10	
 
 ---Statistics by some of money in year
-SELECT thang,sum(tongTien) as tongTien
+SELECT thang,tongTien
 FROM (
     SELECT SUM(hd.tong_tien) AS tongTien, MONTH(hd.ngay) AS thang
     FROM poly_project2.hoa_don hd
-    where year(hd.ngay) = "2017"
+    where year(hd.ngay) = "2018"
     GROUP by month(hd.ngay)
     UNION SELECT 0 AS tongTien, 1 AS thang
     UNION SELECT 0 AS tongTien,  2 AS thang
@@ -91,3 +92,4 @@ FROM (
     UNION SELECT 0 AS tongTien,  12 AS thang
 ) t
 group by thang
+order by thang asc
