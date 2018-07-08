@@ -22,7 +22,7 @@ export class LoaigiayService {
    // Get Loại Giay by ID
    getLoaigiaybyID(id: number): Observable<ChitietLoaigiay> {
     return this.http
-      .get(this.API + id)
+      .get(this.API + "/" + id)
       .map((response: Response) => {
         return <ChitietLoaigiay>response.json();
       })

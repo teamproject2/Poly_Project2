@@ -56,8 +56,22 @@
                 <span class="text-muted">Tên Nhân Viên :</span> {{_detailInvoice.nhanVien.tenNhanVien}}</p>
               <p>
                 <span class="text-muted">Ngày :</span>{{_detailInvoice.ngay}}</p>
-              <p>
-                <span class="text-muted">Trạng Thái :</span> {{_detailInvoice.trangThai}}</p>
+              <span *ngIf="_detailInvoice.trangThai == 'Đang chờ'">
+                <p>
+                  <span class="text-muted">Trạng Thái :</span>
+                  <button type="button" (click)="changeTrangThai(_detailInvoice.id)" class="btn btn-raised btn-primary">
+                    <i class="ft-save"></i>
+                    Hoàn thành
+                  </button>
+                </p>
+              </span>
+
+              <span *ngIf="_detailInvoice.trangThai == 'Hoàn thành'">
+                <p>
+                  <span class="text-muted">Trạng Thái :</span>
+                  <span>{{_detailInvoice.trangThai}}</span>
+                </p>
+              </span>
             </div>
           </div>
           <!--/ Invoice Customer Details -->

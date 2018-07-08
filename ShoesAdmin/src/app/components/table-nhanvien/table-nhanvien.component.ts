@@ -43,7 +43,29 @@ export class TableNhanvienComponent implements OnInit, OnDestroy {
 			console.log(error);
 		});
 	}
-
+	//
+	DelNhanvien(id: number){
+		this.nhanvienService.DeleteNhanvien(id).subscribe (
+			result => {console.log("Delete Success!");
+			this.loadData();
+		},
+		  error => console.error(error)
+		)
+	}
+	//
+	showModal() {
+		$(document).ready(function () {
+		  $('.modal1').addClass('show');
+		  $('.modal-wrapper').addClass('show');
+		});
+	  }
+	
+	  removeModal() {
+		$(document).ready(function () {
+		  $('.modal1').removeClass('show');
+		  $('.modal-wrapper').removeClass('show');
+		});
+	  }
 	ngOnDestroy() {
 
 	}
