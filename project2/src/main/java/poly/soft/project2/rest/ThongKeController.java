@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import poly.soft.project2.dto.SumOfLoaiGiayInMonthDTO;
 import poly.soft.project2.dto.SumOfMoneyDTO;
 import poly.soft.project2.dto.Top10ProductDTO;
 import poly.soft.project2.service.ThongKeService;
@@ -29,6 +30,16 @@ public class ThongKeController {
 	@RequestMapping(value="/top10products")
 	public ResponseEntity<?> top10ProductInMonth(@Param("thang") int thang,@Param("nam") int nam ){
 		List<Top10ProductDTO> list = thongKeService.list10Product(thang, nam);
+		return new ResponseEntity<>(list,HttpStatus.OK);
+	}
+	@RequestMapping(value="/loaigiaytrongnam")
+	public ResponseEntity<?> loaiGiayInYear(@Param("loaigiay") String loaigiay,@Param("nam") int nam ){
+		List<SumOfMoneyDTO> list = thongKeService.statisticLoaiGiayInYear(loaigiay, nam);
+		return new ResponseEntity<>(list,HttpStatus.OK);
+	}
+	@RequestMapping(value="/loaigiaytrongthang")
+	public ResponseEntity<?> statisticsSumOfLoaiGiayInMonth(@Param("thang")int thang,@Param("nam") int nam ){
+		List<SumOfLoaiGiayInMonthDTO> list = thongKeService.statisticLoaiGiayInMonth(thang, nam);
 		return new ResponseEntity<>(list,HttpStatus.OK);
 	}
 	
