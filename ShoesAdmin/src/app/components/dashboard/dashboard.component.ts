@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit {
 
   _sumOfMoneyInMonth: SumOfMoneyInMonth[] = [];
   data4 = [];
+  namOfChart4: number;
 
   // chart-1: Top 10 products
   id1 = 'chart1';
@@ -41,7 +42,7 @@ export class DashboardComponent implements OnInit {
     "chart": {
       "caption": "Poly's Shop",
       "subCaption": "",
-      "yAxisName": "Sales (In VNĐ)",
+      "yAxisName": "Doanh thu (VNĐ)",
       "numberSuffix": "VNĐ",
       "paletteColors": "#0075c2",
       "bgColor": "#ffffff",
@@ -100,7 +101,8 @@ export class DashboardComponent implements OnInit {
     "chart": {
       "caption": "Poly's Shop",
       "subCaption": "",
-      "yAxisName": "Sales (In VNĐ)",
+      "xAxisName": "Tháng",
+      "yAxisName": "Doanh thu (VNĐ)",
       "numberSuffix": "VNĐ",
       "paletteColors": "#2980b9,#f39c12",
       "bgColor": "#ffffff",
@@ -109,7 +111,7 @@ export class DashboardComponent implements OnInit {
       "usePlotGradientColor": "0",
       "plotBorderAlpha": "10",
       "placeValuesInside": "1",
-      "valueFontColor": "#ffffff",
+      "valueFontColor": "#0000FF",
       "showAxisLines": "1",
       "axisLineAlpha": "25",
       "divLineAlpha": "10",
@@ -132,8 +134,9 @@ export class DashboardComponent implements OnInit {
   dataSource4 = {
     "chart": {
       "caption": "Poly's Shop",
-      "subCaption": "Doanh thu trong năm 2018",
-      "yAxisName": "Sales (In VNĐ)",
+      "subCaption": "",
+      "xAxisName": "Tháng",
+      "yAxisName": "Doanh thu (VNĐ)",
       "numberSuffix": "VNĐ",
       "paletteColors": "#e84118,#44bd32",
       "bgColor": "#ffffff",
@@ -142,7 +145,7 @@ export class DashboardComponent implements OnInit {
       "usePlotGradientColor": "0",
       "plotBorderAlpha": "10",
       "placeValuesInside": "1",
-      "valueFontColor": "#ffffff",
+      "valueFontColor": "#0000FF",
       "showAxisLines": "1",
       "axisLineAlpha": "25",
       "divLineAlpha": "10",
@@ -258,6 +261,8 @@ export class DashboardComponent implements OnInit {
   getSumOfMoney() {
     this.thongKeService.getSumOfMoney(2018).subscribe(result => {
       this._sumOfMoneyInMonth = result;
+      this.namOfChart4 = 2018;
+      this.dataSource4.chart.subCaption = "Doanh thu trong năm " + this.namOfChart4; 
       for (let i = 0; i < this._sumOfMoneyInMonth.length; i++) {
         let object = { 'label': '', 'value': '' };
         object.label = this._sumOfMoneyInMonth[i].thang.toString();

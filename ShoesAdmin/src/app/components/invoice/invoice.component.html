@@ -59,6 +59,7 @@
               <span *ngIf="_detailInvoice.trangThai == 'Đang chờ'">
                 <p>
                   <span class="text-muted">Trạng Thái :</span>
+                  <span>{{_detailInvoice.trangThai}}</span><br>
                   <button type="button" (click)="changeTrangThai(_detailInvoice.id)" class="btn btn-raised btn-primary">
                     <i class="ft-save"></i>
                     Hoàn thành
