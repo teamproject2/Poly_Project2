@@ -7,6 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
+import * as FusionCharts from 'fusioncharts';
+import * as Charts from 'fusioncharts/fusioncharts.charts';
+import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
+import { FusionChartsModule } from 'angular4-fusioncharts';
 
 // import Components
 import { AppComponent } from './app.component';
@@ -61,7 +65,9 @@ import { UploadFileService } from './services/uploadfile.service';
     ToastModule.forRoot(),
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    FusionChartsModule.forRoot(FusionCharts, Charts, FintTheme)
+
   ],
   // Import services
   providers: [

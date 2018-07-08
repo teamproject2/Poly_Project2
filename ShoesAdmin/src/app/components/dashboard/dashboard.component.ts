@@ -1,15 +1,273 @@
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
+import { ThongKeService } from '../../services/thongke.service';
+import { Top10Products } from '../../models/top10Products';
+import { SumOfMoneyInMonth } from '../../models/sumOfMoneyInMonth';
+import { SumLoaiGiayByMonthAndYear } from '../../models/SumLoaiGiayByMonthAndYear';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  styleUrls: ['./dashboard.component.css'],
+  providers: [ThongKeService]
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  dataDB: Top10Products[] = [];
+  data1 = [];
+  thangOfChart1: number;
+  namOfChart1: number;
+
+  _loaiGiayInMonth: SumLoaiGiayByMonthAndYear[] = [];
+  data2 = [];
+  thangOfChart2: number;
+  namOfChart2: number;
+
+  _loaiGiayInYear: SumOfMoneyInMonth[] = [];
+  data3 = [];
+  namOfChart3: number;
+  loaiGiayOfChart3: string;
+
+  _sumOfMoneyInMonth: SumOfMoneyInMonth[] = [];
+  data4 = [];
+
+  // chart-1: Top 10 products
+  id1 = 'chart1';
+  width = '100%';
+  height = 400;
+  type = 'bar3d';
+  dataFormat = 'json';
+  dataSource1 = {
+    "chart": {
+      "caption": "Poly's Shop",
+      "subCaption": "",
+      "yAxisName": "Sales (In VNĐ)",
+      "numberSuffix": "VNĐ",
+      "paletteColors": "#0075c2",
+      "bgColor": "#ffffff",
+      "showBorder": "0",
+      "showCanvasBorder": "0",
+      "usePlotGradientColor": "0",
+      "plotBorderAlpha": "10",
+      "placeValuesInside": "1",
+      "valueFontColor": "#ffffff",
+      "showAxisLines": "1",
+      "axisLineAlpha": "25",
+      "divLineAlpha": "10",
+      "alignCaptionWithCanvas": "0",
+      "showAlternateVGridColor": "0",
+      "captionFontSize": "14",
+      "subcaptionFontSize": "14",
+      "subcaptionFontBold": "0",
+      "toolTipColor": "#ffffff",
+      "toolTipBorderThickness": "0",
+      "toolTipBgColor": "#000000",
+      "toolTipBgAlpha": "80",
+      "toolTipBorderRadius": "2",
+      "toolTipPadding": "5"
+    },
+    "data": this.data1
+  }
+  // chart-2: Loai giay trong thang
+  id2 = 'chart2';
+  type2 = 'doughnut3D';
+  dataSource2 = {
+    "chart": {
+      "caption": "Poly's Shop",
+      "subCaption": "",
+      "numberSuffix": "VNĐ",
+      "showBorder": "0",
+      "use3DLighting": "0",
+      "enableSmartLabels": "0",
+      "startingAngle": "310",
+      "showLabels": "0",
+      "showPercentValues": "0",
+      "showLegend": "1",
+      "defaultCenterLabel": "Total revenue: $64.08K",
+      "centerLabel": "Revenue from label: value",
+      "centerLabelBold": "1",
+      "showTooltip": "0",
+      "decimals": "0",
+      "useDataPlotColorForLabels": "1",
+      "theme": "fint"
+    },
+    "data": this.data2
+  }
+  // chart-3: Loai giay trong nam
+  id3 = 'chart3';
+  type3 = 'column3D';
+  dataSource3 = {
+    "chart": {
+      "caption": "Poly's Shop",
+      "subCaption": "",
+      "yAxisName": "Sales (In VNĐ)",
+      "numberSuffix": "VNĐ",
+      "paletteColors": "#2980b9,#f39c12",
+      "bgColor": "#ffffff",
+      "showBorder": "0",
+      "showCanvasBorder": "0",
+      "usePlotGradientColor": "0",
+      "plotBorderAlpha": "10",
+      "placeValuesInside": "1",
+      "valueFontColor": "#ffffff",
+      "showAxisLines": "1",
+      "axisLineAlpha": "25",
+      "divLineAlpha": "10",
+      "alignCaptionWithCanvas": "0",
+      "showAlternateVGridColor": "0",
+      "captionFontSize": "14",
+      "subcaptionFontSize": "14",
+      "subcaptionFontBold": "0",
+      "toolTipColor": "#ffffff",
+      "toolTipBorderThickness": "0",
+      "toolTipBgColor": "#000000",
+      "toolTipBgAlpha": "80",
+      "toolTipBorderRadius": "2",
+      "toolTipPadding": "5"
+    },
+    "data": this.data3
+  }
+  // chart-4: Doanh thu trong nam
+  id4 = 'chart4';
+  dataSource4 = {
+    "chart": {
+      "caption": "Poly's Shop",
+      "subCaption": "Doanh thu trong năm 2018",
+      "yAxisName": "Sales (In VNĐ)",
+      "numberSuffix": "VNĐ",
+      "paletteColors": "#e84118,#44bd32",
+      "bgColor": "#ffffff",
+      "showBorder": "0",
+      "showCanvasBorder": "0",
+      "usePlotGradientColor": "0",
+      "plotBorderAlpha": "10",
+      "placeValuesInside": "1",
+      "valueFontColor": "#ffffff",
+      "showAxisLines": "1",
+      "axisLineAlpha": "25",
+      "divLineAlpha": "10",
+      "alignCaptionWithCanvas": "0",
+      "showAlternateVGridColor": "0",
+      "captionFontSize": "14",
+      "subcaptionFontSize": "14",
+      "subcaptionFontBold": "0",
+      "toolTipColor": "#ffffff",
+      "toolTipBorderThickness": "0",
+      "toolTipBgColor": "#000000",
+      "toolTipBgAlpha": "80",
+      "toolTipBorderRadius": "2",
+      "toolTipPadding": "5"
+    },
+    "data": this.data4
+  }
+
+
+  _listMonths = [
+    'Tháng 1',
+    'Tháng 2',
+    'Tháng 3',
+    'Tháng 4',
+    'Tháng 5',
+    'Tháng 6',
+    'Tháng 7',
+    'Tháng 8',
+    'Tháng 9',
+    'Tháng 10',
+    'Tháng 11',
+    'Tháng 12'
+  ]
+
+  _listYears = [
+    '2014',
+    '2015',
+    '2016',
+    '2017',
+    '2018',
+    '2019',
+    '2020',
+    '2021',
+    '2022'
+  ]
+
+  constructor(private http: Http, private thongKeService: ThongKeService) {
+
+  }
 
   ngOnInit() {
+    this.getTop10();
+    this.getLoaiGiayInMonth();
+    this.getLoaiGiayInYear();
+    this.getSumOfMoney();
   }
+
+  //chart-1
+  getTop10() {
+    this.thongKeService.getTop10(6, 2018).subscribe(result => {
+      this.dataDB = result;
+      this.thangOfChart1 = 6;
+      this.namOfChart1 = 2018;
+      this.dataSource1.chart.subCaption = 'Top 10 sản phẩm bán chạy trong tháng ' + this.thangOfChart1 + ' năm ' + this.namOfChart1;
+      for (let i = 0; i < this.dataDB.length; i++) {
+        let object = { 'label': '', 'value': '' };
+        object.label = this.dataDB[i].tenSanPham;
+        object.value = this.dataDB[i].tongTien.toString();
+        this.data1.push(object);
+      }
+    },
+      error => console.error('Error: ' + error)
+    );
+  }
+
+  //chart-2
+  getLoaiGiayInMonth() {
+    this.thongKeService.getLoaiGiayByMonthAndYear(6, 2018).subscribe(result => {
+      this._loaiGiayInMonth = result;
+      this.thangOfChart2 = 6;
+      this.namOfChart2 = 2018;
+      this.dataSource2.chart.subCaption = 'Doanh thu trong tháng ' + this.thangOfChart2 + ' năm ' + this.namOfChart2;
+      for (let i = 0; i < this._loaiGiayInMonth.length; i++) {
+        let object = { 'label': '', 'value': '' };
+        object.label = this._loaiGiayInMonth[i].tenLoai;
+        object.value = this._loaiGiayInMonth[i].tongTien.toString();
+        this.data2.push(object);
+      }
+    },
+      error => console.error('Error: ' + error)
+    )
+  }
+
+  //chart-3
+  getLoaiGiayInYear() {
+    this.thongKeService.getLoaiGiayByMonthInYear('Adidas', 2018).subscribe(result => {
+      this._loaiGiayInYear = result;
+      this.namOfChart3 = 2018;
+      this.loaiGiayOfChart3 = 'Adidas';
+      this.dataSource3.chart.subCaption = 'Doanh thu trong năm ' + this.namOfChart3 + ' của giày ' + this.loaiGiayOfChart3;
+      for (let i = 0; i < this._loaiGiayInYear.length; i++) {
+        let object = { 'label': '', 'value': '' };
+        object.label = this._loaiGiayInYear[i].thang.toString();
+        object.value = this._loaiGiayInYear[i].tongTien.toString();
+        this.data3.push(object);
+      }
+    },
+      error => console.error('Error: ' + error)
+    )
+  }
+
+  //chart-4
+  getSumOfMoney() {
+    this.thongKeService.getSumOfMoney(2018).subscribe(result => {
+      this._sumOfMoneyInMonth = result;
+      for (let i = 0; i < this._sumOfMoneyInMonth.length; i++) {
+        let object = { 'label': '', 'value': '' };
+        object.label = this._sumOfMoneyInMonth[i].thang.toString();
+        object.value = this._sumOfMoneyInMonth[i].tongTien.toString();
+        this.data4.push(object);
+      }
+    },
+      error => console.error('Error: ' + error)
+    )
+  }
+
 
 }
