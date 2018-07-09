@@ -22,8 +22,8 @@ public class LoaiGiayServiceImpl implements LoaiGiayService {
 
 	@Override
 	public LoaiGiay findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		LoaiGiay loaiGiay = loaiGiayRepository.findById(id).get();
+		return loaiGiay;
 	}
 
 	@Override
