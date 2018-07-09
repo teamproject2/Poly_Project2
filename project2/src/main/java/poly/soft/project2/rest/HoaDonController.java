@@ -74,4 +74,16 @@ public class HoaDonController {
 		}
 		
 	}
+	
+	@RequestMapping(value="/chuyentrangthai/{id}",method= RequestMethod.PUT )
+	public ResponseEntity<?> changeState(@PathVariable("id") int id) {
+		try {
+			hoaDonService.changeState(id);
+			return new ResponseEntity<>("Success",HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>("Fail",HttpStatus.OK);
+		}
+	}
+	
+	
 }

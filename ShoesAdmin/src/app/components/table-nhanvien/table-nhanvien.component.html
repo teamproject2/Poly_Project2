@@ -35,7 +35,7 @@
                       <a class="success p-0" data-original-title="" title="Cập nhật" routerLink="/nhanvien/{{nv.id}}">
                         <i class="ft-edit-2 font-medium-3 mr-2"></i>
                       </a>
-                      <a class="danger p-0" data-original-title="" (click)="showModal()"  title="Xóa">
+                      <a class="danger p-0" data-original-title="" data-toggle="modal" (click)="DelNhanvien(nv.id)" title="Xóa">
                           <!-- (click)="DelNhanvien(nv.id)" -->
                         <i class="ft-user-x"></i>
                       </a>
@@ -50,49 +50,26 @@
     </div>
   </section>
   <!--/ Add rows table -->
-    <div class="modal1">
-        <div class="swal2-container swal2-fade swal2-in" style="overflow-y: auto;">
-            <div class="swal2-modal swal2-show" style="display: block; width: 500px; padding: 20px; background: rgb(212, 212, 212); min-height: 372px;"
-              tabindex="-1">
-              <ul class="swal2-progresssteps" style="display: none;"></ul>
-              <div class="swal2-icon swal2-error" style="display: none;">
-                <span class="x-mark">
-                  <span class="line left"></span>
-                  <span class="line right"></span>
-                </span>
-              </div>
-              <div class="swal2-icon swal2-question" style="display: none;">?</div>
-              <div class="swal2-icon swal2-warning pulse-warning" style="display: block;">!</div>
-              <div class="swal2-icon swal2-info" style="display: none;">i</div>
-              <div class="swal2-icon swal2-success" style="display: none;">
-                <span class="line tip"></span>
-                <span class="line long"></span>
-                <div class="placeholder"></div>
-                <div class="fix"></div>
-              </div>
-              <img class="swal2-image" style="display: none;" src="../../../assets/app-assets/img/icons/thumbs-up.jpg">
-              <h2>Are you sure?</h2>
-              <div class="swal2-content" style="display: block;">You won't be able to revert this!</div>
-              <input class="swal2-input" style="display: none;">
-              <input type="file" class="swal2-file" style="display: none;">
-              <div class="swal2-range" style="display: none;">
-                <output></output>
-                <input type="range">
-              </div>
-              <select class="swal2-select" style="display: none;"></select>
-              <div class="swal2-radio" style="display: none;"></div>
-              <label for="swal2-checkbox" class="swal2-checkbox" style="display: none;">
-                <input type="checkbox">
-              </label>
-              <textarea class="swal2-textarea" style="display: none;"></textarea>
-              <div class="swal2-validationerror" style="display: none;"></div>
-              <hr class="swal2-spacer" style="display: block;">
-              <button type="button" class="swal2-confirm btn btn-success btn-raised mr-5" style="">Yes, delete it!</button>
-              <button type="button" class="swal2-cancel btn btn-danger btn-raised" style="display: inline-block;">No, cancel!</button>
-              <span class="swal2-close" style="display: none;">×</span>
-            </div>
-          </div>
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button type="submit" (click)="DelNhanvien(nv.id)" class="btn btn-primary">Yes</button>
+      </div>
     </div>
+  </div>
+</div>
     <!-- MODAL -->
   <!--/ Search API (regular expressions) table -->
 </div>

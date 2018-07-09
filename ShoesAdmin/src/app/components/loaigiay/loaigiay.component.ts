@@ -70,6 +70,7 @@ getChitiet_Loạigiay(id: number): void {
       console.log(error);
     });
 }
+
 //
   showModal(id: any) {
     this.loaigiayservice.getLoaigiaybyID(id).subscribe(data => {

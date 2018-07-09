@@ -52,7 +52,7 @@ export class InvoiceComponent implements OnInit {
   changeTrangThai(id:number){
     this.detailHDServices.Chuyentrangthai(id).subscribe(result =>{
       console.log("Chuyen Trang Thai Thanh Cong ");
-      this.router.navigate(['/hoadon']);
+      this._detailInvoice.trangThai = 'Hoàn thành';
     })
   }
 }

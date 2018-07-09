@@ -154,4 +154,12 @@ public class HoaDonServiceImpl implements HoaDonService {
 		});
 	}
 
+	@Override
+	public void changeState(int id) {
+		HoaDon hd = hoaDonRepository.findById(id).orElse(null);
+		if(hd != null) {
+			hd.setTrangThai(HDTrangThaiEnum.DONE);
+		}
+	}
+
 }

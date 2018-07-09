@@ -45,7 +45,7 @@ DeletehoaDon(id: number): Observable<Invoice[]>{
 //
 Chuyentrangthai(id: number): Observable<any>{
   let search = new URLSearchParams();
-    return this.http.put(this.URL_HD +  id, {search});
+    return this.http.put(this.URL_HD + "chuyentrangthai/" +id, {search});
 }
 
 private handleError(error: Response) {
