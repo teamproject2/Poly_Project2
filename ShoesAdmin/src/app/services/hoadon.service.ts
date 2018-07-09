@@ -34,6 +34,19 @@ export class HoadonService {
     })
     .catch(this.handleError);
 }
+// 
+DeletehoaDon(id: number): Observable<Invoice[]>{
+  return this.http
+  .delete(this.URL_HD + id)
+  .map(success => success.status)
+  .catch(this.handleError);
+
+}
+//
+Chuyentrangthai(id: number): Observable<any>{
+  let search = new URLSearchParams();
+    return this.http.put(this.URL_HD +  id, {search});
+}
 
 private handleError(error: Response) {
   return Observable.throw(error.statusText);

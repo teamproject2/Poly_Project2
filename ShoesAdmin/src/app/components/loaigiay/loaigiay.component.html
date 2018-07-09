@@ -26,10 +26,10 @@
                                         <td style="vertical-align: middle">{{giay.id}}</td>
                                         <td style="vertical-align: middle">{{giay.tenLoai}}</td>
                                         <td style="vertical-align: middle" routerLinkActive="active">
-                                            <a class="success p-0" data-original-title="" title="Cập nhật" data-toggle="modal" (click)="showModal(giay)">
+                                            <a class="success p-0" data-original-title="" title="Cập nhật" data-toggle="modal" (click)="showModal(giay.id)">
                                                 <i class="ft-edit-2 font-medium-3 mr-2"></i>
                                             </a>
-                                            <a class="info p-0" data-original-title="" title="Thêm mới" data-toggle="modal" (click)="showModal()">
+                                            <a class="info p-0" data-original-title="" title="Thêm mới" data-toggle="modal" (click)="showModal(giay.id)">
                                                 <i class="ft-plus-square"></i>
                                             </a>
                                             <a class="danger p-0" data-original-title="" title="Xóa" id="confirm-cancel">
@@ -60,7 +60,7 @@
             <div>
                 <label class="title">Mã giày: </label>
                 <div class="form-group">
-                    <input formControlName="id_Giay" type="text" class="form-control" readonly>
+                    <input formControlName="id_Giay" type="text" class="form-control">
                 </div>
                 <label class="title">Loại giày: </label>
                 <div class="form-group">
@@ -69,8 +69,8 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <button type="submit" class="btn btn-raised btn-raised btn-warning but1">
-                        <i class="fa fa-check-square-o"></i> Lưu
+                    <button type="submit" class="btn btn-raised btn-primary but1">
+                        <i class="ft-save"></i> Lưu
                     </button>
                 </div>
             </div>

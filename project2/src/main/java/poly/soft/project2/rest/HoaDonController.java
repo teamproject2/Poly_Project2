@@ -18,6 +18,7 @@ import poly.soft.project2.dto.HoaDonAdminDTO;
 import poly.soft.project2.dto.HoaDonDTO;
 import poly.soft.project2.entity.HoaDon;
 import poly.soft.project2.entity.KhachHang;
+import poly.soft.project2.entity.NhanVien;
 import poly.soft.project2.service.HoaDonService;
 import poly.soft.project2.service.KhachHangService;
 
@@ -61,5 +62,16 @@ public class HoaDonController {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<>(list,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/{id}",method= RequestMethod.DELETE )
+	public ResponseEntity<?> deleteHoaDon(@PathVariable("id") int id) {
+		try {
+			hoaDonService.delete(id); 
+			return new ResponseEntity<>(HttpStatus.OK);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
 	}
 }

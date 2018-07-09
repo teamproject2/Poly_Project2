@@ -39,7 +39,7 @@ export class ChitietSanphamComponent implements OnInit {
   chitietSanpham: FormGroup;
   idSp: FormControl;
   tenSanPham: FormControl;
-  tenloaigiay: FormControl;
+  // tenloaigiay: FormControl;
   donGia: FormControl;
   chietKhau: FormControl;
   chiTiet: FormControl;
@@ -64,7 +64,7 @@ export class ChitietSanphamComponent implements OnInit {
     //
     this.idSp = new FormControl('', Validators.required);
     this.tenSanPham = new FormControl('', [Validators.required, Validators.minLength(3)]);
-    this.tenloaigiay = new FormControl('', Validators.required);
+    // this.tenloaigiay = new FormControl('', Validators.required);
     this.donGia = new FormControl('', Validators.required);
     this.chietKhau = new FormControl('', Validators.required);
     this.chiTiet = new FormControl('', Validators.required);
@@ -72,7 +72,7 @@ export class ChitietSanphamComponent implements OnInit {
     this.chitietSanpham = this.formBuilder.group({
       idSp: this.idSp,
       tenSanPham: this.tenSanPham,
-      tenloaigiay: this.tenloaigiay,
+      // tenloaigiay: this.chitietSp.loaiGiay,
       donGia: this.donGia,
       chietKhau: this.chietKhau,
       chiTiet: this.chiTiet
@@ -90,7 +90,7 @@ export class ChitietSanphamComponent implements OnInit {
       this.chitietSp.chiTiet = val.chiTiet.length > 0 ? val.chiTiet : this.chitietSp.chiTiet;;
       this.chitietSp.chietKhau = val.chietKhau.length > 0 ? val.chietKhau : this.chitietSp.chietKhau;
       this.chitietSp.donGia = val.donGia.length > 0 ? val.donGia : this.chitietSp.donGia;
-      //this.chitietSp.loaiGiay = val.tenloaigiay.length > 0 ? val.tenloaigiay : this.chitietSp.loaiGiay;
+      // this.chitietSp.loaiGiay = val.tenloaigiay.length > 0 ? val.tenloaigiay : this.chitietSp.loaiGiay;
 
       console.log("sdsdaSPPPPP: " + JSON.stringify(this.chitietSp));
     });
@@ -105,12 +105,11 @@ export class ChitietSanphamComponent implements OnInit {
     
     //this.chitietSp.loaiGiay = this.loaiGiay;
     console.log("sdsda2: " + JSON.stringify(this.chitietSp.loaiGiay));
-
-    // this.sanphamService.insert_Sp(this.chitietSp).subscribe(
-    //   result => {
-    //     console.log("Saved!");
-    //     // this.router.navigate(['/nhanvien']);
-    //   },
+    console.log("DATA: " + JSON.stringify(this.chitietSp));
+    // this.sanphamService.update_Sp(this.chitietSp).subscribe(
+    //   result => {console.log("Updated Success!");
+      // this.router.navigate(['/sanpham']);
+    // },
     //   error => console.error(error)
     // )
   }

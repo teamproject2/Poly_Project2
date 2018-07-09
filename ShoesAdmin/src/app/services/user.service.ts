@@ -52,4 +52,12 @@ export class UserService {
     let search = new URLSearchParams();
     return this.http.post(this.API + "nhanvien", nhanvien, {search});
   }
+  //
+  DeleteNhanvien(id: number): Observable<any>{
+    return this.http
+    .delete(this.API + "nhanvien/" + id)
+    .map(success => success.status)
+    .catch(this.handleError);
+  
+  }
 }

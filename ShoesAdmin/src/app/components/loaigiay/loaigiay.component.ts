@@ -71,9 +71,15 @@ getChitiet_Loạigiay(id: number): void {
     });
 }
 //
-  showModal(giay: any) {
-    this.id = giay;
-    console.log("id test"+this.id);
+  showModal(id: any) {
+    this.loaigiayservice.getLoaigiaybyID(id).subscribe(data => {
+      this.ChitietLoaigiay = data;
+      console.log(this.ChitietLoaigiay);
+      
+    },
+      error => {
+        console.log(error);
+      });
     
     $(document).ready(function () {
       $('.modal1').addClass('show');

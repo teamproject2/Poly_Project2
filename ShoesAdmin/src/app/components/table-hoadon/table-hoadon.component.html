@@ -23,7 +23,7 @@
                                         <th>Ngày</th>
                                         <th>Trạng Thái</th>
                                         <th>Tổng Tiền</th>
-                                        <th>Chức năng</th>
+                                        <th style="text-align: left">Chức năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -36,18 +36,20 @@
                                             <a *ngIf ="hd.trangThai === 'Đang chờ'"  class="btn white btn-round btn-info" style="width:130px">{{hd.trangThai}}</a>
                                             <a *ngIf ="hd.trangThai === 'Hủy đơn hàng'" class="btn white btn-round btn-danger" style="width:130px">{{hd.trangThai}}</a>
                                             <a *ngIf ="hd.trangThai === 'Hoàn thành'"  class="btn white btn-round btn-success" style="width:130px">{{hd.trangThai}}</a>
+                                            
                                         </td>
                                         <td>{{hd.tongTien | currency}}VND</td>
-                                        <td>
+                                        <td style="text-align: left">
                                             <a class="info p-0" data-original-title="" title="Chi tiết" routerLink="/hoadon/{{hd.id}}">
                                                 <i class="ft-list font-medium-3 mr-2"></i>
                                             </a>
                                             <a class="success p-0" data-original-title="" title="Cập nhật">
                                                 <i class="ft-edit-2 font-medium-3 mr-2"></i>
                                             </a>
-                                            <!-- <a class="danger p-0" data-original-title="" title="">
+                                            <a *ngIf="hd.trangThai != 'Hoàn thành'"  (click)="DelhoaDon(hd.id)" class="danger p-0" data-original-title="" title="Xóa" id="confirm-cancel">
+                                                    <!-- (click)="DelhoaDon(hd.id)" -->
                                                 <i class="ft-x font-medium-3 mr-2"></i>
-                                            </a> -->
+                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -58,5 +60,6 @@
             </div>
         </div>
     </section>
+    
     <!--Extended Table Ends-->
 </div>

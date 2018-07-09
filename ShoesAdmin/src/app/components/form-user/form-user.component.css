@@ -1,0 +1,4 @@
+.btn:not(:disabled):not(.disabled), .fc button:not(:disabled):not(.disabled) {
+    cursor : pointer;
+    width: 100px;
+  }

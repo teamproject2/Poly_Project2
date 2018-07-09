@@ -4,6 +4,7 @@ import { Observable } from "rxjs";
 import { SumOfMoneyInMonth } from "../models/sumOfMoneyInMonth";
 import { map } from "rxjs/operators";
 import { Top10Products } from "../models/top10Products";
+import { SumLoaiGiayByMonthAndYear } from "../models/SumLoaiGiayByMonthAndYear";
 
 
 @Injectable()
@@ -13,17 +14,17 @@ export class ThongKeService {
 
     constructor(public http: Http) { }
 
-    getLoaiGiayByMonthAndYear(month: number, year: number): Observable<SumOfMoneyInMonth[]> {
+    getLoaiGiayByMonthAndYear(month: number, year: number): Observable<SumLoaiGiayByMonthAndYear[]> {
         return this.http
-            .get(this.API + 'thongke?thang=' + month + '&nam=' + year)
+            .get(this.API + 'thongke/loaigiaytrongthang?thang=' + month + '&nam=' + year)
             .pipe(map(data => {
-                return <SumOfMoneyInMonth[]>data.json();
+                return <SumLoaiGiayByMonthAndYear[]>data.json();
             }));
     }
 
     getLoaiGiayByMonthInYear(tenLoaiGiay: string, year: number): Observable<SumOfMoneyInMonth[]> {
         return this.http
-            .get(this.API + 'thongke?tenLoaiGiay=' + tenLoaiGiay + '&nam=' + year)
+            .get(this.API + 'thongke/loaigiaytrongnam?loaigiay=' + tenLoaiGiay + '&nam=' + year)
             .pipe(map(data => {
                 return <SumOfMoneyInMonth[]>data.json();
             }));
@@ -39,7 +40,7 @@ export class ThongKeService {
 
     getSumOfMoney(year: number): Observable<SumOfMoneyInMonth[]> {
         return this.http
-            .get(this.API + '/' + year)
+            .get(this.API + 'thongke/' + year)
             .pipe(map(data => {
                 return <SumOfMoneyInMonth[]>data.json();
             }));
