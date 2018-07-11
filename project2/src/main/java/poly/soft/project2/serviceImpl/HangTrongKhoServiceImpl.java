@@ -36,7 +36,7 @@ public class HangTrongKhoServiceImpl implements HangTrongKhoService {
 	@Override
 	public boolean delete(int id) {
 		hangTrongKhoRepository.deleteById(id);
-		return false;
+		return true;
 	}
 		
 }

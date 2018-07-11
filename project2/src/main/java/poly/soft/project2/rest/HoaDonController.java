@@ -67,10 +67,13 @@ public class HoaDonController {
 	@RequestMapping(value="/{id}",method= RequestMethod.DELETE )
 	public ResponseEntity<?> deleteHoaDon(@PathVariable("id") int id) {
 		try {
-			hoaDonService.delete(id); 
-			return new ResponseEntity<>(HttpStatus.OK);
+			if(hoaDonService.delete(id)) {
+				return new ResponseEntity<>("Success",HttpStatus.OK);				
+			}else {
+				return new ResponseEntity<>("Fail",HttpStatus.OK);
+			}
 		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 	}

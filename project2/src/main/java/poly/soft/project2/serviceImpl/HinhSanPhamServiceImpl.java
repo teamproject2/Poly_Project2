@@ -2,10 +2,18 @@ package poly.soft.project2.serviceImpl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import poly.soft.project2.entity.HinhSanPham;
+import poly.soft.project2.repository.HinhSanPhamRepository;
 import poly.soft.project2.service.HinhSanPhamService;
 
+@Service
 public class HinhSanPhamServiceImpl implements HinhSanPhamService {
+	
+	@Autowired
+	HinhSanPhamRepository hinhSanPhamRepository;
 
 	@Override
 	public List<HinhSanPham> findAll() {
@@ -21,14 +29,13 @@ public class HinhSanPhamServiceImpl implements HinhSanPhamService {
 
 	@Override
 	public HinhSanPham save(HinhSanPham hinhSanPham) {
-		// TODO Auto-generated method stub
-		return null;
+		HinhSanPham hsp = hinhSanPhamRepository.save(hinhSanPham);
+		return hsp;
 	}
 
 	@Override
-	public boolean delete(int id) {
-		// TODO Auto-generated method stub
-		return false;
+	public void delete(int id) {
+		hinhSanPhamRepository.deleteById(id);
 	}
 	
 }

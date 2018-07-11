@@ -12,13 +12,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import poly.soft.project2.dto.KTSoLuongDTO;
 import poly.soft.project2.dto.SanPhamHomePageDTO;
 import poly.soft.project2.entity.HangTrongKho;
-import poly.soft.project2.entity.KichThuoc;
+import poly.soft.project2.entity.HinhSanPham;
 import poly.soft.project2.entity.SanPham;
+import poly.soft.project2.repository.HinhSanPhamRepository;
 import poly.soft.project2.service.HangTrongKhoService;
 import poly.soft.project2.service.KichThuocService;
 import poly.soft.project2.service.SanPhamService;
@@ -34,6 +36,8 @@ public class SanPhamController {
 	HangTrongKhoService hangTrongKhoService;
 	@Autowired
 	KichThuocService kichThuocService;
+	@Autowired
+	HinhSanPhamRepository hinhSanPhamRepository;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<?> getListSanPham() {
@@ -71,6 +75,21 @@ public class SanPhamController {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 		return new ResponseEntity<>(list, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/themhinh/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<?> addHinhSanPham(@PathVariable("id") int id, @RequestParam("hinh") String hinh) {
+		SanPham sp = sanPhamService.findById(id);
+		if (sp == null) {
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}else {
+			HinhSanPham hsp = new HinhSanPham();
+			hsp.setHinh(hinh);
+			hsp.setSanPham(sp);
+			hinhSanPhamRepository.save(hsp);
+			sp = sanPhamService.findById(id);
+			return new ResponseEntity<SanPham>(sp, HttpStatus.OK);			
+		}
 	}
 
 	@RequestMapping(value = "/hangtrongkho/{id}", method = RequestMethod.PUT)

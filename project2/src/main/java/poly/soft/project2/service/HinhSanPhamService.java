@@ -18,5 +18,5 @@ public interface HinhSanPhamService {
 	
 	HinhSanPham save(HinhSanPham hinhSanPham);
 	
-	boolean delete(int id);
+	void delete(int id);
 }

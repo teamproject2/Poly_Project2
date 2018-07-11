@@ -107,9 +107,25 @@ public class HoaDonServiceImpl implements HoaDonService {
 	@Override
 	public boolean delete(int id) {
 		HoaDon hd = findById(id);
-		if (hd == null) {
+		if (hd == null || hd.getTrangThai().getState().equalsIgnoreCase("Hoàn thành")) {
 			return false;
-		} else {
+		} else {	
+			List<ChiTietHoaDon> listCTHD = hd.getChiTietHoaDon();
+			listCTHD.forEach(p -> {
+				KichThuoc kt = kichThuocRepository.findByTenKichThuoc(p.getTenKichThuoc());
+				HangTrongKho htk = hangTrongKhoRepository.findBySanPhamAndKichThuoc(p.getSanPham(), kt);
+				if(htk == null) {
+					HangTrongKho htkNew = new HangTrongKho();
+					htkNew.setKichThuoc(kichThuocRepository.findByTenKichThuoc(p.getTenKichThuoc()));
+					htkNew.setSanPham(sanPhamRepository.getOne(p.getSanPham().getId()));
+					htkNew.setSoLuong(p.getSoLuong());
+					hangTrongKhoRepository.save(htkNew);
+				}else {
+					htk.setSoLuong(htk.getSoLuong() + p.getSoLuong());					
+					hangTrongKhoRepository.save(htk);
+				}
+				chiTietHoaDonRepository.deleteById(p.getId());
+			});
 			hoaDonRepository.deleteById(id);
 			return true;
 		}
@@ -159,6 +175,7 @@ public class HoaDonServiceImpl implements HoaDonService {
 		HoaDon hd = hoaDonRepository.findById(id).orElse(null);
 		if(hd != null) {
 			hd.setTrangThai(HDTrangThaiEnum.DONE);
+			hd.setNgay(new Date());
 		}
 	}
 
