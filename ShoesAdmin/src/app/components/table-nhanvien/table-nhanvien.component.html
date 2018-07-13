@@ -35,7 +35,7 @@
                       <a class="success p-0" data-original-title="" title="Cập nhật" routerLink="/nhanvien/{{nv.id}}">
                         <i class="ft-edit-2 font-medium-3 mr-2"></i>
                       </a>
-                      <a class="danger p-0" data-original-title="" data-toggle="modal" (click)="DelNhanvien(nv.id)" title="Xóa">
+                      <a class="danger p-0" data-original-title="" data-toggle="modal" (click)="showModal()" title="Xóa">
                           <!-- (click)="DelNhanvien(nv.id)" -->
                         <i class="ft-user-x"></i>
                       </a>
@@ -51,25 +51,28 @@
   </section>
   <!--/ Add rows table -->
     <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
+<div class="modal-wrapper" (click)="removeModal()"></div>
+
+<div class="modal1">
+    <div class="modal-header">
+        <label class="modal-title text-text-bold-600 title">Confirm</label>
+        <!-- <h3 class="modal-title">Confirm</h3> -->
+        <button (click)="removeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
         </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-        <button type="submit" (click)="DelNhanvien(nv.id)" class="btn btn-primary">Yes</button>
-      </div>
     </div>
-  </div>
+    <div class="modal-body">Are you sure you want to delete?</div>
+        <div  class="modal-footer">
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-raised btn-success but1">
+                    <i class=""></i> OK
+                </button>
+                <button type="submit" class="btn btn-raised btn-warning but1">
+                    <i class=""></i> Cancel
+                </button>
+            </div>
+        </div>
 </div>
-    <!-- MODAL -->
+<!-- MODAL -->
   <!--/ Search API (regular expressions) table -->
 </div>

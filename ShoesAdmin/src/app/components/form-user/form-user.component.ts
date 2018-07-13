@@ -5,6 +5,9 @@ import { UserService } from '../../services/user.service';
 import { FormsModule, FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Route } from '@angular/compiler/src/core';
 
+declare var jquery: any;
+declare var $: any;
+
 @Component({
   selector: 'app-form-user',
   templateUrl: './form-user.component.html',
@@ -118,4 +121,19 @@ export class FormUserComponent implements OnInit {
     }
   }
 
+  //
+  showModal() {
+    $(document).ready(function () {
+      $('.modal1').addClass('show');
+      $('.modal-wrapper').addClass('show');
+    });
+  }
+
+  removeModal() {
+    $(document).ready(function () {
+      $('.modal1').removeClass('show');
+      $('.modal-wrapper').removeClass('show');
+    });
+  }
+  //
 }

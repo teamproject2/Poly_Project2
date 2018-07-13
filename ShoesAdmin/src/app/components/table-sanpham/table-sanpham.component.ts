@@ -48,5 +48,20 @@ export class TableSanphamComponent implements OnInit {
         console.log(error);
       });
   }
+  //
+  showModal() {
+    $(document).ready(function () {
+      $('.modal1').addClass('show');
+      $('.modal-wrapper').addClass('show');
+    });
+  }
+
+  removeModal() {
+    $(document).ready(function () {
+      $('.modal1').removeClass('show');
+      $('.modal-wrapper').removeClass('show');
+    });
+  }
+  //
 
 }

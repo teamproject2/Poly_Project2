@@ -53,19 +53,20 @@ export class TableNhanvienComponent implements OnInit, OnDestroy {
 		)
 	}
 	//
-	showModal() {
-		$(document).ready(function () {
-		  $('.modal1').addClass('show');
-		  $('.modal-wrapper').addClass('show');
-		});
-	  }
-	
-	  removeModal() {
-		$(document).ready(function () {
-		  $('.modal1').removeClass('show');
-		  $('.modal-wrapper').removeClass('show');
-		});
-	  }
+  showModal() {
+    $(document).ready(function () {
+      $('.modal1').addClass('show');
+      $('.modal-wrapper').addClass('show');
+    });
+  }
+
+  removeModal() {
+    $(document).ready(function () {
+      $('.modal1').removeClass('show');
+      $('.modal-wrapper').removeClass('show');
+    });
+  }
+  //
 	ngOnDestroy() {
 
 	}
