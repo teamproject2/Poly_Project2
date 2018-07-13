@@ -30,6 +30,7 @@ export class TableSanphamComponent implements OnInit {
   ngOnInit() {
 
     this.loadData();
+    // this.File_export();
   }
   // Phan trang
   showDataTable() {
@@ -37,7 +38,17 @@ export class TableSanphamComponent implements OnInit {
       $('#table_sp').DataTable();
     });
   }
-
+//
+File_export() {
+  $(document).ready(function () {
+    $('#table_sp').DataTable({
+      dom: 'Bfrtip',
+      buttons: [
+          'copy', 'csv', 'excel', 'pdf', 'print'
+      ]
+    });
+  });
+}
   // Load san pham
   loadData() {
     this.sanphamServices.getAllSanPham().subscribe(data => {

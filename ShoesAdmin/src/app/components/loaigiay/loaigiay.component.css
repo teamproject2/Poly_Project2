@@ -71,5 +71,14 @@ a.info.p-0 {
     font-size: 20px;
   }
 
+tr.odd {
+    text-align:  center;
+}
+tr.even {
+    text-align:  center;
+}
+tr {
+    text-align:  center;
+}
 
   

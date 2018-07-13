@@ -26,6 +26,7 @@ export class TableNhanvienComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.loadData();
+		this.File_export();
 	}
 
 	// Phan Trang
@@ -34,11 +35,29 @@ export class TableNhanvienComponent implements OnInit, OnDestroy {
 			$('#table_nv').DataTable();
 		});
 	}
+	//
+	File_export(){
+		$(document).ready(function() {
+			var table = $('#table_nv').DataTable();
+	 
+			new $.fn.dataTable.Buttons( table, {
+					buttons: [
+						'copy', 'csv', 'excel', 'pdf', 'print'
+					]
+			} );
+	 
+			table.buttons( 0, null ).container().prependTo(
+					table.table().container()
+			);
+	} );
+	}
+	
 	// Load all staff
 	loadData() {
 		this.nhanvienService.getAllNhanvien().subscribe(data => {
 			this.list_nv = data;
 			this.showDataTable();
+			
 		}, error => {
 			console.log(error);
 		});

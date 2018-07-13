@@ -47,7 +47,6 @@ export class TableHoadonComponent implements OnInit, OnDestroy{
   // Load all Hoa don
   loadData() {
     this.hoadonServices.getAllSP_HD().subscribe(data => {
-      console.log(data);
       this.list_hd = data;
       this.showDataTable();
     },
@@ -65,8 +64,9 @@ export class TableHoadonComponent implements OnInit, OnDestroy{
   )
   }
   //
-  //
-  showModal() {
+  showModal(id: number) {
+    console.log("idddddddddddddd: "+this.id);
+    
     $(document).ready(function () {
       $('.modal1').addClass('show');
       $('.modal-wrapper').addClass('show');
