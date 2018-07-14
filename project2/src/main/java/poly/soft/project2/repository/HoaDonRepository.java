@@ -20,7 +20,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer>{
 			"FROM ( " + 
 			"    SELECT SUM(hd.tong_tien) AS tongTien, MONTH(hd.ngay) AS thang " + 
 			"    FROM poly_project2.hoa_don hd " + 
-			"    where year(hd.ngay) = ?1" + 
+			"    where year(hd.ngay) = ?1 and hd.trang_thai = 1 " + 
 			"    GROUP by month(hd.ngay) " + 
 			"    UNION SELECT 0 AS tongTien, 1 AS thang " + 
 			"    UNION SELECT 0 AS tongTien,  2 AS thang " + 
@@ -44,7 +44,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer>{
 	@Query(value="SELECT  sp.ten_san_pham,sum(ct.thanh_tien) FROM poly_project2.san_pham sp" + 
 			"			   join poly_project2.chi_tiet_hoa_don ct on ct.san_pham_id = sp.id" + 
 			"			   join poly_project2.hoa_don hd on hd.id = ct.hoa_don_id " + 
-			"where month(hd.ngay)=?1 and year(hd.ngay)=?2 " + 
+			"where month(hd.ngay)=?1 and year(hd.ngay)=?2 and hd.trang_thai = 1 " + 
 			"group by sp.ten_san_pham " + 
 			"order by sum(ct.thanh_tien) desc limit 10	",nativeQuery= true)
 	public List<Object[]> top10productInMonth(int month,int year);
@@ -56,7 +56,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer>{
 			"	poly_project2.loai_giay lg join poly_project2.san_pham sp on lg.id = sp.loai_giay_id  " + 
 			"						   join poly_project2.chi_tiet_hoa_don ct on ct.san_pham_id = sp.id " + 
 			"                           join poly_project2.hoa_don hd on hd.id = ct.hoa_don_id " + 
-			"	where lg.ten_loai = ?1 and year(hd.ngay)=?2	" + 
+			"	where lg.ten_loai = ?1 and year(hd.ngay)=?2	and hd.trang_thai = 1 " + 
 			"	group by thang " + 
 			"    UNION SELECT  0 AS tongTien, 1 AS thang	" + 
 			"    UNION SELECT  0 AS tongTien,  2 AS thang " + 
@@ -78,7 +78,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer>{
 			"poly_project2.loai_giay lg join poly_project2.san_pham sp on lg.id = sp.loai_giay_id " + 
 			"						   join poly_project2.chi_tiet_hoa_don ct on ct.san_pham_id = sp.id " + 
 			"                           join poly_project2.hoa_don hd on hd.id = ct.hoa_don_id " + 
-			"where month(hd.ngay) =?1 and year(hd.ngay)=?2 " + 
+			"where month(hd.ngay) =?1 and year(hd.ngay)=?2 and hd.trang_thai = 1 " + 
 			"group by lg.ten_loai,month(hd.ngay)	",nativeQuery=true)
 	public List<Object[]> statisticsSumOfLoaiGiayInMonth(int month,int year);
 	
