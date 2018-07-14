@@ -12,38 +12,34 @@
 
           <form method="post" [formGroup]="checkoutForm" (ngSubmit)="payment(checkoutForm.value)">
             <div class="row">
-              <div class="col-md-12 mb-3 form-group" [ngClass]="{'error': name.invalid && name.dirty}">
+              <div class="col-md-12 mb-3 form-group">
                 <label for="first_name">Họ tên
                   <span>*</span>
                 </label>
-                <em *ngIf="name.invalid && name.dirty">Required</em>
-                <input formControlName="name" type="text" placeholder="Nhập họ tên của bạn" class="form-control" id="first_name" value="{{customer.tenKhachHang}}"
-                  required>
+                <input [readonly]="true" formControlName="name" type="text" placeholder="Nhập họ tên của bạn" class="form-control" id="first_name" value="{{customer.tenKhachHang}}">
               </div>
 
-              <div class="col-12 mb-3 form-group" [ngClass]="{'error': phoneNumber.invalid && phoneNumber.dirty}">
+              <div class="col-12 mb-3 form-group">
                 <label for="phone_number">Số điện thoại
                   <span>*</span>
                 </label>
-                <em *ngIf="phoneNumber.invalid && phoneNumber.dirty">Required</em>
-                <input formControlName="phoneNumber" placeholder="Nhập số điện thoại của bạn" class="form-control" id="phone_number" min="0" value="{{customer.soDienThoai}}">
+                <input [readonly]="true" formControlName="phoneNumber" placeholder="Nhập số điện thoại của bạn" class="form-control" id="phone_number" min="0"
+                  value="{{customer.soDienThoai}}">
               </div>
 
-              <div class="col-12 mb-3 form-group" [ngClass]="{'error': address.invalid && address.dirty}">
+              <div class="col-12 mb-3 form-group">
                 <label for="street_address">Địa chỉ
                   <span>*</span>
                 </label>
-                <em *ngIf="address.invalid && address.dirty">Required</em>
-                <input formControlName="address" type="text" placeholder="Nhập địa chỉ của bạn" class="form-control mb-3" id="street_address"
-                value="{{customer.diaChi}}">
+                <input [readonly]="true" formControlName="address" type="text" maxlength="50" placeholder="Nhập địa chỉ của bạn" class="form-control mb-3"
+                  id="street_address" value="{{customer.diaChi}}">
               </div>
 
-              <div class="col-12 mb-4 form-group" [ngClass]="{'error': email.invalid && email.dirty}">
+              <div class="col-12 mb-4 form-group">
                 <label for="email_address">Email
                   <span>*</span>
                 </label>
-                <em *ngIf="email.invalid && email.dirty">Required</em>
-                <input formControlName="email" type="email" placeholder="Nhập Email của bạn" class="form-control" id="email_address" value="{{customer.email}}">
+                <input [readonly]="true" formControlName="email" type="email" placeholder="Nhập Email của bạn" class="form-control" id="email_address" value="{{customer.email}}">
               </div>
 
               <div class="col-12 mb-4 form-group">
@@ -54,12 +50,8 @@
               </div>
 
               <div class="btnSubmit">
-                <button [disabled]="checkoutForm.invalid" type="submit" class="btn btn-success btnCheckout">Xác nhận thanh toán</button>
+                <button type="submit" class="btn btn-success btnCheckout">Xác nhận thanh toán</button>
               </div>
-              <div class="btnSubmit">
-                <button class="btn btn-success btnCheckout" (click)="saveHoaDon()">Xác nhận thanh toán</button>
-              </div>
-
             </div>
           </form>
         </div>

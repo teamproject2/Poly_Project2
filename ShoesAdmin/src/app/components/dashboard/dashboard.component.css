@@ -1,16 +1,17 @@
-.chart-1, .row.chart-2, .row.chart-3, .row.chart-4 {
+.chart-1, .chart-2, .chart-3, .chart-4 {
     margin-top: 20px;
-}
-button#dropdownMenuButton {
-    width: 100px;
-    margin-right: 5px;
-    height: 40px;
-}
-.chart-1 {
     background: #fff;
 }
 .row.btnDrop {
     margin:0;
     box-sizing: border-box;
     padding: 10px;
+}
+select.custom-select {
+    width: 120px;
+    margin-right: 5px;
+}
+
+a.btn.btn-outline-success {
+    width: 100px;
 }

@@ -44,7 +44,9 @@ form.regis {
   margin-left: 20%;
   padding: 20px 0;
 }
-
+.phone {
+  width: 100%;
+}
 
 .row.modal-row {
   width: 100%;
@@ -139,4 +141,7 @@ a.gg:hover {
   position: relative;
   background: #f4f2f8;
   border: 0;
+}
+em {
+  color: red;
 }

@@ -4,12 +4,14 @@ import { ThongKeService } from '../../services/thongke.service';
 import { Top10Products } from '../../models/top10Products';
 import { SumOfMoneyInMonth } from '../../models/sumOfMoneyInMonth';
 import { SumLoaiGiayByMonthAndYear } from '../../models/SumLoaiGiayByMonthAndYear';
+import { LoaigiayService } from '../../services/loaigiay.service';
+import { LoaiGiay } from '../../models/loaiGiay';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  providers: [ThongKeService]
+  providers: [ThongKeService, LoaigiayService]
 })
 export class DashboardComponent implements OnInit {
 
@@ -166,18 +168,18 @@ export class DashboardComponent implements OnInit {
 
 
   _listMonths = [
-    'Tháng 1',
-    'Tháng 2',
-    'Tháng 3',
-    'Tháng 4',
-    'Tháng 5',
-    'Tháng 6',
-    'Tháng 7',
-    'Tháng 8',
-    'Tháng 9',
-    'Tháng 10',
-    'Tháng 11',
-    'Tháng 12'
+    '1',
+    '2',
+    '3',
+    '4',
+    '5',
+    '6',
+    '7',
+    '8',
+    '9',
+    '10',
+    '11',
+    '12'
   ]
 
   _listYears = [
@@ -192,7 +194,10 @@ export class DashboardComponent implements OnInit {
     '2022'
   ]
 
-  constructor(private http: Http, private thongKeService: ThongKeService) {
+  _listGiay: LoaiGiay[] = [];
+
+  constructor(private http: Http, private thongKeService: ThongKeService,
+    private loaiGiayService: LoaigiayService) {
 
   }
 
@@ -201,6 +206,7 @@ export class DashboardComponent implements OnInit {
     this.getLoaiGiayInMonth();
     this.getLoaiGiayInYear();
     this.getSumOfMoney();
+    this.getLoaiGiay();
   }
 
   //chart-1
@@ -262,7 +268,7 @@ export class DashboardComponent implements OnInit {
     this.thongKeService.getSumOfMoney(2018).subscribe(result => {
       this._sumOfMoneyInMonth = result;
       this.namOfChart4 = 2018;
-      this.dataSource4.chart.subCaption = "Doanh thu trong năm " + this.namOfChart4; 
+      this.dataSource4.chart.subCaption = "Doanh thu trong năm " + this.namOfChart4;
       for (let i = 0; i < this._sumOfMoneyInMonth.length; i++) {
         let object = { 'label': '', 'value': '' };
         object.label = this._sumOfMoneyInMonth[i].thang.toString();
@@ -272,6 +278,13 @@ export class DashboardComponent implements OnInit {
     },
       error => console.error('Error: ' + error)
     )
+  }
+
+  getLoaiGiay() {
+    this.loaiGiayService.getLoaiGiay().subscribe(result => {
+      this._listGiay = result;
+    },
+      error => console.error('Error: ' + this._listGiay))
   }
 
 

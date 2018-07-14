@@ -6,25 +6,12 @@
   <!--  Side Nav  -->
   <div class="nav-side-menu">
     <div class="menu-list">
-
-      <!-- <div class="loginBtn text-center">
-        <a class="btn btn-primary fb">Đăng nhập bằng
-          <i class="fab fa-facebook-f"></i>
-        </a>
-        <a class="btn btn-danger gg">Đăng nhập bằng
-          <i class="fab fa-google"></i>
-        </a>
-      </div> -->
-
       <ul id="menu-content" class="menu-content collapse out">
         <li class="home-menu" (click)="getProductByCate(loai.tenLoai)" *ngFor="let loai of _loaigiayArray">
           <span class="icons">
             <i class="fa fa-chevron-right"></i>
           </span> {{loai.tenLoai}}
         </li>
-        <!-- <li>
-          <a class="btn btn-primary btn-demo">Upload</a>
-        </li> -->
       </ul>
     </div>
   </div>
@@ -64,47 +51,7 @@
                 <a id="header-cart-btn" routerLink="/home/cart">
                   <i class="ti-bag"></i> Giỏ Hàng
                 </a>
-                <!-- <ul class="cart-list">
-                  <li>
-                    <a href="#" class="image">
-                      <img src="../assets/images/product-img/product-10.jpg" class="cart-thumb" alt="">
-                    </a>
-                    <div class="cart-item-desc">
-                      <h6>
-                        <a href="#">Giày Luyện Tập</a>
-                      </h6>
-                      <p>1x -
-                        <span class="price">$200</span>
-                      </p>
-                    </div>
-                    <span class="dropdown-product-remove">
-                      <i class="icon-cross"></i>
-                    </span>
-                  </li>
-                  <li>
-                    <a href="#" class="image">
-                      <img src="../assets/images/product-img/product-11.jpg" class="cart-thumb" alt="">
-                    </a>
-                    <div class="cart-item-desc">
-                      <h6>
-                        <a href="#">Giày Chạy Bộ</a>
-                      </h6>
-                      <p>1x -
-                        <span class="price">$300</span>
-                      </p>
-                    </div>
-                    <span class="dropdown-product-remove">
-                      <i class="icon-cross"></i>
-                    </span>
-                  </li>
-                  <li class="total">
-                    <span class="pull-right">Tổng: $20.00</span>
-                    <a href="cart.html" class="btn btn-sm btn-cart">Cart</a>
-                    <a href="checkout-1.html" class="btn btn-sm btn-checkout">Thanh Toán</a>
-                  </li>
-                </ul> -->
               </div>
-
               <div class="header-right-side-menu ml-15" (click)="showLeftBar()">
                 <a id="sideMenuBtn">
                   <i class="ti-menu" aria-hidden="true"></i>

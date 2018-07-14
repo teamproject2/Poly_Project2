@@ -8,7 +8,7 @@ import { ToastrService } from '../../services/toastr.service';
 import { RequestOptions, Headers } from '@angular/http';
 import { Customer } from '../../entity/customer';
 import { UserInfo } from '../../entity/userInfo';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -27,7 +27,8 @@ export class HeaderComponent implements OnInit {
   constructor(private loaiGiayService: LoaigiayService,
     private router: Router,
     private toastrService: ToastrService,
-    private authService: AuthService
+    private authService: AuthService,
+    private location: Location
   ) { }
 
   ngOnInit() {
@@ -77,20 +78,17 @@ export class HeaderComponent implements OnInit {
         };
         sessionStorage.tenKhachHang = JSON.stringify(object);
         this.userInfo = JSON.parse(sessionStorage.tenKhachHang);
-        // this.sharedService.emitChange(JSON.stringify(object));
 
         const headers = new Headers();
         headers.append('idAccount', this._userData.additionalUserInfo.profile.id)
         headers.append('email', this._userData.additionalUserInfo.profile.email);
-        // console.log(headers.get('idAccount'));
         const options = new RequestOptions({ headers: headers });
 
         this.authService.checkKhachHang(options).subscribe(
           data => {
             this.chkData = data;
-            // console.log("Data: " + this.chkData);
             sessionStorage.customer = JSON.stringify(this.chkData);
-            this.router.navigate(['/home/checkout']);
+            this.location.isCurrentPathEqualTo(this.location.path());
           },
           error => {
             console.error('Error: ' + error);
@@ -101,13 +99,10 @@ export class HeaderComponent implements OnInit {
               idAccount: this._userData.additionalUserInfo.profile.id
             };
             sessionStorage.customer = JSON.stringify(customer1);
-
-
             this.router.navigate(['/home/account']);
           }
         )
-
-        this.router.navigate(['/home/account/', this._userData.additionalUserInfo.profile.id]);
+        // this.router.navigate(['/home/account/', this._userData.additionalUserInfo.profile.id]);
       }
     });
   }
@@ -128,6 +123,8 @@ export class HeaderComponent implements OnInit {
     if (this.chkData !== null) {
       console.log("aaaaaaaaaaaaaaaa " + this.chkData.id);
       this.router.navigate(['/home/account/', this.chkData.id]);
+    } else if(this._userData.additionalUserInfo.profile.id != null) {
+      this.router.navigate(['/home/account/', this._userData.additionalUserInfo.profile.id]);
     }
   }
 

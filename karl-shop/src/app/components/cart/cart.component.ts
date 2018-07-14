@@ -152,13 +152,11 @@ export class CartComponent implements OnInit {
               idAccount: this._userData.additionalUserInfo.profile.id
             };
             sessionStorage.customer = JSON.stringify(customer1);
-
-
             this.router.navigate(['/home/account']);
           }
         )
 
-        this.router.navigate(['/home/account/', this._userData.additionalUserInfo.profile.id]);
+        // this.router.navigate(['/home/account/', this._userData.additionalUserInfo.profile.id]);
       }
     });
   }

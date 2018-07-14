@@ -10,6 +10,7 @@ import { HttpHeaders } from '@angular/common/http';
 import { RequestOptions, Headers } from '@angular/http';
 import { Customer } from '../../entity/customer';
 import { CustomerService } from '../../services/customer.service';
+import { Location } from '@angular/common';
 
 declare let toastr: any;
 declare var jquery: any;
@@ -49,7 +50,7 @@ export class UserLoginComponent implements OnInit {
 
   constructor(private router: Router, private toastrService: ToastrService,
     private authService: AuthService, private sharedService: SharedService,
-    private customerService: CustomerService) {
+    private customerService: CustomerService, private location: Location) {
 
     this.soDienThoai = new FormControl('', [Validators.required, Validators.pattern(this.phonePattern)]);
 
@@ -78,7 +79,12 @@ export class UserLoginComponent implements OnInit {
     this.customerService.saveCustomer(this.newCustomer).subscribe(result => {
       this.newCustomer = result;
       sessionStorage.customer = JSON.stringify(result);
-      this.router.navigate(['/home/checkout']);
+      if(sessionStorage.productInCart != null) {
+        this.router.navigate(['/home/checkout']);
+      }else {
+        this.location.back();
+      }
+      
     });
   }
 
