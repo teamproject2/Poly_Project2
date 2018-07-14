@@ -11,6 +11,8 @@ import * as FusionCharts from 'fusioncharts';
 import * as Charts from 'fusioncharts/fusioncharts.charts';
 import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
 import { FusionChartsModule } from 'angular4-fusioncharts';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 
 // import Components
 import { AppComponent } from './app.component';
@@ -33,7 +35,6 @@ import { SanphamService } from './services/sanpham.service';
 import {HoadonService } from './services/hoadon.service';
 import { KichthuocService } from './services/kichthuoc.service';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoaigiayComponent } from './components/loaigiay/loaigiay.component';
 import { LoaigiayService } from './services/loaigiay.service';
 import { UploadFileService } from './services/uploadfile.service';

@@ -11,6 +11,8 @@ import { Invoice } from '../../models/invoice';
 import { Chitiethoadon } from '../../models/chitiethoadon';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
+declare var jquery: any;
+declare var $: any;
 @Component({
   selector: 'app-invoice',
   templateUrl: './invoice.component.html',

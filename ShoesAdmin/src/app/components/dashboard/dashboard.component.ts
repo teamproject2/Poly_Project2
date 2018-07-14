@@ -15,6 +15,12 @@ import { LoaiGiay } from '../../models/loaiGiay';
 })
 export class DashboardComponent implements OnInit {
 
+  monthSelected: any;
+  loaiGiaySelected: any;
+  yearSelected: any;
+  currentMonth = new Date().getMonth() + 1;
+  currentYear = new Date().getFullYear();
+
   dataDB: Top10Products[] = [];
   data1 = [];
   thangOfChart1: number;
@@ -202,19 +208,22 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getTop10();
+    this.getTop10(this.currentMonth, this.currentYear);
     this.getLoaiGiayInMonth();
     this.getLoaiGiayInYear();
     this.getSumOfMoney();
     this.getLoaiGiay();
+    console.log(this.currentMonth + ' ' + this.currentYear);
+    
   }
 
   //chart-1
-  getTop10() {
-    this.thongKeService.getTop10(6, 2018).subscribe(result => {
+  getTop10(month: any, year: any) {
+    this.thongKeService.getTop10(month, year).subscribe(result => {
+      this.data1 = [];
       this.dataDB = result;
-      this.thangOfChart1 = 6;
-      this.namOfChart1 = 2018;
+      this.thangOfChart1 = month;
+      this.namOfChart1 = year;
       this.dataSource1.chart.subCaption = 'Top 10 sản phẩm bán chạy trong tháng ' + this.thangOfChart1 + ' năm ' + this.namOfChart1;
       for (let i = 0; i < this.dataDB.length; i++) {
         let object = { 'label': '', 'value': '' };
@@ -222,6 +231,7 @@ export class DashboardComponent implements OnInit {
         object.value = this.dataDB[i].tongTien.toString();
         this.data1.push(object);
       }
+      this.dataSource1.data = this.data1;
     },
       error => console.error('Error: ' + error)
     );
@@ -285,6 +295,12 @@ export class DashboardComponent implements OnInit {
       this._listGiay = result;
     },
       error => console.error('Error: ' + this._listGiay))
+  }
+
+  findTop10() {
+    console.log(this.monthSelected, this.yearSelected);
+    
+    this.getTop10(this.monthSelected, this.yearSelected);
   }
 
 
