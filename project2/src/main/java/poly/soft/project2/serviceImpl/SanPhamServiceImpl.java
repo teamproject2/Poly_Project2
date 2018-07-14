@@ -73,15 +73,7 @@ public class SanPhamServiceImpl  implements SanPhamService{
 			sp.setChiTiet(String.valueOf(arr[2]));
 			sp.setDonGia(Double.parseDouble(String.valueOf(arr[3])));
 			sp.setChietKhau(Double.parseDouble(String.valueOf(arr[4])));
-			sp.setHinh(String.valueOf(arr[5]));
-			GioiTinhEnum[] enums = GioiTinhEnum.values();
-			int gender = Integer.parseInt(String.valueOf(arr[6]));
-			for(GioiTinhEnum en: enums) {
-				if(en.getCode() == gender) {
-					sp.setGioiTinh(en);
-					break;
-				}
-			}
+			sp.setHinh(String.valueOf(arr[5]));			
 			listSPByCategory.add(sp);
 		}
 		return listSPByCategory;
@@ -98,15 +90,7 @@ public class SanPhamServiceImpl  implements SanPhamService{
 			sp.setChiTiet(String.valueOf(arr[2]));
 			sp.setDonGia(Double.parseDouble(String.valueOf(arr[3])));
 			sp.setChietKhau(Double.parseDouble(String.valueOf(arr[4])));
-			sp.setHinh(String.valueOf(arr[5]));
-			GioiTinhEnum[] enums = GioiTinhEnum.values();
-			int gender = Integer.parseInt(String.valueOf(arr[6]));
-			for(GioiTinhEnum en: enums) {
-				if(en.getCode() == gender) {
-					sp.setGioiTinh(en);
-					break;
-				}
-			}
+			sp.setHinh(String.valueOf(arr[5]));			
 			listSPByKichThuoc.add(sp);
 		}
 		return listSPByKichThuoc;
