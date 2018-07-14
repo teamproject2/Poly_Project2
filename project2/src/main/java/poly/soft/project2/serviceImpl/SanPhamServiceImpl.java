@@ -92,6 +92,7 @@ public class SanPhamServiceImpl  implements SanPhamService{
 			sp.setChietKhau(Double.parseDouble(String.valueOf(arr[4])));
 			sp.setHinh(String.valueOf(arr[5]));			
 			listSPByKichThuoc.add(sp);
+			
 		}
 		return listSPByKichThuoc;
 	}
