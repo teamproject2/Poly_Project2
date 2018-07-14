@@ -4,12 +4,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
+import poly.soft.project2.entity.LoaiGiay;
 import poly.soft.project2.entity.TaiKhoan;
+import poly.soft.project2.service.LoaiGiayService;
 import poly.soft.project2.service.TaiKhoanService;
 
+@Component
 public class LogInterceptor extends HandlerInterceptorAdapter {
 	@Autowired
 	TaiKhoanService taiKhoanService;

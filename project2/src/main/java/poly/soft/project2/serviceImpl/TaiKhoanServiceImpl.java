@@ -22,8 +22,8 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
 
 	@Override
 	public TaiKhoan findById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		TaiKhoan tk = taiKhoanRepository.findById(id).orElse(null);
+		return tk;
 	}
 
 	@Override
