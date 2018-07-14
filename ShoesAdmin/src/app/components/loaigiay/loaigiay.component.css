@@ -1,11 +1,11 @@
 .modal1 {
     width: 500px;
-    height: 316px;
+    height: 325px;
     background: #fff;
-    position: relative;
+    position: fixed;
     top: 50%;
     left: 50%;
-    margin-top: -385px;
+    margin-top: -117px;
     margin-left: -250px;
     visibility: hidden;
     opacity: 0;
@@ -17,8 +17,26 @@
     border-radius: 5px;
     
 }
+.modal2{
+    width: 500px;
+    height: 210px;
+    background: #fff;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -105px;
+    margin-left: -250px;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    z-index: 10;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 5px;
+}
 
-.modal1.show, .modal-wrapper.show{
+.modal1.show, .modal-wrapper.show,.modal2.show{
     display: block;
     visibility: visible;
     opacity: 2;

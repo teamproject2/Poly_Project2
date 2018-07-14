@@ -35,10 +35,10 @@
                       <a class="success p-0" data-original-title="" title="Cập nhật" routerLink="/nhanvien/{{nv.id}}">
                         <i class="ft-edit-2 font-medium-3 mr-2"></i>
                       </a>
-                      <a class="danger p-0" data-original-title="" data-toggle="modal" (click)="showModal()" title="Xóa">
-                          <!-- (click)="DelNhanvien(nv.id)" -->
-                        <i class="ft-user-x"></i>
-                      </a>
+                      <!-- <a class="danger p-0" data-original-title="" data-toggle="modal" (click)="showModal()" title="Xóa">
+                         (click)="DelNhanvien(nv.id)" 
+                        <i class="ft-user-x"></i> 
+                      </a> -->
                     </td>
                   </tr>
                 </tbody>
@@ -64,10 +64,10 @@
     <div class="modal-body">Are you sure you want to delete?</div>
         <div  class="modal-footer">
             <div class="col-md-12 text-center">
-                <button type="submit" class="btn btn-raised btn-success but1">
+                <button type="submit" (click)="DelNhanvien()" class="btn btn-raised btn-success but1">
                     <i class=""></i> OK
                 </button>
-                <button type="submit" class="btn btn-raised btn-warning but1">
+                <button type="submit" (click)="removeModal()" class="btn btn-raised btn-warning but1">
                     <i class=""></i> Cancel
                 </button>
             </div>

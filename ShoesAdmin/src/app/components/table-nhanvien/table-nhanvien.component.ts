@@ -63,14 +63,14 @@ export class TableNhanvienComponent implements OnInit, OnDestroy {
 		});
 	}
 	//
-	DelNhanvien(id: number){
-		this.nhanvienService.DeleteNhanvien(id).subscribe (
-			result => {console.log("Delete Success!");
-			this.loadData();
-		},
-		  error => console.error(error)
-		)
-	}
+	// DelNhanvien(id: number){
+	// 	this.nhanvienService.DeleteNhanvien(id).subscribe (
+	// 		result => {console.log("Delete Success!");
+	// 		this.loadData();
+	// 	},
+	// 	  error => console.error(error)
+	// 	)
+	// }
 	//
   showModal() {
     $(document).ready(function () {

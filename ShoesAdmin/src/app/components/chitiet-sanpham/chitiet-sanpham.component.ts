@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SanphamService } from '../../services/sanpham.service';
 import { Subscription } from 'rxjs';
@@ -9,6 +9,11 @@ import { LoaigiayService } from '../../services/loaigiay.service';
 import { LoaiGiay } from '../../models/loaiGiay';
 import { Upload } from '../../models/fileupload';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+import {ToastsManager} from 'ng2-toastr/ng2-toastr';
+
+// jquyery phan trang
+declare var jquery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-chitiet-sanpham',
@@ -52,8 +57,10 @@ export class ChitietSanphamComponent implements OnInit {
     private router: Router,
     private loaigiayservice: LoaigiayService,
     private uploadService: UploadFileService,
-    private formBuilder: FormBuilder
-  ) { }
+    private formBuilder: FormBuilder,
+    private _vcr: ViewContainerRef,
+    private toastr: ToastsManager
+  ) { this.toastr.setRootViewContainerRef(_vcr); }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -96,22 +103,40 @@ export class ChitietSanphamComponent implements OnInit {
     });
   }
   //
+//
+showModal(p: number) {
+  this.id = p;
+  $(document).ready(function () {
+    $('.modal1').addClass('show');
+    $('.modal2').addClass('show');
+    $('.modal-wrapper').addClass('show');
+  });
+}
 
+removeModal() {
+  $(document).ready(function () {
+    $('.modal1').removeClass('show');
+    $('.modal2').removeClass('show');
+    $('.modal-wrapper').removeClass('show');
+  });
+}
+
+//
 
   saveSanpham() {
     if(this.selectedTenLoai == 'none'){
       alert('Select LG');
     }
-    
-    //this.chitietSp.loaiGiay = this.loaiGiay;
-    console.log("sdsda2: " + JSON.stringify(this.chitietSp.loaiGiay));
-    console.log("DATA: " + JSON.stringify(this.chitietSp));
-    // this.sanphamService.update_Sp(this.chitietSp).subscribe(
-    //   result => {console.log("Updated Success!");
-      // this.router.navigate(['/sanpham']);
-    // },
-    //   error => console.error(error)
-    // )
+    this.sanphamService.update_Sp(this.id).subscribe(
+      result => {
+        this.removeModal();
+        this.toastr.success('Cập nhật thông tin sản phẩm thành công!');
+        setTimeout(() => {
+          this.router.navigate(['/sanpham']);
+        }, 1500);
+    },
+      error => console.error(error)
+    )
   }
   //
 
@@ -182,4 +207,5 @@ export class ChitietSanphamComponent implements OnInit {
     });
     console.log("Value : " + JSON.stringify(this.chitietSp.loaiGiay));
   }
+  
 }

@@ -46,8 +46,8 @@
                                             <a class="success p-0" data-original-title="" title="Cập nhật">
                                                 <i class="ft-edit-2 font-medium-3 mr-2"></i>
                                             </a>
-                                            <a *ngIf="hd.trangThai != 'Hoàn thành'" (click)="showModal(hd.id)" class="danger p-0" data-original-title="" title="Xóa" id="confirm-cancel">
-                                                    <!-- (click)="DelhoaDon(hd.id)" -->
+                                            <a *ngIf="hd.trangThai != 'Hoàn thành'" (click)="showModal(hd.id)"  class="danger p-0" data-original-title="" title="Xóa" id="confirm-cancel">
+                                                    <!-- (click)="DelhoaDon(hd.id)" (click)="showModal(hd.id)" -->
                                                 <i class="ft-x font-medium-3 mr-2"></i>
                                             </a>
                                         </td>
@@ -79,7 +79,7 @@
                 <button type="submit" (click)="DelhoaDon()" class="btn btn-raised btn-success but1">
                     <i class=""></i> OK
                 </button>
-                <button type="submit"  class="btn btn-raised btn-warning but1">
+                <button type="submit" (click)="removeModal()" class="btn btn-raised btn-warning but1">
                     <i class=""></i> Cancel
                 </button>
             </div>

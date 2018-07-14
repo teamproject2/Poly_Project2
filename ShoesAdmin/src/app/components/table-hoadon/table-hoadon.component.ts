@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy,SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, SimpleChanges,ViewContainerRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 import { HttpHeaders } from '@angular/common/http';
+import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 import "rxjs/Rx";
 // jquyery phan trang
 declare var jquery: any;
@@ -18,18 +19,19 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './table-hoadon.component.html',
   styleUrls: ['./table-hoadon.component.css']
 })
-export class TableHoadonComponent implements OnInit, OnDestroy{
+export class TableHoadonComponent implements OnInit, OnDestroy {
   public list_hd: Hoadon[] = [];
   public subscription: Subscription;
   id: number;
 
-  
+
   constructor(
     private hoadonServices: HoadonService,
     private router: Router,
     private route: ActivatedRoute,
-    
-  ) { }
+    private _vcr: ViewContainerRef,
+    private toastr: ToastsManager
+  ) { this.toastr.setRootViewContainerRef(_vcr); }
 
   ngOnInit() {
     // load phan trang
@@ -37,11 +39,16 @@ export class TableHoadonComponent implements OnInit, OnDestroy{
     this.loadData();
 
   }
-  
-    // Phan trang
+
+  // Phan trang
   showDataTable() {
     $(document).ready(function () {
-      $('#table_hd').DataTable();
+
+     $('#table_hd').DataTable({
+      "order": [[ 0, "desc" ]]
+     });
+     $.fn.dataTable.ext.errMode = 'none';
+      
     });
   }
   // Load all Hoa don
@@ -55,18 +62,19 @@ export class TableHoadonComponent implements OnInit, OnDestroy{
       });
   }
   //
-  DelhoaDon(id: number){
-    this.hoadonServices.DeletehoaDon(id).subscribe (
-      result => {console.log("Delete Success!");
-      this.loadData();
-  },
-    error => console.error(error)
-  )
+  DelhoaDon() {
+    this.hoadonServices.DeletehoaDon(this.id).subscribe(
+      result => {
+        this.removeModal();
+        this.loadData();
+        this.toastr.success('Delete success!');
+      },
+      error => console.error(error)
+    )
   }
   //
-  showModal(id: number) {
-    console.log("idddddddddddddd: "+this.id);
-    
+  showModal(p: number) {
+    this.id = p;
     $(document).ready(function () {
       $('.modal1').addClass('show');
       $('.modal-wrapper').addClass('show');
@@ -79,7 +87,7 @@ export class TableHoadonComponent implements OnInit, OnDestroy{
       $('.modal-wrapper').removeClass('show');
     });
   }
-//
+  //
   ngOnDestroy() {
 
   }

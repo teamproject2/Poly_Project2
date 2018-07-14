@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 import { HttpHeaders } from '@angular/common/http';
@@ -9,6 +9,7 @@ import { HoadonService } from '../../services/hoadon.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Invoice } from '../../models/invoice';
 import { Chitiethoadon } from '../../models/chitiethoadon';
+import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
 @Component({
   selector: 'app-invoice',
@@ -26,8 +27,9 @@ export class InvoiceComponent implements OnInit {
 
   constructor(private detailHDServices: HoadonService,
     private route: ActivatedRoute,
-    private router: Router,
-  ) { }
+    private router: Router,private _vcr: ViewContainerRef,
+    private toastr: ToastsManager
+  ) { this.toastr.setRootViewContainerRef(_vcr); }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -49,10 +51,28 @@ export class InvoiceComponent implements OnInit {
     )
   }
 
-  changeTrangThai(id:number){
-    this.detailHDServices.Chuyentrangthai(id).subscribe(result =>{
-      console.log("Chuyen Trang Thai Thanh Cong ");
+  changeTrangThai(){
+    this.detailHDServices.Chuyentrangthai(this.id).subscribe(result =>{
+      this.removeModal();
       this._detailInvoice.trangThai = 'Hoàn thành';
+      this.toastr.success('Chuyển trạng thái thành công!');
     })
   }
+
+  //
+  showModal(p: number) {
+    this.id = p;
+    $(document).ready(function () {
+      $('.modal1').addClass('show');
+      $('.modal-wrapper').addClass('show');
+    });
+  }
+
+  removeModal() {
+    $(document).ready(function () {
+      $('.modal1').removeClass('show');
+      $('.modal-wrapper').removeClass('show');
+    });
+  }
+  //
 }

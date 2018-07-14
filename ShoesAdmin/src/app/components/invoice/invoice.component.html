@@ -60,7 +60,8 @@
                 <p>
                   <span class="text-muted">Trạng Thái :</span>
                   <span>{{_detailInvoice.trangThai}}</span><br>
-                  <button type="button" (click)="changeTrangThai(_detailInvoice.id)" class="btn btn-raised btn-primary">
+                  <button type="button" (click)="showModal(_detailInvoice.id)" class="btn btn-raised btn-primary">
+                      <!-- (click)="changeTrangThai(_detailInvoice.id)" -->
                     <i class="ft-save"></i>
                     Hoàn thành
                   </button>
@@ -122,4 +123,28 @@
     </div>
   </section>
   <!--Invoice template ends-->
+    <!-- Modal -->
+<div class="modal-wrapper" (click)="removeModal()"></div>
+
+<div class="modal1">
+    <div class="modal-header">
+        <label class="modal-title text-text-bold-600 title">Confirm</label>
+        <!-- <h3 class="modal-title">Confirm</h3> -->
+        <button (click)="removeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">Are you sure you want to save?</div>
+        <div  class="modal-footer">
+            <div class="col-md-12 text-center">
+                <button type="submit" (click)="changeTrangThai()" class="btn btn-raised btn-success but1">
+                    <i class=""></i> OK
+                </button>
+                <button type="submit" (click)="removeModal()" class="btn btn-raised btn-warning but1">
+                    <i class=""></i> Cancel
+                </button>
+            </div>
+        </div>
+</div>
+<!-- MODAL -->
 </div>

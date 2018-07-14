@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { LoaigiayService } from '../../services/loaigiay.service';
 import { LoaiGiay } from '../../models/loaiGiay';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormsModule, FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 
 declare var jquery: any;
@@ -16,8 +17,8 @@ declare var $: any;
 })
 export class LoaigiayComponent implements OnInit {
   public list_giay: LoaiGiay[] = [];
-  public id_giay: LoaiGiay []=[];
-  id: number= 0;
+  public id_giay: LoaiGiay[] = [];
+  id: number = 0;
 
   public ChitietLoaigiay = {
     id: '',
@@ -32,16 +33,16 @@ export class LoaigiayComponent implements OnInit {
     private loaigiayservice: LoaigiayService,
     private router: Router,
     private route: ActivatedRoute,
-    private formBuilder: FormBuilder
-  ) { }
+    private formBuilder: FormBuilder,
+    private _vcr: ViewContainerRef,
+    private toastr: ToastsManager
+  ) { this.toastr.setRootViewContainerRef(_vcr); }
 
   ngOnInit() {
-    
+
     this.loadDataGiay();
 
-    this.getChitiet_Loạigiay(this.id);
-    this.id = this.route.snapshot.params['id'];
-    console.log("ID: "+ this.id);
+    // this.id = this.route.snapshot.params['id'];
     this.id_Giay = new FormControl('', Validators.required);
     this.ten_Giay = new FormControl('', [Validators.required, Validators.minLength(3)]);
 
@@ -59,31 +60,38 @@ export class LoaigiayComponent implements OnInit {
       console.log(error);
     });
   }
-//
-getChitiet_Loạigiay(id: number): void {
-  this.loaigiayservice.getLoaigiaybyID(id).subscribe(data => {
-    this.ChitietLoaigiay = data;
-    console.log(this.ChitietLoaigiay);
-    
-  },
-    error => {
-      console.log(error);
-    });
-}
-
-//
-  showModal(id: any) {
+  //
+  getChitiet_Loạigiay(id: number): void {
     this.loaigiayservice.getLoaigiaybyID(id).subscribe(data => {
       this.ChitietLoaigiay = data;
-      console.log(this.ChitietLoaigiay);
-      
+      // console.log(this.ChitietLoaigiay);
     },
       error => {
         console.log(error);
       });
-    
+  }
+
+  //
+  showModalUpdate(p: number) {
+    this.getChitiet_Loạigiay(p);
     $(document).ready(function () {
       $('.modal1').addClass('show');
+      $('.modal-wrapper').addClass('show');
+    });
+  }
+
+  showModalInsert() {
+    $(document).ready(function () {
+      $('.modal1').addClass('show');
+      $('.modal-wrapper').addClass('show');
+    });
+  }
+  //
+  showModalSave(p: number) {
+    this.id = p;
+    $(document).ready(function () {
+      $('.modal1').removeClass('show');
+      $('.modal2').addClass('show');
       $('.modal-wrapper').addClass('show');
     });
   }
@@ -91,8 +99,33 @@ getChitiet_Loạigiay(id: number): void {
   removeModal() {
     $(document).ready(function () {
       $('.modal1').removeClass('show');
+      $('.modal2').removeClass('show');
       $('.modal-wrapper').removeClass('show');
     });
   }
-
+  //
+  saveLoaigiay() {
+    if (this.id == 0) {
+      let object = { tenLoai: this.Loaigiay.controls.ten_Giay.value };
+      this.loaigiayservice.insert_Loaigiay(object).subscribe(
+        result => {
+          this.toastr.success('Thêm mới Loại giày thành công!');
+          // setTimeout(() => {
+          //   this.router.navigate(['/loaigiay']);
+          // }, 1500);
+        },
+        error => console.error(error)
+      )
+    } else {
+      this.loaigiayservice.update_Loaigiay(this.id).subscribe(
+        result => {
+          this.toastr.success('Cập nhật Loại giày thành công!');
+          //   setTimeout(() => {
+          //     this.router.navigate(['/loaigiay']);
+          //   }, 1500);
+        },
+        error => console.error(error)
+      )
+    }
+  }
 }

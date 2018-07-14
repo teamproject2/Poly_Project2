@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LoaiGiay } from '../models/loaiGiay';
-import {ChitietLoaigiay} from '../models/chitietLoaigiay';
+import { ChitietLoaigiay } from '../models/chitietLoaigiay';
 import { Http, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
@@ -19,8 +19,8 @@ export class LoaigiayService {
     }));
   }
   //
-   // Get Loại Giay by ID
-   getLoaigiaybyID(id: number): Observable<ChitietLoaigiay> {
+  // Get Loại Giay by ID
+  getLoaigiaybyID(id: number): Observable<ChitietLoaigiay> {
     return this.http
       .get(this.API + "/" + id)
       .map((response: Response) => {
@@ -34,6 +34,11 @@ export class LoaigiayService {
   // insert
   insert_Loaigiay(loaiGiay: any): Observable<any> {
     let search = new URLSearchParams();
-    return this.http.post(this.API, loaiGiay, {search});
+    return this.http.post(this.API + "/", loaiGiay, { search });
+  }
+  //
+  update_Loaigiay(loaiGiay: any): Observable<any> {
+    let search = new URLSearchParams();
+    return this.http.put(this.API + "/", loaiGiay, { search });
   }
 }

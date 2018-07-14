@@ -12,7 +12,7 @@
 
                     <div class="card-body">
                         <div class="card-block">
-                            <button id="addRow" class="btn btn-primary mb-2" (click)="showModal(giay.id)">
+                            <button id="addRow" class="btn btn-primary mb-2" (click)="showModalInsert()">
                                 <i class="ft-user-plus"></i>&nbsp; Thêm mới</button>
                             <div class="mb-3">
                             </div>
@@ -29,15 +29,12 @@
                                         <td style="vertical-align: middle">{{giay.id}}</td>
                                         <td style="vertical-align: middle">{{giay.tenLoai}}</td>
                                         <td style="vertical-align: middle" routerLinkActive="active">
-                                            <a class="success p-0" data-original-title="" title="Cập nhật" data-toggle="modal" (click)="showModal(giay.id)">
+                                            <a class="success p-0" data-original-title="" title="Cập nhật" data-toggle="modal" (click)="showModalUpdate(giay.id)">
                                                 <i class="ft-edit-2 font-medium-3 mr-2"></i>
                                             </a>
-                                            <!-- <a class="info p-0" data-original-title="" title="Thêm mới" data-toggle="modal" (click)="showModal(giay.id)">
-                                                <i class="ft-plus-square"></i>
+                                            <!-- <a class="danger p-0" data-original-title="" title="Xóa" id="confirm-cancel">
+                                                <i (click)="showModalDel()"class="ft-x font-medium-3 mr-2" ></i>
                                             </a> -->
-                                            <a class="danger p-0" data-original-title="" title="Xóa" id="confirm-cancel">
-                                                <i class="ft-x font-medium-3 mr-2"></i>
-                                            </a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -60,9 +57,11 @@
         </div>
         <form method="POST" [formGroup]="Loaigiay" (ngSubmit)="saveLoaigiay()">
             <div>
-                <label class="title">Mã giày</label>
-                <div class="form-group">
-                    <input formControlName="id_Giay"  value="{{ChitietLoaigiay.id}}" type="text" class="form-control">
+                <div *ngIf="ChitietLoaigiay.id != null">
+                    <label class="title">Mã giày</label>
+                    <div class="form-group">
+                        <input formControlName="id_Giay" value="{{ChitietLoaigiay.id}}" type="text" class="form-control">
+                    </div>
                 </div>
                 <label class="title">Loại giày </label>
                 <div class="form-group">
@@ -71,15 +70,39 @@
             </div>
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <button type="submit" class="btn btn-raised btn-success but1">
+                    <button type="submit" (click)="showModalSave()" class="btn btn-raised btn-success but1">
                         <i class=""></i> Save
                     </button>
-                    <button type="submit" class="btn btn-raised btn-warning but1">
+                    <button type="submit" (click)="removeModal()" class="btn btn-raised btn-warning but1">
                         <i class=""></i> Cancel
                     </button>
                 </div>
             </div>
         </form>
+    </div>
+    <!-- MODAL -->
+    <!-- Modal Delete -->
+    <div class="modal-wrapper" (click)="removeModal()"></div>
+
+    <div class="modal2">
+        <div class="modal-header">
+            <label class="modal-title text-text-bold-600 title">Confirm</label>
+            <!-- <h3 class="modal-title">Confirm</h3> -->
+            <button (click)="removeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">Are you sure you want to save?</div>
+        <div class="modal-footer">
+            <div class="col-md-12 text-center">
+                <button type="submit" (click)="saveLoaigiay()" class="btn btn-raised btn-success but1">
+                    <i class=""></i> OK
+                </button>
+                <button type="submit" (click)="removeModal()" class="btn btn-raised btn-warning but1">
+                    <i class=""></i> Cancel
+                </button>
+            </div>
+        </div>
     </div>
     <!-- MODAL -->
 </div>
