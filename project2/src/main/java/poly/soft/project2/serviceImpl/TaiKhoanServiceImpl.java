@@ -37,5 +37,11 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	@Override
+	public TaiKhoan findByTenTaiKhoanAndMatKhau(String tenTaiKhoan, String matKhau) {
+		TaiKhoan taikhoan = taiKhoanRepository.findTaiKhoan(tenTaiKhoan, matKhau);
+		return taikhoan;
+	}
 	
 }

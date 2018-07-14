@@ -18,4 +18,6 @@ public interface TaiKhoanService {
 	TaiKhoan save(TaiKhoan taiKhoan);
 	
 	boolean delete(int id);
+	
+	TaiKhoan findByTenTaiKhoanAndMatKhau(String tenTaiKhoan,String matKhau);
 }
