@@ -31,6 +31,7 @@ const routes: Routes = [
   { path: 'hoadon/:id', component: InvoiceComponent },
   { path: 'form-product', component: FormSanphamComponent },
   { path: 'chitiet-sp', component: ChitietSanphamComponent },
+  { path: 'themsanpham', component: FormSanphamComponent },
   { path: 'loaigiay', component: LoaigiayComponent }
 
 ];

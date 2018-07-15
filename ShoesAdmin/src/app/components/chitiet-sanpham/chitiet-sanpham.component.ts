@@ -41,6 +41,15 @@ export class ChitietSanphamComponent implements OnInit {
   selectedTenLoai : string;
 
   //
+  public Sanpham = {
+    id: '',
+    tenSanPham: '',
+    tenLoaigiay: '',
+    donGia: '',
+    chietKhau: '',
+    chitiet: ''
+  };
+
   chitietSanpham: FormGroup;
   idSp: FormControl;
   tenSanPham: FormControl;
@@ -67,8 +76,11 @@ export class ChitietSanphamComponent implements OnInit {
     if (this.id != 0) {
       this.getChitiet_SP(this.id);
     }
+    this.getLoaigiay();
 
     //
+    
+
     this.idSp = new FormControl('', Validators.required);
     this.tenSanPham = new FormControl('', [Validators.required, Validators.minLength(3)]);
     // this.tenloaigiay = new FormControl('', Validators.required);
@@ -88,7 +100,6 @@ export class ChitietSanphamComponent implements OnInit {
     this.onChanges();
   }
 
-  //
   //
   onChanges(): void {
     this.chitietSanpham.valueChanges.subscribe(val => {
@@ -121,25 +132,37 @@ removeModal() {
   });
 }
 
-//
-
+// Luu san pham
   saveSanpham() {
-    if(this.selectedTenLoai == 'none'){
+    if (this.selectedTenLoai == 'none') {
       alert('Select LG');
+      let object = { 
+        tenSanPham: this.chitietSanpham.controls.tenSanPham.value
+       };
+       console.log(object);
+       
+      this.sanphamService.insert_Sp(object).subscribe(
+        result => {
+          this.toastr.success('Thêm mới Sản Phẩm thành công!');
+          this.removeModal();
+        },
+        error => console.error(error)
+      )
     }
-    this.sanphamService.update_Sp(this.id).subscribe(
-      result => {
-        this.removeModal();
-        this.toastr.success('Cập nhật thông tin sản phẩm thành công!');
-        setTimeout(() => {
-          this.router.navigate(['/sanpham']);
-        }, 1500);
-    },
-      error => console.error(error)
-    )
+    else {
+      this.sanphamService.update_Sp(this.chitietSp).subscribe(
+        result => {
+          this.removeModal();
+          this.toastr.success('Cập nhật thông tin sản phẩm thành công!');
+          setTimeout(() => {
+            this.router.navigate(['/sanpham']);
+          }, 1500);
+        },
+        error => console.error(error)
+      )
+    }
   }
   //
-
 
   detectFiles(event) {
     this.selectedFiles = event.target.files;
@@ -167,21 +190,21 @@ removeModal() {
     // this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress);
   }
 
+//Chi tiet san pham
   getChitiet_SP(id: number): void {
     this.sanphamService.getSanphamByID(id).subscribe(data => {
       this.chitietSp = data;
       this.loaiGiayAA = this.chitietSp.loaiGiay;
-      this.getLoaigiay();
+      // this.getLoaigiay();
     },
       error => {
         console.log(error);
       });
   }
-  //
+  // Lay tat ca loai giay
   getLoaigiay() {
     this.loaigiayservice.getLoaiGiay().subscribe(data => {
       this.listgiay = data;
-      console.log(this.listgiay);
     }, error => {
       console.log(error);
     });

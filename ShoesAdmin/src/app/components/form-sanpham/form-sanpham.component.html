@@ -1,118 +1,149 @@
 <div class="content-wrapper">
-  <!-- Basic form layout section start -->
-  <section id="horizontal-form-layouts">
+  <!-- Basic Carousel start -->
+  <section id="basic-carousel">
+
     <div class="row">
-      <div class="col-sm-12">
-        <div class="content-header">Thông Tin Sản Phẩm</div>
+      <div class="col-sm-12 mt-2">
+        <div class="content-header">Thêm sản phẩm mới</div>
       </div>
     </div>
+
     <div class="row">
-      <div class="col-md-12">
+
+      <div class="col-md-6">
         <div class="card">
-          <div class="card-header">
-            <h4 class="card-title" id="horz-layout-basic">Nhập Thông Tin Sản Phẩm</h4>
-          </div>
           <div class="card-body">
             <div class="px-3">
-              <form class="form form-horizontal">
+              <form class="form" [formGroup]="chitietSanpham">
                 <div class="form-body">
-                  <h4 class="form-section">
-                    <i class="ft-user"></i> Product Info</h4>
-                  <div class="form-group row">
-                    <label class="col-md-3 label-control" for="projectinput1">No.ID: </label>
-                    <div class="col-md-9">
-                      <input type="text" id="projectinput1" class="form-control" name="fname">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label class="col-md-3 label-control" for="projectinput2">Tên SP: </label>
-                    <div class="col-md-9">
-                      <input type="text" id="projectinput2" class="form-control" name="lname">
-                    </div>
-                  </div>
-
-                  <div class="form-group row">
-                    <label class="col-md-3 label-control" for="projectinput3">Giới Tính: </label>
-                    <div class="col-md-9">
-                      <div class="custom-control custom-radio display-inline-block ml-1">
-                        <input type="radio" id="customRadioInline2" name="customRadioInline2" class="custom-control-input">
-                        <label class="custom-control-label" for="customRadioInline2">Yes</label>
+                  <h4 class="form-section" formControlName="idSp">
+                    <i class="ft-user"></i>
+                    Thông tin sản phẩm
+                  </h4>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="userinput1">TÊN SẢN PHẨM</label>
+                        <input type="text" formControlName="tenSanPham" value="" id="userinput1" class="form-control border-primary"
+                          name="name">
                       </div>
-                      <div class="custom-control custom-radio display-inline-block">
-                        <input type="radio" id="customRadioInline3" checked name="customRadioInline2" class="custom-control-input">
-                        <label class="custom-control-label" for="customRadioInline3">No</label>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="userinput2">Loại giày</label>
+                        <select id="issueinput5" name="priority" class="form-control" data-toggle="tooltip" data-trigger="hover"
+                          data-placement="top" data-title="Priority" >
+                          <option value="none">---Select---</option>
+                          <option *ngFor="let giay of listgiay" [value]="giay.tenLoai">
+                            {{giay.tenLoai}}
+                          </option>
+                        </select>
                       </div>
-                      <!-- <input type="text" id="projectinput3" class="form-control" name="email"> -->
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="userinput3">Đơn giá</label>
+                        <input type="text" formControlName="donGia" value="{{chitietSp.donGia}}" id="userinput3" class="form-control border-primary"
+                          name="username">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="userinput4">Chiết khấu</label>
+                        <input type="text" formControlName="chietKhau" value="{{chitietSp.chietKhau}}" id="userinput4" class="form-control border-primary"
+                          name="nickname">
+                      </div>
                     </div>
                   </div>
 
-
-                  <h4 class="form-section">
-                    <i class="ft-file-text"></i> Requirements</h4>
-
-                  <div class="form-group row">
-                    <label class="col-md-3 label-control" for="projectinput5">Giá: </label>
-                    <div class="col-md-9">
-                      <input type="text" id="projectinput5" class="form-control" name="company">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-group">
+                        <label for="projectinput8">Chi tiết</label>
+                        <textarea formControlName="chiTiet" id="projectinput8" rows="5" class="form-control" name="comment" value=""></textarea>
+                      </div>
                     </div>
                   </div>
 
-                  <div class="form-group row">
-                    <label class="col-md-3 label-control" for="projectinput6">Loại Giày: </label>
-                    <div class="col-md-9">
-                      <select id="projectinput6" name="interested" class="form-control">
-                        <option value="Adidas">Adidas</option>
-                        <option value="Nike">Nike</option>
-                        <option value="NB">NB</option>
-                      </select>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="form-actions text-center">
+                        <button type="button" class="btn btn-raised btn-raised btn-warning" routerLink="/sanpham">
+                          <i class="ft-corner-up-left"></i> Quay lại
+                        </button>
+                        <button type="button" (click)="showModal()" class="btn btn-raised btn-raised btn-primary">
+                          <i class="ft-save"></i> Lưu
+                        </button>
+                      </div>
                     </div>
                   </div>
-
-                  <div class="form-group row">
-                    <label class="col-md-3 label-control" for="projectinput7">Budget: </label>
-                    <div class="col-md-9">
-                      <select id="projectinput7" name="budget" class="form-control">
-                        <option value="0" selected="" disabled="">Budget</option>
-                        <option value="less than 5000$">less than 5000$</option>
-                        <option value="5000$ - 10000$">5000$ - 10000$</option>
-                        <option value="10000$ - 20000$">10000$ - 20000$</option>
-                        <option value="more than 20000$">more than 20000$</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div class="form-group row">
-                    <label class="col-md-3 label-control">Chọn ảnh: </label>
-                    <div class="col-md-9">
-                      <label id="projectinput8" class="file center-block">
-                        <input type="file" id="file">
-                        <span class="file-custom"></span>
-                        : </label>
-                    </div>
-                  </div>
-
-                  <div class="form-group row">
-                    <label class="col-md-3 label-control" for="projectinput9">Chi tiết: </label>
-                    <div class="col-md-9">
-                      <textarea id="projectinput9" rows="5" class="form-control" name="comment"></textarea>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="form-actions center">
-                  <button type="button" class="btn btn-raised btn-warning mr-1">
-                    <i class="ft-corner-up-left"></i> Quay lại
-                  </button>
-                  <button type="button" class="btn btn-raised btn-primary">
-                    <i class="fa fa-check-square-o"></i> Lưu
-                  </button>
                 </div>
               </form>
             </div>
           </div>
         </div>
       </div>
+      <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <div class="px-3">
+                <form class="form">
+                  <div class="form-body">
+                    <h4 class="form-section">
+                      <i class="ft-info"></i> Hình ảnh</h4>
+  
+                    <div class="upload">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="progress">
+                            <div class="progress-bar progress-bar-animated" ></div>
+                          </div>
+                          <!-- Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Completed -->
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 col-upload">
+                          <label>
+                            <input type="file" (change)="detectFiles($event)" multiple>
+                          </label>
+                          <button class="btn btn-outline-success btnUpload" [disabled]="!selectedFiles" (click)="uploadMulti()">Upload</button>
+                          <button (click)="getListImg()">download</button>
+                        </div>
+                      </div>
+                    </div>
+  
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
   </section>
-  <!-- // Basic form layout section end -->
+  <!-- Modal Save -->
+<div class="modal-wrapper" (click)="removeModal()"></div>
+
+<div class="modal1">
+    <div class="modal-header">
+        <label class="modal-title text-text-bold-600 title">Confirm</label>
+        <!-- <h3 class="modal-title">Confirm</h3> -->
+        <button (click)="removeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">Are you sure you want to save?</div>
+        <div  class="modal-footer">
+            <div class="col-md-12 text-center">
+                <button type="submit"  (click)="Saveinsertsp()" class="btn btn-raised btn-success but1">
+                    <i class=""></i> OK
+                </button>
+                <button type="button" (click)="removeModal()" class="btn btn-raised btn-warning but1">
+                    <i class=""></i> Cancel
+                </button>
+            </div>
+        </div>
+</div>
+<!-- MODAL -->
 </div>
