@@ -55,12 +55,12 @@
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <form method="POST" [formGroup]="Loaigiay" (ngSubmit)="saveLoaigiay()">
+        <form method="post" [formGroup]="Loaigiay"> 
             <div>
-                <div *ngIf="ChitietLoaigiay.id != null">
+                <div *ngIf="isInsert">
                     <label class="title">Mã giày</label>
                     <div class="form-group">
-                        <input formControlName="id_Giay" value="{{ChitietLoaigiay.id}}" type="text" class="form-control">
+                        <input formControlName="id_Giay" value="{{ChitietLoaigiay.id}}" type="text" class="form-control" readonly>
                     </div>
                 </div>
                 <label class="title">Loại giày </label>

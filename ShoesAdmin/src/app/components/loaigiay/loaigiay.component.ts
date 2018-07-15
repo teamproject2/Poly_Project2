@@ -19,6 +19,7 @@ export class LoaigiayComponent implements OnInit {
   public list_giay: LoaiGiay[] = [];
   public id_giay: LoaiGiay[] = [];
   id: number = 0;
+  isInsert = false;
 
   public ChitietLoaigiay = {
     id: '',
@@ -73,7 +74,9 @@ export class LoaigiayComponent implements OnInit {
 
   //
   showModalUpdate(p: number) {
+    this.isInsert = true;
     this.getChitiet_Loạigiay(p);
+    this.id = p;
     $(document).ready(function () {
       $('.modal1').addClass('show');
       $('.modal-wrapper').addClass('show');
@@ -81,14 +84,15 @@ export class LoaigiayComponent implements OnInit {
   }
 
   showModalInsert() {
+    this.isInsert = false;
+    this.id = 0;
     $(document).ready(function () {
       $('.modal1').addClass('show');
       $('.modal-wrapper').addClass('show');
     });
   }
   //
-  showModalSave(p: number) {
-    this.id = p;
+  showModalSave() {
     $(document).ready(function () {
       $('.modal1').removeClass('show');
       $('.modal2').addClass('show');
@@ -110,19 +114,18 @@ export class LoaigiayComponent implements OnInit {
       this.loaigiayservice.insert_Loaigiay(object).subscribe(
         result => {
           this.toastr.success('Thêm mới Loại giày thành công!');
-          // setTimeout(() => {
-          //   this.router.navigate(['/loaigiay']);
-          // }, 1500);
+          this.loadDataGiay();
+          this.removeModal();
         },
         error => console.error(error)
       )
     } else {
-      this.loaigiayservice.update_Loaigiay(this.id).subscribe(
+      this.ChitietLoaigiay.tenLoai = this.Loaigiay.controls.ten_Giay.value;
+      this.loaigiayservice.update_Loaigiay(this.ChitietLoaigiay).subscribe(
         result => {
           this.toastr.success('Cập nhật Loại giày thành công!');
-          //   setTimeout(() => {
-          //     this.router.navigate(['/loaigiay']);
-          //   }, 1500);
+          this.loadDataGiay();
+          this.removeModal();
         },
         error => console.error(error)
       )

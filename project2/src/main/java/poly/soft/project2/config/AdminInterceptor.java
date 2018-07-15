@@ -36,7 +36,7 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 //		}
 		if(session.getAttribute("username") == null &&
 		   session.getAttribute("password") == null) {
-			throw new Exception("Invalid User Id or Password. Please try again.");
+			return true;
 		}
 		return true;
 	}

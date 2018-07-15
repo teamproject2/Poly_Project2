@@ -34,11 +34,11 @@ export class LoaigiayService {
   // insert
   insert_Loaigiay(loaiGiay: any): Observable<any> {
     let search = new URLSearchParams();
-    return this.http.post(this.API + "/", loaiGiay, { search });
+    return this.http.post(this.API, loaiGiay, { search });
   }
   //
   update_Loaigiay(loaiGiay: any): Observable<any> {
     let search = new URLSearchParams();
-    return this.http.put(this.API + "/", loaiGiay, { search });
+    return this.http.put(this.API, loaiGiay, { search });
   }
 }
