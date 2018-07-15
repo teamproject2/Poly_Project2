@@ -15,9 +15,9 @@ import { LoaiGiay } from '../../models/loaiGiay';
 })
 export class DashboardComponent implements OnInit {
 
-  monthSelected: any;
-  loaiGiaySelected: any;
-  yearSelected: any;
+
+
+
   currentMonth = new Date().getMonth() + 1;
   currentYear = new Date().getFullYear();
 
@@ -25,20 +25,27 @@ export class DashboardComponent implements OnInit {
   data1 = [];
   thangOfChart1: number;
   namOfChart1: number;
+  monthSelected: any;
+  yearSelected: any;
 
   _loaiGiayInMonth: SumLoaiGiayByMonthAndYear[] = [];
   data2 = [];
   thangOfChart2: number;
   namOfChart2: number;
+  monthSelected2: any;
+  yearSelected2: any;
 
   _loaiGiayInYear: SumOfMoneyInMonth[] = [];
   data3 = [];
   namOfChart3: number;
   loaiGiayOfChart3: string;
+  yearSelected3: any;
+  loaiGiaySelected3: any;
 
   _sumOfMoneyInMonth: SumOfMoneyInMonth[] = [];
   data4 = [];
   namOfChart4: number;
+  yearSelected4: any;
 
   // chart-1: Top 10 products
   id1 = 'chart1';
@@ -209,29 +216,27 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.getTop10(this.currentMonth, this.currentYear);
-    this.getLoaiGiayInMonth();
-    this.getLoaiGiayInYear();
-    this.getSumOfMoney();
+    this.getLoaiGiayInMonth(this.currentMonth, this.currentYear);
+    this.getLoaiGiayInYear('Adidas', this.currentYear);
+    this.getSumOfMoney(this.currentYear);
     this.getLoaiGiay();
-    console.log(this.currentMonth + ' ' + this.currentYear);
-    
   }
 
   //chart-1
   getTop10(month: any, year: any) {
-    if(month != 0 && year != 0){
+    if (month != 0 && year != 0) {
       this.thongKeService.getTop10(month, year).subscribe(result => {
         this.data1 = [];
         this.dataDB = result;
         this.thangOfChart1 = month;
         this.namOfChart1 = year;
-        if(this.dataDB.length == 0){
+        if (this.dataDB.length == 0) {
           this.dataSource1.chart.subCaption = 'Không có sản phẩm được bán trong tháng ' + this.thangOfChart1 + ' năm ' + this.namOfChart1;
-          for(let i=0; i< 10; i++){
+          for (let i = 0; i < 10; i++) {
             let object = { 'label': '', 'value': 0 };
             this.data1.push(object);
           }
-        }else{
+        } else {
           this.dataSource1.chart.subCaption = 'Top 10 sản phẩm bán chạy trong tháng ' + this.thangOfChart1 + ' năm ' + this.namOfChart1;
           for (let i = 0; i < this.dataDB.length; i++) {
             let object = { 'label': '', 'value': '' };
@@ -244,63 +249,94 @@ export class DashboardComponent implements OnInit {
       },
         error => console.error('Error: ' + error)
       );
-    }else{
+    } else {
       this.dataSource1.chart.subCaption = '';
       this.dataSource1.data = [];
     }
   }
 
   //chart-2
-  getLoaiGiayInMonth() {
-    this.thongKeService.getLoaiGiayByMonthAndYear(6, 2018).subscribe(result => {
-      this._loaiGiayInMonth = result;
-      this.thangOfChart2 = 6;
-      this.namOfChart2 = 2018;
-      this.dataSource2.chart.subCaption = 'Doanh thu trong tháng ' + this.thangOfChart2 + ' năm ' + this.namOfChart2;
-      for (let i = 0; i < this._loaiGiayInMonth.length; i++) {
-        let object = { 'label': '', 'value': '' };
-        object.label = this._loaiGiayInMonth[i].tenLoai;
-        object.value = this._loaiGiayInMonth[i].tongTien.toString();
-        this.data2.push(object);
-      }
-    },
-      error => console.error('Error: ' + error)
-    )
+  getLoaiGiayInMonth(month: any, year: any) {
+    if (month != 0 && year != 0) {
+      this.thongKeService.getLoaiGiayByMonthAndYear(month, year).subscribe(result => {
+        this.data2 = [];
+        this._loaiGiayInMonth = result;
+        this.thangOfChart2 = month;
+        this.namOfChart2 = year;
+        if (this._loaiGiayInMonth.length == 0) {
+          //  
+        } else {
+          this.dataSource2.chart.subCaption = 'Doanh thu trong tháng ' + this.thangOfChart2 + ' năm ' + this.namOfChart2;
+          for (let i = 0; i < this._loaiGiayInMonth.length; i++) {
+            let object = { 'label': '', 'value': '' };
+            object.label = this._loaiGiayInMonth[i].tenLoai;
+            object.value = this._loaiGiayInMonth[i].tongTien.toString();
+            this.data2.push(object);
+          }
+        }
+        this.dataSource2.data = this.data2;
+      },
+        error => console.error('Error: ' + error)
+      )
+    } else {
+      this.dataSource2.chart.subCaption = '';
+      this.dataSource2.data = [];
+    }
+
   }
 
   //chart-3
-  getLoaiGiayInYear() {
-    this.thongKeService.getLoaiGiayByMonthInYear('Adidas', 2018).subscribe(result => {
-      this._loaiGiayInYear = result;
-      this.namOfChart3 = 2018;
-      this.loaiGiayOfChart3 = 'Adidas';
-      this.dataSource3.chart.subCaption = 'Doanh thu trong năm ' + this.namOfChart3 + ' của giày ' + this.loaiGiayOfChart3;
-      for (let i = 0; i < this._loaiGiayInYear.length; i++) {
-        let object = { 'label': '', 'value': '' };
-        object.label = this._loaiGiayInYear[i].thang.toString();
-        object.value = this._loaiGiayInYear[i].tongTien.toString();
-        this.data3.push(object);
-      }
-    },
-      error => console.error('Error: ' + error)
-    )
+  getLoaiGiayInYear(cate: any, year: any) {
+    if (cate != "none" && year != 0) {
+      this.thongKeService.getLoaiGiayByMonthInYear(cate, year).subscribe(result => {
+        this.data3 = [];
+        this._loaiGiayInYear = result;
+        this.namOfChart3 = year;
+        this.loaiGiayOfChart3 = cate;
+
+        this.dataSource3.chart.subCaption = 'Doanh thu trong năm ' + this.namOfChart3 + ' của giày ' + this.loaiGiayOfChart3;
+        for (let i = 0; i < this._loaiGiayInYear.length; i++) {
+          let object = { 'label': '', 'value': '' };
+          object.label = this._loaiGiayInYear[i].thang.toString();
+          object.value = this._loaiGiayInYear[i].tongTien.toString();
+          this.data3.push(object);
+        }
+
+        this.dataSource3.data = this.data3;
+      },
+        error => console.error('Error: ' + error)
+      )
+    } else {
+      this.dataSource3.chart.subCaption = '';
+      this.dataSource3.data = [];
+    }
+
   }
 
   //chart-4
-  getSumOfMoney() {
-    this.thongKeService.getSumOfMoney(2018).subscribe(result => {
-      this._sumOfMoneyInMonth = result;
-      this.namOfChart4 = 2018;
-      this.dataSource4.chart.subCaption = "Doanh thu trong năm " + this.namOfChart4;
-      for (let i = 0; i < this._sumOfMoneyInMonth.length; i++) {
-        let object = { 'label': '', 'value': '' };
-        object.label = this._sumOfMoneyInMonth[i].thang.toString();
-        object.value = this._sumOfMoneyInMonth[i].tongTien.toString();
-        this.data4.push(object);
-      }
-    },
-      error => console.error('Error: ' + error)
-    )
+  getSumOfMoney(year: any) {
+    if (this.yearSelected4 != 0) {
+      this.thongKeService.getSumOfMoney(year).subscribe(result => {
+        this.data4 = [];
+        this._sumOfMoneyInMonth = result;
+        this.namOfChart4 = year;
+        this.dataSource4.chart.subCaption = "Doanh thu trong năm " + this.namOfChart4;
+
+        for (let i = 0; i < this._sumOfMoneyInMonth.length; i++) {
+          let object = { 'label': '', 'value': '' };
+          object.label = this._sumOfMoneyInMonth[i].thang.toString();
+          object.value = this._sumOfMoneyInMonth[i].tongTien.toString();
+          this.data4.push(object);
+        }
+        this.dataSource4.data = this.data4;
+      },
+        error => console.error('Error: ' + error)
+      )
+    } else {
+      this.dataSource4.chart.subCaption = '';
+      this.dataSource4.data = [];
+    }
+
   }
 
   getLoaiGiay() {
@@ -311,10 +347,17 @@ export class DashboardComponent implements OnInit {
   }
 
   findTop10() {
-    console.log(this.monthSelected, this.yearSelected);
-    
     this.getTop10(this.monthSelected, this.yearSelected);
   }
 
+  findLoaiGiayInMonth() {
+    this.getLoaiGiayInMonth(this.monthSelected2, this.yearSelected2);
+  }
 
+  findLoaiGiayInYear() {
+    this.getLoaiGiayInYear(this.loaiGiaySelected3, this.yearSelected3);
+  }
+  findAnnualReport() {
+    this.getSumOfMoney(this.yearSelected4);
+  }
 }
