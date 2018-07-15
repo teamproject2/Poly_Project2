@@ -5,14 +5,21 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-//@Configuration
+@Configuration
 public class AppConfig implements WebMvcConfigurer  {
 	
 	@Autowired
-	LogInterceptor logInterceptor;
+	CommonInterceptor commonInterceptor;
+	
+	@Autowired
+	AdminInterceptor adminInterceptor;
 	
 	@Override
     public void addInterceptors(InterceptorRegistry registry) {
-       registry.addInterceptor(logInterceptor);
+       registry.addInterceptor(commonInterceptor);
+       
+       String[] list = {"/hoadon/**","/thongke/**","/loaigiay/**","/nhanvien/**","/khachhang/**"};
+       
+       registry.addInterceptor(adminInterceptor).addPathPatterns(list);
     }
 }

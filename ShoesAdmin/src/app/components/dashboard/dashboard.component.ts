@@ -219,22 +219,35 @@ export class DashboardComponent implements OnInit {
 
   //chart-1
   getTop10(month: any, year: any) {
-    this.thongKeService.getTop10(month, year).subscribe(result => {
-      this.data1 = [];
-      this.dataDB = result;
-      this.thangOfChart1 = month;
-      this.namOfChart1 = year;
-      this.dataSource1.chart.subCaption = 'Top 10 sản phẩm bán chạy trong tháng ' + this.thangOfChart1 + ' năm ' + this.namOfChart1;
-      for (let i = 0; i < this.dataDB.length; i++) {
-        let object = { 'label': '', 'value': '' };
-        object.label = this.dataDB[i].tenSanPham;
-        object.value = this.dataDB[i].tongTien.toString();
-        this.data1.push(object);
-      }
-      this.dataSource1.data = this.data1;
-    },
-      error => console.error('Error: ' + error)
-    );
+    if(month != 0 && year != 0){
+      this.thongKeService.getTop10(month, year).subscribe(result => {
+        this.data1 = [];
+        this.dataDB = result;
+        this.thangOfChart1 = month;
+        this.namOfChart1 = year;
+        if(this.dataDB.length == 0){
+          this.dataSource1.chart.subCaption = 'Không có sản phẩm được bán trong tháng ' + this.thangOfChart1 + ' năm ' + this.namOfChart1;
+          for(let i=0; i< 10; i++){
+            let object = { 'label': '', 'value': 0 };
+            this.data1.push(object);
+          }
+        }else{
+          this.dataSource1.chart.subCaption = 'Top 10 sản phẩm bán chạy trong tháng ' + this.thangOfChart1 + ' năm ' + this.namOfChart1;
+          for (let i = 0; i < this.dataDB.length; i++) {
+            let object = { 'label': '', 'value': '' };
+            object.label = this.dataDB[i].tenSanPham;
+            object.value = this.dataDB[i].tongTien.toString();
+            this.data1.push(object);
+          }
+        }
+        this.dataSource1.data = this.data1;
+      },
+        error => console.error('Error: ' + error)
+      );
+    }else{
+      this.dataSource1.chart.subCaption = '';
+      this.dataSource1.data = [];
+    }
   }
 
   //chart-2

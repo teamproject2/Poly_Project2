@@ -14,32 +14,25 @@ import poly.soft.project2.service.LoaiGiayService;
 import poly.soft.project2.service.TaiKhoanService;
 
 @Component
-public class LogInterceptor extends HandlerInterceptorAdapter {
-	@Autowired
-	TaiKhoanService taiKhoanService;
+public class CommonInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		String tenTaiKhoan = request.getHeader("username");
-		String matKhau = request.getHeader("password");
-		TaiKhoan taikhoan = taiKhoanService.findByTenTaiKhoanAndMatKhau(tenTaiKhoan, matKhau);
-		if (taikhoan == null) {
-			throw new Exception("Invalid User Id or Password. Please try again.");
-		}
-		return true;
+		System.out.println("\n-------- CommonInterceptor.preHandle --- ");
+        return true;
 	}
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-
+		System.out.println("\n-------- CommonInterceptor.postHandle --- ");
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-
+		System.out.println("\n-------- CommonInterceptor.afterCompletion --- ");
 	}
 
 }
