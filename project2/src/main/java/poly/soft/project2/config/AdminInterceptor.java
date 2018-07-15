@@ -1,7 +1,12 @@
 package poly.soft.project2.config;
 
-import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -22,21 +27,20 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-//		String tenTaiKhoan = request.getHeader("username");
-//		String matKhau = request.getHeader("password");
+		 String tenTaiKhoan = request.getParameter("username");
+		 String matKhau = request.getParameter("password");
+		 System.out.println(tenTaiKhoan);
+		 System.out.println(matKhau);
+
 		HttpSession session = request.getSession();
-//		if(String.valueOf(session.getAttribute("username")).equals(tenTaiKhoan) &&
-//		   String.valueOf(session.getAttribute("password")).equals(matKhau)) {
-//			return true;
-//		}else {
-//			TaiKhoan taikhoan = taiKhoanService.findByTenTaiKhoanAndMatKhau(tenTaiKhoan, matKhau);			
-//			if (taikhoan == null) {
-//				throw new Exception("Invalid User Id or Password. Please try again.");
-//			}
-//		}
-		if(session.getAttribute("username") == null &&
-		   session.getAttribute("password") == null) {
+		if (String.valueOf(session.getAttribute("username")).equals(tenTaiKhoan)
+				&& String.valueOf(session.getAttribute("password")).equals(matKhau)) {
 			return true;
+		} else {
+			TaiKhoan taikhoan = taiKhoanService.findByTenTaiKhoanAndMatKhau(tenTaiKhoan, matKhau);
+			if (taikhoan == null) {
+				throw new Exception("Invalid User Id or Password. Please try again.");
+			}
 		}
 		return true;
 	}
@@ -44,12 +48,12 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		
+
 	}
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		
+
 	}
 }

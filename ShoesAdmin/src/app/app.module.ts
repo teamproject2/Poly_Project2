@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
@@ -11,7 +11,7 @@ import * as FusionCharts from 'fusioncharts';
 import * as Charts from 'fusioncharts/fusioncharts.charts';
 import * as FintTheme from 'fusioncharts/themes/fusioncharts.theme.fint';
 import { FusionChartsModule } from 'angular4-fusioncharts';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 // import Components
@@ -33,13 +33,15 @@ import { LoginComponent } from './components/login/login.component';
 // import service
 import { UserService } from './services/user.service';
 import { SanphamService } from './services/sanpham.service';
-import {HoadonService } from './services/hoadon.service';
+import { HoadonService } from './services/hoadon.service';
 import { KichthuocService } from './services/kichthuoc.service';
 import { ToastModule } from 'ng2-toastr/ng2-toastr';
 import { LoaigiayService } from './services/loaigiay.service';
 import { UploadFileService } from './services/uploadfile.service';
 import { IndexModule } from './components/index/index.module';
 import { IndexRoutingModule } from './components/index/index-routing.module';
+import { CheckInterceptor } from './interceptor/check.interceptor';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   // khai bao component
@@ -60,16 +62,21 @@ import { IndexRoutingModule } from './components/index/index-routing.module';
     // AngularFireDatabaseModule,
     // FusionChartsModule.forRoot(FusionCharts, Charts, FintTheme),
     IndexModule,
-    IndexRoutingModule
+    IndexRoutingModule,
+    HttpClientModule
   ],
   // Import services
-  providers: [
-    UserService,
-    SanphamService,
-    HoadonService,
-    KichthuocService,
-    LoaigiayService,
-    UploadFileService
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: CheckInterceptor,
+    multi: true
+  },
+    // UserService,
+    // SanphamService,
+    // HoadonService,
+    // KichthuocService,
+    // LoaigiayService,
+    // UploadFileService
   ],
   bootstrap: [AppComponent]
 })

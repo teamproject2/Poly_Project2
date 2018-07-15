@@ -23,7 +23,7 @@ public class LogController {
 	public ResponseEntity<?> checkLogin(@RequestHeader("username")String username, @RequestHeader("password")String password, HttpSession session) {
 		TaiKhoan taikhoan = taiKhoanService.findByTenTaiKhoanAndMatKhau(username, password);
 		if(taikhoan != null) {
-			session.setMaxInactiveInterval(10);
+			session.setMaxInactiveInterval(100);
 			session.setAttribute("username", username);
 			session.setAttribute("password", password);
 			return new ResponseEntity<TaiKhoan>(taikhoan,HttpStatus.OK);
