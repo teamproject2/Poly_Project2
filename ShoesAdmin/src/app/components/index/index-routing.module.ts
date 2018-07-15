@@ -33,9 +33,10 @@ const routes: Routes = [
       { path: 'khachhang', component: TableKhachhangComponent },
       { path: 'hoadon', component: TableHoadonComponent },
       { path: 'hoadon/:id', component: InvoiceComponent },
-      { path: 'form-product', component: FormSanphamComponent },
+      // { path: 'form-product', component: FormSanphamComponent },
+      { path: 'themsanpham', component: FormSanphamComponent },
       { path: 'chitiet-sp', component: ChitietSanphamComponent },
-      { path: 'loaigiay', component: LoaigiayComponent }
+      { path: 'loaigiay', component: LoaigiayComponent },
     ]
   }
 
