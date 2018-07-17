@@ -30,6 +30,7 @@ import { LoaigiayComponent } from "../loaigiay/loaigiay.component";
 import { ToastModule } from "../../../../node_modules/ng2-toastr";
 import { environment } from "../../../environments/environment";
 import { CommonModule } from '../../../../node_modules/@angular/common';
+import { HttpClientModule } from "../../../../node_modules/@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -46,20 +47,18 @@ import { CommonModule } from '../../../../node_modules/@angular/common';
     ChitietkhohangComponent,
     LoaigiayComponent,
   ],
-  // import thu vien
   imports: [
     HttpModule,
+    HttpClientModule,
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     ToastModule.forRoot(),
-    //BrowserAnimationsModule,
     AngularFireDatabaseModule,
     FusionChartsModule.forRoot(FusionCharts, Charts, FintTheme),
     AngularFireModule.initializeApp(environment.firebase),
     IndexRoutingModule
   ],
-  // Import services
   providers: [
     UserService,
     SanphamService,

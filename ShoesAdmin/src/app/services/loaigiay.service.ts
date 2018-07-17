@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LoaiGiay } from '../models/loaiGiay';
 import { ChitietLoaigiay } from '../models/chitietLoaigiay';
-import { Http, Response, RequestOptions } from '@angular/http';
+import { Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -11,22 +11,18 @@ export class LoaigiayService {
   public API: string = "http://localhost:9099/loaigiay";
   public ChitietLoaigiay: ChitietLoaigiay[] = [];
   constructor(
-    public http: HttpClient
+    public httpClient: HttpClient
   ) { }
   // Get all loại giay
   getLoaiGiay(): Observable<LoaiGiay[]> {
-    return this.http.get(this.API).pipe(map(data => {
-      return <LoaiGiay[]>data;
-    }));
+    return this.httpClient.get<LoaiGiay>(this.API)
+          .catch(this.handleError);
   }
   //
   // Get Loại Giay by ID
   getLoaigiaybyID(id: number): Observable<ChitietLoaigiay> {
-    return this.http
-      .get(this.API + "/" + id)
-      .map((response: Response) => {
-        return <ChitietLoaigiay>response.json();
-      })
+    return this.httpClient
+      .get<ChitietLoaigiay>(this.API + "/" + id)
       .catch(this.handleError);
   }
   private handleError(error: Response) {
@@ -35,11 +31,11 @@ export class LoaigiayService {
   // insert
   insert_Loaigiay(loaiGiay: any): Observable<any> {
     let search = new URLSearchParams();
-    return this.http.post(this.API, loaiGiay);
+    return this.httpClient.post<any>(this.API, loaiGiay);
   }
   //
   update_Loaigiay(loaiGiay: any): Observable<any> {
     let search = new URLSearchParams();
-    return this.http.put(this.API, loaiGiay);
+    return this.httpClient.put<any>(this.API, loaiGiay);
   }
 }

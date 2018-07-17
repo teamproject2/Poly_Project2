@@ -1,55 +1,56 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http, Response, RequestOptions } from "@angular/http";
+import { Response, RequestOptions } from "@angular/http";
 import { map, catchError, tap } from 'rxjs/operators';
 
 // import models
 import { Hoadon } from '../models/hoadon';
 import { Chitiethoadon } from '../models/chitiethoadon';
 import { Invoice } from '../models/invoice';
+import { HttpClient } from '../../../node_modules/@angular/common/http';
 
 @Injectable()
 export class HoadonService {
 
   public URL_HD: string = "http://localhost:9099/hoadon/";
-  public Chitiet_HD : Invoice[]=[];
+  public Chitiet_HD: Invoice[] = [];
 
   constructor(
-    public http: Http
+    public httpClient: HttpClient
   ) { }
 
   // Lay tat ca San pham trong hoa don
   getAllSP_HD(): Observable<Hoadon[]> {
-    return this.http.get(this.URL_HD).pipe(map(data => {
-      return <Hoadon[]>data.json();
-    }));
+    return this.httpClient.get<Hoadon>(this.URL_HD)
+      .catch(this.handleError);
   }
 
- // Get Hoa don by ID
- getHoadonByID(id: number): Observable<Invoice[]> {
-  return this.http
-    .get(this.URL_HD + id)
-    .map((response: Response) => {
-      return <Invoice[]>response.json();
-    })
-    .catch(this.handleError);
-}
-// 
-DeletehoaDon(id: number): Observable<Invoice[]>{
-  return this.http
-  .delete(this.URL_HD + id)
-  .map(success => success.status)
-  .catch(this.handleError);
+  // Get Hoa don by ID
+  getHoadonByID(id: number): Observable<Invoice[]> {
+    return this.httpClient
+      .get<Invoice>(this.URL_HD + id)
+      .catch(this.handleError);
+  }
 
-}
-//
-Chuyentrangthai(id: number): Observable<any>{
-  let search = new URLSearchParams();
-    return this.http.put(this.URL_HD + "chuyentrangthai/" +id, {search});
-}
+  DeletehoaDon(id: number): Observable<Invoice[]> {
+    return this.httpClient
+      .delete(this.URL_HD + id)
+      .pipe(
+        catchError(this.handleError)
+      );
 
-private handleError(error: Response) {
-  return Observable.throw(error.statusText);
-}
+  }
+  //
+  Chuyentrangthai(id: number): Observable<any> {
+    let search = new URLSearchParams();
+    return this.httpClient.put<any>(this.URL_HD + "chuyentrangthai/" + id, { search })
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  private handleError(error: Response) {
+    return Observable.throw(error.statusText);
+  }
 
 }

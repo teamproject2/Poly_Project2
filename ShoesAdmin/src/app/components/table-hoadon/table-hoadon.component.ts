@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy, SimpleChanges,ViewContainerRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, SimpleChanges, ViewContainerRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Observable } from 'rxjs/Observable';
 import { HttpHeaders } from '@angular/common/http';
-import {ToastsManager} from 'ng2-toastr/ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import "rxjs/Rx";
 // jquyery phan trang
 declare var jquery: any;
@@ -44,16 +44,16 @@ export class TableHoadonComponent implements OnInit, OnDestroy {
   showDataTable() {
     $(document).ready(function () {
 
-     $('#table_hd').DataTable({
-      "order": [[ 0, "desc" ]]
-     });
-     $.fn.dataTable.ext.errMode = 'none';
-      
+      $('#table_hd').DataTable({
+        "order": [[0, "desc"]]
+      });
+      $.fn.dataTable.ext.errMode = 'none';
+
     });
   }
   // Load all Hoa don
   loadData() {
-    this.hoadonServices.getAllSP_HD().subscribe(data => {
+    this.hoadonServices.getAllSP_HD().subscribe((data: Hoadon[]) => {
       this.list_hd = data;
       this.showDataTable();
     },

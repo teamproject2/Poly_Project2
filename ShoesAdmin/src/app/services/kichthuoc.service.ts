@@ -1,22 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Http, Response, RequestOptions } from "@angular/http";
+import { Response, RequestOptions } from "@angular/http";
 import { Kichthuoc } from '../models/kichthuoc';
+import { HttpClient } from '../../../node_modules/@angular/common/http';
 
 @Injectable()
 export class KichthuocService {
 
-  constructor(public http: Http) { }
+  constructor(public httpClient: HttpClient) { }
   public API: string = "http://localhost:9099/";
 
   getListSize(): Observable<Kichthuoc[]> {
-    return this.http.get(this.API + "kichthuoc")
-      .map((response: Response) => {
-        return <Kichthuoc[]>response.json();
-      })
+    return this.httpClient.get<Kichthuoc>(this.API + "kichthuoc")
       .catch(this.handleError);
   }
-  
+
   private handleError(error: Response) {
     return Observable.throw(error.statusText);
   }
