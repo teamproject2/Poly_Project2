@@ -32,7 +32,7 @@ export class HoadonService {
       .catch(this.handleError);
   }
 
-  DeletehoaDon(id: number): Observable<Invoice[]> {
+  DeletehoaDon(id: number): Observable<any> {
     return this.httpClient
       .delete(this.URL_HD + id)
       .pipe(

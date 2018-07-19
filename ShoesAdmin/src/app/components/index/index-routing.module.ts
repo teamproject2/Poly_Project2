@@ -21,6 +21,7 @@ const routes: Routes = [
   {
     path: '',
     component: IndexComponent,
+    // pathMatch: 'full',
     children: [
       { path: '', component: DashboardComponent},
       { path: 'dashboard', component: DashboardComponent },

@@ -15,12 +15,14 @@ import { IndexModule } from './components/index/index.module';
 import { IndexRoutingModule } from './components/index/index-routing.module';
 import { CheckInterceptor } from './interceptor/check.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ErrorValidateComponent } from './components/error-validate/error-validate.component';
 
 @NgModule({
   // khai bao component
   declarations: [
     AppComponent,
-    LoginComponent
+    LoginComponent,
+    ErrorValidateComponent
   ],
   imports: [
     BrowserModule,

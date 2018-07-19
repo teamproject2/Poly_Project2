@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, createPlatformFactory } from '@angular/core';
 import { LoaigiayService } from '../../services/loaigiay.service';
 import { LoaiGiay } from '../../models/loaiGiay';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -26,7 +26,8 @@ export class LoaigiayComponent implements OnInit {
     tenLoai: ''
   };
   //
-  Loaigiay: FormGroup;
+  // frmLoaigiay: FormGroup;
+  public Loaigiay:FormGroup;
   id_Giay: FormControl;
   ten_Giay: FormControl;
   //
@@ -42,21 +43,61 @@ export class LoaigiayComponent implements OnInit {
   ngOnInit() {
 
     this.loadDataGiay();
+    
 
     // this.id = this.route.snapshot.params['id'];
-    this.id_Giay = new FormControl('', Validators.required);
-    this.ten_Giay = new FormControl('', [Validators.required, Validators.minLength(3)]);
-
+    // this.id_Giay = new FormControl('', Validators.required);
+    // this.ten_Giay = new FormControl('', [Validators.required, Validators.minLength(3)]);
+    // 
+    this.createForm();
+    // this.Loaigiay = this.formBuilder.group({
+    //   id_Giay: this.id_Giay,
+    //   ten_Giay: this.ten_Giay
+    // });
+  }
+  //
+  createForm(){
     this.Loaigiay = this.formBuilder.group({
-      id_Giay: this.id_Giay,
-      ten_Giay: this.ten_Giay
+      ten_Giay: ['',[
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(10)
+      ]]
+    })
+  }
+  // Phan trang
+  showDataTable() {
+    $(document).ready(function () {
+
+      $('#table_lg').DataTable({
+        "order": [[0, "desc"]]
+      });
+      $.fn.dataTable.ext.errMode = 'none';
+
     });
   }
+  	//
+	File_export(){
+		$(document).ready(function() {
+			var table = $('#table_lg').DataTable();
+	 
+			new $.fn.dataTable.Buttons( table, {
+					buttons: [
+						'copy', 'csv', 'excel', 'pdf', 'print'
+					]
+			} );
+	 
+			table.buttons( 0, null ).container().prependTo(
+					table.table().container()
+			);
+	} );
+	}
   // Load all loại giày
   loadDataGiay() {
     this.loaigiayservice.getLoaiGiay().subscribe(data => {
-      // console.log(data);
       this.list_giay = data;
+      this.showDataTable();
+      this.File_export();
     }, error => {
       console.log(error);
     });

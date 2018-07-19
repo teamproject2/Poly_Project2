@@ -51,30 +51,38 @@ export class TableHoadonComponent implements OnInit, OnDestroy {
 
     });
   }
+  	//
+	File_export(){
+		$(document).ready(function() {
+			var table = $('#table_hd').DataTable();
+	 
+			new $.fn.dataTable.Buttons( table, {
+					buttons: [
+						'copy', 'csv', 'excel', 'pdf', 'print'
+					]
+			} );
+	 
+			table.buttons( 0, null ).container().prependTo(
+					table.table().container()
+			);
+	} );
+	}
   // Load all Hoa don
   loadData() {
     this.hoadonServices.getAllSP_HD().subscribe((data: Hoadon[]) => {
       this.list_hd = data;
       this.showDataTable();
+      this.File_export();
     },
       error => {
         console.log(error);
       });
   }
+ 
   //
-  DelhoaDon() {
-    this.hoadonServices.DeletehoaDon(this.id).subscribe(
-      result => {
-        this.removeModal();
-        this.loadData();
-        this.toastr.success('Delete success!');
-      },
-      error => console.error(error)
-    )
-  }
-  //
-  showModal(p: number) {
-    this.id = p;
+  showModal(id:number) {
+    console.log(id);
+    
     $(document).ready(function () {
       $('.modal1').addClass('show');
       $('.modal-wrapper').addClass('show');
@@ -86,6 +94,18 @@ export class TableHoadonComponent implements OnInit, OnDestroy {
       $('.modal1').removeClass('show');
       $('.modal-wrapper').removeClass('show');
     });
+  }
+   //
+   DelhoaDon() {
+    this.hoadonServices.DeletehoaDon(this.id).subscribe(
+      result => {
+        console.log("Delete Success!");
+        this.toastr.success('Delete success!');
+        this.removeModal();
+        this.loadData();
+      },
+      error => console.error(error)
+    )
   }
   //
   ngOnDestroy() {
