@@ -4,7 +4,7 @@ import { SumOfMoneyInMonth } from "../models/sumOfMoneyInMonth";
 import { map } from "rxjs/operators";
 import { Top10Products } from "../models/top10Products";
 import { SumLoaiGiayByMonthAndYear } from "../models/SumLoaiGiayByMonthAndYear";
-import { HttpClient } from "../../../node_modules/@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 
 
 @Injectable()
@@ -33,6 +33,4 @@ export class ThongKeService {
         return this.httpClient
             .get<SumOfMoneyInMonth[]>(this.API + 'thongke/' + year);
     }
-
-
 }

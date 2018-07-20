@@ -322,18 +322,20 @@ values
 		
 -- insert quyen
 insert into poly_project2.quyen(ten_quyen) values ('ROLE_ADMIN');
-insert into poly_project2.quyen(ten_quyen) values ('ROLE_KHACHHANG');
 insert into poly_project2.quyen(ten_quyen) values ('ROLE_NHANVIEN');
+-- insert into poly_project2.quyen(ten_quyen) values ('ROLE_KHACHHANG');
 
 -- insert taikhoan
-insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau) values('admin','123456');
-insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau) values('user1','123456');
-insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau) values('nhanvien1','123456');
+insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau,nhan_vien_id) values('admin1','123456',1);
+insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau,nhan_vien_id) values('admin2','123456',2);
+insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau,nhan_vien_id) values('user1','123456',3);
+insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau,nhan_vien_id) values('user2','123456',4);
 
 -- insert quyen tai khoan
 insert into poly_project2.quyen_tai_khoan values(1,1);
-insert into poly_project2.quyen_tai_khoan values(2,2);
-insert into poly_project2.quyen_tai_khoan values(3,3);
+insert into poly_project2.quyen_tai_khoan values(2,1);
+insert into poly_project2.quyen_tai_khoan values(3,2);
+insert into poly_project2.quyen_tai_khoan values(4,2);
 
 
 

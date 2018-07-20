@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Response, RequestOptions } from "@angular/http";
 import { Kichthuoc } from '../models/kichthuoc';
-import { HttpClient } from '../../../node_modules/@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class KichthuocService {

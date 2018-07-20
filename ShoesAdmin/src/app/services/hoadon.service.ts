@@ -7,7 +7,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { Hoadon } from '../models/hoadon';
 import { Chitiethoadon } from '../models/chitiethoadon';
 import { Invoice } from '../models/invoice';
-import { HttpClient } from '../../../node_modules/@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class HoadonService {

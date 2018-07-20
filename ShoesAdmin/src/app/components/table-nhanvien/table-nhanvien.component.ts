@@ -26,7 +26,6 @@ export class TableNhanvienComponent implements OnInit, OnDestroy {
 
 	ngOnInit() {
 		this.loadData();
-		this.File_export();
 	}
 
 	// Phan Trang
@@ -56,7 +55,7 @@ export class TableNhanvienComponent implements OnInit, OnDestroy {
 	loadData() {
 		this.nhanvienService.getAllNhanvien().subscribe(data => {
 			this.list_nv = data;
-			this.showDataTable();
+			this.File_export();
 			
 		}, error => {
 			console.log(error);

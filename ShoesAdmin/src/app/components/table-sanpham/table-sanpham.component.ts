@@ -30,7 +30,7 @@ export class TableSanphamComponent implements OnInit {
   ngOnInit() {
 
     this.loadData();
-    this.File_export();
+    //this.File_export();
   }
   // Phan trang
   showDataTable() {
@@ -59,7 +59,8 @@ export class TableSanphamComponent implements OnInit {
   loadData() {
     this.sanphamServices.getAllSanPham().subscribe(data => {
       this.list_sp = data;
-      this.showDataTable();
+      //this.showDataTable();
+      this.File_export();
     },
       error => {
         console.log(error);

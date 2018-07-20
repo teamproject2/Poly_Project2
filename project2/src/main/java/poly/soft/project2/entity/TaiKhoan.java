@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -40,6 +41,18 @@ public class TaiKhoan implements Serializable{
 	@JoinTable(name="QUYEN_TAI_KHOAN", joinColumns = @JoinColumn(name="TAI_KHOAN_ID"),
 	inverseJoinColumns = @JoinColumn(name="QUYEN_ID"))
 	private List<Quyen> quyen;
+	
+	@OneToOne
+	@JoinColumn(name="NHAN_VIEN_ID")
+	private NhanVien nhanVien;
+
+	public NhanVien getNhanVien() {
+		return nhanVien;
+	}
+
+	public void setNhanVien(NhanVien nhanVien) {
+		this.nhanVien = nhanVien;
+	}
 
 	public int getId() {
 		return id;

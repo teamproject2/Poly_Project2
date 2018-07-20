@@ -7,8 +7,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 import { Nhanvien } from '../models/nhanvien'
 import { Khachhang } from '../models/khachhang';
 import { Chitietnhanvien } from '../models/chitietnhanvien';
-import { HttpClient } from '../../../node_modules/@angular/common/http';
-// import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class UserService {

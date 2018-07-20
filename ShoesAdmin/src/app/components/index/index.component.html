@@ -34,7 +34,7 @@
             </a>
           </li>
 
-          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <li  routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <a [routerLink]="['sanpham']">
               <i class="ft-grid"></i>
               <span data-i18n="" class="menu-title">Sản Phẩm</span>
@@ -58,7 +58,7 @@
               <span data-i18n="" class="menu-title">Khách Hàng</span>
             </a>
           </li>
-          <li routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+          <li *ngIf="role == 'ROLE_ADMIN'" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
             <a [routerLink]="['nhanvien']">
               <i class="ft-users"></i>
               <span data-i18n="" class="menu-title">Nhân Viên</span>

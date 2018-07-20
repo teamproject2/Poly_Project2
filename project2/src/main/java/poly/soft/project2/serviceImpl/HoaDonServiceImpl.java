@@ -27,6 +27,7 @@ import poly.soft.project2.repository.HangTrongKhoRepository;
 import poly.soft.project2.repository.HoaDonRepository;
 import poly.soft.project2.repository.KhachHangRepository;
 import poly.soft.project2.repository.KichThuocRepository;
+import poly.soft.project2.repository.NhanVienRepository;
 import poly.soft.project2.repository.SanPhamRepository;
 import poly.soft.project2.service.HoaDonService;
 
@@ -53,6 +54,9 @@ public class HoaDonServiceImpl implements HoaDonService {
 	
 	@Autowired
 	KichThuocRepository kichThuocRepository;
+	
+	@Autowired
+	NhanVienRepository nhanVienRepository;
 	
 	@Override
 	public List<HoaDon> findAll() {
@@ -171,11 +175,12 @@ public class HoaDonServiceImpl implements HoaDonService {
 	}
 
 	@Override
-	public void changeState(int id) {
+	public void changeState(int id, String hoTen) {
 		HoaDon hd = hoaDonRepository.findById(id).orElse(null);
 		if(hd != null) {
 			hd.setTrangThai(HDTrangThaiEnum.DONE);
 			hd.setNgay(new Date());
+			hd.setNhanVien(nhanVienRepository.findByTenNhanVien(hoTen));
 		}
 	}
 

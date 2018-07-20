@@ -30,7 +30,8 @@ import { LoaigiayComponent } from "../loaigiay/loaigiay.component";
 import { ToastModule } from "../../../../node_modules/ng2-toastr";
 import { environment } from "../../../environments/environment";
 import { CommonModule } from '../../../../node_modules/@angular/common';
-import { HttpClientModule } from "../../../../node_modules/@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "../../../../node_modules/@angular/common/http";
+import { CheckInterceptor } from "../../interceptor/check.interceptor";
 
 @NgModule({
   declarations: [
@@ -65,7 +66,12 @@ import { HttpClientModule } from "../../../../node_modules/@angular/common/http"
     HoadonService,
     KichthuocService,
     LoaigiayService,
-    UploadFileService
+    UploadFileService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CheckInterceptor,
+      multi: true
+    }
   ],
   bootstrap: []
 })

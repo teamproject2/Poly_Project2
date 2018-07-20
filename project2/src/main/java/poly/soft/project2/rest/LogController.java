@@ -9,21 +9,23 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import poly.soft.project2.entity.TaiKhoan;
 import poly.soft.project2.service.TaiKhoanService;
 
 @RestController
+@CrossOrigin(origins = "*")
 public class LogController {
 	
 	@Autowired
 	TaiKhoanService taiKhoanService;
 	
-	@RequestMapping(value="/login", method = RequestMethod.POST)
+	@RequestMapping(value="/login", method = RequestMethod.GET)
 	public ResponseEntity<?> checkLogin(@RequestHeader("username")String username, @RequestHeader("password")String password, HttpSession session) {
 		TaiKhoan taikhoan = taiKhoanService.findByTenTaiKhoanAndMatKhau(username, password);
 		if(taikhoan != null) {
-			session.setMaxInactiveInterval(100);
+			//session.setMaxInactiveInterval(100);
 			session.setAttribute("username", username);
 			session.setAttribute("password", password);
 			return new ResponseEntity<TaiKhoan>(taikhoan,HttpStatus.OK);
