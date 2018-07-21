@@ -20,34 +20,45 @@ export class FormSanphamComponent implements OnInit {
   public listgiay: LoaiGiay[] = [];
   selectedTenLoai: string;
   //
-  public Sanpham = {
-    id: '',
-    tenSanPham: '',
-    tenLoaigiay: '',
-    donGia: '',
-    chietKhau: '',
-    chitiet: ''
-  };
+  // public Sanpham = {
+  //   id: '',
+  //   tenSanPham: '',
+  //   tenLoaigiay: '',
+  //   donGia: '',
+  //   chietKhau: '',
+  //   chitiet: ''
+  // };
+
+  pattern = /^[0-9]+$/;
 
   chitietSanpham: FormGroup;
-  idSp: FormControl;
   tenSanPham: FormControl;
   donGia: FormControl;
   chietKhau: FormControl;
   chiTiet: FormControl;
 
-
-
-
-
   constructor(
     private loaigiayservice: LoaigiayService,
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private _vcr: ViewContainerRef,
     private router: Router,
     private toastr: ToastsManager,
     private sanphamService: SanphamService
-  ) { this.toastr.setRootViewContainerRef(_vcr) };
+  ) {
+    this.toastr.setRootViewContainerRef(_vcr)
+
+    this.tenSanPham = new FormControl('', Validators.required);
+    this.donGia = new FormControl('', [Validators.required, Validators.pattern(this.pattern)]);
+    this.chietKhau = new FormControl('', Validators.pattern(this.pattern));
+    this.chiTiet = new FormControl('', Validators.required);
+
+    this.chitietSanpham = this.fb.group({
+      tenSanPham: this.tenSanPham,
+      donGia: this.donGia,
+      chietKhau: this.chietKhau,
+      chiTiet: this.chiTiet
+    })
+    };
 
   ngOnInit() {
     this.getLoaigiay();
@@ -81,8 +92,6 @@ export class FormSanphamComponent implements OnInit {
     setTimeout(() => {
       this.router.navigate(['/index/sanpham']);
     }, 1500);
-    // if (this.selectedTenLoai == 'none') {
-    //   alert('Select LG');
       let object = { 
         tenSanPham: this.chitietSanpham.controls.tenSanPham.value
        };
