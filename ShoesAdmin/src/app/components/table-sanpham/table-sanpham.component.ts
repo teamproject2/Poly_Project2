@@ -16,7 +16,10 @@ import { Router, ActivatedRoute } from '@angular/router';
   templateUrl: './table-sanpham.component.html',
   styleUrls: ['./table-sanpham.component.css']
 })
+
 export class TableSanphamComponent implements OnInit {
+
+  role: String;
 
   public list_sp: Sanpham[] = [];
   public subscription: Subscription;
@@ -30,7 +33,8 @@ export class TableSanphamComponent implements OnInit {
   ngOnInit() {
 
     this.loadData();
-    //this.File_export();
+    this.role = JSON.parse(localStorage.getItem('user')).quyen[0].tenQuyen;
+    console.log(this.role);
   }
   // Phan trang
   showDataTable() {

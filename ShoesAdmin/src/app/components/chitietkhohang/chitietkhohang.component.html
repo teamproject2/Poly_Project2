@@ -95,13 +95,13 @@
                   </div>
                   <div class="col-md-5">
                     <div class="form-group">
-                      <label for="projectinput4">Số lượng</label>
+                      <label for="projectinput4" *ngIf="role == 'ROLE_ADMIN'">Số lượng</label>
                       <input *ngIf="chk ? 'disabled' : ''" [(ngModel)]='soLuong' type="text" id="soluong" class="form-control" name="phone">
                     </div>
                   </div>
                   <div class="col-md-2">
                     <div class="form-group">
-                      <button type="button" (click)="addSize()" class="btn btn-raised btn-danger mr-1">+</button>
+                      <button *ngIf="role == 'ROLE_ADMIN'" type="button" (click)="addSize()" class="btn btn-raised btn-danger mr-1">+</button>
                     </div>
                   </div>
                 </div>
@@ -112,7 +112,7 @@
                       <th>STT</th>
                       <th>Kích thước</th>
                       <th>Số lượng</th>
-                      <th>Chức năng</th>
+                      <th *ngIf="role == 'ROLE_ADMIN'">Chức năng</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -121,7 +121,7 @@
                       <td style="vertical-align: middle">{{ size.tenKichThuoc }}</td>
                       <td style="vertical-align: middle">{{ size.soLuong }}</td>
                       <td style="vertical-align: middle">
-                        <a class="danger p-0" data-original-title="" title="Xóa" id="confirm-cancel">
+                        <a *ngIf="role == 'ROLE_ADMIN'" class="danger p-0" data-original-title="" title="Xóa" id="confirm-cancel">
                           <i (click)="delSize(size.kichThuocId)" class="ft-x font-medium-3 mr-2"></i>
                         </a>
                       </td>
@@ -129,10 +129,10 @@
                   </tbody>
                 </table>
                 <div class="form-actions right">
-                  <button type="button" class="btn btn-raised btn-raised btn-warning mr-1" routerLink="/sanpham">
+                  <button type="button" class="btn btn-raised btn-raised btn-warning mr-1" routerLink="/index/sanpham">
                     <i class="ft-corner-up-left"></i> Quay lại
                   </button>
-                  <button (click)="saveHangTrongKho()" type="button" class="btn btn-raised btn-raised btn-primary">
+                  <button *ngIf="role == 'ROLE_ADMIN'" (click)="saveHangTrongKho()" type="button" class="btn btn-raised btn-raised btn-primary">
                     <i class="fa fa-check-square-o"></i> Lưu
                   </button>
                 </div>

@@ -86,7 +86,7 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-actions text-center">
-                        <button type="button" class="btn btn-raised btn-raised btn-warning" routerLink="/sanpham">
+                        <button type="button" class="btn btn-raised btn-raised btn-warning" routerLink="/index/sanpham">
                           <i class="ft-corner-up-left"></i> Quay lại
                         </button>
                         <button type="submit" (click)="showModal()" class="btn btn-raised btn-raised btn-primary">
@@ -141,7 +141,7 @@
                     <tr>
                       <th>STT</th>
                       <th>Hình ảnh</th>
-                      <th>Chức năng</th>
+                      <th *ngIf="role == 'ROLE_ADMIN'">Chức năng</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -151,7 +151,7 @@
                         <img src="{{image.hinh}}" width="100">
                       </td>
                       <td style="vertical-align: middle">
-                        <a class="danger p-0" data-original-title="" title="Xóa" id="confirm-cancel">
+                        <a *ngIf="role == 'ROLE_ADMIN'" class="danger p-0" data-original-title="" title="Xóa" id="confirm-cancel">
                             <i (click)="showModal()" class="ft-x font-medium-3 mr-2"></i>
                           <!-- <i (click)="delSize(size.kichThuocId)" class="ft-x font-medium-3 mr-2"></i> -->
                         </a>

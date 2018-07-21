@@ -79,7 +79,7 @@ export class FormSanphamComponent implements OnInit {
   // Luu san pham
   Saveinsertsp() {
     setTimeout(() => {
-      this.router.navigate(['/sanpham']);
+      this.router.navigate(['/index/sanpham']);
     }, 1500);
     // if (this.selectedTenLoai == 'none') {
     //   alert('Select LG');
@@ -91,7 +91,7 @@ export class FormSanphamComponent implements OnInit {
         this.removeModal();
           this.toastr.success('Cập nhật thông tin sản phẩm thành công!');
           setTimeout(() => {
-            this.router.navigate(['/sanpham']);
+            this.router.navigate(['/index/sanpham']);
           }, 1500);
         },
         error => console.error(error)

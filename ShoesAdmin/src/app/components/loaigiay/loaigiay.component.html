@@ -19,14 +19,14 @@
                                     <tr>
                                         <th>Mã Giày</th>
                                         <th>Tên Loại Giày</th>
-                                        <th>Chức năng</th>
+                                        <th *ngIf="role == 'ROLE_ADMIN'">Chức năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let giay of list_giay">
                                         <td style="vertical-align: middle">{{giay.id}}</td>
                                         <td style="vertical-align: middle">{{giay.tenLoai}}</td>
-                                        <td style="vertical-align: middle" routerLinkActive="active">
+                                        <td style="vertical-align: middle" *ngIf="role == 'ROLE_ADMIN'" routerLinkActive="active">
                                             <a class="success p-0" data-original-title="" title="Cập nhật" data-toggle="modal" (click)="showModalUpdate(giay.id)">
                                                 <i class="ft-edit-2 font-medium-3 mr-2"></i>
                                             </a>

@@ -42,10 +42,8 @@
                                             <a class="info p-0" data-original-title="" title="Chi tiết" routerLink="/index/sanpham/{{sp.id}}">
                                                 <i class="ft-list font-medium-3 mr-2"></i>
                                             </a>
-                                            <!-- <a class="info p-0" data-original-title="" title="Thêm mới" [routerLink]= "['/chitiet-sp']">
-                                                <i class="ft-plus-square"></i>
-                                            </a> -->
-                                            <a class="danger p-0" (click)="showModal()" data-original-title="" title="Xóa" id="confirm-cancel">
+                                            
+                                            <a class="danger p-0" *ngIf="role == 'ROLE_ADMIN'" (click)="showModal()" data-original-title="" title="Xóa" id="confirm-cancel">
                                                 <i class="ft-x font-medium-3 mr-2"></i>
                                             </a>
                                         </td>

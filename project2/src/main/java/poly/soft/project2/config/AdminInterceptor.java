@@ -21,14 +21,14 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		 String tenTaiKhoan = request.getParameter("username");
-		 String matKhau = request.getParameter("password");
-		 System.out.println(tenTaiKhoan);
-		 System.out.println(matKhau);
+		String tenTaiKhoan = request.getParameter("username");
+		String matKhau = request.getParameter("password");
 
-		HttpSession session = request.getSession();
+		HttpSession session = request.getSession(true);
 		if (String.valueOf(session.getAttribute("username")).equals(tenTaiKhoan)
 				&& String.valueOf(session.getAttribute("password")).equals(matKhau)) {
+			System.out.println(tenTaiKhoan);
+			System.out.println(matKhau);
 			return true;
 		} else {
 			TaiKhoan taikhoan = taiKhoanService.findByTenTaiKhoanAndMatKhau(tenTaiKhoan, matKhau);
@@ -48,6 +48,6 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
-		
+
 	}
 }

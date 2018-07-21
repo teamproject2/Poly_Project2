@@ -22,7 +22,7 @@ export class LogService {
   //Log out
   logOut(): Observable<any> {
     return this.http.get(this.API + "/logout").map(data => {
-      return data.json();
+      return data;
     });
   }
 }

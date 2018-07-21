@@ -23,6 +23,7 @@ export class TableHoadonComponent implements OnInit, OnDestroy {
   public list_hd: Hoadon[] = [];
   public subscription: Subscription;
   id: number;
+  role: String;
 
 
   constructor(
@@ -37,6 +38,9 @@ export class TableHoadonComponent implements OnInit, OnDestroy {
     // load phan trang
     this.id = this.route.snapshot.params['id'];
     this.loadData();
+
+    this.role = JSON.parse(localStorage.getItem('user')).quyen[0].tenQuyen;
+    console.log(this.role);
 
   }
 
