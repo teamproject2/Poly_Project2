@@ -30,6 +30,8 @@ export class LoaigiayComponent implements OnInit {
   public Loaigiay:FormGroup;
   id_Giay: FormControl;
   ten_Giay: FormControl;
+
+  role: String;
   //
   constructor(
     private loaigiayservice: LoaigiayService,
@@ -44,6 +46,8 @@ export class LoaigiayComponent implements OnInit {
 
     this.loadDataGiay();
     
+    this.role = JSON.parse(localStorage.getItem('user')).quyen[0].tenQuyen;
+    console.log(this.role);
 
     // this.id = this.route.snapshot.params['id'];
     // this.id_Giay = new FormControl('', Validators.required);

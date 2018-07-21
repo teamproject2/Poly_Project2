@@ -104,7 +104,7 @@ export class FormUserComponent implements OnInit {
           this.removeModal();
           this.toastr.success('Thêm mới nhân viên thành công!');
           setTimeout(() => {
-            this.router.navigate(['/nhanvien']);
+            this.router.navigate(['/index/nhanvien']);
           }, 1500);
         },
         error => console.error(error)
@@ -115,7 +115,7 @@ export class FormUserComponent implements OnInit {
           this.removeModal();
           this.toastr.success('Cập nhật nhân viên thành công!');
           setTimeout(() => {
-            this.router.navigate(['/nhanvien']);
+            this.router.navigate(['/index/nhanvien']);
           }, 1500);
         },
         error => console.error(error)

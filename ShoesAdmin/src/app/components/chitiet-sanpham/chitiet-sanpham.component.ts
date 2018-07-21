@@ -22,6 +22,7 @@ declare var $: any;
   providers: [UploadFileService]
 })
 export class ChitietSanphamComponent implements OnInit {
+  role: string;
 
   selectedFiles: FileList;
   currentUpload: Upload;
@@ -73,6 +74,10 @@ export class ChitietSanphamComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
+
+    this.role = JSON.parse(localStorage.getItem('user')).quyen[0].tenQuyen;
+    console.log(this.role);
+
     if (this.id != 0) {
       this.getChitiet_SP(this.id);
     }
@@ -155,7 +160,7 @@ removeModal() {
           this.removeModal();
           this.toastr.success('Cập nhật thông tin sản phẩm thành công!');
           setTimeout(() => {
-            this.router.navigate(['/sanpham']);
+            this.router.navigate(['/index/sanpham']);
           }, 1500);
         },
         error => console.error(error)
@@ -211,7 +216,7 @@ removeModal() {
   }
   //
   goHangTrongKho(id) {
-    this.router.navigate(['sanpham/hangtrongkho/', id]);
+    this.router.navigate(['/index/sanpham/hangtrongkho/', id]);
   }
 
   compareLoaiGiay(t1: LoaiGiay, t2: LoaiGiay): boolean {

@@ -13,6 +13,8 @@ import {ToastsManager} from 'ng2-toastr/ng2-toastr';
 
 export class ChitietkhohangComponent implements OnInit {
 
+  role: string;
+
   listSizeOfProduct = new Array();
   listSizeOfProductData = new Array();
   listSizeAll: Kichthuoc[];
@@ -32,6 +34,10 @@ export class ChitietkhohangComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
+
+    this.role = JSON.parse(localStorage.getItem('user')).quyen[0].tenQuyen;
+    console.log(this.role);
+
     this.getChitiet_SP(this.id);
     this.kichthuocService.getListSize().subscribe(
       data => {

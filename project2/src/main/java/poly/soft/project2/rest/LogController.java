@@ -25,9 +25,9 @@ public class LogController {
 	public ResponseEntity<?> checkLogin(@RequestHeader("username")String username, @RequestHeader("password")String password, HttpSession session) {
 		TaiKhoan taikhoan = taiKhoanService.findByTenTaiKhoanAndMatKhau(username, password);
 		if(taikhoan != null) {
-			//session.setMaxInactiveInterval(100);
 			session.setAttribute("username", username);
 			session.setAttribute("password", password);
+			System.out.println("Userlog: " + session.getAttribute("username"));
 			return new ResponseEntity<TaiKhoan>(taikhoan,HttpStatus.OK);
 		}
 		return new ResponseEntity<String>("Fail",HttpStatus.UNAUTHORIZED);

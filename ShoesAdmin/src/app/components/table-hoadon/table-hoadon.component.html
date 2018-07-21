@@ -23,7 +23,7 @@
                                         <th>Ngày</th>
                                         <th>Trạng Thái</th>
                                         <th>Tổng Tiền</th>
-                                        <th style="text-align: left">Chức năng</th>
+                                        <th style="text-align: left" >Chức năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,16 +39,12 @@
                                             
                                         </td>
                                         <td>{{hd.tongTien | currency}}VND</td>
-                                        <td style="text-align: left">
+                                        <td style="text-align: left" >
                                             <a class="info p-0" data-original-title="" title="Chi tiết" routerLink="/index/hoadon/{{hd.id}}">
                                                 <i class="ft-list font-medium-3 mr-2"></i>
                                             </a>
-                                            <a class="success p-0" data-original-title="" title="Cập nhật">
-                                                <i class="ft-edit-2 font-medium-3 mr-2"></i>
-                                            </a>
-                                            <a *ngIf="hd.trangThai != 'Hoàn thành'" (click)="showModal(hd.id)"  class="danger p-0" data-original-title="" title="Xóa" id="confirm-cancel">
-                                                    <!-- (click)="DelhoaDon(hd.id)" (click)="showModal(hd.id)" -->
-                                                <i class="ft-trash-2"></i>
+                                            <a  *ngIf="hd.trangThai != 'Hoàn thành'" (click)="showModal(hd.id)"  class="danger p-0" data-original-title="" title="Xóa" id="confirm-cancel">
+                                                <i class="ft-trash-2" *ngIf="role == 'ROLE_ADMIN'"></i>
                                             </a>
                                         </td>
                                     </tr>
