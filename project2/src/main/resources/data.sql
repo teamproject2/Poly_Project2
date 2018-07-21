@@ -114,7 +114,8 @@ values('Khoa','123 Hoàng Hoa Thám Q.PN, TP.HCM','conque6@gmail.com','016983001
 
 -- insert into nhan_vien
 insert into poly_project2.nhan_vien(ten_nhan_vien,ngay_sinh,gioi_tinh,dia_chi,email,so_dien_thoai)
-values('Nguyễn Vũ Hòa','1995-2-5',0,'12 Điện Biên Phủ Q.Bình Thạnh, TP.HCM','skynguyen79@gmail.com','01657154932'),
+values('-','2000-1-1',0,'','',''),
+('Nguyễn Vũ Hòa','1995-2-5',0,'12 Điện Biên Phủ Q.Bình Thạnh, TP.HCM','skynguyen79@gmail.com','01657154932'),
 ('Vũ Hoàng Long','1990-2-5',0,'123 Nguyễn Du Q.1, TP.HCM','longvh@gmail.com','01657154876'),
 ('Phạm Xuân Khoa','1996-8-5',0,'111 Lê Duẩn Q.1, TP.HCM','khoapx@gmail.com','01650754932'),
 ('Trượng Bông Lai','1996-9-5',0,'282 Nam Kỳ Khởi Nghĩa Q.3, TP.HCM','laitb@gmail.com','01657150642');
@@ -219,27 +220,27 @@ values('2018-5-20',1,2,1,0,8640000,''),
 ('2018-5-21',2,4,1,0,8640000,''),
 ('2018-5-22',3,3,1,0,10260000,''),
 ('2018-5-23',4,4,1,0,7020000,''),
-('2018-5-24',5,1,1,0,7020000,''),
+('2018-5-24',5,5,1,0,7020000,''),
 ('2018-5-25',6,3,1,0,10260000,''),
 ('2018-5-26',7,3,1,0,7020000,''),
 ('2018-5-27',1,4,1,0,10260000,''),
-('2018-5-28',11,1,1,0,7020000,''),
-('2018-5-29',9,1,1,0,10260000,''),
+('2018-5-28',11,2,1,0,7020000,''),
+('2018-5-29',9,4,1,0,10260000,''),
 ('2018-5-30',10,3,1,0,10260000,''),
 ('2018-6-01',3,4,1,0,7020000,''),
 ('2018-6-02',5,4,1,0,8640000,''),
 ('2018-6-03',7,3,1,0,8640000,''),
 ('2018-6-04',1,4,1,0,7020000,''),
-('2018-6-05',11,1,1,0,7020000,''),
+('2018-6-05',11,5,1,0,7020000,''),
 ('2018-6-06',9,2,1,0,10260000,''),
 ('2018-6-07',10,2,1,0,7020000,''),
-('2018-6-08',3,1,1,0,8640000,''),
+('2018-6-08',3,4,1,0,8640000,''),
 ('2018-6-09',5,4,1,0,8640000,''),
-('2018-6-10',7,0,0,0,8640000,''),
-('2018-6-11',1,0,0,0,7020000,''),
-('2018-6-12',11,0,0,0,10260000,''),
-('2018-6-13',9,0,0,0,8640000,''),
-('2018-6-14',10,0,0,0,8640000,'');
+('2018-6-10',7,1,0,0,8640000,''),
+('2018-6-11',1,1,0,0,7020000,''),
+('2018-6-12',11,1,0,0,10260000,''),
+('2018-6-13',9,1,0,0,8640000,''),
+('2018-6-14',10,1,0,0,8640000,'');
 
 -- insert into cthd
 insert into poly_project2.chi_tiet_hoa_don(so_luong,hoa_don_id,san_pham_id,ten_kich_thuoc,thanh_tien)
@@ -326,10 +327,10 @@ insert into poly_project2.quyen(ten_quyen) values ('ROLE_NHANVIEN');
 -- insert into poly_project2.quyen(ten_quyen) values ('ROLE_KHACHHANG');
 
 -- insert taikhoan
-insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau,nhan_vien_id) values('admin1','123456',1);
-insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau,nhan_vien_id) values('admin2','123456',2);
-insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau,nhan_vien_id) values('user1','123456',3);
-insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau,nhan_vien_id) values('user2','123456',4);
+insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau,nhan_vien_id) values('admin1','123456',2);
+insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau,nhan_vien_id) values('admin2','123456',3);
+insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau,nhan_vien_id) values('user1','123456',4);
+insert into poly_project2.tai_khoan(ten_tai_khoan,mat_khau,nhan_vien_id) values('user2','123456',5);
 
 -- insert quyen tai khoan
 insert into poly_project2.quyen_tai_khoan values(1,1);

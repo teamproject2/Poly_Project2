@@ -51,7 +51,7 @@ public class NhanVien implements Serializable{
 	private List<HoaDon> hoaDon;
 	
 	@JsonIgnore
-	@OneToOne(mappedBy="nhanVien")
+	@OneToOne(mappedBy="nhanVien", fetch=FetchType.LAZY)
 	private TaiKhoan taiKhoan;
 
 	public TaiKhoan getTaiKhoan() {

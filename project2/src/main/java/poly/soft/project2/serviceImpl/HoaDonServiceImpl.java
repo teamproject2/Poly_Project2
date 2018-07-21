@@ -175,12 +175,12 @@ public class HoaDonServiceImpl implements HoaDonService {
 	}
 
 	@Override
-	public void changeState(int id, String hoTen) {
+	public void changeState(int id, int idNhanVien) {
 		HoaDon hd = hoaDonRepository.findById(id).orElse(null);
 		if(hd != null) {
 			hd.setTrangThai(HDTrangThaiEnum.DONE);
 			hd.setNgay(new Date());
-			hd.setNhanVien(nhanVienRepository.findByTenNhanVien(hoTen));
+			hd.setNhanVien(nhanVienRepository.findById(idNhanVien).orElse(null));
 		}
 	}
 

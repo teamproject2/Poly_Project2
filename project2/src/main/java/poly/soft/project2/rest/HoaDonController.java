@@ -24,69 +24,59 @@ import poly.soft.project2.service.KhachHangService;
 
 @RestController
 @RequestMapping("/hoadon")
-@CrossOrigin(origins= {"*"})
+@CrossOrigin(origins = { "*" })
 public class HoaDonController {
 
 	@Autowired
 	HoaDonService hoaDonService;
-	
+
 	@Autowired
 	KhachHangService khachHangService;
-	
-	@RequestMapping(method=RequestMethod.GET)
+
+	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<?> getListHoaDon() throws ParseException {
 		List<HoaDonAdminDTO> list = hoaDonService.getListHoaDon();
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
-	
-	@RequestMapping(value="/{id}",method=RequestMethod.GET)
-	public ResponseEntity<?> getSanPhamById(@PathVariable("id") int id){
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getSanPhamById(@PathVariable("id") int id) {
 		HoaDon hd = hoaDonService.findById(id);
-		if(hd == null) {
+		if (hd == null) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<HoaDon>(hd,HttpStatus.OK);
+		return new ResponseEntity<HoaDon>(hd, HttpStatus.OK);
 	}
-	
-	@RequestMapping(value="/create/{idKhachHang}",method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<?> saveHoaDon(@PathVariable("idKhachHang") int idKhachHang, @RequestBody HoaDonDTO hd){
+
+	@RequestMapping(value = "/create/{idKhachHang}", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<?> saveHoaDon(@PathVariable("idKhachHang") int idKhachHang, @RequestBody HoaDonDTO hd) {
 		hoaDonService.createHoaDon(hd.getGhiChu(), idKhachHang, hd.getTongTien(), hd.getListCTHD());
-		return new ResponseEntity<String>("Thêm hóa đơn thành công!",HttpStatus.OK);
+		return new ResponseEntity<String>("Thêm hóa đơn thành công!", HttpStatus.OK);
 	}
-	
-	@RequestMapping(value="/khachhang/{id}",method=RequestMethod.GET)
-	public ResponseEntity<?> getHoaDonByKhachHangId(@PathVariable("id") int id){
+
+	@RequestMapping(value = "/khachhang/{id}", method = RequestMethod.GET)
+	public ResponseEntity<?> getHoaDonByKhachHangId(@PathVariable("id") int id) {
 		KhachHang kh = khachHangService.findById(id);
 		List<HoaDon> list = kh.getHoaDon();
-		if(list.isEmpty()) {
+		if (list.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<>(list,HttpStatus.OK);
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
-	
-	@RequestMapping(value="/{id}",method= RequestMethod.DELETE )
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteHoaDon(@PathVariable("id") int id) {
-		try {
-			if(hoaDonService.delete(id)) {
-				return new ResponseEntity<>("Success",HttpStatus.OK);				
-			}else {
-				return new ResponseEntity<>("Fail",HttpStatus.OK);
-			}
-		} catch (Exception e) {
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		
-	}
-	
-	@RequestMapping(value="/chuyentrangthai/{id}/{name}",method= RequestMethod.PUT )
-	public ResponseEntity<?> changeState(@PathVariable("id") int id, @PathVariable("name") String name) {
-		try {
-			hoaDonService.changeState(id, name);
-			return new ResponseEntity<>("Success",HttpStatus.OK);
-		} catch (Exception e) {
-			return new ResponseEntity<>("Fail",HttpStatus.OK);
+		if (hoaDonService.delete(id)) {
+			return new ResponseEntity<>("Success", HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>("Fail", HttpStatus.OK);
 		}
 	}
-	
-	
+
+	@RequestMapping(value = "/chuyentrangthai/{id}/{idNhanVien}", method = RequestMethod.PUT)
+	public ResponseEntity<?> changeState(@PathVariable("id") int id, @PathVariable("idNhanVien") int idNhanVien) {
+		hoaDonService.changeState(id, idNhanVien);
+		return new ResponseEntity<>("Success", HttpStatus.OK);
+	}
+
 }

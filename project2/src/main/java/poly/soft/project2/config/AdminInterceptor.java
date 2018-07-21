@@ -32,6 +32,7 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 			return true;
 		} else {
 			TaiKhoan taikhoan = taiKhoanService.findByTenTaiKhoanAndMatKhau(tenTaiKhoan, matKhau);
+			System.out.println("TK:"+tenTaiKhoan);
 			if (taikhoan == null) {
 				throw new Exception("Invalid User Id or Password. Please try again.");
 			}
