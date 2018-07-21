@@ -32,15 +32,15 @@ export class HoadonService {
       .catch(this.handleError);
   }
 
-  DeletehoaDon(id: number): Observable<any> {
+  DeletehoaDon(id: number): Observable<{}> {
     return this.httpClient
       .delete(this.URL_HD + id)
       .catch(this.handleError);
   }
   //
-  Chuyentrangthai(id: number, idNhanVien: number): Observable<String> {
+  Chuyentrangthai(id: number, idNhanVien: number): Observable<any> {
     let search = new URLSearchParams();
-    return this.httpClient.put<String>(this.URL_HD + "chuyentrangthai/" + id + "/" + idNhanVien, null);
+    return this.httpClient.put<any>(this.URL_HD + "chuyentrangthai/" + id + "/" + idNhanVien, {search});
   }
 
   private handleError(error: Response) {

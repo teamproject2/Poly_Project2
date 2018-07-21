@@ -67,16 +67,16 @@ public class HoaDonController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteHoaDon(@PathVariable("id") int id) {
 		if (hoaDonService.delete(id)) {
-			return new ResponseEntity<>("Success", HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.OK);
 		} else {
-			return new ResponseEntity<>("Fail", HttpStatus.OK);
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
 	@RequestMapping(value = "/chuyentrangthai/{id}/{idNhanVien}", method = RequestMethod.PUT)
 	public ResponseEntity<?> changeState(@PathVariable("id") int id, @PathVariable("idNhanVien") int idNhanVien) {
-		hoaDonService.changeState(id, idNhanVien);
-		return new ResponseEntity<>("Success", HttpStatus.OK);
+		HoaDon hd = hoaDonService.changeState(id, idNhanVien);
+		return new ResponseEntity<>(hd, HttpStatus.OK);
 	}
 
 }

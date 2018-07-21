@@ -24,5 +24,5 @@ public interface HoaDonService {
 
 	void createHoaDon(String ghiChu, int idKhachHang, double tongTien, List<ChiTietHoaDonDTO> list);
 
-	void changeState(int id, int idNhanVien);
+	HoaDon changeState(int id, int idNhanVien);
 }

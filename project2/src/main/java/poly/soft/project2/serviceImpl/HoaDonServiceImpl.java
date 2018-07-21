@@ -151,6 +151,7 @@ public class HoaDonServiceImpl implements HoaDonService {
 		hoaDon.setGhiChu(ghiChu);
 		hoaDon.setKhachHang(khachHangRepository.findById(idKhachHang).orElse(null));
 		hoaDon.setTongTien(tongTien);
+		hoaDon.setNhanVien(nhanVienRepository.findById(1).orElse(null));
 		HoaDon hd = hoaDonRepository.save(hoaDon);
 		
 		list.forEach(p -> {
@@ -175,13 +176,14 @@ public class HoaDonServiceImpl implements HoaDonService {
 	}
 
 	@Override
-	public void changeState(int id, int idNhanVien) {
+	public HoaDon changeState(int id, int idNhanVien) {
 		HoaDon hd = hoaDonRepository.findById(id).orElse(null);
 		if(hd != null) {
 			hd.setTrangThai(HDTrangThaiEnum.DONE);
 			hd.setNgay(new Date());
 			hd.setNhanVien(nhanVienRepository.findById(idNhanVien).orElse(null));
 		}
+		return hd;
 	}
 
 }

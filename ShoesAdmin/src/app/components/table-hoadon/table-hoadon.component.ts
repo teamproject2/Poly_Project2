@@ -105,21 +105,16 @@ export class TableHoadonComponent implements OnInit, OnDestroy {
   }
   //
   DelhoaDon() {
-    this.hoadonServices.DeletehoaDon(this.id).subscribe(
-      result => console.log(result)
-      , error => {
-        console.error(error);
-        this.toastr.success('Delete success!');
-        this.removeModal();
-        this.hoadonServices.getAllSP_HD().subscribe((data: Hoadon[]) => {
-          this.list_hd = data;
-          this.showDataTable();
-        },
-          error => {
-            console.log(error);
-          });
-      }
-    )
+    this.hoadonServices.DeletehoaDon(this.id).subscribe();
+    this.toastr.success('Delete success!');
+    this.removeModal();
+    this.hoadonServices.getAllSP_HD().subscribe((data: Hoadon[]) => {
+      this.list_hd = data;
+      this.File_export();
+    },
+      error => {
+        console.log(error);
+      });
   }
   //
   ngOnDestroy() {

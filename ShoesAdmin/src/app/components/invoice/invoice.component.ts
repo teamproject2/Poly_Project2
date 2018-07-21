@@ -57,11 +57,11 @@ export class InvoiceComponent implements OnInit {
     let idNhanVien = JSON.parse(localStorage.getItem('user')).nhanVien.id;
     this.detailHDServices.Chuyentrangthai(this.id, idNhanVien).subscribe(result => {
       console.log(result);
+      this.removeModal();
+      this._detailInvoice.trangThai = 'Hoàn thành';
+      this._detailInvoice.nhanVien.tenNhanVien = JSON.parse(localStorage.getItem('user')).nhanVien.tenNhanVien;
+      this.toastr.success('Chuyển trạng thái thành công!');
     })
-    this.removeModal();
-    this._detailInvoice.trangThai = 'Hoàn thành';
-    this._detailInvoice.nhanVien.tenNhanVien = JSON.parse(localStorage.getItem('user')).nhanVien.tenNhanVien;
-    this.toastr.success('Chuyển trạng thái thành công!');
   }
 
   //

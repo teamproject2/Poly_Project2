@@ -34,11 +34,11 @@ export class CheckInterceptor implements HttpInterceptor {
         if (event instanceof HttpResponse) {
           console.log("Success");
         }
-      // }, (err: any) => {
-      //   if (err instanceof HttpErrorResponse) {
-      //     console.log("Error 500");
-      //     //this.router.navigate(["/login"]);
-      //   }
+      }, (err: any) => {
+        if (err instanceof HttpErrorResponse) {
+          console.log("Error 500");
+          this.router.navigate(["/login"]);
+        }
       });
     } else {
       localStorage.clear();
