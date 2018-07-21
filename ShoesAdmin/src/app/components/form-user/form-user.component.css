@@ -79,3 +79,8 @@ button.close:focus {
 a.info.p-0 {
     font-size: 20px;
   }
+em {
+    color: red;
+    font-size: 14px;
+    font-style: italic;
+}

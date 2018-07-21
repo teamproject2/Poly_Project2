@@ -98,5 +98,8 @@ tr.even {
 tr {
     text-align:  center;
 }
-
-  
+em {
+    color: red;
+    font-size: 14px;
+    font-style: italic;
+}

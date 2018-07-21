@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '../../services/user.service';
 import { FormsModule, FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Route } from '@angular/compiler/src/core';
-import {ToastsManager} from 'ng2-toastr/ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 declare var jquery: any;
 declare var $: any;
@@ -39,15 +39,43 @@ export class FormUserComponent implements OnInit {
   email: FormControl;
   diaChi: FormControl;
   soDienThoai: FormControl;
-  //
+
+  namePattern = /^[^*|":<>[\]{}.,?/`~¥£€\\()';@&$!#%^*_+=0-9-]+$/;
+  phonePattern = /^((\+84-)|0){1}[0-9]{9,10}$/;
+  emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
+
+  yearStatus = true;
+  maxDate = new Date().getFullYear();
+ 
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private nhanvienservices: UserService,
-    private formBuilder: FormBuilder,
+    private fb: FormBuilder,
     private _vcr: ViewContainerRef,
     private toastr: ToastsManager
-  ) { this.toastr.setRootViewContainerRef(_vcr); }
+  ) {
+      this.toastr.setRootViewContainerRef(_vcr);
+
+      this.idNv = new FormControl('');
+      this.hoTen = new FormControl('', [Validators.required, Validators.pattern(this.namePattern)]);
+      this.gioiTinh = new FormControl('');
+      this.email = new FormControl('',[Validators.required, Validators.pattern(this.emailPattern)]);
+      this.diaChi = new FormControl('');
+      this.soDienThoai = new FormControl('', [Validators.required, Validators.pattern(this.phonePattern)]);
+
+      this.chitietNhanVien = this.fb.group({
+        idNv: this.idNv,
+        hoTen: this.hoTen,
+        gioiTinh: this.gioiTinh,
+        ngaySinh: this.ngaySinh,
+        email: this.email,
+        diaChi: this.diaChi,
+        soDienThoai: this.soDienThoai
+      })
+
+    }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
@@ -55,24 +83,6 @@ export class FormUserComponent implements OnInit {
     if (this.id != 0) {
       this.getChitiet_NV(this.id);
     }
-
-    this.idNv = new FormControl('', Validators.required);
-    this.hoTen = new FormControl('', [Validators.required, Validators.minLength(3)]);
-    this.ngaySinh = new FormControl('', Validators.required);
-    this.gioiTinh = new FormControl('', Validators.required);
-    this.diaChi = new FormControl('', Validators.required);
-    this.email = new FormControl('', Validators.required);
-    this.soDienThoai = new FormControl('');
-
-    this.chitietNhanVien = this.formBuilder.group({
-      idNv: this.idNv,
-      hoTen: this.hoTen,
-      ngaySinh: this.ngaySinh,
-      gioiTinh: this.gioiTinh,
-      diaChi: this.diaChi,
-      email: this.email,
-      soDienThoai: this.soDienThoai
-    });
     this.onChanges();
   }
   //
@@ -84,7 +94,24 @@ export class FormUserComponent implements OnInit {
         console.log(error);
       });
   }
-  //
+
+  selectDOB(value) {
+    // const dob = this.chitietNhanVien.controls.ngaySinh.value;
+    const dob = value;
+    let d = dob.split("-");
+    let newDate = new Date(d[0], d[1] - 1, d[2]);
+
+    const yearDOB = newDate.getFullYear();
+    const selectedYear = <any>this.maxDate - yearDOB;
+
+    if(selectedYear > 18 && selectedYear < 80) {
+      return this.yearStatus = true;
+    } else {
+      return this.yearStatus = false;
+    }
+  }
+  
+
   onChanges(): void {
     this.chitietNhanVien.valueChanges.subscribe(val => {
       this.chitiet_NV.id = val.idNv.length > 0 ? val.idNv : this.chitiet_NV.id;
