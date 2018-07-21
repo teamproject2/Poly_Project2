@@ -51,9 +51,9 @@
                     <p>
 
             </div>
-            <div class="col-6 text-right" *ngIf="_detailInvoice.nhanVien != null">
+            <div class="col-6 text-right">
               <p>
-                <span class="text-muted">Tên Nhân Viên :</span> {{_detailInvoice.nhanVien.tenNhanVien}}</p>
+                <span class="text-muted" *ngIf="_detailInvoice.nhanVien.tenNhanVien != '-'">Tên Nhân Viên : {{_detailInvoice.nhanVien.tenNhanVien}}</span></p>
               <p>
                 <span class="text-muted">Ngày :</span>{{_detailInvoice.ngay}}</p>
               <span *ngIf="_detailInvoice.trangThai == 'Đang chờ'">

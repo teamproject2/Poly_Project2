@@ -9,7 +9,7 @@ import { HoadonService } from '../../services/hoadon.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Invoice } from '../../models/invoice';
 import { Chitiethoadon } from '../../models/chitiethoadon';
-import {ToastsManager} from 'ng2-toastr/ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 declare var jquery: any;
 declare var $: any;
@@ -29,7 +29,7 @@ export class InvoiceComponent implements OnInit {
 
   constructor(private detailHDServices: HoadonService,
     private route: ActivatedRoute,
-    private router: Router,private _vcr: ViewContainerRef,
+    private router: Router, private _vcr: ViewContainerRef,
     private toastr: ToastsManager
   ) { this.toastr.setRootViewContainerRef(_vcr); }
 
@@ -53,12 +53,15 @@ export class InvoiceComponent implements OnInit {
     )
   }
 
-  changeTrangThai(){
-    this.detailHDServices.Chuyentrangthai(this.id).subscribe(result =>{
-      this.removeModal();
-      this._detailInvoice.trangThai = 'Hoàn thành';
-      this.toastr.success('Chuyển trạng thái thành công!');
+  changeTrangThai() {
+    let idNhanVien = JSON.parse(localStorage.getItem('user')).nhanVien.id;
+    this.detailHDServices.Chuyentrangthai(this.id, idNhanVien).subscribe(result => {
+      console.log(result);
     })
+    this.removeModal();
+    this._detailInvoice.trangThai = 'Hoàn thành';
+    this._detailInvoice.nhanVien.tenNhanVien = JSON.parse(localStorage.getItem('user')).nhanVien.tenNhanVien;
+    this.toastr.success('Chuyển trạng thái thành công!');
   }
 
   //

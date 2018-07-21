@@ -35,18 +35,12 @@ export class HoadonService {
   DeletehoaDon(id: number): Observable<any> {
     return this.httpClient
       .delete(this.URL_HD + id)
-      .pipe(
-        catchError(this.handleError)
-      );
-
+      .catch(this.handleError);
   }
   //
-  Chuyentrangthai(id: number): Observable<any> {
+  Chuyentrangthai(id: number, idNhanVien: number): Observable<String> {
     let search = new URLSearchParams();
-    return this.httpClient.put<any>(this.URL_HD + "chuyentrangthai/" + id, { search })
-      .pipe(
-        catchError(this.handleError)
-      );
+    return this.httpClient.put<String>(this.URL_HD + "chuyentrangthai/" + id + "/" + idNhanVien, null);
   }
 
   private handleError(error: Response) {

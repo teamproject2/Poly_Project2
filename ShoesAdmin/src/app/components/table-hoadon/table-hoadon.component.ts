@@ -36,7 +36,7 @@ export class TableHoadonComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // load phan trang
-    this.id = this.route.snapshot.params['id'];
+    //this.id = this.route.snapshot.params['id'];
     this.loadData();
 
     this.role = JSON.parse(localStorage.getItem('user')).quyen[0].tenQuyen;
@@ -55,38 +55,42 @@ export class TableHoadonComponent implements OnInit, OnDestroy {
 
     });
   }
-  	//
-	File_export(){
-		$(document).ready(function() {
-			var table = $('#table_hd').DataTable();
-	 
-			new $.fn.dataTable.Buttons( table, {
-					buttons: [
-						'copy', 'csv', 'excel', 'pdf', 'print'
-					]
-			} );
-	 
-			table.buttons( 0, null ).container().prependTo(
-					table.table().container()
-			);
-	} );
-	}
+  //
+  File_export() {
+    $(document).ready(function () {
+      var table = $('#table_hd').DataTable(
+        {
+          "order": [[0, "desc"]]
+        }
+      );
+
+      new $.fn.dataTable.Buttons(table, {
+        buttons: [
+          'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+      });
+
+      table.buttons(0, null).container().prependTo(
+        table.table().container()
+      );
+    });
+  }
   // Load all Hoa don
   loadData() {
     this.hoadonServices.getAllSP_HD().subscribe((data: Hoadon[]) => {
       this.list_hd = data;
-      this.showDataTable();
       this.File_export();
     },
       error => {
         console.log(error);
       });
   }
- 
+
   //
-  showModal(id:number) {
+  showModal(id: number) {
+    this.id = id;
     console.log(id);
-    
+
     $(document).ready(function () {
       $('.modal1').addClass('show');
       $('.modal-wrapper').addClass('show');
@@ -99,16 +103,22 @@ export class TableHoadonComponent implements OnInit, OnDestroy {
       $('.modal-wrapper').removeClass('show');
     });
   }
-   //
-   DelhoaDon() {
+  //
+  DelhoaDon() {
     this.hoadonServices.DeletehoaDon(this.id).subscribe(
-      result => {
-        console.log("Delete Success!");
+      result => console.log(result)
+      , error => {
+        console.error(error);
         this.toastr.success('Delete success!');
         this.removeModal();
-        this.loadData();
-      },
-      error => console.error(error)
+        this.hoadonServices.getAllSP_HD().subscribe((data: Hoadon[]) => {
+          this.list_hd = data;
+          this.showDataTable();
+        },
+          error => {
+            console.log(error);
+          });
+      }
     )
   }
   //

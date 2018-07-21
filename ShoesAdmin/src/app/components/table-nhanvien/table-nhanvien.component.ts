@@ -35,28 +35,32 @@ export class TableNhanvienComponent implements OnInit, OnDestroy {
 		});
 	}
 	//
-	File_export(){
-		$(document).ready(function() {
+	File_export() {
+		$(document).ready(function () {
 			var table = $('#table_nv').DataTable();
-	 
-			new $.fn.dataTable.Buttons( table, {
-					buttons: [
-						'copy', 'csv', 'excel', 'pdf', 'print'
-					]
-			} );
-	 
-			table.buttons( 0, null ).container().prependTo(
-					table.table().container()
+
+			new $.fn.dataTable.Buttons(table, {
+				buttons: [
+					'copy', 'csv', 'excel', 'pdf', 'print'
+				]
+			});
+
+			table.buttons(0, null).container().prependTo(
+				table.table().container()
 			);
-	} );
+		});
 	}
-	
+
 	// Load all staff
 	loadData() {
 		this.nhanvienService.getAllNhanvien().subscribe(data => {
-			this.list_nv = data;
+			let list = data;
+			list.forEach(p => {
+				if (p.id != 1) {
+					this.list_nv.push(p);
+				}
+			})
 			this.File_export();
-			
 		}, error => {
 			console.log(error);
 		});
@@ -71,20 +75,20 @@ export class TableNhanvienComponent implements OnInit, OnDestroy {
 	// 	)
 	// }
 	//
-  showModal() {
-    $(document).ready(function () {
-      $('.modal1').addClass('show');
-      $('.modal-wrapper').addClass('show');
-    });
-  }
+	showModal() {
+		$(document).ready(function () {
+			$('.modal1').addClass('show');
+			$('.modal-wrapper').addClass('show');
+		});
+	}
 
-  removeModal() {
-    $(document).ready(function () {
-      $('.modal1').removeClass('show');
-      $('.modal-wrapper').removeClass('show');
-    });
-  }
-  //
+	removeModal() {
+		$(document).ready(function () {
+			$('.modal1').removeClass('show');
+			$('.modal-wrapper').removeClass('show');
+		});
+	}
+	//
 	ngOnDestroy() {
 
 	}
