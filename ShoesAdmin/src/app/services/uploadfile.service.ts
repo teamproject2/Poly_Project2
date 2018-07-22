@@ -1,59 +1,65 @@
-import { Injectable } from "@angular/core";
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Injectable, Query } from "@angular/core";
+import {AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import * as firebase from 'firebase';
 import { Upload } from "../models/fileupload";
+import { DatabaseQuery } from "../../../node_modules/angularfire2/database/interfaces";
 
 @Injectable()
 
 export class UploadFileService {
 
-    private basePath: string = '/uploads';
-    uploads: AngularFireList<Upload[]>;
+    private basePath = '/uploads';
+    fileUploads: AngularFireList<Upload[]>;
 
     constructor(private db: AngularFireDatabase) { }
 
-    pushUpload(upload: Upload) {
-        let storageRef = firebase.storage().ref();
-        let uploadTask = storageRef.child(`${this.basePath}/${upload.file.name}`).put(upload.file);
+    pushFileToStorage(fileUpload: Upload, progress: { percentage: number }) {
+        const storageRef = firebase.storage().ref();
+        const uploadTask = storageRef.child(`${this.basePath}/${fileUpload.file.name}`).put(fileUpload.file);
 
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
             (snapshot) => {
-                upload.progress = (uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100
+                // in progress
+                const snap = snapshot as firebase.storage.UploadTaskSnapshot
+                progress.percentage = Math.round((snap.bytesTransferred / snap.totalBytes) * 100)
             },
             (error) => {
-                console.log('Error: ' + error)
+                // fail
+                console.log(error)
             },
             () => {
-                upload.url = uploadTask.snapshot.downloadURL
-                upload.name = upload.file.name
-                this.saveFileData(upload)
+                // success
+                fileUpload.url = uploadTask.snapshot.downloadURL
+                fileUpload.name = fileUpload.file.name
+                this.saveFileData(fileUpload)
             }
         );
     }
 
-    private saveFileData(upload: Upload) {
-        this.db.list(`${this.basePath}/`).push(upload);
+    private saveFileData(fileUpload: Upload) {
+        this.db.list(`${this.basePath}/`).push(fileUpload)
     }
 
-    getFileUploads(numberItems): AngularFireList<Upload> {
-        return this.db.list(this.basePath, ref =>
-            ref.limitToLast(numberItems));
-    }
 
-    deleteUpload(upload: Upload) {
-        this.deleteFileData(upload.$key)
+    getFileUploads() {
+        this.fileUploads = this.db.list(this.basePath);
+        return this.fileUploads
+      }
+
+    deleteFileUpload(fileUpload: Upload) {
+        this.deleteFileDatabase(fileUpload.$key)
             .then(() => {
-                this.deleteFileStorage(upload.name);
+                this.deleteFileStorage(fileUpload.name)
             })
-            .catch(error => console.log(error));
+            .catch(error => console.log(error))
     }
 
-    private deleteFileData(key: string) {
-        return this.db.list(`${this.basePath}/`).remove(key);
+    private deleteFileDatabase(key: string) {
+        return this.db.list(`${this.basePath}/`).remove(key)
     }
 
     private deleteFileStorage(name: string) {
-        const storageRef = firebase.storage().ref();
-        storageRef.child(`${this.basePath}/${name}`).delete();
+        const storageRef = firebase.storage().ref()
+        storageRef.child(`${this.basePath}/${name}`).delete()
     }
 }

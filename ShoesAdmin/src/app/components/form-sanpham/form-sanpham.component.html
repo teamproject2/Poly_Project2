@@ -27,7 +27,8 @@
                         <div *ngIf="chitietSanpham.controls.tenSanPham.invalid && (chitietSanpham.controls.tenSanPham.dirty || chitietSanpham.controls.tenSanPham.touched)">
                           <em>Vui lòng nhập tên sản phẩm</em>
                         </div>
-                        <input type="text" formControlName="tenSanPham" maxlength="40"  value="" id="userinput1" class="form-control border-primary" name="name">
+                        <input type="text" formControlName="tenSanPham" maxlength="40" value="" id="userinput1" class="form-control border-primary"
+                          name="name">
                       </div>
                     </div>
                   </div>
@@ -112,13 +113,31 @@
                       </div>
                     </div>
                     <div class="row">
-                      <div class="col-md-12 col-upload">
+                      <!-- <div class="col-md-12 col-upload">
+                        <div *ngIf="currentUpload">
+                          <div class="progress">
+                            <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+                          </div>
+                          Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+                        </div>
                         <label>
                           <input type="file" (change)="detectFiles($event)" multiple>
                         </label>
                         <button class="btn btn-primary btnUpload" [disabled]="!selectedFiles" (click)="uploadMulti()">Upload</button>
                         <button class="btn btn-primary" (click)="getListImg()">Download</button>
+                      </div> -->
+
+                      <div *ngIf="currentFileUpload" class="progress">
+                        <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" attr.aria-valuenow="{{progress.percentage}}"
+                          aria-valuemin="0" aria-valuemax="100" [ngStyle]="{width:progress.percentage+'%'}">
+                          {{progress.percentage}}%</div>
                       </div>
+
+                      <label class="btn btn-default">
+                        <input type="file" (change)="selectFile($event)">
+                      </label>
+
+                      <button class="btn btn-success" [disabled]="!selectedFiles" (click)="upload()">Upload</button>
                     </div>
                   </div>
 

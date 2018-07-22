@@ -155,38 +155,24 @@ export class ChitietSanphamComponent implements OnInit {
   }
   //
 
-  detectFiles(event) {
-    this.selectedFiles = event.target.files;
-  }
-
-  uploadMulti() {
-    let files = this.selectedFiles;
-    let filesIndex = _.range(files.length);
-    _.each(filesIndex, (idx) => {
-      this.currentUpload = new Upload(files[idx]);
-      this.uploadService.pushUpload(this.currentUpload)
-    });
-  }
-
   //Fixing
-  getListImg() {
-    this.uploadService.getFileUploads(100).snapshotChanges().map(changes => {
-      return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-    }).subscribe(file => {
-      this._downloadArray = file;
-      console.log(this._downloadArray);
-    });
+  // getListImg() {
+  //   this.uploadService.getFileUploads(100).snapshotChanges().map(changes => {
+  //     return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+  //   }).subscribe(file => {
+  //     this._downloadArray = file;
+  //     console.log(this._downloadArray);
+  //   });
+  // }
 
     // this.currentFileUpload = new FileUpload(file);
     // this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress);
-  }
 
   //Chi tiet san pham
-  getChitiet_SP(id: number): void {
+  getChitiet_SP(id : number) {
     this.sanphamService.getSanphamByID(id).subscribe(data => {
       this.chitietSp = data;
       this.loaiGiayAA = this.chitietSp.loaiGiay;
-      // this.getLoaigiay();
     },
       error => {
         console.log(error);

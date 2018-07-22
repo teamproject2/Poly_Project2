@@ -6,6 +6,9 @@ import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { SanphamService } from '../../services/sanpham.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Sanpham } from '../../models/sanpham';
+import { Upload } from '../../models/fileupload';
+import * as _ from "lodash";
+import { UploadFileService } from '../../services/uploadfile.service';
 
 // jquyery phan trang
 declare var jquery: any;
@@ -14,7 +17,8 @@ declare var $: any;
 @Component({
   selector: 'app-form-sanpham',
   templateUrl: './form-sanpham.component.html',
-  styleUrls: ['./form-sanpham.component.css']
+  styleUrls: ['./form-sanpham.component.css'],
+  providers:[UploadFileService]
 })
 export class FormSanphamComponent implements OnInit {
 
@@ -22,10 +26,15 @@ export class FormSanphamComponent implements OnInit {
 
   public listgiay: LoaiGiay[] = [];
   selectedTenLoai: string;
-  //
-
+  // selectedFiles: FileList;
+  currentUpload: Upload;
+  _downloadArray: any[];
   pattern = /^[0-9]+$/;
   patternString = /^[^0-9@#$%&*.,/]{5,}$/;
+
+  selectedFiles: FileList
+  currentFileUpload: Upload
+  progress: {percentage: number} = {percentage: 0}
 
   dataPro: Sanpham;
 
@@ -43,7 +52,8 @@ export class FormSanphamComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private toastr: ToastsManager,
-    private sanphamService: SanphamService
+    private sanphamService: SanphamService,
+    private uploadService: UploadFileService
   ) {
     this.toastr.setRootViewContainerRef(_vcr)
 
@@ -64,6 +74,25 @@ export class FormSanphamComponent implements OnInit {
   ngOnInit() {
     this.getLoaigiay();
     this.id = this.route.snapshot.params['id'];
+  }
+
+
+  selectFile(event) {
+    const file = event.target.files.item(0);
+    if (file.type.match('image.*')) {
+      this.selectedFiles = event.target.files;
+    } else {
+      alert('invalid format!');
+    }
+  }
+
+  upload() {
+    const file = this.selectedFiles.item(0);
+    this.selectedFiles = undefined;
+    this.currentFileUpload = new Upload(file);
+    this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress);
+    console.log("aaaa" + this.uploadService.getFileUploads());
+    
   }
 
   // Lay tat ca loai giay
