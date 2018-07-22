@@ -34,10 +34,10 @@
                   <div class="row">
                     <div class="col-md-12 form-group">
                       <label for="userinput2">Loại giày</label>
-                      <select id="issueinput5" name="priority" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
+                      <select formControlName="loaiGiay" id="issueinput5" name="priority" class="form-control" data-toggle="tooltip" data-trigger="hover" data-placement="top"
                         data-title="Priority">
                         <option value="none">---Select---</option>
-                        <option *ngFor="let giay of listgiay" [value]="giay.tenLoai">
+                        <option *ngFor="let giay of listgiay" [value]="giay.id">
                           {{giay.tenLoai}}
                         </option>
                       </select>
@@ -49,7 +49,7 @@
                       <div *ngIf="chitietSanpham.controls.donGia.invalid && (chitietSanpham.controls.donGia.dirty || chitietSanpham.controls.donGia.touched)">
                         <em *ngIf="chitietSanpham.controls.donGia.errors.pattern">Đơn giá không hợp lệ</em>
                       </div>
-                      <input type="text" formControlName="donGia" maxlength="7" value="{{chitietSp.donGia}}" id="userinput3" class="form-control border-primary"
+                      <input type="text" formControlName="donGia" maxlength="7" value="" id="userinput3" class="form-control border-primary"
                         name="username">
                     </div>
                   </div>
@@ -59,7 +59,7 @@
                       <div *ngIf="chitietSanpham.controls.chietKhau.invalid && (chitietSanpham.controls.chietKhau.dirty || chitietSanpham.controls.chietKhau.touched)">
                         <em *ngIf="chitietSanpham.controls.chietKhau.errors.pattern">Chiết khấu chưa hợp lệ</em>
                       </div>
-                      <input type="text" formControlName="chietKhau" maxlength="2" value="{{chitietSp.chietKhau}}" id="userinput4" class="form-control border-primary"
+                      <input type="text" formControlName="chietKhau" maxlength="2" value="" id="userinput4" class="form-control border-primary"
                         name="nickname">
                     </div>
                   </div>
@@ -144,7 +144,7 @@
     <div class="modal-body">Are you sure you want to save?</div>
     <div class="modal-footer">
       <div class="col-md-12 text-center">
-        <button type="submit" (click)="Saveinsertsp()" class="btn btn-raised btn-success but1">
+        <button type="submit" (click)="saveSanphamInsert()" class="btn btn-raised btn-success but1">
           <i class=""></i> OK
         </button>
         <button type="button" (click)="removeModal()" class="btn btn-raised btn-warning but1">

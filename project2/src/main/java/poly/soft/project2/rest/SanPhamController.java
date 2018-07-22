@@ -136,7 +136,7 @@ public class SanPhamController {
 			htk.setSoLuong(p.getSoLuong());
 			hangTrongKhoService.save(htk);
 		});
-		return new ResponseEntity<>("Cập nhật thành công!", HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	// Get product by Name

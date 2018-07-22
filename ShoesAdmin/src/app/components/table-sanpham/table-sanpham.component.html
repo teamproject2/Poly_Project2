@@ -30,7 +30,7 @@
                                         <td>{{sp.tenSanPham}}</td>
                                         <td>{{sp.loaiGiay.tenLoai}}</td>
                                         <td>
-                                            <img src="{{sp.hinhSanPham[0].hinh}}" width="100">
+                                            <img *ngIf="sp.hinhSanPham.length !=0 " src="{{sp.hinhSanPham[0].hinh}}" width="100">
                                         </td>
                                         <td>
                                             <span *ngFor="let size of sp.hangTrongKho">
@@ -43,9 +43,9 @@
                                                 <i class="ft-list font-medium-3 mr-2"></i>
                                             </a>
                                             
-                                            <a class="danger p-0" *ngIf="role == 'ROLE_ADMIN'" (click)="showModal()" data-original-title="" title="Xóa" id="confirm-cancel">
+                                            <!-- <a class="danger p-0" *ngIf="role == 'ROLE_ADMIN'" (click)="showModal()" data-original-title="" title="Xóa" id="confirm-cancel">
                                                 <i class="ft-x font-medium-3 mr-2"></i>
-                                            </a>
+                                            </a> -->
                                         </td>
                                     </tr>
                                 </tbody>

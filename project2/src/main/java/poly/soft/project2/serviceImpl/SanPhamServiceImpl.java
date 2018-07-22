@@ -1,7 +1,5 @@
 package poly.soft.project2.serviceImpl;
 
-import static org.mockito.Mockito.spy;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +12,6 @@ import org.springframework.stereotype.Service;
 import poly.soft.project2.dto.SanPhamAdminDTO;
 import poly.soft.project2.dto.SanPhamHomePageDTO;
 import poly.soft.project2.entity.SanPham;
-import poly.soft.project2.enumeration.GioiTinhEnum;
 import poly.soft.project2.repository.LoaiGiayRepository;
 import poly.soft.project2.repository.SanPhamRepository;
 import poly.soft.project2.service.SanPhamService;

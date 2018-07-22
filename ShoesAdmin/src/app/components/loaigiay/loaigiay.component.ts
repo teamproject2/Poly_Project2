@@ -3,7 +3,6 @@ import { LoaigiayService } from '../../services/loaigiay.service';
 import { LoaiGiay } from '../../models/loaiGiay';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { create } from 'domain';
 
 
 declare var jquery: any;
@@ -47,9 +46,11 @@ export class LoaigiayComponent implements OnInit {
 
   ngOnInit() {
     this.loadDataGiay();
+    this.File_export();
+
     this.role = JSON.parse(localStorage.getItem('user')).quyen[0].tenQuyen;
     
-    this.File_export();
+   
    
   }
 
@@ -57,7 +58,7 @@ export class LoaigiayComponent implements OnInit {
   // Phan trang
   showDataTable() {
     $(document).ready(function () {
-      $('#table_lg').DataTable({
+      $('#table_giay').DataTable({
         "order": [[0, "desc"]]
       });
       $.fn.dataTable.ext.errMode = 'none';
@@ -68,7 +69,12 @@ export class LoaigiayComponent implements OnInit {
   //
   File_export() {
     $(document).ready(function () {
-      var table = $('#table_lg').DataTable();
+      var table = $('#table_giay').DataTable(
+        {
+          "order": [[0, "desc"]]
+        }
+      );
+      $.fn.dataTable.ext.errMode = 'none'; 
 
       new $.fn.dataTable.Buttons(table, {
         buttons: [
@@ -81,6 +87,7 @@ export class LoaigiayComponent implements OnInit {
       );
     });
   }
+
   // Load all loại giày
   loadDataGiay() {
     this.loaigiayservice.getLoaiGiay().subscribe(data => {

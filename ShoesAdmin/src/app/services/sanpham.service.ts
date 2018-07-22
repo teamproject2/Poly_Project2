@@ -49,6 +49,7 @@ export class SanphamService {
     return this.httpClient.put<any>(this.API + "sanpham", sanpham)
       .catch(this.handleError);
   }
+  //
   insert_Sp(sanpham: any): Observable<any> {
     let search = new URLSearchParams();
     return this.httpClient.post<any>(this.API + "sanpham", sanpham)

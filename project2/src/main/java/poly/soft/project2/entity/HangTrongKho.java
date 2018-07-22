@@ -59,7 +59,11 @@ public class HangTrongKho implements Serializable {
 	}
 
 	public String getHinhSanPham() {
-		return sanPham.getHinhSanPham().get(0).getHinh();
+		if(sanPham.getHinhSanPham().isEmpty()) {
+			return "No image";
+		}else {
+			return sanPham.getHinhSanPham().get(0).getHinh();			
+		}
 	}
 
 	@Override

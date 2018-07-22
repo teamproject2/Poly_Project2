@@ -9,7 +9,7 @@ import { LoaigiayService } from '../../services/loaigiay.service';
 import { LoaiGiay } from '../../models/loaiGiay';
 import { Upload } from '../../models/fileupload';
 import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
-import {ToastsManager} from 'ng2-toastr/ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 // jquyery phan trang
 declare var jquery: any;
@@ -39,16 +39,16 @@ export class ChitietSanphamComponent implements OnInit {
 
   loaiGiayAA: LoaiGiay;
 
-  selectedTenLoai : string;
+  selectedTenLoai: string;
 
   //
-  public Sanpham = {
+  public sanpham = {
     id: '',
     tenSanPham: '',
-    tenLoaigiay: '',
+    loaiGiayId: '',
     donGia: '',
     chietKhau: '',
-    chitiet: ''
+    chiTiet: ''
   };
 
   chitietSanpham: FormGroup;
@@ -84,7 +84,7 @@ export class ChitietSanphamComponent implements OnInit {
     this.getLoaigiay();
 
     //
-    
+
 
     this.idSp = new FormControl('', Validators.required);
     this.tenSanPham = new FormControl('', [Validators.required, Validators.minLength(3)]);
@@ -108,64 +108,50 @@ export class ChitietSanphamComponent implements OnInit {
   //
   onChanges(): void {
     this.chitietSanpham.valueChanges.subscribe(val => {
-      this.chitietSp.id = val.idSp.length > 0 ? val.idSp : this.chitietSp.id;
-      this.chitietSp.tenSanPham = val.tenSanPham.length > 0 ? val.tenSanPham : this.chitietSp.tenSanPham;
-      this.chitietSp.chiTiet = val.chiTiet.length > 0 ? val.chiTiet : this.chitietSp.chiTiet;;
-      this.chitietSp.chietKhau = val.chietKhau.length > 0 ? val.chietKhau : this.chitietSp.chietKhau;
-      this.chitietSp.donGia = val.donGia.length > 0 ? val.donGia : this.chitietSp.donGia;
-      // this.chitietSp.loaiGiay = val.tenloaigiay.length > 0 ? val.tenloaigiay : this.chitietSp.loaiGiay;
+      this.sanpham.id = val.idSp.length > 0 ? val.idSp : this.chitietSp.id;
+      this.sanpham.tenSanPham = val.tenSanPham.length > 0 ? val.tenSanPham : this.chitietSp.tenSanPham;
+      this.sanpham.chiTiet = val.chiTiet.length > 0 ? val.chiTiet : this.chitietSp.chiTiet;;
+      this.sanpham.chietKhau = val.chietKhau.length > 0 ? val.chietKhau : this.chitietSp.chietKhau;
+      this.sanpham.donGia = val.donGia.length > 0 ? val.donGia : this.chitietSp.donGia;
+      //this.sanpham.loaiGiayId = val.tenloaigiay.length > 0 ? val.tenloaigiay : this.chitietSp.loaiGiay.id;
 
-      console.log("sdsdaSPPPPP: " + JSON.stringify(this.chitietSp));
+      console.log("sdsdaSPPPPP: " + JSON.stringify(this.sanpham));
     });
   }
   //
-//
-showModal(p: number) {
-  this.id = p;
-  $(document).ready(function () {
-    $('.modal1').addClass('show');
-    $('.modal2').addClass('show');
-    $('.modal-wrapper').addClass('show');
-  });
-}
+  //
+  showModal(p: number) {
+    this.id = p;
+    $(document).ready(function () {
+      $('.modal1').addClass('show');
+      $('.modal2').addClass('show');
+      $('.modal-wrapper').addClass('show');
+    });
+  }
 
-removeModal() {
-  $(document).ready(function () {
-    $('.modal1').removeClass('show');
-    $('.modal2').removeClass('show');
-    $('.modal-wrapper').removeClass('show');
-  });
-}
+  removeModal() {
+    $(document).ready(function () {
+      $('.modal1').removeClass('show');
+      $('.modal2').removeClass('show');
+      $('.modal-wrapper').removeClass('show');
+    });
+  }
 
-// Luu san pham
+  // Luu san pham
   saveSanpham() {
-    if (this.selectedTenLoai == 'none') {
-      alert('Select LG');
-      let object = { 
-        tenSanPham: this.chitietSanpham.controls.tenSanPham.value
-       };
-       console.log(object);
-       
-      this.sanphamService.insert_Sp(object).subscribe(
-        result => {
-          this.toastr.success('Thêm mới Sản Phẩm thành công!');
-          this.removeModal();
-        },
-        error => console.error(error)
-      )
-    }
-    else {
-      this.sanphamService.update_Sp(this.chitietSp).subscribe(
-        result => {
-          this.removeModal();
-          this.toastr.success('Cập nhật thông tin sản phẩm thành công!');
-          setTimeout(() => {
-            this.router.navigate(['/index/sanpham']);
-          }, 1500);
-        },
-        error => console.error(error)
-      )
-    }
+    this.sanpham.loaiGiayId = this.chitietSp.loaiGiay.id;
+    // console.log(JSON.stringify(this.sanpham));
+    
+    this.sanphamService.update_Sp(this.sanpham).subscribe(
+      result => {
+        this.removeModal();
+        this.toastr.success('Cập nhật thông tin sản phẩm thành công!');
+        setTimeout(() => {
+          this.router.navigate(['/index/sanpham']);
+        }, 1500);
+      },
+      error => console.error(error)
+    )
   }
   //
 
@@ -195,7 +181,7 @@ removeModal() {
     // this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress);
   }
 
-//Chi tiet san pham
+  //Chi tiet san pham
   getChitiet_SP(id: number): void {
     this.sanphamService.getSanphamByID(id).subscribe(data => {
       this.chitietSp = data;
@@ -224,16 +210,16 @@ removeModal() {
   }
 
   getNewLG(event) {
-    this.listgiay.forEach(p=>{
-      if(p.tenLoai == event.target.value && event.target.value != 'none'){
+    this.listgiay.forEach(p => {
+      if (p.tenLoai == event.target.value && event.target.value != 'none') {
         this.chitietSp.loaiGiay.id = p.id;
         this.chitietSp.loaiGiay.tenLoai = p.tenLoai;
       }
-      if(event.target.value == 'none'){
+      if (event.target.value == 'none') {
         this.selectedTenLoai = 'none';
       }
     });
     console.log("Value : " + JSON.stringify(this.chitietSp.loaiGiay));
   }
-  
+
 }

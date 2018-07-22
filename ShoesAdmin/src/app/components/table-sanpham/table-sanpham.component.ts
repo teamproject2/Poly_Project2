@@ -46,7 +46,9 @@ export class TableSanphamComponent implements OnInit {
 	//
 	File_export(){
 		$(document).ready(function() {
-			var table = $('#table_sp').DataTable();
+			var table = $('#table_sp').DataTable({
+        "order": [[0, "desc"]]
+      });
 	 
 			new $.fn.dataTable.Buttons( table, {
 					buttons: [
