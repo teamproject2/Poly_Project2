@@ -3,6 +3,7 @@ import { LoaigiayService } from '../../services/loaigiay.service';
 import { LoaiGiay } from '../../models/loaiGiay';
 import { FormControl, Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { create } from 'domain';
 
 
 declare var jquery: any;
@@ -47,6 +48,9 @@ export class LoaigiayComponent implements OnInit {
   ngOnInit() {
     this.loadDataGiay();
     this.role = JSON.parse(localStorage.getItem('user')).quyen[0].tenQuyen;
+    
+    this.File_export();
+   
   }
 
 
@@ -59,6 +63,7 @@ export class LoaigiayComponent implements OnInit {
       $.fn.dataTable.ext.errMode = 'none';
 
     });
+    
   }
   //
   File_export() {
@@ -81,7 +86,7 @@ export class LoaigiayComponent implements OnInit {
     this.loaigiayservice.getLoaiGiay().subscribe(data => {
       this.list_giay = data;
       this.showDataTable();
-      this.File_export();
+      
     }, error => {
       console.log(error);
     });

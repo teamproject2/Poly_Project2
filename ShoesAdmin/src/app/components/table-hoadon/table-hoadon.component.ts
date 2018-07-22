@@ -39,6 +39,9 @@ export class TableHoadonComponent implements OnInit, OnDestroy {
     //this.id = this.route.snapshot.params['id'];
     this.loadData();
 
+    // Load 1 lần là đủ
+    this.File_export();
+
     this.role = JSON.parse(localStorage.getItem('user')).quyen[0].tenQuyen;
     console.log(this.role);
 
@@ -79,7 +82,7 @@ export class TableHoadonComponent implements OnInit, OnDestroy {
   loadData() {
     this.hoadonServices.getAllSP_HD().subscribe((data: Hoadon[]) => {
       this.list_hd = data;
-      this.File_export();
+      // this.File_export();
     },
       error => {
         console.log(error);
@@ -105,16 +108,13 @@ export class TableHoadonComponent implements OnInit, OnDestroy {
   }
   //
   DelhoaDon() {
-    this.hoadonServices.DeletehoaDon(this.id).subscribe();
-    this.toastr.success('Delete success!');
-    this.removeModal();
-    this.hoadonServices.getAllSP_HD().subscribe((data: Hoadon[]) => {
-      this.list_hd = data;
-      this.File_export();
-    },
-      error => {
-        console.log(error);
-      });
+    this.hoadonServices.DeletehoaDon(this.id).subscribe(result => {
+      this.toastr.success('Delete success!');
+      this.removeModal();  
+      this.loadData();
+    	},   
+      error =>console.log(error)
+      )
   }
   //
   ngOnDestroy() {

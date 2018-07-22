@@ -56,7 +56,6 @@ export class InvoiceComponent implements OnInit {
   changeTrangThai() {
     let idNhanVien = JSON.parse(localStorage.getItem('user')).nhanVien.id;
     this.detailHDServices.Chuyentrangthai(this.id, idNhanVien).subscribe(result => {
-      console.log(result);
       this.removeModal();
       this._detailInvoice.trangThai = 'Hoàn thành';
       this._detailInvoice.nhanVien.tenNhanVien = JSON.parse(localStorage.getItem('user')).nhanVien.tenNhanVien;
