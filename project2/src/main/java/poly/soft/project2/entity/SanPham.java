@@ -39,8 +39,8 @@ public class SanPham implements Serializable {
 	@OneToMany(mappedBy = "sanPham", fetch = FetchType.LAZY)
 	private List<HinhSanPham> hinhSanPham;
 
-	@Column(name = "GIOI_TINH")
-	private GioiTinhEnum gioiTinh;
+//	@Column(name = "GIOI_TINH")
+//	private GioiTinhEnum gioiTinh;
 
 	@Column(name = "DON_GIA")
 	private double donGia;
@@ -101,22 +101,6 @@ public class SanPham implements Serializable {
 	public void setHinhSanPham(List<HinhSanPham> hinhSanPham) {
 		this.hinhSanPham = hinhSanPham;
 	}
-
-	public GioiTinhEnum getGioiTinh() {
-		return gioiTinh;
-	}
-
-	public void setGioiTinh(GioiTinhEnum gioiTinh) {
-		this.gioiTinh = gioiTinh;
-	}
-
-//	public List<KichThuoc> getKichThuoc() {
-//		return kichThuoc;
-//	}
-//
-//	public void setKichThuoc(List<KichThuoc> kichThuoc) {
-//		this.kichThuoc = kichThuoc;
-//	}
 
 	public LoaiGiay getLoaiGiay() {
 		return loaiGiay;

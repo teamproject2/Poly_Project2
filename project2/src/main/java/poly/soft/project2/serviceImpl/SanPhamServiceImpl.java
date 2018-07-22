@@ -1,5 +1,7 @@
 package poly.soft.project2.serviceImpl;
 
+import static org.mockito.Mockito.spy;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -9,9 +11,11 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import poly.soft.project2.dto.SanPhamAdminDTO;
 import poly.soft.project2.dto.SanPhamHomePageDTO;
 import poly.soft.project2.entity.SanPham;
 import poly.soft.project2.enumeration.GioiTinhEnum;
+import poly.soft.project2.repository.LoaiGiayRepository;
 import poly.soft.project2.repository.SanPhamRepository;
 import poly.soft.project2.service.SanPhamService;
 
@@ -21,6 +25,9 @@ public class SanPhamServiceImpl  implements SanPhamService{
 
 	@Autowired
 	SanPhamRepository sanPhamRepository;
+	
+	@Autowired
+	LoaiGiayRepository loaiGiayRepository;
 	
 	@Override
 	public List<SanPham> findAll() {
@@ -114,5 +121,30 @@ public class SanPhamServiceImpl  implements SanPhamService{
 		return listByProduct;
 	}
 
+	@Override
+	public SanPham saveSanPham(SanPhamAdminDTO spDTO) {
+		SanPham sp = new SanPham();
+		sp.setTenSanPham(spDTO.getTenSanPham());
+		sp.setLoaiGiay(loaiGiayRepository.findById(spDTO.getLoaiGiayId()).orElse(null));
+		sp.setDonGia(spDTO.getDonGia());
+		sp.setChietKhau(spDTO.getChietKhau());
+		sp.setChiTiet(spDTO.getChiTiet());
+		
+		SanPham newSP = sanPhamRepository.save(sp);
+		return newSP;
+	}
+	
+	@Override
+	public SanPham updateSanPham(SanPhamAdminDTO spDTO) {
+		SanPham sp = sanPhamRepository.findById(spDTO.getId()).orElse(null);
+		sp.setTenSanPham(spDTO.getTenSanPham());
+		sp.setLoaiGiay(loaiGiayRepository.findById(spDTO.getLoaiGiayId()).orElse(null));
+		sp.setDonGia(spDTO.getDonGia());
+		sp.setChietKhau(spDTO.getChietKhau());
+		sp.setChiTiet(spDTO.getChiTiet());
+		
+		SanPham newSP = sanPhamRepository.save(sp);
+		return newSP;
+	}
 		
 }
