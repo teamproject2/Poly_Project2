@@ -17,12 +17,15 @@ public class AppConfig implements WebMvcConfigurer {
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 
-		String[] list1 = { "/sanpham/**", "/loaigiay/**", "/khachhang/**", "/kichthuoc/**" };
+		// String[] list1 = { "/sanpham/**", "/loaigiay/**", "/khachhang/**",
+		// "/kichthuoc/**" };
+
+		String[] list1 = { "/sanpham/**", "/loaigiay/**", "/kichthuoc/**" };
 
 		String[] list2 = { "/thongke/**", "/nhanvien/**", "/hoadon/**", "/hinhsanpham/**", "/taikhoan/**" };
 
 		registry.addInterceptor(commonInterceptor).addPathPatterns(list1);
-		registry.addInterceptor(adminInterceptor).addPathPatterns(list2)
-				.excludePathPatterns("/hoadon/{id}","/hoadon/create/{idKhachHang}","/hoadon/khachhang/{id}");
+		registry.addInterceptor(adminInterceptor).addPathPatterns(list2).excludePathPatterns("/hoadon/{id}",
+				"/hoadon/create/{idKhachHang}", "/hoadon/khachhang/{id}");
 	}
 }
