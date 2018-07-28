@@ -99,7 +99,7 @@ export class HeaderComponent implements OnInit {
             };
             sessionStorage.customer = JSON.stringify(customer1);
             console.log(JSON.stringify(customer1));
-            
+
             this.router.navigate(['/home/account']);
           }
         )
@@ -108,14 +108,56 @@ export class HeaderComponent implements OnInit {
   }
 
   signInWithGoogle() {
-    this.authService.doGoogleLogin();
+    this.authService.doGoogleLogin().then(result => {
+      this._userData = result;
+      this._storeUser.push(this._userData.additionalUserInfo.profile);
+
+      if (this._storeUser != null) {
+        this.toastrService.success(`Xin chào, ${this._userData.additionalUserInfo.profile.name}!`);
+        let object = {
+          name: this._userData.additionalUserInfo.profile.name,
+          image: this._userData.additionalUserInfo.profile.picture,
+          idAccount: this._userData.additionalUserInfo.profile.id
+        };
+        sessionStorage.tenKhachHang = JSON.stringify(object);
+        this.userInfo = JSON.parse(sessionStorage.tenKhachHang);
+
+        const headers = new Headers();
+        headers.append('idAccount', this._userData.additionalUserInfo.profile.id)
+        headers.append('email', this._userData.additionalUserInfo.profile.email);
+        const options = new RequestOptions({ headers: headers });
+
+        this.authService.checkKhachHang(options).subscribe(
+          data => {
+            this.chkData = data;
+            sessionStorage.customer = JSON.stringify(this.chkData);
+            this.location.isCurrentPathEqualTo(this.location.path());
+          },
+          error => {
+            console.error('Error: ' + error);
+            let customer1: any;
+            customer1 = {
+              tenKhachHang: this._userData.additionalUserInfo.profile.name,
+              email: this._userData.additionalUserInfo.profile.email,
+              idAccount: this._userData.additionalUserInfo.profile.id
+            };
+            sessionStorage.customer = JSON.stringify(customer1);
+            console.log(JSON.stringify(customer1));
+
+            this.router.navigate(['/home/account']);
+          }
+        )
+      }
+
+
+    })
   }
 
   signOut() {
     sessionStorage.tenKhachHang = [];
     sessionStorage.customer = [];
     this.userInfo = null;
-    this.router.navigate(['/home']);    
+    this.router.navigate(['/home']);
   }
 
   showProfile() {
@@ -124,7 +166,7 @@ export class HeaderComponent implements OnInit {
     if (this.chkData !== null) {
       console.log("aaaaaaaaaaaaaaaa " + this.chkData.id);
       this.router.navigate(['/home/account/', this.chkData.id]);
-    } else if(this._userData.additionalUserInfo.profile.id != null) {
+    } else if (this._userData.additionalUserInfo.profile.id != null) {
       this.router.navigate(['/home/account/', this._userData.additionalUserInfo.profile.id]);
     }
   }
