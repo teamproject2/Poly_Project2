@@ -85,7 +85,7 @@ export class CartComponent implements OnInit {
 
   getAllProductInCart() {
 
-    if (sessionStorage.tenKhachHang == null || sessionStorage.customer == null) {
+    if (sessionStorage.tenKhachHang == "" || sessionStorage.customer == "") {
       $(document).ready(function () {
         $('.modal-wrapper').addClass('show');
         $('.modal-login').addClass('show');

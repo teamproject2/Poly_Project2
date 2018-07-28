@@ -33,7 +33,6 @@ export class AuthService {
                 .signInWithPopup(provider)
                 .then(res => {
                     resolve(res);
-                    // console.log(res);
                 })
         })
     }

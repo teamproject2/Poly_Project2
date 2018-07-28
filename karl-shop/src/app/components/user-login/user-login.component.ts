@@ -25,6 +25,7 @@ declare var $: any;
 export class UserLoginComponent implements OnInit {
 
   phonePattern =    "^((\\+91-?)|0)?[0-9]{10}$";
+  // emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]{5,}\.[a-z]{2,4}$";
 
   regisForm:        FormGroup;
   email =           new FormControl('');
@@ -51,7 +52,7 @@ export class UserLoginComponent implements OnInit {
   constructor(private router: Router, private toastrService: ToastrService,
     private authService: AuthService, private sharedService: SharedService,
     private customerService: CustomerService, private location: Location) {
-
+    this.email = new FormControl('');
     this.soDienThoai = new FormControl('', [Validators.required, Validators.pattern(this.phonePattern)]);
 
     this.regisForm = new FormGroup({
@@ -73,9 +74,12 @@ export class UserLoginComponent implements OnInit {
 
 
   saveNewCustomer(customer) {
+    if(customer.email != '') {
+      this.newCustomer.email = customer.email;
+    }
+
     this.newCustomer.soDienThoai = customer.soDienThoai;
     this.newCustomer.diaChi = customer.diaChi;
-
     this.customerService.saveCustomer(this.newCustomer).subscribe(result => {
       this.newCustomer = result;
       sessionStorage.customer = JSON.stringify(result);
@@ -97,6 +101,8 @@ export class UserLoginComponent implements OnInit {
   signInWithFB() {
     this.authService.doFacebookLogin().then(result => {
       this._userData = result;
+      console.log(result);
+      
       this._storeUser.push(this._userData.additionalUserInfo.profile);
 
       if (this._storeUser != null) {
@@ -104,7 +110,8 @@ export class UserLoginComponent implements OnInit {
         let object = {
           name: this._userData.additionalUserInfo.profile.name,
           image: this._userData.additionalUserInfo.profile.picture.data.url,
-          idAccount: this._userData.additionalUserInfo.profile.id
+          idAccount: this._userData.additionalUserInfo.profile.id,
+          email: this.regisForm.controls.email.value
         };
         sessionStorage.tenKhachHang = JSON.stringify(object);
         this.sharedService.emitChange(JSON.stringify(object));

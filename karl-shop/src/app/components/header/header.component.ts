@@ -65,7 +65,6 @@ export class HeaderComponent implements OnInit {
 
   signInWithFB() {
     this.authService.doFacebookLogin().then(result => {
-
       this._userData = result;
       this._storeUser.push(this._userData.additionalUserInfo.profile);
 
@@ -99,10 +98,11 @@ export class HeaderComponent implements OnInit {
               idAccount: this._userData.additionalUserInfo.profile.id
             };
             sessionStorage.customer = JSON.stringify(customer1);
+            console.log(JSON.stringify(customer1));
+            
             this.router.navigate(['/home/account']);
           }
         )
-        // this.router.navigate(['/home/account/', this._userData.additionalUserInfo.profile.id]);
       }
     });
   }
@@ -112,9 +112,10 @@ export class HeaderComponent implements OnInit {
   }
 
   signOut() {
-    window.location.assign('http://localhost:4200/home');
     sessionStorage.tenKhachHang = [];
     sessionStorage.customer = [];
+    this.userInfo = null;
+    this.router.navigate(['/home']);    
   }
 
   showProfile() {
