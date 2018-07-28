@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -202,6 +203,10 @@ public class HoaDonServiceImpl implements HoaDonService {
 		Session getMailSession;
 		MimeMessage mailMessage;
 		String  today = new SimpleDateFormat("dd/MM/yyyy").format(new Date());
+		Calendar calendar = Calendar.getInstance();
+		calendar.add(Calendar.DAY_OF_YEAR, 4);
+		Date moreDay = calendar.getTime();
+		String formatDay = new SimpleDateFormat("dd/MM/yyyy").format(moreDay);
 		// Step1: setup Mail Server
 		mailServerProperties = System.getProperties();
 		mailServerProperties.put("mail.smtp.port", "587");
@@ -249,7 +254,7 @@ public class HoaDonServiceImpl implements HoaDonService {
 		String body="<body style=\"width: 100%; height: 100%; background-color: #F4F4F4\">\r\n" + 
 				"\r\n" + 
 				"    <h1 style=\"font-family: 'segoe-ui light'; font-size: 16px; color: #000; text-align: center\">Thông tin hóa đơn của bạn</h1>\r\n" + 
-				"    <p style=\"font-family: 'segoe-ui light'; font-size: 14px; color: #000; text-align: center\">Chúng tôi vừa bàn giao đơn hàng của quý khách đến đối tác vận chuyển Tiki Team. Đơn hàng của quý khách sẽ được giao trong\r\n" + 
+				"    <p style=\"font-family: 'segoe-ui light'; font-size: 14px; color: #000; text-align: center\">Chúng tôi vừa bàn giao đơn hàng của quý khách đến đối tác vận chuyển ShoesShop. Đơn hàng của quý khách sẽ được xét duyệt trong\r\n" + 
 				"        ngày "+today+"</p>\r\n" + 
 				"    <div style=\"float: left; width: 30%; margin-right: 4%; margin-bottom: 20px;\">\r\n" + 
 				"        <h2 style=\"font-family: 'segoe-ui light'; font-size: 14px; color: #000\">Địa chỉ người nhận</h2>\r\n" + 
@@ -263,7 +268,7 @@ public class HoaDonServiceImpl implements HoaDonService {
 				"    <div style=\"float: left; width: 30%; margin-right: 4%;margin-bottom: 20px;\">\r\n" + 
 				"        <h2 style=\"font-family: 'segoe-ui light'; font-size: 14px; color: #000\">Hình thức giao hàng</h2>\r\n" + 
 				"        <div style=\"background-color: #fff; box-sizing: border-box; padding: 10px; border-radius: 5px;  height: 150px;\">\r\n" + 
-				"            <p>Vận chuyển Tiết Kiệm (dự kiến giao hàng vào Thứ bảy, 02/06/2018)</p>\r\n" + 
+				"            <p>Vận chuyển Tiết Kiệm (dự kiến giao hàng vào "+formatDay+")</p>\r\n" + 
 				"            <strong style=\"font-size: 20px; color: red;\">Tổng cộng: "+Math.round(hd.getTongTien()) +"</strong>\r\n" + 
 				"        </div>\r\n" + 
 				"    </div>\r\n" + 
