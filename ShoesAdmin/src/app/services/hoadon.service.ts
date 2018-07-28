@@ -42,6 +42,10 @@ export class HoadonService {
     let search = new URLSearchParams();
     return this.httpClient.put<any>(this.URL_HD + "chuyentrangthai/" + id + "/" + idNhanVien, {search});
   }
+  //
+  sendMail(id: number): Observable<any>{
+    return this.httpClient.get<any>(this.URL_HD+ "sendmail/"+ id);
+  }
 
   private handleError(error: Response) {
     return Observable.throw(error.statusText);

@@ -21,6 +21,7 @@ export class LoaigiayComponent implements OnInit {
   isInsert = false;
   pattern = /^[^*|":<>[\]{}.,?/`~¥£€\\()';@&$!#%^*_+=0-9-]+$/;
 
+
   public ChitietLoaigiay = {
     id: '',
     tenLoai: ''

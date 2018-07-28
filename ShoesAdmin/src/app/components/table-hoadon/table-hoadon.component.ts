@@ -50,12 +50,11 @@ export class TableHoadonComponent implements OnInit, OnDestroy {
   // Phan trang
   showDataTable() {
     $(document).ready(function () {
-
+    
       $('#table_hd').DataTable({
         "order": [[0, "desc"]]
       });
       $.fn.dataTable.ext.errMode = 'none';
-
     });
   }
   //
@@ -76,13 +75,14 @@ export class TableHoadonComponent implements OnInit, OnDestroy {
       table.buttons(0, null).container().prependTo(
         table.table().container()
       );
+      $.fn.dataTable.ext.errMode = 'none';
     });
   }
   // Load all Hoa don
   loadData() {
     this.hoadonServices.getAllSP_HD().subscribe((data: Hoadon[]) => {
       this.list_hd = data;
-      // this.File_export();
+      this.showDataTable();
     },
       error => {
         console.log(error);
@@ -92,7 +92,7 @@ export class TableHoadonComponent implements OnInit, OnDestroy {
   //
   showModal(id: number) {
     this.id = id;
-    console.log(id);
+    // console.log(id);
 
     $(document).ready(function () {
       $('.modal1').addClass('show');
@@ -112,6 +112,7 @@ export class TableHoadonComponent implements OnInit, OnDestroy {
       this.toastr.success('Delete success!');
       this.removeModal();  
       this.loadData();
+      this.showDataTable();
     	},   
       error =>console.log(error)
       )

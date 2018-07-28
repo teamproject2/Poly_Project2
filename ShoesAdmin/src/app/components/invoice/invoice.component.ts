@@ -62,6 +62,15 @@ export class InvoiceComponent implements OnInit {
       this.toastr.success('Chuyển trạng thái thành công!');
     })
   }
+  //
+  sendMail(id: number){
+  this.detailHDServices.sendMail(id).subscribe(
+    result =>{
+      this.toastr.success('Gửi mail thành công!');
+    }
+  )   
+    
+  }
 
   //
   showModal(p: number) {

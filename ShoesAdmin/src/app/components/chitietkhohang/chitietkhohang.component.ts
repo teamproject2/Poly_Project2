@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { SanphamService } from '../../services/sanpham.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Kichthuoc } from '../../models/kichthuoc';
 import { KichthuocService } from '../../services/kichthuoc.service';
 import {ToastsManager} from 'ng2-toastr/ng2-toastr';
@@ -28,6 +28,7 @@ export class ChitietkhohangComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private sanphamService: SanphamService,
     private kichthuocService: KichthuocService,  private _vcr: ViewContainerRef,
+    private router: Router,
     private toastr: ToastsManager) {
       this.toastr.setRootViewContainerRef(_vcr);
      }
@@ -122,6 +123,9 @@ export class ChitietkhohangComponent implements OnInit {
       .subscribe(
         res => {
           this.toastr.success('Saved success!');
+          setTimeout(() => {
+            this.router.navigate(['/index/sanpham']);
+          }, 1500);
         }
         , error => console.log(error)
       );

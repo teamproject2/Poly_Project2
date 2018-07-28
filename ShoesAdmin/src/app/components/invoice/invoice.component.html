@@ -49,19 +49,26 @@
                     <p>
                       <span class="text-muted">Email :</span>{{_detailInvoice.khachHang.email}}</p>
                     <p>
+                      <div *ngIf="_detailInvoice.trangThai == 'Đang chờ'">
+                        <button type="button" (click)="sendMail(_detailInvoice.id)" class="btn btn-primary btn-raised my-1">
+                          <i class="ft-navigation"></i> Gửi mail
+                        </button>
+                      </div>
 
             </div>
             <div class="col-6 text-right">
               <p>
-                <span class="text-muted" *ngIf="_detailInvoice.nhanVien.tenNhanVien != '-'">Tên Nhân Viên : {{_detailInvoice.nhanVien.tenNhanVien}}</span></p>
+                <span class="text-muted" *ngIf="_detailInvoice.nhanVien.tenNhanVien != '-'">Tên Nhân Viên : {{_detailInvoice.nhanVien.tenNhanVien}}</span>
+              </p>
               <p>
                 <span class="text-muted">Ngày :</span>{{_detailInvoice.ngay}}</p>
               <span *ngIf="_detailInvoice.trangThai == 'Đang chờ'">
                 <p>
                   <span class="text-muted">Trạng Thái :</span>
-                  <span>{{_detailInvoice.trangThai}}</span><br>
+                  <span>{{_detailInvoice.trangThai}}</span>
+                  <br>
                   <button type="button" (click)="showModal(_detailInvoice.id)" class="btn btn-raised btn-primary">
-                      <!-- (click)="changeTrangThai(_detailInvoice.id)" -->
+                    <!-- (click)="changeTrangThai(_detailInvoice.id)" -->
                     <i class="ft-save"></i>
                     Hoàn thành
                   </button>
@@ -84,7 +91,7 @@
                 <table class="table">
                   <thead>
                     <tr>
-                      <th>Mã sản phẩm</th>
+                      <!-- <th>STT</th> -->
                       <th>Tên sản phẩm</th>
                       <th class="text-right">Chiết khấu</th>
                       <th class="text-right">Số Lượng</th>
@@ -94,7 +101,7 @@
                   <tbody>
 
                     <tr *ngFor="let detail of _detailInvoice.chiTietHoaDon">
-                      <th scope="row">{{detail.sanPham.id}}</th>
+                      <!-- <th scope="row">{{detail.sanPham.id}}</th> -->
                       <td>
                         {{detail.sanPham.tenSanPham}}
                       </td>
@@ -117,34 +124,33 @@
               </div>
             </div>
           </div>
-          <!--/ Invoice Footer -->
         </div>
       </div>
     </div>
   </section>
   <!--Invoice template ends-->
-    <!-- Modal -->
-<div class="modal-wrapper" (click)="removeModal()"></div>
+  <!-- Modal -->
+  <div class="modal-wrapper" (click)="removeModal()"></div>
 
-<div class="modal1">
+  <div class="modal1">
     <div class="modal-header">
-        <label class="modal-title text-text-bold-600 title">Confirm</label>
-        <!-- <h3 class="modal-title">Confirm</h3> -->
-        <button (click)="removeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+      <label class="modal-title text-text-bold-600 title">Confirm</label>
+      <!-- <h3 class="modal-title">Confirm</h3> -->
+      <button (click)="removeModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
     <div class="modal-body">Are you sure you want to save?</div>
-        <div  class="modal-footer">
-            <div class="col-md-12 text-center">
-                <button type="submit" (click)="changeTrangThai()" class="btn btn-raised btn-success but1">
-                    <i class=""></i> OK
-                </button>
-                <button type="submit" (click)="removeModal()" class="btn btn-raised btn-warning but1">
-                    <i class=""></i> Cancel
-                </button>
-            </div>
-        </div>
-</div>
-<!-- MODAL -->
+    <div class="modal-footer">
+      <div class="col-md-12 text-center">
+        <button type="submit" (click)="changeTrangThai()" class="btn btn-raised btn-success but1">
+          <i class=""></i> OK
+        </button>
+        <button type="submit" (click)="removeModal()" class="btn btn-raised btn-warning but1">
+          <i class=""></i> Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- MODAL -->
 </div>
