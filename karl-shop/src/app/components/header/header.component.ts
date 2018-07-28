@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LoaigiayService } from '../../services/loaigiay.service';
 import { HomeLoaiGiay } from '../../entity/home-loaigiay';
 import { Router } from '@angular/router';
@@ -9,32 +9,43 @@ import { RequestOptions, Headers } from '@angular/http';
 import { Customer } from '../../entity/customer';
 import { UserInfo } from '../../entity/userInfo';
 import { Location } from '@angular/common';
+import { CustomerService } from '../../services/customer.service';
+import { Subscriber } from '../../../../node_modules/rxjs';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
-  providers: [LoaigiayService, AuthService]
+  providers: [LoaigiayService, AuthService, CustomerService]
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
 
   _loaigiayArray: HomeLoaiGiay[];
   _storeUser: UserData[] = [];
   chkData: Customer;
   _userData: any;
   userInfo: UserInfo;
-
+  customerInfo: any;
+  private customerDataSubscriber: Subscriber<string>;
 
   constructor(private loaiGiayService: LoaigiayService,
     private router: Router,
     private toastrService: ToastrService,
     private authService: AuthService,
-    private location: Location
-  ) { }
+    private location: Location,
+    private customerService: CustomerService
+  ) {
+    // this.customerDataSubscriber = this.customerService.customerData.subscribe((data: any) => {
+    //   this.customerInfo = data;
+    //   console.log(JSON.stringify(this.customerInfo));
+    // })
+  }
 
   ngOnInit() {
     this.getLoaiGiay();
-    // this.sharedService.changeEmitted$.subscribe(text => {
-    // })
+  }
+
+  ngOnDestroy() {
+    // this.customerDataSubscriber.unsubscribe();
   }
 
   // SHOW left-bar-menu
@@ -148,8 +159,6 @@ export class HeaderComponent implements OnInit {
           }
         )
       }
-
-
     })
   }
 
@@ -161,8 +170,6 @@ export class HeaderComponent implements OnInit {
   }
 
   showProfile() {
-    console.log(JSON.stringify(this.chkData));
-
     if (this.chkData !== null) {
       console.log("aaaaaaaaaaaaaaaa " + this.chkData.id);
       this.router.navigate(['/home/account/', this.chkData.id]);

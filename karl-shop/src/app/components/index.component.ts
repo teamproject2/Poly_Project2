@@ -5,9 +5,12 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
-    constructor() {}
+
+    currentCustomer: any;
+    constructor() { }
 
     ngOnInit() {
 
     }
+
 }

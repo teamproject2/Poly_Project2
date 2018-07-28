@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   tenLoai: string;
   
   constructor(private dataService: DataService, private loaigiayService: LoaigiayService,
-    private router: Router) { }
+    private router: Router) {}
 
   ngOnInit() {
     this.getLoaiGiay();

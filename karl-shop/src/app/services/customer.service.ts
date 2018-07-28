@@ -1,12 +1,14 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Output, EventEmitter } from "@angular/core";
 import { Customer } from "../entity/customer";
 import { Observable } from "rxjs/Observable";
 import { Http,URLSearchParams, Response } from "@angular/http";
+import { UserData } from "../entity/user-data";
 
 @Injectable()
 
 export class CustomerService {
 
+    @Output() customerData = new EventEmitter<any>();
     _url: string = 'http://localhost:9099/';
 
     constructor(private http: Http) {}
@@ -33,4 +35,5 @@ export class CustomerService {
             return response.json();
         })
     }
+
 }

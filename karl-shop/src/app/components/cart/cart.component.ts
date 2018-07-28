@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ProductSelected } from '../../entity/product-selected-cart';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
@@ -7,6 +7,7 @@ import { Customer } from '../../entity/customer';
 import { ToastrService } from '../../services/toastr.service';
 import { UserInfo } from '../../entity/userInfo';
 import { RequestOptions, Headers } from '@angular/http';
+import { CustomerService } from '../../services/customer.service';
 
 declare var jquery: any;
 declare var $: any;
@@ -15,19 +16,22 @@ declare var $: any;
   selector: 'app-cart',
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.css'],
-  providers: [AuthService]
+  providers: [AuthService, CustomerService]
 })
 export class CartComponent implements OnInit {
+
+  @Output() customerData = new EventEmitter<any>();
   _productInCart: ProductSelected[] = [];
   _sumOfMoney: number = 0;
-  _storeUser:         UserData[] = [];
-  chkData:            Customer;
-  _userData:          any;
-  userInfo:           UserInfo;
-  
+  _storeUser: UserData[] = [];
+  chkData: Customer;
+  _userData: any;
+  userInfo: UserInfo;
+
   constructor(private router: Router,
-              private authService: AuthService,
-              private toastrService: ToastrService) { }
+    private authService: AuthService,
+    private toastrService: ToastrService,
+    private customerService: CustomerService) { }
 
   ngOnInit() {
     if (sessionStorage.productInCart !== null) {
@@ -85,7 +89,7 @@ export class CartComponent implements OnInit {
 
   getAllProductInCart() {
 
-    if (sessionStorage.tenKhachHang == "" || sessionStorage.customer == "") {
+    if (sessionStorage.tenKhachHang == "" || sessionStorage.customer == "" || sessionStorage.tenKhachHang == null || sessionStorage.customer == null) {
       $(document).ready(function () {
         $('.modal-wrapper').addClass('show');
         $('.modal-login').addClass('show');
@@ -115,10 +119,8 @@ export class CartComponent implements OnInit {
 
   signInWithFB() {
     this.authService.doFacebookLogin().then(result => {
-
       this._userData = result;
       this._storeUser.push(this._userData.additionalUserInfo.profile);
-
       if (this._storeUser != null) {
         this.toastrService.success(`Xin chào, ${this._userData.additionalUserInfo.profile.name}!`);
         let object = {
@@ -127,19 +129,15 @@ export class CartComponent implements OnInit {
           idAccount: this._userData.additionalUserInfo.profile.id
         };
         sessionStorage.tenKhachHang = JSON.stringify(object);
-        this.userInfo = JSON.parse(sessionStorage.tenKhachHang);
-        // this.sharedService.emitChange(JSON.stringify(object));
-
+        // this.userInfo = JSON.parse(sessionStorage.tenKhachHang);
         const headers = new Headers();
         headers.append('idAccount', this._userData.additionalUserInfo.profile.id)
         headers.append('email', this._userData.additionalUserInfo.profile.email);
-        // console.log(headers.get('idAccount'));
         const options = new RequestOptions({ headers: headers });
 
         this.authService.checkKhachHang(options).subscribe(
           data => {
             this.chkData = data;
-            // console.log("Data: " + this.chkData);
             sessionStorage.customer = JSON.stringify(this.chkData);
             this.router.navigate(['/home/checkout']);
           },
@@ -155,10 +153,49 @@ export class CartComponent implements OnInit {
             this.router.navigate(['/home/account']);
           }
         )
-
-        // this.router.navigate(['/home/account/', this._userData.additionalUserInfo.profile.id]);
       }
     });
+  }
+
+  signInWithGoogle() {
+    this.authService.doGoogleLogin().then(result => {
+      this._userData = result;
+      this._storeUser.push(this._userData.additionalUserInfo.profile);
+
+      if (this._storeUser != null) {
+        this.toastrService.success(`Xin chào, ${this._userData.additionalUserInfo.profile.name}!`);
+        let object = {
+          name: this._userData.additionalUserInfo.profile.name,
+          image: this._userData.additionalUserInfo.profile.picture,
+          idAccount: this._userData.additionalUserInfo.profile.id
+        };
+        sessionStorage.tenKhachHang = JSON.stringify(object);
+        // this.userInfo = JSON.parse(sessionStorage.tenKhachHang);
+        const headers = new Headers();
+        headers.append('idAccount', this._userData.additionalUserInfo.profile.id)
+        headers.append('email', this._userData.additionalUserInfo.profile.email);
+        const options = new RequestOptions({ headers: headers });
+
+        this.authService.checkKhachHang(options).subscribe(
+          data => {
+            this.chkData = data;
+            sessionStorage.customer = JSON.stringify(this.chkData);
+            this.router.navigate(['/home/checkout']);
+          },
+          error => {
+            console.error('Error: ' + error);
+            let customer1: any;
+            customer1 = {
+              tenKhachHang: this._userData.additionalUserInfo.profile.name,
+              email: this._userData.additionalUserInfo.profile.email,
+              idAccount: this._userData.additionalUserInfo.profile.id
+            };
+            sessionStorage.customer = JSON.stringify(customer1);
+            this.router.navigate(['/home/account']);
+          }
+        )
+      }
+    })
   }
 
 }

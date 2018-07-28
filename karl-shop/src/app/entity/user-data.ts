@@ -5,7 +5,5 @@ export interface UserData {
     name:       string;
     first_name: string;
     last_name:  string;
-    // provider:   string;
-    // token:      string;
     picture:    string[];
 }
