@@ -3,6 +3,9 @@ package poly.soft.project2.rest;
 import java.text.ParseException;
 import java.util.List;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -78,5 +81,12 @@ public class HoaDonController {
 		HoaDon hd = hoaDonService.changeState(id, idNhanVien);
 		return new ResponseEntity<>(hd, HttpStatus.OK);
 	}
+	
+	@RequestMapping(value="/sendmail/{id}",method= RequestMethod.GET)
+	public ResponseEntity<?> sendMail(@PathVariable("id") int id) throws AddressException, MessagingException, ParseException{
+		hoaDonService.sendMail(id);
+		return  new ResponseEntity<>(HttpStatus.OK);
+	}
+	
 
 }

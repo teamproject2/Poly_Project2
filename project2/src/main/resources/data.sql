@@ -102,14 +102,14 @@ insert into poly_project2.khach_hang(ten_khach_hang,dia_chi,email,so_dien_thoai,
 values('Khoa','123 Hoàng Hoa Thám Q.PN, TP.HCM','conque6@gmail.com','01698300191',''),
 ('Hòa','99 Lê Lợi Q.1, TP.HCM','hoanv@gmail.com','01698309267',''),
 ('Long','13 Lạc Long Quân Q.11, TP.HCM','longvh1@gmail.com','01690127956',''),
-('Lai','12 Trần Khánh Dư Q.PN, TP.HCM','laitb9@gmail.com','01609307956',''),
-('Ngọc','621 Hoàng Sa Q.PN, TP.HCM','ngocbt@gmail.com','01698075956',''),
-('Nhi','130 Đề Thám Q.1, TP.HCM','nhidh6@gmail.com','01698307907',''),
-('Hằng','129 Phan Văn Trị Q.GV, TP.HCM','hangntt6@gmail.com','01692007956',''),
-('Nga','399 Kha Vạn Cân Q.TĐ, TP.HCM','ngaht@gmail.com','01698307905',''),
-('Linh','199 Lê Văn Sỹ Q.PN, TP.HCM','linhntt@gmail.com','01698307556',''),
-('Phúc','555 Hai Bà Trưng Q.3, TP.HCM','phucbd@gmail.com','01698307856',''),
-('Am','1230 Phạm Văn Đồng Q.TĐ, TP.HCM','amnn@gmail.com','01698307956','');
+('Lai','12 Trần Khánh Dư Q.PN, TP.HCM','laitruong.bmw@gmail.com','01609307956',''),
+('Ngọc','621 Hoàng Sa Q.PN, TP.HCM','conque6@gmail.com','01698075956',''),
+('Nhi','130 Đề Thám Q.1, TP.HCM','conque6@gmail.com','01698307907',''),
+('Hằng','129 Phan Văn Trị Q.GV, TP.HCM','conque6@gmail.com','01692007956',''),
+('Nga','399 Kha Vạn Cân Q.TĐ, TP.HCM','conque6@gmail.com','01698307905',''),
+('Linh','199 Lê Văn Sỹ Q.PN, TP.HCM','conque6@gmail.com','01698307556',''),
+('Phúc','555 Hai Bà Trưng Q.3, TP.HCM','conque6@gmail.com','01698307856',''),
+('Am','1230 Phạm Văn Đồng Q.TĐ, TP.HCM','conque6@gmail.com','01698307956','');
 
 
 -- insert into nhan_vien
