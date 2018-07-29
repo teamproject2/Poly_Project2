@@ -1,7 +1,7 @@
 <div class="wrapper">
   <!-- main menu-->
   <!--.main-menu(class="#{menuColor} #{menuOpenType}", class=(menuShadow == true ? 'menu-shadow' : ''))-->
-  <div data-active-color="white" data-background-color="man-of-steel" data-image="../assets/../assets/app-assets/img/sidebar-bg/01.jpg"
+  <div data-active-color="white" data-background-color="man-of-steel" data-image="../assets/app-assets/img/sidebar-bg/01.jpg"
     class="app-sidebar">
     <!-- main menu header-->
     <!-- Sidebar Header starts-->
@@ -99,7 +99,7 @@
                 <p class="d-none">User Settings</p>
               </a>
               <div ngbdropdownmenu="" aria-labelledby="dropdownBasic3" class="dropdown-menu dropdown-menu-right">
-                <a href="javascript:;" class="dropdown-item py-1">
+                <a [routerLink]="['/index/userProfile']" href="javascript:;" class="dropdown-item py-1">
                   <i class="ft-edit mr-2"></i>
                   <span>Edit Profile</span>
                 </a>

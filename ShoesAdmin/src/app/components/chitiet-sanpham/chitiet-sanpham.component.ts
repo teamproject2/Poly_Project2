@@ -141,7 +141,7 @@ export class ChitietSanphamComponent implements OnInit {
   saveSanpham() {
     this.sanpham.loaiGiayId = this.chitietSp.loaiGiay.id;
     // console.log(JSON.stringify(this.sanpham));
-    
+
     this.sanphamService.update_Sp(this.sanpham).subscribe(
       result => {
         this.removeModal();
@@ -165,14 +165,21 @@ export class ChitietSanphamComponent implements OnInit {
   //   });
   // }
 
-    // this.currentFileUpload = new FileUpload(file);
-    // this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress);
+  // this.currentFileUpload = new FileUpload(file);
+  // this.uploadService.pushFileToStorage(this.currentFileUpload, this.progress);
 
   //Chi tiet san pham
-  getChitiet_SP(id : number) {
+  getChitiet_SP(id: number) {
     this.sanphamService.getSanphamByID(id).subscribe(data => {
       this.chitietSp = data;
       this.loaiGiayAA = this.chitietSp.loaiGiay;
+
+      this.sanpham.id = this.chitietSp.id;
+      this.sanpham.tenSanPham = this.chitietSp.tenSanPham;
+      this.sanpham.chiTiet = this.chitietSp.chiTiet;;
+      this.sanpham.chietKhau = this.chitietSp.chietKhau;
+      this.sanpham.donGia = this.chitietSp.donGia;
+      this.sanpham.loaiGiayId = this.chitietSp.loaiGiay.id;
     },
       error => {
         console.log(error);

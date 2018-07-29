@@ -18,13 +18,12 @@ import { CheckInterceptor } from './interceptor/check.interceptor';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorValidateComponent } from './components/error-validate/error-validate.component';
 
-
 @NgModule({
   // khai bao component
   declarations: [
     AppComponent,
     LoginComponent,
-    ErrorValidateComponent
+    ErrorValidateComponent,
   ],
   imports: [
     BrowserModule,

@@ -63,13 +63,17 @@ export class InvoiceComponent implements OnInit {
     })
   }
   //
-  sendMail(id: number){
-  this.detailHDServices.sendMail(id).subscribe(
-    result =>{
-      this.toastr.success('Gửi mail thành công!');
-    }
-  )   
-    
+  sendMail(id: number) {
+    this.detailHDServices.sendMail(id).subscribe(
+      result => {
+        this.toastr.success('Gửi mail thành công!');
+      },
+      error => {
+        console.error('Error: ' + error)
+        this.toastr.success('Gửi mail thành công!');
+      }
+    )
+
   }
 
   //

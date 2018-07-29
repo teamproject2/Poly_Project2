@@ -32,6 +32,7 @@ import { environment } from "../../../environments/environment";
 import { CommonModule } from '../../../../node_modules/@angular/common';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "../../../../node_modules/@angular/common/http";
 import { CheckInterceptor } from "../../interceptor/check.interceptor";
+import { UserProfileComponent } from "../user-profile/user-profile.component";
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { CheckInterceptor } from "../../interceptor/check.interceptor";
     ChitietSanphamComponent,
     ChitietkhohangComponent,
     LoaigiayComponent,
+    UserProfileComponent
   ],
   imports: [
     HttpModule,

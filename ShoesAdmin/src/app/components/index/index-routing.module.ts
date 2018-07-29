@@ -15,6 +15,7 @@ import { InvoiceComponent } from '../invoice/invoice.component';
 import { ChitietSanphamComponent } from '../chitiet-sanpham/chitiet-sanpham.component';
 import { ChitietkhohangComponent } from '../chitietkhohang/chitietkhohang.component';
 import { LoaigiayComponent } from '../loaigiay/loaigiay.component';
+import { UserProfileComponent } from '../user-profile/user-profile.component';
 
 // Khai báo Router
 const routes: Routes = [
@@ -34,7 +35,7 @@ const routes: Routes = [
       { path: 'khachhang', component: TableKhachhangComponent },
       { path: 'hoadon', component: TableHoadonComponent },
       { path: 'hoadon/:id', component: InvoiceComponent },
-      // { path: 'form-product', component: FormSanphamComponent },
+      { path: 'userProfile', component: UserProfileComponent },
       { path: 'themsanpham', component: FormSanphamComponent },
       { path: 'chitiet-sp', component: ChitietSanphamComponent },
       { path: 'loaigiay', component: LoaigiayComponent },

@@ -224,12 +224,17 @@ export class DashboardComponent implements OnInit {
 
   //chart-1
   getTop10(month: any, year: any) {
+
     if (month != 0 && year != 0) {
       this.thongKeService.getTop10(month, year).subscribe(result => {
         this.data1 = [];
         this.dataDB = result;
         this.thangOfChart1 = month;
         this.namOfChart1 = year;
+
+        this.monthSelected = this.thangOfChart1;
+        this.yearSelected = this.namOfChart1;
+
         if (this.dataDB.length == 0) {
           this.dataSource1.chart.subCaption = 'Không có sản phẩm được bán trong tháng ' + this.thangOfChart1 + ' năm ' + this.namOfChart1;
           for (let i = 0; i < 10; i++) {
@@ -263,6 +268,10 @@ export class DashboardComponent implements OnInit {
         this._loaiGiayInMonth = result;
         this.thangOfChart2 = month;
         this.namOfChart2 = year;
+
+        this.monthSelected2 = this.thangOfChart2;
+        this.yearSelected2 = this.namOfChart2;
+
         if (this._loaiGiayInMonth.length == 0) {
           //  
         } else {
@@ -294,6 +303,9 @@ export class DashboardComponent implements OnInit {
         this.namOfChart3 = year;
         this.loaiGiayOfChart3 = cate;
 
+        this.loaiGiaySelected3 = this.loaiGiayOfChart3;
+        this.yearSelected3 = this.namOfChart3;
+
         this.dataSource3.chart.subCaption = 'Doanh thu trong năm ' + this.namOfChart3 + ' của giày ' + this.loaiGiayOfChart3;
         for (let i = 0; i < this._loaiGiayInYear.length; i++) {
           let object = { 'label': '', 'value': '' };
@@ -320,6 +332,7 @@ export class DashboardComponent implements OnInit {
         this.data4 = [];
         this._sumOfMoneyInMonth = result;
         this.namOfChart4 = year;
+        this.yearSelected4 = this.namOfChart4;
         this.dataSource4.chart.subCaption = "Doanh thu trong năm " + this.namOfChart4;
 
         for (let i = 0; i < this._sumOfMoneyInMonth.length; i++) {
