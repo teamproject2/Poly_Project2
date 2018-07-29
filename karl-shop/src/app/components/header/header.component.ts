@@ -142,7 +142,8 @@ export class HeaderComponent implements OnInit, OnDestroy {
           data => {
             this.chkData = data;
             sessionStorage.customer = JSON.stringify(this.chkData);
-            this.location.isCurrentPathEqualTo(this.location.path());
+            //this.location.isCurrentPathEqualTo(this.location.path());
+            this.router.navigate(['/home']);
           },
           error => {
             console.error('Error: ' + error);

@@ -6,5 +6,5 @@ import poly.soft.project2.entity.KhachHang;
 
 public interface KhachHangRepository extends JpaRepository<KhachHang, Integer> {
 
-	KhachHang findByIdAccountAndEmail(String idAccount, String email);
+	KhachHang findByIdAccount(String idAccount);
 }

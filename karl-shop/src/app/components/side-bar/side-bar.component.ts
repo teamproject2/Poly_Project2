@@ -51,12 +51,19 @@ export class SideBarComponent implements OnInit {
   }
 
   goCate(name): void {
+    let oldName = sessionStorage.tenLoai;
+    $('#'+oldName).css("background-color", "white");
+    $('#'+name).css("background-color", "yellow");
+    sessionStorage.tenLoai = name;
     this.router.navigate(['/home/category', name]);
-    
   }
 
   goSize(idsize): void {
     console.log("idSize: " + idsize);
+    let oldSize = sessionStorage.sizeId;
+    $('#'+oldSize).css("background-color", "white");
+    $('#'+idsize).css("background-color", "red");
+    sessionStorage.sizeId = idsize;
 
     this.router.navigate(['/home/size', idsize]);
   }

@@ -28,7 +28,7 @@ public class KhachHangServiceImpl implements KhachHangService {
 	
 	@Override
 	public KhachHang findByIdAccountAndEmail(String idAccount, String email) {
-		KhachHang khachHang = khachHangRepository.findByIdAccountAndEmail(idAccount, email);
+		KhachHang khachHang = khachHangRepository.findByIdAccount(idAccount);
 		return khachHang;
 	}
 
