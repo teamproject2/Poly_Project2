@@ -31,6 +31,8 @@ import {
 import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { CdkTableModule } from "@angular/cdk/table";
 import { AngularFireAuthModule } from "angularfire2/auth";
+import { LienHeComponent } from "./lienhe/lienhe.component";
+import { AboutComponent } from "./about/about.component";
 
 @NgModule({
     imports: [
@@ -66,7 +68,9 @@ import { AngularFireAuthModule } from "angularfire2/auth";
         ProductCategoryComponent,
         UserLoginComponent,
         UserProfileComponent,
-        IndexComponent
+        IndexComponent,
+        LienHeComponent,
+        AboutComponent
     ]
 })
 export class IndexModule {

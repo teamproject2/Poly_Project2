@@ -9,6 +9,8 @@ import { ProductCategoryComponent } from "./products/product-category/product-ca
 import { IndexComponent } from "./index.component";
 import { UserLoginComponent } from "./user-login/user-login.component";
 import { UserProfileComponent } from "./user-login/user-profile/user-profile.component";
+import { AboutComponent } from "./about/about.component";
+import { LienHeComponent } from "./lienhe/lienhe.component";
 
 
 const indexRoutes: Routes = [
@@ -24,7 +26,9 @@ const indexRoutes: Routes = [
             { path: 'category/:name', component: ProductCategoryComponent },
             { path: 'size/:idsize', component: ProductCategoryComponent },
             { path: 'account', component: UserLoginComponent},
-            { path: 'account/:id', component: UserProfileComponent}
+            { path: 'account/:id', component: UserProfileComponent},
+            { path: 'about', component: AboutComponent},
+            { path: 'lienhe', component:LienHeComponent}
         ]
     }
 ];
